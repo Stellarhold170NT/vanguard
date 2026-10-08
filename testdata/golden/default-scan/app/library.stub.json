@@ -1,0 +1,19 @@
+{
+  "service": "Library",
+  "basePath": "/v1/library",
+  "methods": [
+    {"name": "demoBadGetBook", "verb": "GET", "path": "/books/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Book", "statusCode": 200}},
+    {"name": "listBooks", "verb": "GET", "path": "/books",
+     "response": {"type": "BookList", "statusCode": 200, "isCollection": true}},
+    {"name": "demoBadDeleteShelf", "verb": "DELETE", "path": "/shelves/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Shelf", "statusCode": 204}}
+  ],
+  "types": [
+    {"name": "Book", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "BookList", "kind": "record", "fields": [{"name": "items", "type": "Book"}]},
+    {"name": "Shelf", "kind": "record", "fields": [{"name": "id", "type": "string"}]}
+  ]
+}

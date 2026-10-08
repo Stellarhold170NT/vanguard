@@ -1,0 +1,8 @@
+exit: 0
+formats: [pretty, json]
+note: >-
+  Family-prefix suppression (§6.5: "match id đầy đủ hoặc prefix họ"): one
+  entry with rule "R6xx" silences every demo-family finding (one of each
+  severity) under generated/**, while the same rule family stays active
+  outside that glob. Pins: family matching, glob scoping, and a summary
+  whose suppressed count (3) exceeds its finding count (1).

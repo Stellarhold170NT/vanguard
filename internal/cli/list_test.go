@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"strings"
 	"testing"
+
+	"github.com/Stellarhold170NT/vanguard/rules"
 )
 
 // TestListRulesTableSortedWithMetadata pins the w2-06 brief rule: the
@@ -46,7 +48,10 @@ func TestParseRuleSelector(t *testing.T) {
 	}{
 		{"empty keeps everything", "", nil, ""},
 		{"exact id", "R6xx-99", map[string]bool{"R6xx-99": true}, ""},
-		{"family prefix", "R6xx", map[string]bool{"R6xx-99": true}, ""},
+		// The family prefix keeps every registered member of the family —
+		// derived from the registry so this case pins the selector grammar,
+		// not the current size of the demo set.
+		{"family prefix", "R6xx", r6xxFamilyIDs(base), ""},
 		{"spaces tolerated", " R6xx-99 ", map[string]bool{"R6xx-99": true}, ""},
 		{"empty token is an error", "R6xx-99,,", nil, "empty rule"},
 		{"unknown token is an error", "R9xx-01", nil, "unknown rule"},
@@ -79,4 +84,16 @@ func TestParseRuleSelector(t *testing.T) {
 			}
 		})
 	}
+}
+
+// r6xxFamilyIDs lists every R6xx rule currently registered — the expected
+// result of the "R6xx" family-prefix selector.
+func r6xxFamilyIDs(base *rules.Registry) map[string]bool {
+	out := map[string]bool{}
+	for _, r := range base.All() {
+		if strings.HasPrefix(r.ID, "R6xx") {
+			out[r.ID] = true
+		}
+	}
+	return out
 }

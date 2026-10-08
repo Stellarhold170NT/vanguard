@@ -1,0 +1,10 @@
+exit: 2
+args: ["--config", "{case}/bad.vanguard.yaml"]
+formats: [pretty]
+snapshot: stderr
+note: >-
+  §6.3 exit 2 (tool error): the config names a typo'd key under a rule.
+  The error on stderr cites file and line ("bad.vanguard.yaml:4: ...") per
+  the config-error contract, stdout stays empty, and nothing renders.
+  The snapshot is the stderr text; the config error uses the file's base
+  name so the bytes are machine-independent.

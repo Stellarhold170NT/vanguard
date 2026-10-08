@@ -1,0 +1,11 @@
+{
+  "service": "Members",
+  "basePath": "/v1/members",
+  "methods": [
+    {"name": "inviteMember", "verb": "POST", "path": "/members/invite",
+     "payload": "InviteRequest"}
+  ],
+  "types": [
+    {"name": "InviteRequest", "kind": "record", "fields": [{"name": "email", "type": "string"}]}
+  ]
+}

@@ -1,0 +1,5 @@
+exit: 1
+formats: [pretty]
+note: >-
+  §6.3 exit 1: exactly one ERROR finding (R6xx-91), nothing else — the
+  minimal red-scan shape for the exit-code contract.

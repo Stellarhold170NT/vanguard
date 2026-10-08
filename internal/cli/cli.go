@@ -353,16 +353,21 @@ func (inv *invoker) resolveConfig(root string) (*engine.Config, string, error) {
 // mergeStubPath); the w3-01+ adapters make R6xx-99 reachable for real.
 var registrySource = defaultRegistry
 
-// defaultRegistry assembles the production rule set. w3-03+ families
-// register here next to the w2-04 demo fixture.
+// defaultRegistry assembles the production rule set: the whole demo set
+// (R6xx-99 plus the w2-07 stub-reachable fixtures R6xx-91/92/93) today;
+// w3-03+ families register here next to them. All of them come from data
+// records under rules/data joined to their checks by the registry
+// (charter §3.0, §5.4).
 func defaultRegistry() (*rules.Registry, error) {
 	reg := rules.NewRegistry()
-	rule, err := rules.DemoRule()
+	demoRules, err := rules.DemoRules()
 	if err != nil {
 		return nil, fmt.Errorf("load builtin rules: %w", err)
 	}
-	if err := reg.Register(rule); err != nil {
-		return nil, fmt.Errorf("register %s: %w", rule.ID, err)
+	for _, rule := range demoRules {
+		if err := reg.Register(rule); err != nil {
+			return nil, fmt.Errorf("register %s: %w", rule.ID, err)
+		}
 	}
 	return reg, nil
 }

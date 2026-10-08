@@ -1,0 +1,18 @@
+{
+  "service": "Inventory",
+  "basePath": "/v1/inventory",
+  "methods": [
+    {"name": "demoBadGetItem", "verb": "GET", "path": "/items/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Item", "statusCode": 200}},
+    {"name": "demoBadSearchInventory", "verb": "GET", "path": "/items/search",
+     "payload": "SearchRequest",
+     "response": {"type": "SearchResult", "statusCode": 200}},
+    {"name": "writeOffItem", "verb": "POST", "path": "/write-offs"}
+  ],
+  "types": [
+    {"name": "Item", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "SearchRequest", "kind": "record", "fields": [{"name": "term", "type": "string"}]},
+    {"name": "SearchResult", "kind": "record", "fields": [{"name": "hits", "type": "int32"}]}
+  ]
+}
