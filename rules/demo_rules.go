@@ -19,7 +19,7 @@ import (
 //
 // The checks read only the stub-expressible IR surface (method name,
 // response type, payload, verb); the w3-01+ adapters make richer rules
-// reachable, but these three stay valid forever as the engine's own
+// reachable, but these four stay valid forever as the engine's own
 // fixtures.
 
 //go:embed data/R6xx-91.yaml
@@ -30,6 +30,9 @@ var demoNoResponseYAML []byte
 
 //go:embed data/R6xx-93.yaml
 var demoGetWithBodyYAML []byte
+
+//go:embed data/R6xx-94.yaml
+var demoLegacyPathYAML []byte
 
 // demoBadPrefix is the method-name marker R6xx-91 flags. Fixture method
 // names start with it; production-styled names never do, so the rule
@@ -99,6 +102,21 @@ func demoGetWithBodyCheck(_ *engine.LintContext, node ir.Node) []engine.Finding 
 	}}
 }
 
+// demoLegacyPathCheck flags Methods served from a /legacy/ path (INFO demo
+// and the w2-07 data-driven acceptance artifact: this rule shipped with one
+// YAML record and one table row — no other file changed).
+func demoLegacyPathCheck(_ *engine.LintContext, node ir.Node) []engine.Finding {
+	m, ok := node.(ir.Method)
+	if !ok || !strings.Contains(m.Path, "/legacy/") {
+		return nil
+	}
+	return []engine.Finding{{
+		Message:    fmt.Sprintf("Method %s is served from a legacy path (%s) — migrate the route to its versioned form.", m.OperationName, m.Path),
+		Suggestion: "move the route under its versioned prefix",
+		Location:   node.Loc(),
+	}}
+}
+
 // demoRulesYAML pairs every demo rule's embedded record with its check so
 // the set stays one data table: adding a demo rule for a new fixture need
 // means one YAML file and one row here — never engine or harness work
@@ -112,6 +130,7 @@ var demoRulesYAML = []struct {
 	{demoBadYAML, methodSelector{}, demoBadCheck},
 	{demoNoResponseYAML, methodSelector{}, demoNoResponseCheck},
 	{demoGetWithBodyYAML, methodSelector{}, demoGetWithBodyCheck},
+	{demoLegacyPathYAML, methodSelector{}, demoLegacyPathCheck},
 }
 
 // DemoRules compiles the whole demo set. Registration errors (bad

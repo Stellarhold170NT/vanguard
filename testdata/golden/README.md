@@ -72,7 +72,8 @@ note: >-               # what the case pins, for the reviewer
 | `sort-stability` | all findings tie on (file,line,col); pinned deterministic order |
 | `detect-evidence` | `--verbose` evidence trail on stderr; `.vanguardignore` + `node_modules` skips; parse diagnostic, not abort |
 | `integration-stub-repo` | production binary scans the committed `testdata/stub-repo` (CI-shaped wiring case) |
+| `data-driven-proof` | adding rule R6xx-94 needed one YAML record + one table row — zero harness change (the proof case) |
 
-The demo rules that make findings stub-reachable (R6xx-91/92/93, next to
-the w2-04 R6xx-99) live in `rules/data/` with their checks in
+The demo rules that make findings stub-reachable (R6xx-91/92/93/94, next
+to the w2-04 R6xx-99) live in `rules/data/` with their checks in
 `rules/demo_rules.go` — data-driven like every rule (charter §3.0).
