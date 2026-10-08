@@ -56,17 +56,9 @@ type WalkOptions struct {
 // returns a path escaping the root via "..". The returned error covers
 // root-level failures only (missing/unreadable root); individual unreadable
 // entries are counted and surfaced in verbose mode, not fatal.
+//
+// Implemented by FSWalker (walk.go); use WalkWithStats to also learn WHY
+// entries were skipped.
 type Walker interface {
 	Walk(root string, opts WalkOptions) ([]string, error)
-}
-
-// Detect ranks language/framework candidates for a walked file set using
-// extensions plus build files (pom.xml/build.gradle → java, go.mod → go,
-// requirements.txt/pyproject.toml → python — charter §5.3). Callers print
-// the winner's evidence in verbose mode.
-//
-// TODO(w2-03): implement; the nil return keeps the pipeline callable until
-// then.
-func Detect(files []string) []Candidate {
-	return nil // TODO(w2-03): ranked candidates with evidence
 }

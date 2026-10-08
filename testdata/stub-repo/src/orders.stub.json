@@ -1,0 +1,26 @@
+{
+  "service": "Orders",
+  "basePath": "/v1/orders",
+  "framework": "stub-http",
+  "methods": [
+    {"name": "getOrder", "verb": "GET", "path": "/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Order", "statusCode": 200}},
+    {"name": "createOrder", "verb": "POST", "path": "",
+     "params": [{"name": "req", "in": "body", "type": "CreateOrderRequest"}],
+     "payload": "CreateOrderRequest",
+     "response": {"type": "Order", "statusCode": 201}},
+    {"name": "listOrders", "verb": "GET", "path": "",
+     "params": [{"name": "page", "in": "query", "type": "int32"},
+                {"name": "size", "in": "query", "type": "int32", "validation": "@Max(100)"}],
+     "response": {"type": "OrderList", "statusCode": 200, "isCollection": true},
+     "pagination": "params"}
+  ],
+  "types": [
+    {"name": "Order", "kind": "record", "fields": [
+      {"name": "id", "type": "string"},
+      {"name": "totalAmount", "jsonName": "total_amount", "type": "int64"}]},
+    {"name": "CreateOrderRequest", "kind": "pojo", "fields": [
+      {"name": "buyer", "type": "string"}]}
+  ]
+}
