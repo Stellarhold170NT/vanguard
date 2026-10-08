@@ -110,10 +110,10 @@ func TestMultiFormatConsistency(t *testing.T) {
 // finding is the cross-format identity of one finding: the fields both wire
 // formats carry (charter §6.7/§6.8).
 type finding struct {
-	rule      string
-	severity  string
-	location  string
-	message   string
+	rule     string
+	severity string
+	location string
+	message  string
 }
 
 func loadJSONFindings(path string) ([]finding, error) {
