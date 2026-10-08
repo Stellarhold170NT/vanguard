@@ -1,0 +1,63 @@
+name: API design rule / finding
+description: Propose a new API design rule, adjust an existing one, or report a finding (label api-design)
+labels: ["api-design"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Vanguard's API design standard.
+
+        Rule ids follow `R<F>xx-<NN>` (charter §3.0) — for example
+        `R1xx-02 no-verb-path`. Rules are stated in the language of the
+        source code (Spring concepts), re-expressed from
+        [AIP](https://aip.dev) — never copied from proto specifics.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - New rule proposal
+        - Existing rule adjustment
+        - False positive report
+        - General API design discussion
+    validations:
+      required: true
+
+  - type: input
+    id: rule-id
+    attributes:
+      label: Rule id (if applicable)
+      placeholder: R1xx-02
+  - type: input
+    id: aip-ref
+    attributes:
+      label: AIP reference (if any)
+      placeholder: https://aip.dev/131
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One-sentence problem statement. What design rule is violated or missing, and why does it matter?
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example (bad → good)
+      description: |
+        Minimal Java/Spring snippet showing the violation and the corrected
+        shape. Do NOT paste proprietary code — reduce it to the pattern.
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence / context
+      description: |
+        Where does this pattern hurt (CI, clients, code review)?
+        Proposed severity (ERROR / WARN / INFO) and why — heuristics that
+        can be wrong should default to WARN or INFO (charter §7).
