@@ -1,0 +1,13 @@
+# R6xx-99 demo-trailing-slash — the w2-04 data-driven acceptance fixture.
+# One rule = one YAML record (charter §3.0); the registry joins this to the
+# Go check by id.
+id: R6xx-99
+slug: demo-trailing-slash
+category: demo
+severity: ERROR
+summary: Path must not end with a trailing slash — one canonical form per resource.
+docPath: docs/rules/R6xx-99-demo-trailing-slash.md
+exampleGood: |
+  GET /api/v1/youth
+exampleBad: |
+  GET /api/v1/youth/
