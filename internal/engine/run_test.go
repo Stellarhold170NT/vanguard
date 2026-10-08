@@ -39,17 +39,17 @@ func demoTrailCheck(ctx *LintContext, node ir.Node) []Finding {
 // demoTrailRule assembles the demo rule the way rules/Compile does.
 func demoTrailRule() Rule {
 	return Rule{
-		ID:       "R6xx-99",
-		Slug:     "demo-trailing-slash",
-		Category: "demo",
-		Severity: SeverityError,
-		Summary:  "Path must not end with a trailing slash.",
-		DocPath:  "docs/rules/R6xx-99-demo-trailing-slash.md",
+		ID:          "R6xx-99",
+		Slug:        "demo-trailing-slash",
+		Category:    "demo",
+		Severity:    SeverityError,
+		Summary:     "Path must not end with a trailing slash.",
+		DocPath:     "docs/rules/R6xx-99-demo-trailing-slash.md",
 		ExampleGood: "GET /api/v1/youth",
 		ExampleBad:  "GET /api/v1/youth/",
-		Options:  []string{"allow"},
-		Selector: demoTrailSelector{},
-		Check:    demoTrailCheck,
+		Options:     []string{"allow"},
+		Selector:    demoTrailSelector{},
+		Check:       demoTrailCheck,
 	}
 }
 
@@ -300,6 +300,10 @@ func TestRunPanicIsolation(t *testing.T) {
 	panicky := demoTrailRule()
 	panicky.ID = "R6xx-98"
 	panicky.Slug = "demo-panic"
+	// Match every node so the panic lands on the first visited node (the
+	// Service, line 10): the demo selector would only let the check run at
+	// the first Method (line 12), which this assertion does not pin.
+	panicky.Selector = allSelector{}
 	panicky.Check = func(*LintContext, ir.Node) []Finding {
 		panic("boom")
 	}
@@ -386,6 +390,9 @@ func TestRunContextCarriesServiceAndOptions(t *testing.T) {
 	recorder.ID = "R6xx-97"
 	recorder.Slug = "demo-observer"
 	recorder.Selector = allSelector{}
+	// Declare the option keys the config below sets — this test pins context
+	// carrying, not option validation (TestRunUnknownOptionIsToolError does).
+	recorder.Options = []string{"family", "exact"}
 	recorder.Check = func(ctx *LintContext, node ir.Node) []Finding {
 		obs := observation{kind: kindName(node), options: ctx.Options}
 		if ctx.Service != nil {
@@ -397,11 +404,31 @@ func TestRunContextCarriesServiceAndOptions(t *testing.T) {
 		got = append(got, obs)
 		return nil
 	}
+	// The walk must cover every node kind exactly once, so the fixture needs
+	// the full node inventory: one method (with a param, response and
+	// pagination) plus one type with a field. demoSurface alone has neither
+	// Param nor Field nodes and carries two Methods, which would repeat
+	// kinds and defeat the visit-once check below.
+	surface := demoSurface()
+	surface.Services[0].Methods = surface.Services[0].Methods[:1]
+	method := &surface.Services[0].Methods[0]
+	method.Params = []ir.Param{{
+		Name:     "id",
+		In:       ir.ParamInPath,
+		Type:     ir.TypeRef{Name: "long"},
+		Location: ir.Location{File: "src/main/java/YouthResource.java", Line: 13, Column: 30},
+	}}
+	method.Pagination = ir.Pagination{Style: ir.PaginationNone, Location: method.Location}
+	surface.Types[0].Fields = []ir.Field{{
+		Name:     "fullName",
+		Type:     ir.TypeRef{Name: "String"},
+		Location: ir.Location{File: "src/main/java/YouthDTO.java", Line: 5, Column: 12},
+	}}
 	cfg := &Config{Rules: map[string]RuleOverride{
 		"R6xx":    {Options: map[string]any{"family": "fam"}},
 		"R6xx-97": {Options: map[string]any{"exact": "ex"}},
 	}}
-	if _, err := newTestLinter(recorder).Run(demoSurface(), cfg); err != nil {
+	if _, err := newTestLinter(recorder).Run(surface, cfg); err != nil {
 		t.Fatalf("Run: %v", err)
 	}
 	byKind := map[string]observation{}
@@ -435,6 +462,33 @@ func TestRunContextCarriesServiceAndOptions(t *testing.T) {
 type allSelector struct{}
 
 func (allSelector) Matches(ir.Node) bool { return true }
+
+// kindName names the IR node kind of node — the vocabulary walkSurface
+// visits, used to pin walk coverage without depending on struct printing.
+func kindName(node ir.Node) string {
+	switch node.(type) {
+	case ir.Service:
+		return "Service"
+	case ir.Method:
+		return "Method"
+	case ir.Param:
+		return "Param"
+	case ir.Response:
+		return "Response"
+	case ir.Pagination:
+		return "Pagination"
+	case ir.Type:
+		return "Type"
+	case ir.Field:
+		return "Field"
+	case ir.ErrorHandler:
+		return "ErrorHandler"
+	case ir.GrpcService:
+		return "GrpcService"
+	default:
+		return "Node"
+	}
+}
 
 // TestRunUnknownOptionIsToolError: an option key the rule metadata does not
 // declare is a config misuse — Run must fail (the CLI maps it to exit 2).

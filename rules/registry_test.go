@@ -84,7 +84,7 @@ func TestCompileValidationErrors(t *testing.T) {
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
 			m := validMetadata()
-			tc.m(&m)
+			tc.mutate(&m)
 			_, err := Compile(m, anySelector{}, nopCheck)
 			if err == nil {
 				t.Fatalf("Compile accepted invalid metadata, want error about %q", tc.contains)
