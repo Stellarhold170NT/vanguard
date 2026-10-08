@@ -58,11 +58,11 @@ func (r jsonRenderer) Render(w io.Writer, report *engine.Report) error {
 	ew.printf("  \"target\": %s,\n", jstr(ew, report.Target))
 
 	ew.writeString("  \"source\": ")
-	writeJSONValue(ew, report.Source, 1)
+	writeJSONValueInline(ew, report.Source, 1)
 	ew.writeString(",\n")
 
 	ew.writeString("  \"summary\": ")
-	writeJSONValue(ew, jsonSummary{
+	writeJSONValueInline(ew, jsonSummary{
 		Files:            report.FilesScanned,
 		SkippedFiles:     report.FilesSkipped,
 		ParseDiagnostics: len(report.Diagnostics),

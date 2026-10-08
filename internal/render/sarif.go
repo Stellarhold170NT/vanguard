@@ -97,7 +97,8 @@ func (r sarifRenderer) Render(w io.Writer, report *engine.Report) error {
 	ew.writeString("  \"runs\": [\n")
 	ew.writeString("    {\n")
 
-	writeJSONValue(ew, sarifTool{Driver: sarifDriver{
+	ew.writeString("      \"tool\": ")
+	writeJSONValueInline(ew, sarifTool{Driver: sarifDriver{
 		Name:           toolName,
 		Version:        r.cfg.version,
 		InformationURI: toolInformationURI,

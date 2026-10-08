@@ -1,0 +1,81 @@
+{
+  "vanguard": "0.1.0",
+  "schema": 1,
+  "target": "./military-youth",
+  "source": {
+    "lang": "java",
+    "framework": "spring-boot",
+    "frameworkVersion": "4.0.2"
+  },
+  "summary": {
+    "files": 598,
+    "skippedFiles": 3,
+    "parseDiagnostics": 1,
+    "findings": {
+      "error": 2,
+      "warning": 1,
+      "info": 1
+    },
+    "suppressed": 2,
+    "durationMs": 3200
+  },
+  "findings": [
+    {
+      "ruleId": "R4xx-02",
+      "slug": "string-timestamp",
+      "severity": "INFO",
+      "message": "Field \"createdAt\" uses the type String — prefer a temporal type.",
+      "location": {
+        "file": "src/main/java/com/viettel/tcct/model/Youth.java",
+        "line": 27,
+        "column": 11
+      }
+    },
+    {
+      "ruleId": "R1xx-02",
+      "slug": "no-verb-path",
+      "severity": "WARN",
+      "message": "Path \"/update/draft\" contains the verb \"update\" — use PUT/PATCH on the resource path.",
+      "suggestion": "PUT /api/military-youth/movement-reports/{id}",
+      "location": {
+        "file": "src/main/java/com/viettel/tcct/web/rest/MovementReportResource.java",
+        "line": 134,
+        "column": 24
+      }
+    },
+    {
+      "ruleId": "R2xx-01",
+      "slug": "get-no-body",
+      "severity": "ERROR",
+      "message": "GET endpoint declares @RequestBody — GET must not have a body.",
+      "suggestion": "use @RequestParam for the fields, or switch to POST /auto-complete",
+      "location": {
+        "file": "src/main/java/com/viettel/tcct/web/rest/OrderResource.java",
+        "line": 58,
+        "column": 30
+      }
+    },
+    {
+      "ruleId": "R2xx-01",
+      "slug": "get-no-body",
+      "severity": "ERROR",
+      "message": "GET endpoint declares @RequestBody — GET must not have a body.",
+      "suggestion": "use @RequestParam for the fields, or switch to POST /auto-complete",
+      "location": {
+        "file": "src/main/java/com/viettel/tcct/web/rest/YouthResource.java",
+        "line": 113,
+        "column": 44
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "message": "trailing tokens ignored after class body",
+      "location": {
+        "file": "src/main/java/com/viettel/tcct/model/Youth.java",
+        "line": 210,
+        "column": 1
+      }
+    }
+  ]
+}

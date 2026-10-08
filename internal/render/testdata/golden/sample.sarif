@@ -1,0 +1,170 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "vanguard",
+          "version": "0.1.0",
+          "informationUri": "https://github.com/Stellarhold170NT/vanguard",
+          "rules": [
+            {
+              "id": "R2xx-01",
+              "name": "get-no-body",
+              "shortDescription": {
+                "text": "GET endpoints must not declare @RequestBody"
+              },
+              "fullDescription": {
+                "text": "GET endpoints must not declare @RequestBody parameters. Move the payload to @RequestParam or switch to POST."
+              },
+              "helpUri": "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R2xx-01-get-no-body.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "methods",
+                "aip": "131"
+              }
+            },
+            {
+              "id": "R1xx-02",
+              "name": "no-verb-path",
+              "shortDescription": {
+                "text": "No CRUD verb in path"
+              },
+              "fullDescription": {
+                "text": "Resource paths must name the resource, not the operation. Move the verb into the HTTP method or split the endpoint."
+              },
+              "helpUri": "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R1xx-02-no-verb-path.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "resource",
+                "aip": "131"
+              }
+            },
+            {
+              "id": "R4xx-02",
+              "name": "string-timestamp",
+              "shortDescription": {
+                "text": "Timestamp fields must not use String"
+              },
+              "fullDescription": {
+                "text": "A timestamp-shaped field is typed String. Use a dedicated temporal type so serialization and validation apply."
+              },
+              "helpUri": "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R4xx-02-string-timestamp.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "dto",
+                "aip": "121"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "R4xx-02",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Field \"createdAt\" uses the type String — prefer a temporal type."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/viettel/tcct/model/Youth.java"
+                },
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 11
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "6452084cf715038e"
+          }
+        },
+        {
+          "ruleId": "R1xx-02",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Path \"/update/draft\" contains the verb \"update\" — use PUT/PATCH on the resource path."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/viettel/tcct/web/rest/MovementReportResource.java"
+                },
+                "region": {
+                  "startLine": 134,
+                  "startColumn": 24
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "717133f7ac4a8f7b"
+          }
+        },
+        {
+          "ruleId": "R2xx-01",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "GET endpoint declares @RequestBody — GET must not have a body."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/viettel/tcct/web/rest/OrderResource.java"
+                },
+                "region": {
+                  "startLine": 58,
+                  "startColumn": 30
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "6299162b64c22ea4"
+          }
+        },
+        {
+          "ruleId": "R2xx-01",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "GET endpoint declares @RequestBody — GET must not have a body."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/viettel/tcct/web/rest/YouthResource.java"
+                },
+                "region": {
+                  "startLine": 113,
+                  "startColumn": 44
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "bcb946d227820882"
+          }
+        }
+      ],
+      "columnKind": "utf16CodeUnits"
+    }
+  ]
+}

@@ -331,6 +331,29 @@ func writeJSONValue(ew *errWriter, v any, depth int) {
 	}
 }
 
+// writeJSONValueInline writes v so that its first line continues the current
+// line (after a hand-written `"key": `) and the remaining lines indent to
+// depth. The keyed members of a streamed object ("source", "summary", the
+// SARIF "tool" block) use this variant: writeJSONValue would pad the first
+// line too and leave stray spaces between the key and the value.
+func writeJSONValueInline(ew *errWriter, v any, depth int) {
+	b, err := marshalValue(v)
+	if err != nil {
+		if ew.err == nil {
+			ew.err = err
+		}
+		return
+	}
+	pad := strings.Repeat("  ", depth)
+	for i, line := range strings.Split(string(b), "\n") {
+		if i > 0 {
+			ew.writeString("\n")
+			ew.writeString(pad)
+		}
+		ew.writeString(line)
+	}
+}
+
 // jstr encodes one string as a JSON literal (for hand-written key lines).
 func jstr(ew *errWriter, s string) string {
 	b, err := marshalCompact(s)
