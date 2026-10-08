@@ -5,6 +5,7 @@
     {"name": "listNotices", "verb": "GET", "path": "/notices",
      "response": {"type": "NoticeList", "statusCode": 200, "isCollection": true}},
     {"name": "searchNotices", "verb": "GET", "path": "/notices/search",
+     "params": [{"name": "req", "in": "body", "type": "SearchRequest"}],
      "payload": "SearchRequest",
      "response": {"type": "SearchResult", "statusCode": 200}}
   ],

@@ -159,9 +159,14 @@ func (c Case) Run(bin, moduleRoot, format string) (RunResult, error) {
 		s = strings.ReplaceAll(s, "{module}", ".")
 		return s
 	}
-	target := expand(c.Target)
-	if c.Target == "." {
+	target := c.Target
+	switch {
+	case target == ".":
 		target = relCase // the default target is the case directory itself
+	case strings.Contains(target, "{module}"):
+		target = expand(target) // module-relative target, use as expanded
+	default:
+		target = filepath.Join(relCase, filepath.FromSlash(expand(target)))
 	}
 	args := []string{"scan", filepath.ToSlash(target), "--format", format, "--no-color"}
 	for _, a := range c.Args {

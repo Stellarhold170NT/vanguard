@@ -114,19 +114,10 @@ var demoRulesYAML = []struct {
 	{demoGetWithBodyYAML, methodSelector{}, demoGetWithBodyCheck},
 }
 
-// DemoRule builds R6xx-99 through the production path (kept for the w2-04
-// acceptance tests; the CLI registers the whole set via DemoRules).
-func DemoRule() (engine.Rule, error) {
-	m, err := ParseMetadata(demoRuleYAML)
-	if err != nil {
-		return engine.Rule{}, fmt.Errorf("demo rule metadata: %w", err)
-	}
-	return Compile(m, demoSelector{}, demoCheck)
-}
-
 // DemoRules compiles the whole demo set. Registration errors (bad
 // metadata) surface here as errors — fail tests, never runtime
-// (charter §5.4).
+// (charter §5.4). R6xx-99's builder stays in demo.go (DemoRule, the
+// w2-04 acceptance fixture); this table is the full set the CLI registers.
 func DemoRules() ([]engine.Rule, error) {
 	out := make([]engine.Rule, 0, len(demoRulesYAML))
 	for _, d := range demoRulesYAML {

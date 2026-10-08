@@ -1,0 +1,13 @@
+ vanguard 0.1.0-dev · testdata/golden/config-discovery/app · stub · stub · config: <case>/.vanguard.yaml
+ 1 services · 4 rules (4 active) · 1 files in <duration>
+
+ [ERROR] R6xx-92 demo-no-response-type (1)
+ ──────────────────────────────────────────────────────────────────
+ api.stub.json:1:1
+   Method searchEntries declares no response type — clients cannot deserialize an undeclared result.
+   suppress: // vanguard:ignore R6xx-92 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 1 findings · 1 ERROR · 0 WARN · 0 INFO · 0 suppressed
+ 1 files with findings · 1 scanned · 0 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-92

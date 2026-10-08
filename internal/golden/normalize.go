@@ -1,7 +1,6 @@
 package golden
 
 import (
-	"bytes"
 	"os"
 	"regexp"
 	"sort"

@@ -7,6 +7,7 @@
      "response": {"type": "ProxyView", "statusCode": 200}},
     {"name": "syncProxy", "verb": "POST", "path": "/proxy/sync"},
     {"name": "demoBadScanProxy", "verb": "GET", "path": "/proxy/scan",
+     "params": [{"name": "req", "in": "body", "type": "ScanRequest"}],
      "payload": "ScanRequest",
      "response": {"type": "ScanResult", "statusCode": 200}}
   ],

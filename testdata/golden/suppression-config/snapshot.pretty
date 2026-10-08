@@ -1,0 +1,16 @@
+ vanguard 0.1.0-dev · testdata/golden/suppression-config · stub · stub · config: <case>/.vanguard.yaml
+ 2 services · 4 rules (4 active) · 2 files in <duration>
+
+ [WARN]  R6xx-92 demo-no-response-type (2)
+ ──────────────────────────────────────────────────────────────────
+ legacy/old-api.stub.json:1:1
+   Method exportLedger declares no response type — clients cannot deserialize an undeclared result.
+   suppress: // vanguard:ignore R6xx-92 <reason>
+
+ src/api.stub.json:1:1
+   Method renewLoan declares no response type — clients cannot deserialize an undeclared result.
+
+ ──────────────────────────────────────────────────────────────────
+ 2 findings · 0 ERROR · 2 WARN · 0 INFO · 1 suppressed
+ 2 files with findings · 2 scanned · 3 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-92

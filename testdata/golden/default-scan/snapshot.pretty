@@ -1,0 +1,35 @@
+ vanguard 0.1.0-dev · testdata/golden/default-scan · stub · stub
+ 2 services · 4 rules (4 active) · 2 files in <duration>
+
+ [ERROR] R6xx-91 demo-bad-method-name (3)
+ ──────────────────────────────────────────────────────────────────
+ app/library.stub.json:1:1
+   Method name "demoBadGetBook" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: getBook
+   suppress: // vanguard:ignore R6xx-91 <reason>
+
+ app/library.stub.json:1:1
+   Method name "demoBadDeleteShelf" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: deleteShelf
+
+ app/search.stub.json:1:1
+   Method name "demoBadSearchArchive" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: searchArchive
+
+ [WARN]  R6xx-92 demo-no-response-type (1)
+ ──────────────────────────────────────────────────────────────────
+ app/search.stub.json:1:1
+   Method findDuplicates declares no response type — clients cannot deserialize an undeclared result.
+   suppress: // vanguard:ignore R6xx-92 <reason>
+
+ [INFO]  R6xx-93 demo-get-with-body (1)
+ ──────────────────────────────────────────────────────────────────
+ app/search.stub.json:1:1
+   GET endpoint demoBadSearchArchive declares a request body — many HTTP clients silently drop GET bodies.
+   suggest: move the payload to query parameters
+   suppress: // vanguard:ignore R6xx-93 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 5 findings · 3 ERROR · 1 WARN · 1 INFO · 0 suppressed
+ 2 files with findings · 2 scanned · 2 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-91

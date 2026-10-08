@@ -1,0 +1,40 @@
+{
+  "vanguard": "0.1.0-dev",
+  "schema": 1,
+  "target": "./testdata/stub-repo",
+  "source": {
+    "lang": "stub",
+    "framework": "stub-http"
+  },
+  "summary": {
+    "files": 3,
+    "skippedFiles": 2,
+    "parseDiagnostics": 2,
+    "findings": {
+      "error": 0,
+      "warning": 0,
+      "info": 0
+    },
+    "suppressed": 0,
+    "durationMs": 0
+  },
+  "findings": [],
+  "diagnostics": [
+    {
+      "message": "invalid JSON in stub file: unexpected end of JSON input",
+      "location": {
+        "file": "src/broken.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "message": "invalid JSON in stub file: unexpected end of JSON input",
+      "location": {
+        "file": "src/broken.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    }
+  ]
+}

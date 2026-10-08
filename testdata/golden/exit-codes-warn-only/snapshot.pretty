@@ -1,0 +1,14 @@
+ vanguard 0.1.0-dev · testdata/golden/exit-codes-warn-only · stub · stub
+ 1 services · 4 rules (4 active) · 1 files in <duration>
+
+ [INFO]  R6xx-93 demo-get-with-body (1)
+ ──────────────────────────────────────────────────────────────────
+ app/api.stub.json:1:1
+   GET endpoint searchNotices declares a request body — many HTTP clients silently drop GET bodies.
+   suggest: move the payload to query parameters
+   suppress: // vanguard:ignore R6xx-93 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 1 findings · 0 ERROR · 0 WARN · 1 INFO · 0 suppressed
+ 1 files with findings · 1 scanned · 2 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-93

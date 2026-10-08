@@ -1,0 +1,13 @@
+ vanguard 0.1.0-dev · testdata/golden/suppression-family · stub · stub · config: <case>/.vanguard.yaml
+ 2 services · 4 rules (4 active) · 2 files in <duration>
+
+ [WARN]  R6xx-92 demo-no-response-type (1)
+ ──────────────────────────────────────────────────────────────────
+ src/live.stub.json:1:1
+   Method inviteMember declares no response type — clients cannot deserialize an undeclared result.
+   suppress: // vanguard:ignore R6xx-92 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 1 findings · 0 ERROR · 1 WARN · 0 INFO · 4 suppressed
+ 1 files with findings · 2 scanned · 3 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-92

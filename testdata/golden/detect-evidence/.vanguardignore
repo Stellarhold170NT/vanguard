@@ -1,2 +1,5 @@
 # Drafts are never API sources — exercise the .vanguardignore support.
+# Harness artifacts are not API sources either.
 scratch/
+/case.yaml
+/snapshot.*

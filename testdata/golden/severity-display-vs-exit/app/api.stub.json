@@ -6,6 +6,7 @@
      "params": [{"name": "id", "in": "path", "type": "string"}],
      "response": {"type": "Record", "statusCode": 200}},
     {"name": "demoBadSearchRecords", "verb": "GET", "path": "/records/search",
+     "params": [{"name": "req", "in": "body", "type": "SearchRequest"}],
      "payload": "SearchRequest",
      "response": {"type": "SearchResult", "statusCode": 200}},
     {"name": "compactArchive", "verb": "POST", "path": "/compact"}
