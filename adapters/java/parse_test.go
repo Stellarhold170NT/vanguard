@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/Stellarhold170NT/vanguard/internal/ir"
 )
 
 // fixtureRoot is relative to this package's directory: the shared corpus
@@ -462,7 +464,7 @@ func TestParseSkipsAndGuards(t *testing.T) {
 func TestOversizedFileSkipped(t *testing.T) {
 	root := t.TempDir()
 	big := filepath.Join(root, "Big.java")
-	payload := strings.Repeat("// filler line to blow past the cap\n", 1<<20/38+2)
+	payload := strings.Repeat("// x\n", (1<<20)/5+3)
 	if err := os.WriteFile(big, []byte(payload), 0o644); err != nil {
 		t.Fatal(err)
 	}
