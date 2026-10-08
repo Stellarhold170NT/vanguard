@@ -42,6 +42,20 @@ func TestBuiltinSelectsStub(t *testing.T) {
 	}
 }
 
+// TestBuiltinJavaWinsOverStub pins the w3-02 priority: with both Detect
+// criteria satisfied the java adapter (registered first) is selected.
+func TestBuiltinJavaWinsOverStub(t *testing.T) {
+	adapter, records := SelectAdapter(NewBuiltinRegistry("."), []string{
+		"pom.xml", "src/A.java", "api/orders.stub.json",
+	})
+	if adapter == nil || adapter.Language() != "java" {
+		t.Fatalf("selected = %v, want java (registered first)", adapter)
+	}
+	if len(records) != 2 || !records[0].Selected || records[1].Selected {
+		t.Errorf("records = %+v, want java selected, stub not", records)
+	}
+}
+
 // TestBuiltinSpringDetectEvidence checks the delegate's verdict flows into
 // the Evidence trail verbose mode prints.
 func TestBuiltinSpringDetectEvidence(t *testing.T) {

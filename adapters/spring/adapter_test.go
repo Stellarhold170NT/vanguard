@@ -1,4 +1,9 @@
-package spring
+package spring_test
+
+// The Scan-based end-to-end tests live in the EXTERNAL test package: the
+// in-package variant would cycle (internal/discovery wires this adapter,
+// so its test binaries import each other). Everything asserted here uses
+// the exported adapter surface.
 
 import (
 	"bytes"
@@ -7,7 +12,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/java"
+	"github.com/Stellarhold170NT/vanguard/adapters/spring"
 	"github.com/Stellarhold170NT/vanguard/internal/discovery"
 	"github.com/Stellarhold170NT/vanguard/internal/ir"
 )
@@ -74,18 +79,18 @@ func marshalSurface(t *testing.T, s *ir.ApiSurface) []byte {
 }
 
 func TestDetectJavaFiles(t *testing.T) {
-	hits := DetectJavaFiles([]string{"pom.xml", "src/A.java", "README.md", "src/main/java/B.java"})
+	hits := spring.DetectJavaFiles([]string{"pom.xml", "src/A.java", "README.md", "src/main/java/B.java"})
 	if !reflect.DeepEqual(hits, []string{"src/A.java", "src/main/java/B.java"}) {
 		t.Errorf("DetectJavaFiles = %v", hits)
 	}
-	if len(DetectJavaFiles([]string{"pom.xml"})) != 0 {
-		t.Errorf("DetectJavaFiles(pom only) = non-empty")
+	if len(spring.DetectJavaFiles([]string{"pom.xml"})) != 0 {
+		t.Errorf("spring.DetectJavaFiles(pom only) = non-empty")
 	}
 }
 
 func TestLanguage(t *testing.T) {
-	if New(".").Language() != "java" {
-		t.Errorf("Language() = %q, want java", New(".").Language())
+	if spring.New(".").Language() != "java" {
+		t.Errorf("Language() = %q, want java", spring.New(".").Language())
 	}
 }
 
@@ -219,10 +224,15 @@ func TestSpringRepoResponses(t *testing.T) {
 	if search.Response.Type.Name != "List<BookDto>" || !search.Response.IsCollection {
 		t.Errorf("search response = %+v, want List<BookDto> collection", search.Response)
 	}
-	// members() List<Member> → entity type referenced with its package.
+	// members() List<Member> → collection; only transport wrappers unwrap,
+	// the List spelling stays, and the element drags Member into Types.
 	members := findMethod(t, findService(t, s, "AdminController"), "members")
-	if members.Response.Type.Name != "Member" || members.Response.Type.Package != "com.example.library.member" {
-		t.Errorf("members response = %+v", members.Response.Type)
+	if members.Response.Type.Name != "List<Member>" || !members.Response.Type.IsCollection {
+		t.Errorf("members response = %+v, want List<Member> collection", members.Response.Type)
+	}
+	memberType := findType(t, s, "Member")
+	if memberType.Package != "com.example.library.member" {
+		t.Errorf("Member package = %q", memberType.Package)
 	}
 }
 
@@ -398,7 +408,7 @@ func TestScanIsDeterministic(t *testing.T) {
 // TestParseSurfaceDirect covers the adapter's own entry point without the
 // discovery pipeline (Parse is independently callable, like the stub's).
 func TestParseSurfaceDirect(t *testing.T) {
-	a := New(repoDir)
+	a := spring.New(repoDir)
 	s, diags := a.ParseSurface([]string{
 		"src/main/java/com/example/library/controller/HealthController.java",
 	})
@@ -421,7 +431,7 @@ func TestParseSurfaceDirect(t *testing.T) {
 // TestParseSurfaceRefusesEscape keeps the stub's path-escape guard visible
 // at the surface level too.
 func TestParseSurfaceRefusesEscape(t *testing.T) {
-	a := New(repoDir)
+	a := spring.New(repoDir)
 	s, diags := a.ParseSurface([]string{"../escape.java"})
 	if s == nil || len(s.Services) != 0 {
 		t.Errorf("surface = %+v, want empty", s)
@@ -433,7 +443,7 @@ func TestParseSurfaceRefusesEscape(t *testing.T) {
 
 // TestUnrecognizedJavaFileIgnored: non-.java paths never parse.
 func TestUnrecognizedJavaFileIgnored(t *testing.T) {
-	a := New(repoDir)
+	a := spring.New(repoDir)
 	s, diags := a.ParseSurface([]string{"pom.xml"})
 	if len(s.Services) != 0 || len(diags) != 0 {
 		t.Errorf("non-java parse = %+v / %v, want silence", s.Services, diags)

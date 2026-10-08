@@ -159,9 +159,10 @@ func TestScanCheckedInFixtureDirect(t *testing.T) {
 // the verbose stream, so a wrong adapter pick is debuggable from the CLI
 // output alone (charter §5.3).
 func TestScanVerboseCarriesEvidence(t *testing.T) {
+	// Stub-only tree since w3-02: the java adapter is registered first
+	// and would win on a .java file — this test pins the evidence chain,
+	// so the selection must be unambiguous.
 	root := writeTree(t, map[string]string{
-		"pom.xml":              "<project/>",
-		"src/A.java":           "x",
 		"api/orders.stub.json": `{"service":"S","methods":[]}`,
 	})
 	var verbose bytes.Buffer
@@ -171,9 +172,7 @@ func TestScanVerboseCarriesEvidence(t *testing.T) {
 	}
 	out := verbose.String()
 	for _, want := range []string{
-		"walk: 3 file(s)",
-		"language candidate java",
-		"build file: pom.xml",
+		"walk: 1 file(s)",
 		"adapter stub: detect=true",
 		"selected adapter: stub",
 	} {

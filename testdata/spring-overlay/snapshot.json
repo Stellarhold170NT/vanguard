@@ -113,7 +113,7 @@
               "location": {
                 "file": "src/main/java/com/example/overlay/BookController.java",
                 "line": 22,
-                "column": 49
+                "column": 48
               }
             }
           ],
@@ -141,8 +141,7 @@
             }
           },
           "annotations": {
-            "PostMapping": "@PostMapping",
-            "RequestBody": "@RequestBody"
+            "PostMapping": "@PostMapping"
           },
           "location": {
             "file": "src/main/java/com/example/overlay/BookController.java",

@@ -2,15 +2,29 @@ package spring
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 
 	"github.com/Stellarhold170NT/vanguard/adapters/java"
 	"github.com/Stellarhold170NT/vanguard/internal/ir"
 )
 
-// ann builds one annotation from raw text plus raw arguments.
+// ann builds one annotation the way the extraction layer reports it: the
+// raw text carries the arguments verbatim.
 func ann(name string, args ...java.AnnotationArg) java.Annotation {
-	return java.Annotation{Name: name, Raw: "@" + name, Args: args}
+	raw := "@" + name
+	if len(args) > 0 {
+		parts := make([]string, 0, len(args))
+		for _, a := range args {
+			if a.Name != "" {
+				parts = append(parts, a.Name+" = "+a.Value)
+			} else {
+				parts = append(parts, a.Value)
+			}
+		}
+		raw += "(" + strings.Join(parts, ", ") + ")"
+	}
+	return java.Annotation{Name: name, Raw: raw, Args: args}
 }
 
 func strArg(v string) java.AnnotationArg { return java.AnnotationArg{Value: v} }
@@ -24,10 +38,10 @@ func TestMergePath(t *testing.T) {
 		{"/api/v1", "/books/{id}", "/api/v1/books/{id}"}, // the classic merge
 		{"", "/books", "/books"},
 		{"/api/v1", "", "/api/v1"},
-		{"/api/v1/", "/books/", "/api/v1/books"},  // trailing slashes collapse
-		{"/api//v1", "//books", "/api/v1/books"},  // double slashes are banned
+		{"/api/v1/", "/books/", "/api/v1/books"},       // trailing slashes collapse
+		{"/api//v1", "//books", "/api/v1/books"},       // double slashes are banned
 		{"api/v1", "books/{id}", "/api/v1/books/{id}"}, // missing leading slashes normalized
-		{"/a", "/**", "/a/**"},                    // wildcard survives verbatim (limitation)
+		{"/a", "/**", "/a/**"},                         // wildcard survives verbatim (limitation)
 	}
 	for _, c := range cases {
 		if got := mergePath(c.base, c.method); got != c.want {
@@ -39,9 +53,9 @@ func TestMergePath(t *testing.T) {
 func TestUnwrapResponseType(t *testing.T) {
 	idx := typeIndex{"BookDto": "com.example.books"}
 	cases := []struct {
-		name     string
-		typ      java.TypeUse
-		want     ir.TypeRef
+		name string
+		typ  java.TypeUse
+		want ir.TypeRef
 	}{
 		{"responseEntity", java.TypeUse{Name: "ResponseEntity<List<BookDto>>", Base: "ResponseEntity", Args: []string{"List<BookDto>"}},
 			ir.TypeRef{Name: "List<BookDto>", IsCollection: true}},
@@ -66,7 +80,7 @@ func TestUnwrapResponseType(t *testing.T) {
 	}
 	m := &mapper{index: idx}
 	for _, c := range cases {
-		if got := m.typeRef(unwrapTypeUse(c.typ)); got != c.want {
+		if got := m.typeRef(c.typ); got != c.want {
 			t.Errorf("%s: typeRef = %+v, want %+v", c.name, got, c.want)
 		}
 	}
@@ -74,7 +88,7 @@ func TestUnwrapResponseType(t *testing.T) {
 
 func TestVoidResponseTypeIsZero(t *testing.T) {
 	m := &mapper{index: typeIndex{}}
-	got := m.response(java.TypeUse{Name: "void", Base: "void"}, nil, 0, ir.Location{File: "a.java", Line: 1, Column: 1})
+	got := m.response(java.TypeUse{Name: "void", Base: "void"}, 0, ir.Location{File: "a.java", Line: 1, Column: 1})
 	if got.Type.Name != "" {
 		t.Errorf("void response type = %q, want empty", got.Type.Name)
 	}
@@ -95,7 +109,7 @@ func TestVerbOfMapping(t *testing.T) {
 		{"requestMappingMethod", ann("RequestMapping", namedArg("method", "RequestMethod.DELETE")), ir.VerbDelete, ""},
 		{"requestMappingArray", ann("RequestMapping", namedArg("method", "{RequestMethod.GET, RequestMethod.POST}")), ir.VerbGet, ""},
 		{"requestMappingNoMethod", ann("RequestMapping", strArg(`"/x"`)), ir.VerbGet, "no method= element — verb defaulted to GET"},
-		{"requestMappingGarbage", ann("RequestMapping", namedArg("method", "RequestMethod.FLY")), ir.VerbGet, "no method= element — verb defaulted to GET"},
+		{"requestMappingGarbage", ann("RequestMapping", namedArg("method", "RequestMethod.FLY")), ir.VerbGet, "unsupported method= value — verb defaulted to GET"},
 	}
 	for _, c := range cases {
 		verb, note := verbOf(c.a)
@@ -179,7 +193,9 @@ func TestBindParams(t *testing.T) {
 	want := []ir.Param{
 		{Name: "id", In: ir.ParamInPath, Type: ir.TypeRef{Name: "Long"}},
 		{Name: "q", In: ir.ParamInQuery, Type: ir.TypeRef{Name: "String"}},
-		{Name: "trace", In: ir.ParamInHeader, Type: ir.TypeRef{Name: "String"}},
+		// The binding name wins: the HTTP header is X-Trace-Id, the java
+		// variable's name is invisible to the API.
+		{Name: "X-Trace-Id", In: ir.ParamInHeader, Type: ir.TypeRef{Name: "String"}},
 	}
 	if !reflect.DeepEqual(got.params, want) {
 		t.Errorf("params = %+v, want %+v", got.params, want)

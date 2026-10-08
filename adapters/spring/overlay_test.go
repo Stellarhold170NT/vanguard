@@ -19,41 +19,56 @@ func TestParseOpenAPIJSON(t *testing.T) {
 	  },
 	  "components": {"schemas": {"BookDto": {"type": "object"}}}
 	}`)
-	ops, schemas, err := parseOpenAPI(data)
+	spec, err := parseOpenAPI(data)
 	if err != nil {
 		t.Fatalf("parseOpenAPI: %v", err)
 	}
-	if ops["GET /api/books"] != "listBooks" || ops["POST /api/books"] != "createBook" || ops["GET /api/books/{id}"] != "getBook" {
-		t.Errorf("operations = %+v", ops)
+	if op := spec.operations["GET /api/books"]; op == nil || op["operationId"] != "listBooks" {
+		t.Errorf("GET /api/books = %+v", spec.operations["GET /api/books"])
 	}
-	if !schemas["BookDto"] || len(schemas) != 1 {
-		t.Errorf("schemas = %+v", schemas)
+	if op := spec.operations["POST /api/books"]; op == nil || op["operationId"] != "createBook" {
+		t.Errorf("POST /api/books = %+v", spec.operations["POST /api/books"])
+	}
+	if op := spec.operations["GET /api/books/{id}"]; op == nil || op["operationId"] != "getBook" {
+		t.Errorf("GET /api/books/{id} = %+v", spec.operations["GET /api/books/{id}"])
+	}
+	if !spec.schemas["BookDto"] || len(spec.schemas) != 1 {
+		t.Errorf("schemas = %+v", spec.schemas)
 	}
 }
 
 func TestParseOpenAPIIgnoresNonOperationKeys(t *testing.T) {
-	data := []byte(`{"paths": {"/a": {"get": {"operationId": "opA", "parameters": []}}, "x-extensions": {}}}`)
-	ops, _, err := parseOpenAPI(data)
+	spec, err := parseOpenAPI([]byte(`{"paths": {"/a": {"get": {"operationId": "opA", "parameters": []}}, "x-extensions": {}}}`))
 	if err != nil {
 		t.Fatalf("parseOpenAPI: %v", err)
 	}
-	if len(ops) != 1 || ops["GET /a"] != "opA" {
-		t.Errorf("operations = %+v, want only GET /a", ops)
+	if len(spec.operations) != 1 || spec.operations["GET /a"] == nil {
+		t.Errorf("operations = %+v, want only GET /a", spec.operations)
 	}
 }
 
 func TestParseOpenAPIWithoutOperationID(t *testing.T) {
 	// A path entry without an operationId simply contributes nothing —
 	// the overlay never invents names.
-	ops, _, err := parseOpenAPI([]byte(`{"paths": {"/a": {"get": {"responses": {}}}}}`))
-	if err != nil || len(ops) != 0 {
-		t.Errorf("operations = %+v err = %v, want empty", ops, err)
+	spec, err := parseOpenAPI([]byte(`{"paths": {"/a": {"get": {"responses": {}}}}}`))
+	if err != nil || len(spec.operations) != 0 {
+		t.Errorf("operations = %+v err = %v, want empty", spec.operations, err)
 	}
 }
 
 func TestParseOpenAPIInvalid(t *testing.T) {
-	if _, _, err := parseOpenAPI([]byte("{not an openapi doc")); err == nil {
-		t.Errorf("invalid JSON must error (the caller turns it into a diagnostic)")
+	if _, err := parseOpenAPI([]byte("{not an openapi doc")); err == nil {
+		t.Errorf("invalid document must error (the caller turns it into a diagnostic)")
+	}
+}
+
+func TestParseOpenAPIYAML(t *testing.T) {
+	spec, err := parseOpenAPI([]byte("openapi: 3.0.1\npaths:\n  /api/x:\n    get:\n      operationId: opX\n"))
+	if err != nil {
+		t.Fatalf("parseOpenAPI yaml: %v", err)
+	}
+	if op := spec.operations["GET /api/x"]; op == nil || op["operationId"] != "opX" {
+		t.Errorf("GET /api/x = %+v", spec.operations["GET /api/x"])
 	}
 }
 

@@ -3,6 +3,8 @@ package spring
 import (
 	"reflect"
 	"testing"
+
+	"github.com/Stellarhold170NT/vanguard/adapters/java"
 )
 
 func TestFrameworkFromPom(t *testing.T) {
