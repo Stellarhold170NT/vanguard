@@ -74,7 +74,6 @@ type manifest struct {
 	Formats  []string `yaml:"formats"`
 	Snapshot string   `yaml:"snapshot"`
 	Note     string   `yaml:"note"`
-	Extra    []byte   `yaml:"-"`
 }
 
 // LoadCases reads every case directory under dir (sorted by name for
