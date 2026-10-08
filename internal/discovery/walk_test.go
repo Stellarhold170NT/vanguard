@@ -180,7 +180,7 @@ func TestWalkNeverFollowsSymlinks(t *testing.T) {
 			t.Fatal(err)
 		}
 	}
-	mustSymlink(root, "src/loop")                     // directory loop → root
+	mustSymlink(root, "src/loop")                                // directory loop → root
 	mustSymlink(filepath.Join(root, "src/real.go"), "linked.go") // file link
 	mustSymlink(filepath.Join(root, "nowhere"), "dangling")      // broken link
 

@@ -31,10 +31,10 @@ type ScanOptions struct {
 // ScanResult is one pipeline pass: walk → detect → select → parse. Every
 // field is safe to read after Scan returns; nothing is shared state.
 type ScanResult struct {
-	Root     string
-	Files    []string     // walked files, relative to Root, "/" separators
-	Skipped  []SkipRecord // what the walker left out, and why
-	Candidates []Candidate // ranked language hypotheses (may be empty)
+	Root       string
+	Files      []string     // walked files, relative to Root, "/" separators
+	Skipped    []SkipRecord // what the walker left out, and why
+	Candidates []Candidate  // ranked language hypotheses (may be empty)
 
 	Verdicts []DetectRecord // one per registered adapter, in order
 	Selected string         // Adapter.Language() of the pick, "" = none

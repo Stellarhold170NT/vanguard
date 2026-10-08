@@ -2,6 +2,8 @@ package discovery
 
 import (
 	"bytes"
+	"io/fs"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -13,10 +15,63 @@ import (
 // test working directory (the brief's "scan testdata/stub-repo").
 var stubRepoRoot = filepath.Join("..", "..", "testdata", "stub-repo")
 
+// writeTreeAt writes files into an existing root (rel-path → content,
+// directories implicit).
+func writeTreeAt(t *testing.T, root string, files map[string]string) {
+	t.Helper()
+	for rel, content := range files {
+		full := filepath.Join(root, filepath.FromSlash(rel))
+		if err := os.MkdirAll(filepath.Dir(full), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(full, []byte(content), 0o644); err != nil {
+			t.Fatal(err)
+		}
+	}
+}
+
+// copyFixture copies a directory tree into a fresh temp dir (go.mod is
+// Go 1.22, so no os.CopyFS) and returns the copy's root.
+func copyFixture(t *testing.T, src string) string {
+	t.Helper()
+	dst := t.TempDir()
+	err := filepath.WalkDir(src, func(p string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		rel, relErr := filepath.Rel(src, p)
+		if relErr != nil {
+			return relErr
+		}
+		target := filepath.Join(dst, rel)
+		if d.IsDir() {
+			return os.MkdirAll(target, 0o755)
+		}
+		data, err := os.ReadFile(p)
+		if err != nil {
+			return err
+		}
+		return os.WriteFile(target, data, 0o644)
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	return dst
+}
+
 // TestScanStubRepoEndToEnd — acceptance: the whole pipeline on the checked-in
-// fixture: detect the stub adapter, parse, build a valid IR, end clean.
+// fixture (scanned through a hermetic copy): detect the stub adapter, parse,
+// build a valid IR, end clean.
+//
+// The copy exists because the sandbox VFS sync does not carry node_modules
+// directories into the test container (CAN lesson in the w2-03 report), so
+// the test adds the excluded-dir case itself to stay deterministic.
 func TestScanStubRepoEndToEnd(t *testing.T) {
-	res, err := Scan(stubRepoRoot, ScanOptions{})
+	root := copyFixture(t, stubRepoRoot)
+	writeTreeAt(t, root, map[string]string{
+		"node_modules/dep.stub.json": `{"service":"ShouldNeverAppear","methods":[]}`,
+	})
+	res, err := Scan(root, ScanOptions{})
 	if err != nil {
 		t.Fatalf("scan: %v", err)
 	}
@@ -48,12 +103,52 @@ func TestScanStubRepoEndToEnd(t *testing.T) {
 	for _, sk := range res.Skipped {
 		skips[sk.Path] = sk.Reason
 	}
-	if skips["node_modules"] == "" || skips["scratch"] == "" {
-		t.Fatalf("skip log missing node_modules/scratch: %+v", res.Skipped)
+	if skips["node_modules"] != ReasonExcludedDir {
+		t.Fatalf("node_modules skip = %q (log %+v), want %q", skips["node_modules"], res.Skipped, ReasonExcludedDir)
+	}
+	if skips["scratch"] != ReasonIgnoreFile {
+		t.Fatalf("scratch skip = %q (log %+v), want %q", skips["scratch"], res.Skipped, ReasonIgnoreFile)
 	}
 	// no language candidates in a stub-only fixture
 	if len(res.Candidates) != 0 {
 		t.Fatalf("candidates = %v, want none", res.Candidates)
+	}
+	if res.NoAPI != "" {
+		t.Fatalf("NoAPI set on a found surface: %q", res.NoAPI)
+	}
+}
+
+// TestScanCheckedInFixtureDirect scans the checked-in testdata/stub-repo in
+// place — the literal acceptance command — asserting the facts that do not
+// depend on how a sandbox syncs the tree (node_modules may be absent there;
+// the hermetic copy above covers that case).
+func TestScanCheckedInFixtureDirect(t *testing.T) {
+	res, err := Scan(stubRepoRoot, ScanOptions{})
+	if err != nil {
+		t.Fatalf("scan: %v", err)
+	}
+	if res.Selected != StubLanguage || res.Surface == nil {
+		t.Fatalf("selected = %q, surface = %+v", res.Selected, res.Surface)
+	}
+	s := res.Surface
+	if len(s.Services) != 1 || s.Services[0].Name != "Orders" || len(s.Services[0].Methods) != 3 {
+		t.Fatalf("services = %+v", s.Services)
+	}
+	if len(s.Types) != 2 {
+		t.Fatalf("types = %d, want 2", len(s.Types))
+	}
+	if v := s.Validate(); len(v) != 0 {
+		t.Fatalf("fixture surface fails ir.Validate: %v", v)
+	}
+	if len(res.Diagnostics) != 1 || res.Diagnostics[0].Location.File != "src/broken.stub.json" {
+		t.Fatalf("diagnostics = %+v, want exactly the broken fixture", res.Diagnostics)
+	}
+	skips := map[string]string{}
+	for _, sk := range res.Skipped {
+		skips[sk.Path] = sk.Reason
+	}
+	if skips["scratch"] != ReasonIgnoreFile {
+		t.Fatalf("scratch skip = %q (log %+v), want %q", skips["scratch"], res.Skipped, ReasonIgnoreFile)
 	}
 	if res.NoAPI != "" {
 		t.Fatalf("NoAPI set on a found surface: %q", res.NoAPI)
@@ -91,9 +186,9 @@ func TestScanVerboseCarriesEvidence(t *testing.T) {
 	}
 }
 
-// TestScanVerboseQuietByDefault: without a Verbose writer nothing is printed
-// and no output object is touched.
-func TestScanVerboseQuietByDefault(t *testing.T) {
+// TestScanQuietByDefault: without a Verbose writer the scan works and no
+// output is produced anywhere (verbose is strictly opt-in).
+func TestScanQuietByDefault(t *testing.T) {
 	res, err := Scan(stubRepoRoot, ScanOptions{})
 	if err != nil {
 		t.Fatal(err)
