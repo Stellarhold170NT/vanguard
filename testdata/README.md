@@ -9,6 +9,7 @@ Planned layout (populated from W2 onwards):
 | Path | Purpose | Task |
 |---|---|---|
 | `stub-repo/` | Minimal fake project exercising discovery + language detection | w2-03 |
+| `java-adapter/` | Synthetic Java files exercising the tree-sitter adapter (see its README) | w3-01 |
 | `golden/` | Golden snapshot inputs/outputs for the render and IR contracts | w2-07 |
 | `adversarial/<rule-id>/` | `ok-<slug>.java` / `vio-<slug>.java` cases, ≥3 vio + ≥2 ok per rule | w4-01 |
 | `mutation/` | Mutator definitions for the catch-rate harness (target ≥90%) | w4-02 |
