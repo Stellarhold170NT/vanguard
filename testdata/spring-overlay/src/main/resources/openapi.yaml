@@ -1,0 +1,29 @@
+openapi: 3.0.1
+info:
+  title: Overlay API
+  version: 1.0.0
+paths:
+  /api/books:
+    get:
+      operationId: listBooks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BookDto"
+  /api/books/{id}:
+    get:
+      operationId: getBook
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BookDto"
+components:
+  schemas:
+    BookDto:
+      type: object
