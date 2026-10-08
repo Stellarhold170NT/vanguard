@@ -39,15 +39,15 @@ func TestParseRuleSelector(t *testing.T) {
 		t.Fatalf("defaultRegistry: %v", err)
 	}
 	cases := []struct {
-		name    string
+		name     string
 		selector string
-		want    map[string]bool
-		wantErr string // "" = no error
+		want     map[string]bool
+		wantErr  string // "" = no error
 	}{
-		{"empty keeps everything", "", nil},
-		{"exact id", "R6xx-99", map[string]bool{"R6xx-99": true}},
-		{"family prefix", "R6xx", map[string]bool{"R6xx-99": true}},
-		{"spaces tolerated", " R6xx-99 ", map[string]bool{"R6xx-99": true}},
+		{"empty keeps everything", "", nil, ""},
+		{"exact id", "R6xx-99", map[string]bool{"R6xx-99": true}, ""},
+		{"family prefix", "R6xx", map[string]bool{"R6xx-99": true}, ""},
+		{"spaces tolerated", " R6xx-99 ", map[string]bool{"R6xx-99": true}, ""},
 		{"empty token is an error", "R6xx-99,,", nil, "empty rule"},
 		{"unknown token is an error", "R9xx-01", nil, "unknown rule"},
 	}

@@ -6,12 +6,25 @@
 
 GO ?= go
 
-.PHONY: build test vet lint ci clean
+# Build identity wired into the binary via -ldflags (w2-06): `make bin`
+# produces ./bin/vanguard whose `version` reports these values; plain
+# `go build` keeps the dev/unknown fallback (never fails the build).
+VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
+COMMIT  ?= $(shell git rev-parse --short HEAD 2>/dev/null || echo unknown)
+DATE    ?= $(shell date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown)
+LDFLAGS ?= -X main.version=$(VERSION) -X main.commit=$(COMMIT) -X main.date=$(DATE)
+
+.PHONY: build test vet lint ci bin clean
 
 ## build: compile all packages
 build:
 	@echo "== build =="
 	$(GO) build ./...
+
+## bin: build ./bin/vanguard with the version metadata wired
+bin:
+	@echo "== bin (version=$(VERSION), commit=$(COMMIT)) =="
+	$(GO) build -ldflags "$(LDFLAGS)" -o bin/vanguard ./cmd/vanguard
 
 ## test: run all tests
 test:

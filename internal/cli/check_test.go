@@ -32,7 +32,7 @@ func TestCheckExplicitJSONStillRenders(t *testing.T) {
 	if code != 1 {
 		t.Fatalf("exit code = %d, want 1", code)
 	}
-	if !strings.Contains(stdout.String(), "R6xx-99") {
+	if !strings.Contains(stdout.String(), "R6xx-42") {
 		t.Fatalf("stdout = %q, want the machine-readable findings", stdout.String())
 	}
 }
@@ -63,7 +63,7 @@ func TestCheckOnTTYRendersPretty(t *testing.T) {
 	if code != 1 {
 		t.Fatalf("exit code = %d, want 1", code)
 	}
-	if !strings.Contains(stdout.String(), "R6xx-99") {
+	if !strings.Contains(stdout.String(), "R6xx-42") {
 		t.Fatalf("stdout = %q, want the pretty findings on a TTY", stdout.String())
 	}
 }

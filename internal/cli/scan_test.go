@@ -25,13 +25,16 @@ const cleanStubService = `{ "service": "Clean",
 }
 `
 
-// violatingStubService carries exactly one ERROR finding: a method path
-// with a trailing slash (demo rule R6xx-99, the w2-04 data fixture).
+// violatingStubService carries exactly one ERROR finding through the
+// registered fixture rule R6xx-42 (helpers_test.go): the method name starts
+// with "bad". Its path keeps a trailing slash to document the R6xx-99
+// intent — the stub path merge cleans it (IR contract), so R6xx-99 itself
+// only becomes reachable with the w3-01+ adapters.
 const violatingStubService = `{ "service": "Violating",
   "basePath": "/v1/violating",
   "framework": "stub-http",
   "methods": [
-    {"name": "getThing", "verb": "GET", "path": "/{id}/",
+    {"name": "badGetThing", "verb": "GET", "path": "/{id}/",
      "params": [{"name": "id", "in": "path", "type": "string"}],
      "response": {"type": "Thing", "statusCode": 200}}
   ],
@@ -71,9 +74,11 @@ func writeConfig(t *testing.T, root, name, content string) string {
 }
 
 // runCLI invokes Run with fresh output buffers and returns (exit code,
-// stdout, stderr).
+// stdout, stderr). Every scan/check test runs against the test registry
+// (builtin rules + fixture rule R6xx-42, helpers_test.go).
 func runCLI(t *testing.T, args ...string) (int, *bytes.Buffer, *bytes.Buffer) {
 	t.Helper()
+	withTestRegistry(t)
 	var stdout, stderr bytes.Buffer
 	code := Run(args, testBuild(), &stdout, &stderr)
 	return code, &stdout, &stderr
@@ -102,8 +107,8 @@ func TestScanViolationExitsOne(t *testing.T) {
 	if code != 1 {
 		t.Fatalf("exit code = %d, want 1 (stderr: %s)", code, stderr.String())
 	}
-	if !strings.Contains(stdout.String(), "R6xx-99") {
-		t.Fatalf("stdout = %q, want the R6xx-99 finding", stdout.String())
+	if !strings.Contains(stdout.String(), "R6xx-42") {
+		t.Fatalf("stdout = %q, want the R6xx-42 finding", stdout.String())
 	}
 }
 
@@ -127,8 +132,8 @@ func TestScanSARIFFileKeepsStdoutPure(t *testing.T) {
 	if !strings.Contains(sarif, `"version": "2.1.0"`) {
 		t.Fatalf("SARIF file missing the 2.1.0 version line:\n%s", sarif)
 	}
-	if !strings.Contains(sarif, "R6xx-99") {
-		t.Fatalf("SARIF file missing the R6xx-99 result:\n%s", sarif)
+	if !strings.Contains(sarif, "R6xx-42") {
+		t.Fatalf("SARIF file missing the R6xx-42 result:\n%s", sarif)
 	}
 }
 
@@ -205,13 +210,13 @@ func TestScanBrokenConfigSchemaExitsTwo(t *testing.T) {
 // finding; the same rule disabled via config under the same filter exits 0.
 func TestScanRulesFilterRunsSelectedRule(t *testing.T) {
 	root := writeStubRepo(t, map[string]string{"src/violating.stub.json": violatingStubService})
-	code, _, stderr := runCLI(t, "scan", root, "--rules", "R6xx-99")
+	code, _, stderr := runCLI(t, "scan", root, "--rules", "R6xx-42")
 	if code != 1 {
 		t.Fatalf("exit code = %d, want 1 (stderr: %s)", code, stderr.String())
 	}
 
-	cfg := writeConfig(t, t.TempDir(), ".vanguard.yaml", "version: 1\nrules:\n  R6xx-99:\n    disabled: true\n")
-	code, stdout, stderr := runCLI(t, "scan", root, "--rules", "R6xx-99", "--config", cfg)
+	cfg := writeConfig(t, t.TempDir(), ".vanguard.yaml", "version: 1\nrules:\n  R6xx-42:\n    disabled: true\n")
+	code, stdout, stderr := runCLI(t, "scan", root, "--rules", "R6xx-42", "--config", cfg)
 	if code != 0 {
 		t.Fatalf("exit code = %d, want 0 (stderr: %s)", code, stderr.String())
 	}
@@ -240,13 +245,13 @@ func TestScanRulesFilterRejectsUnknownReference(t *testing.T) {
 // --severity flag changes what is displayed, never the exit code.
 func TestScanSeverityThresholdIsDisplayOnly(t *testing.T) {
 	root := writeStubRepo(t, map[string]string{"src/violating.stub.json": violatingStubService})
-	cfg := writeConfig(t, t.TempDir(), ".vanguard.yaml", "version: 1\nrules:\n  R6xx-99:\n    severity: WARN\n")
+	cfg := writeConfig(t, t.TempDir(), ".vanguard.yaml", "version: 1\nrules:\n  R6xx-42:\n    severity: WARN\n")
 
 	code, stdout, stderr := runCLI(t, "scan", root, "--config", cfg)
 	if code != 0 {
 		t.Fatalf("WARN-only findings must exit 0, got %d (stderr: %s)", code, stderr.String())
 	}
-	if !strings.Contains(stdout.String(), "R6xx-99") {
+	if !strings.Contains(stdout.String(), "R6xx-42") {
 		t.Fatalf("default threshold INFO must display the WARN finding: %q", stdout.String())
 	}
 
@@ -254,7 +259,7 @@ func TestScanSeverityThresholdIsDisplayOnly(t *testing.T) {
 	if code != 0 {
 		t.Fatalf("--severity must not change the exit code, got %d", code)
 	}
-	if strings.Contains(stdout.String(), "R6xx-99") {
+	if strings.Contains(stdout.String(), "R6xx-42") {
 		t.Fatalf("--severity ERROR must hide the WARN finding: %q", stdout.String())
 	}
 }
@@ -321,7 +326,7 @@ func TestScanMissingRootExitsTwo(t *testing.T) {
 // .vanguard.yaml above the scan target applies.
 func TestScanDiscoversConfigFromParentDir(t *testing.T) {
 	parent := writeStubRepo(t, map[string]string{"repo/src/violating.stub.json": violatingStubService})
-	writeConfig(t, parent, ".vanguard.yaml", "version: 1\nrules:\n  R6xx-99:\n    disabled: true\n")
+	writeConfig(t, parent, ".vanguard.yaml", "version: 1\nrules:\n  R6xx-42:\n    disabled: true\n")
 	code, _, stderr := runCLI(t, "scan", filepath.Join(parent, "repo"))
 	if code != 0 {
 		t.Fatalf("exit code = %d, want 0 (stderr: %s)", code, stderr.String())

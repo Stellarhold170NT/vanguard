@@ -30,7 +30,7 @@ func TestExplainPrintsMetadataAndExamples(t *testing.T) {
 // TestExplainUnknownRuleExitsTwo: an unknown id is a tool error that points
 // at the catalog (§6.3 stderr discipline).
 func TestExplainUnknownRuleExitsTwo(t *testing.T) {
-	code, stdout, stderr := runCLI(t, "explain", "R6xx-42")
+	code, stdout, stderr := runCLI(t, "explain", "R6xx-43")
 	if code != 2 {
 		t.Fatalf("exit code = %d, want 2", code)
 	}
