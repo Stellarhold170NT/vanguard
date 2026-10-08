@@ -1,0 +1,16 @@
+* text=auto
+
+# Shell scripts must always run with LF, on every platform.
+*.sh text eol=lf
+
+# Windows-only scripts keep CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets — never diff or normalize.
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.jar binary

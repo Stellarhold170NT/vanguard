@@ -1,0 +1,18 @@
+# Local reference clones (W3 reads googleapis/api-linter here) — never committed.
+/reference/
+
+# Git worktrees used by the software factory from W2 onwards.
+/.worktrees/
+
+# Go build artifacts.
+/vanguard
+*.exe
+*.test
+*.out
+
+# Release output (goreleaser, W6).
+/dist/
+
+# Local editor state.
+/.idea/
+/.vscode/
