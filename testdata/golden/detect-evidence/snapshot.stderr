@@ -1,8 +1,10 @@
-[vanguard] walk: 2 file(s) under testdata/golden/detect-evidence, 4 skipped
+[vanguard] walk: 2 file(s) under testdata/golden/detect-evidence, 6 skipped
 [vanguard] skip .vanguardignore: hidden
 [vanguard] skip case.yaml: matched .vanguardignore
 [vanguard] skip node_modules: excluded directory
 [vanguard] skip scratch: matched .vanguardignore
+[vanguard] skip snapshot.pretty: matched .vanguardignore
+[vanguard] skip snapshot.stderr: matched .vanguardignore
 [vanguard] adapter stub: detect=true — 2 .stub.json file(s) present
 [vanguard] selected adapter: stub
 [vanguard] parse: 1 service(s), 1 type(s), 0 gRPC service(s), 1 diagnostic(s)

@@ -172,6 +172,12 @@ func (c Case) Run(bin, moduleRoot, format string) (RunResult, error) {
 	for _, a := range c.Args {
 		args = append(args, filepath.ToSlash(expand(a)))
 	}
+	// Stabilize the walked file set BEFORE the binary sees the case
+	// directory (see EnsureExpectedSnapshots for the self-pollution it
+	// prevents).
+	if err := EnsureExpectedSnapshots(c); err != nil {
+		return RunResult{}, err
+	}
 	return runBinary(bin, moduleRoot, args)
 }
 
