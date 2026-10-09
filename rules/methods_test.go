@@ -1,7 +1,6 @@
 package rules
 
 import (
-	"strings"
 	"testing"
 
 	"github.com/Stellarhold170NT/vanguard/internal/engine"
