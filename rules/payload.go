@@ -70,19 +70,6 @@ func genericArgs(name string) []string {
 	return out
 }
 
-// refTypeNames collects every type name a TypeRef spelling mentions, the
-// top-level base first, then the arguments recursively ("Page<Youth>" →
-// [Page, Youth]) — the R4xx-01 exposure surface.
-func refTypeNames(name string, out []string) []string {
-	if b := baseTypeName(name); b != "" {
-		out = append(out, b)
-	}
-	for _, a := range genericArgs(name) {
-		out = refTypeNames(a, out)
-	}
-	return out
-}
-
 // entityIndex classifies the scanned Types for R4xx-01. soleEntity holds
 // name → package only when exactly ONE scanned type carries the simple
 // name and it is an entity — the strong, unambiguous signal. A name shared
