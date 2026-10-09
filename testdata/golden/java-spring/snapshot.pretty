@@ -1,5 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/java-spring · java · spring-boot 3.2.4 · config: <case>/.vanguard.yaml
- 7 services · 27 rules (27 active) · 29 files in <duration>
+ 7 services · 27 rules (27 active) · 30 files
 
  [ERROR] R1xx-02 no-verb-path (1)
  ──────────────────────────────────────────────────────────────────
@@ -207,5 +207,5 @@
 
  ──────────────────────────────────────────────────────────────────
  32 findings · 5 ERROR · 15 WARN · 12 INFO · 0 suppressed
- 8 files with findings · 29 scanned · 1 skipped · 0 parse diagnostics
+ 8 files with findings · 30 scanned · 1 skipped · 0 parse diagnostics
  next: vanguard explain R1xx-02

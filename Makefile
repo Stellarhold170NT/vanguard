@@ -14,8 +14,7 @@ COMMIT  ?= $(shell git rev-parse --short HEAD 2>/dev/null || echo unknown)
 DATE    ?= $(shell date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown)
 LDFLAGS ?= -X main.version=$(VERSION) -X main.commit=$(COMMIT) -X main.date=$(DATE)
 
-.PHONY: build test vet lint ci bin golden golden-update mutation clean
-
+.PHONY:build test vet lint ci bin golden golden-update mutation clean build test vet lint ci bin golden golden-update docs-check clean
 ## build: compile all packages
 build:
 	@echo "== build =="
@@ -52,7 +51,13 @@ mutation:
 	@echo "== mutation (w4-02 catch-rate harness) =="
 	$(GO) test ./internal/mutation/ -run TestMutationHarness -count=1 -v -timeout 9m \
 		-args -write-results -out testdata/mutation-results.json
-
+## docs-check: the w3-07 docs cross-check (brief deliverable 4) — the
+## --list-rules catalog must match docs/rules/ 1-1. Adding a rule without
+## its reference page fails the build; the same check also runs inside
+## `make test` (internal/cli TestRuleDocsMatchCatalog).
+docs-check:
+	@echo "== docs-check (list-rules vs docs/rules 1-1) =="
+	$(GO) test ./internal/cli/ -run 'TestRuleDocs' -count=1
 ## vet: go vet over all packages
 vet:
 	@echo "== vet =="
@@ -77,10 +82,11 @@ lint:
 	fi; \
 	echo "gofmt: clean"
 
-## ci: full local pipeline (build → test → vet → lint). `test` includes the
-## golden fixture harness and its integration case (internal/golden); the
-## explicit `golden` step makes that gate visible in the log.
-ci: build test golden vet lint
+## ci: full local pipeline (build → test → vet → lint → docs-check). `test`
+## includes the golden fixture harness and its integration case
+## (internal/golden); the explicit `golden` step makes that gate visible in
+## the log, `docs-check` makes the w3-07 list-rules↔docs 1-1 gate visible.
+ci: build test golden vet lint docs-check
 
 ## clean: clear the build cache for this module
 clean:

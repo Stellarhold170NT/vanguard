@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "environment": {
+    "image": "dind-sandbox:29",
+    "cpu": "2",
+    "mem": "4Gi"
+  },
+  "benchRepo": {
+    "dir": "/tmp/bench-repo",
+    "javaFiles": 10000,
+    "loc": 353279,
+    "bytes": 9673529,
+    "digest": "947f4449688c9cebc3367f52a0f59ecb6bc3f4dabf8c3b772459830ceeace16d"
+  },
+  "runs": [
+    {
+      "index": 1,
+      "wallSeconds": 37.485538019,
+      "filesPerSec": 266.76954709657304,
+      "maxRssKiB": 116252,
+      "exit": 1
+    },
+    {
+      "index": 2,
+      "wallSeconds": 36.92144165,
+      "filesPerSec": 270.84532870617204,
+      "maxRssKiB": 124484,
+      "exit": 1
+    },
+    {
+      "index": 3,
+      "wallSeconds": 37.645161513,
+      "filesPerSec": 265.6383874604098,
+      "maxRssKiB": 138692,
+      "exit": 1
+    },
+    {
+      "index": 4,
+      "wallSeconds": 39.510835793,
+      "filesPerSec": 253.0951269264637,
+      "maxRssKiB": 132368,
+      "exit": 1
+    },
+    {
+      "index": 5,
+      "wallSeconds": 38.11453251,
+      "filesPerSec": 262.3671167257877,
+      "maxRssKiB": 120084,
+      "exit": 1
+    }
+  ],
+  "summary": {
+    "n": 5,
+    "files": 10000,
+    "rawSeconds": [
+      37.485538019,
+      36.92144165,
+      37.645161513,
+      39.510835793,
+      38.11453251
+    ],
+    "p50Seconds": 37.645161513,
+    "p95Seconds": 39.510835793,
+    "p99Seconds": 39.510835793,
+    "minSeconds": 36.92144165,
+    "maxSeconds": 39.510835793,
+    "meanSeconds": 37.93550189700001,
+    "filesPerSecP95": 253.0951269264637,
+    "filesPerSecMax": 270.84532870617204,
+    "targetSeconds": 60,
+    "p95UnderTarget": true,
+    "measurementNote": "5 full scans on the raw wall clock; nearest-rank percentiles; with n=5 the p95 is the slowest run (conservative)"
+  },
+  "determinism": [
+    {
+      "source": "corpus",
+      "format": "pretty",
+      "sha256": "3bc24139237ab507950fe7caf475840400fe2de5e8d776bda20455192c93f402",
+      "sha256Run2": "3bc24139237ab507950fe7caf475840400fe2de5e8d776bda20455192c93f402",
+      "bytes": 15679,
+      "identical": true
+    },
+    {
+      "source": "corpus",
+      "format": "json",
+      "sha256": "ebcdda231327f25a564a27951327ad4f2195e18bf213ed211de5e37867fe6a5c",
+      "sha256Run2": "ebcdda231327f25a564a27951327ad4f2195e18bf213ed211de5e37867fe6a5c",
+      "bytes": 14904,
+      "identical": true
+    },
+    {
+      "source": "corpus",
+      "format": "sarif",
+      "sha256": "b3ff580a1115fcf58830d63ce0247e54a2523792e503b95cebb98fe2d11ab97a",
+      "sha256Run2": "b3ff580a1115fcf58830d63ce0247e54a2523792e503b95cebb98fe2d11ab97a",
+      "bytes": 42880,
+      "identical": true
+    },
+    {
+      "source": "bench",
+      "format": "pretty",
+      "sha256": "3bedafeef706c06045da57d98a9064530b778d3058843205ebd6fed792e75c39",
+      "sha256Run2": "3bedafeef706c06045da57d98a9064530b778d3058843205ebd6fed792e75c39",
+      "bytes": 7233632,
+      "identical": true
+    },
+    {
+      "source": "bench",
+      "format": "json",
+      "sha256": "5950fc1257a792c4699e17b156c7525322cd6122d61fdde00d758dd58805402e",
+      "sha256Run2": "5950fc1257a792c4699e17b156c7525322cd6122d61fdde00d758dd58805402e",
+      "bytes": 12748005,
+      "identical": true
+    },
+    {
+      "source": "bench",
+      "format": "sarif",
+      "sha256": "8535dee325573d49d9a658a1193861e3954189252a24e541bc893fda9a3fcbce",
+      "sha256Run2": "8535dee325573d49d9a658a1193861e3954189252a24e541bc893fda9a3fcbce",
+      "bytes": 20296033,
+      "identical": true
+    }
+  ],
+  "identicalPairs": 6,
+  "totalPairs": 6,
+  "coldStart": [
+    {
+      "index": 1,
+      "seconds": 0.047033557,
+      "exit": 0
+    },
+    {
+      "index": 2,
+      "seconds": 0.031415257,
+      "exit": 0
+    },
+    {
+      "index": 3,
+      "seconds": 0.034944701,
+      "exit": 0
+    }
+  ]
+}

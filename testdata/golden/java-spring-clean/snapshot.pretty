@@ -1,6 +1,6 @@
  vanguard 0.1.0-dev · testdata/golden/java-spring-clean · java · spring-boot 3.2.4 · config: <case>/.vanguard.yaml
- 5 services · 27 rules (27 active) · 24 files in <duration>
+ 5 services · 27 rules (27 active) · 25 files
 
  ──────────────────────────────────────────────────────────────────
  0 findings · 0 ERROR · 0 WARN · 0 INFO · 0 suppressed
- 0 files with findings · 24 scanned · 1 skipped · 0 parse diagnostics
+ 0 files with findings · 25 scanned · 1 skipped · 0 parse diagnostics

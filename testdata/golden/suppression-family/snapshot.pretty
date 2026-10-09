@@ -1,5 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/suppression-family · stub · stub · config: <case>/.vanguard.yaml
- 2 services · 27 rules (27 active) · 2 files in <duration>
+ 2 services · 27 rules (27 active) · 2 files
 
  [WARN]  R1xx-01 plural-collection (1)
  ──────────────────────────────────────────────────────────────────

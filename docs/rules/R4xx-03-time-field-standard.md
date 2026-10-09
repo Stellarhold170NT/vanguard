@@ -1,4 +1,15 @@
-# R4xx-03 — time-field-standard (INFO)
+# R4xx-03 — time-field-standard
+
+| | |
+|---|---|
+| ID | `R4xx-03` |
+| Slug | `time-field-standard` |
+| Category | `payload` |
+| Default severity | **INFO** |
+| AIP reference | AIP-142 |
+| Family | R4xx — payload |
+
+## Why
 
 Time-like fields should use `Instant`/`OffsetDateTime` — the types that
 serialize as RFC3339 (AIP-142) — instead of `String` or legacy date
@@ -6,7 +17,7 @@ types. The recon found no direct hit (declared transparently in charter
 §3.4); the rule is a guard for the 182 hand-written DTOs, which will
 grow.
 
-## Fires when
+## What fires
 
 ALL of these hold on the same `ir.Field` (of a non-entity type):
 
@@ -24,17 +35,38 @@ ALL of these hold on the same `ir.Field` (of a non-entity type):
    `int`, `Integer`. Unknown custom types stay silent — the rule
    under-reports rather than guessing.
 
-## The date-only carve-out
+The date-only carve-out: `LocalDate` is acceptable when the name's last
+word is `date` (`startDate`, `dueDate`) — a date-only value has no zone
+to lose. The same `LocalDate` on an instant-like name
+(`createdAt: LocalDate`) fires.
 
-`LocalDate` is acceptable when the name's last word is `date`
-(`startDate`, `dueDate`) — a date-only value has no zone to lose. The
-same `LocalDate` on an instant-like name (`createdAt: LocalDate`) fires.
+## What stays silent
 
-## Stays silent when
+- Entity fields (persistence territory, same scope line as R4xx-02).
+- Standard (RFC3339-ready) or unknown custom types.
 
-- the field belongs to an entity type (persistence territory, same scope
-  line as R4xx-02);
-- the type is standard (RFC3339-ready) or unknown.
+## Spring example — compliant
+
+```java
+// RFC3339 on the wire.
+public record LoanDto(Long id, Long memberId, Instant borrowedAt) { }
+```
+
+## Spring example — violation
+
+```java
+// A legacy spelling on a time-like name — zone and format drift.
+public record BookDto(Long bookID, Long author_id, String created_at, String title) { }
+```
+
+## Suppression
+
+```java
+// vanguard:ignore R4xx-03 <reason>
+```
+
+Path-scoped suppression lives in `.vanguard.yaml` (`suppressions:` with a
+`reason`, §6.4.1).
 
 ## Scope notes (attack surface — W4, read this)
 
@@ -45,13 +77,3 @@ same `LocalDate` on an instant-like name (`createdAt: LocalDate`) fires.
 - The charter's config-driven convention override (allow-list of custom
   time types in `.vanguard.yaml`) is future work — the rule declares no
   options in v0.1.
-
-## Good / Bad
-
-```java
-// good — RFC3339 on the wire
-public record AuditDto(Instant createdAt, Instant validUntil) { ... }
-
-// bad — unstructured strings and legacy types
-public record AuditDto(String createdAt, Date validUntil) { ... }
-```

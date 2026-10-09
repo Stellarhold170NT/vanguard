@@ -85,7 +85,15 @@ func (p prettyRenderer) header(ew *errWriter, report *engine.Report) {
 	if stats.RulesTotal > 0 {
 		statSegs = append(statSegs, fmt.Sprintf("%d rules (%d active)", stats.RulesTotal, stats.RulesActive))
 	}
-	statSegs = append(statSegs, fmt.Sprintf("%d files in %s", report.FilesScanned, formatDuration(report.DurationMS)))
+	// Duration segment: only when the engine measured and the CLI passed a
+	// real wall clock through (--timing, charter §6.6). The default
+	// deterministic output (§5.4) renders without the segment rather than
+	// printing a misleading "in 0ms".
+	if report.DurationMS > 0 {
+		statSegs = append(statSegs, fmt.Sprintf("%d files in %s", report.FilesScanned, formatDuration(report.DurationMS)))
+	} else {
+		statSegs = append(statSegs, fmt.Sprintf("%d files", report.FilesScanned))
+	}
 	ew.printf(" %s\n", strings.Join(statSegs, " · "))
 }
 
