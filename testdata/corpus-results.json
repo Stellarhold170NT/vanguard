@@ -1,0 +1,2790 @@
+{
+  "schema": "vanguard-corpus-results/1",
+  "tool": "tools/corpus-check",
+  "vanguard": "vanguard 0.1.0-dev (commit unknown, built unknown)",
+  "total": 171,
+  "summary": {
+    "ok": 154,
+    "declared_miss_honored": 17,
+    "violation_missed": 0,
+    "false_positive": 0,
+    "unexpected_diag": 0,
+    "harness_error": 0
+  },
+  "per_rule": [
+    {
+      "rule": "(_global)",
+      "total": 1,
+      "ok": 1,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R1xx-01",
+      "total": 9,
+      "ok": 9,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R1xx-02",
+      "total": 9,
+      "ok": 9,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R1xx-03",
+      "total": 7,
+      "ok": 7,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R1xx-04",
+      "total": 8,
+      "ok": 8,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R1xx-05",
+      "total": 6,
+      "ok": 6,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R2xx-01",
+      "total": 8,
+      "ok": 7,
+      "declared_miss_honored": 1,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 87.5,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R2xx-02",
+      "total": 6,
+      "ok": 6,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R2xx-03",
+      "total": 8,
+      "ok": 8,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R2xx-04",
+      "total": 6,
+      "ok": 6,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R2xx-05",
+      "total": 5,
+      "ok": 5,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R2xx-06",
+      "total": 7,
+      "ok": 7,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R3xx-01",
+      "total": 6,
+      "ok": 6,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R3xx-02",
+      "total": 5,
+      "ok": 5,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R3xx-03",
+      "total": 5,
+      "ok": 5,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R3xx-04",
+      "total": 7,
+      "ok": 3,
+      "declared_miss_honored": 4,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 42.857142857142854,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R4xx-01",
+      "total": 8,
+      "ok": 7,
+      "declared_miss_honored": 1,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 87.5,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R4xx-02",
+      "total": 6,
+      "ok": 6,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R4xx-03",
+      "total": 5,
+      "ok": 5,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R4xx-04",
+      "total": 6,
+      "ok": 3,
+      "declared_miss_honored": 3,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 50,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R5xx-01",
+      "total": 6,
+      "ok": 6,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R5xx-02",
+      "total": 7,
+      "ok": 7,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R5xx-03",
+      "total": 5,
+      "ok": 5,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R5xx-04",
+      "total": 7,
+      "ok": 3,
+      "declared_miss_honored": 4,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 42.857142857142854,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R6xx-01",
+      "total": 5,
+      "ok": 5,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R6xx-02",
+      "total": 7,
+      "ok": 7,
+      "declared_miss_honored": 0,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 100,
+      "declared_agreement": 100
+    },
+    {
+      "rule": "R6xx-03",
+      "total": 6,
+      "ok": 2,
+      "declared_miss_honored": 4,
+      "violation_missed": 0,
+      "false_positive": 0,
+      "unexpected_diag": 0,
+      "harness_error": 0,
+      "strict_agreement": 33.333333333333336,
+      "declared_agreement": 100
+    }
+  ],
+  "cases": [
+    {
+      "id": "singular-collection-path",
+      "rule": "R1xx-01",
+      "file": "R1xx-01/vio-singular-collection-path.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "singular-list-endpoint",
+      "rule": "R1xx-01",
+      "file": "R1xx-01/vio-singular-list-endpoint.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-01",
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 3,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "singular-sub-collection",
+      "rule": "R1xx-01",
+      "file": "R1xx-01/vio-singular-sub-collection.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-01",
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 3,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "singular-list-final",
+      "rule": "R1xx-01",
+      "file": "R1xx-01/vio-singular-list-final.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "plural-standard",
+      "rule": "R1xx-01",
+      "file": "R1xx-01/ok-plural-standard.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "uncountable-noun",
+      "rule": "R1xx-01",
+      "file": "R1xx-01/ok-uncountable-noun.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "camel-plural",
+      "rule": "R1xx-01",
+      "file": "R1xx-01/ok-camel-plural.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-04"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "update-draft-path",
+      "rule": "R1xx-02",
+      "file": "R1xx-02/vio-update-draft-path.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "delete-verb-path",
+      "rule": "R1xx-02",
+      "file": "R1xx-02/vio-delete-verb-path.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-02",
+        "R1xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "camel-verb-path",
+      "rule": "R1xx-02",
+      "file": "R1xx-02/vio-camel-verb-path.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-02",
+        "R1xx-04",
+        "R2xx-05"
+      ],
+      "fire_count": 3,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "fetch-under-resource",
+      "rule": "R1xx-02",
+      "file": "R1xx-02/vio-fetch-under-resource.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "create-token",
+      "rule": "R1xx-02",
+      "file": "R1xx-02/vio-create-token.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "noun-getter",
+      "rule": "R1xx-02",
+      "file": "R1xx-02/ok-noun-getter.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "noun-updates",
+      "rule": "R1xx-02",
+      "file": "R1xx-02/ok-noun-updates.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "preview-noun",
+      "rule": "R1xx-02",
+      "file": "R1xx-02/ok-preview-noun.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "flat-find-route",
+      "rule": "R1xx-03",
+      "file": "R1xx-03/vio-flat-find-route.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-02",
+        "R1xx-03",
+        "R2xx-05"
+      ],
+      "fire_count": 3,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "param-first-path",
+      "rule": "R1xx-03",
+      "file": "R1xx-03/vio-param-first-path.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-03",
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 3,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "consecutive-params",
+      "rule": "R1xx-03",
+      "file": "R1xx-03/vio-consecutive-params.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "param-under-verb",
+      "rule": "R1xx-03",
+      "file": "R1xx-03/vio-param-under-verb.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-02",
+        "R1xx-03",
+        "R2xx-05"
+      ],
+      "fire_count": 3,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "nested-hierarchy",
+      "rule": "R1xx-03",
+      "file": "R1xx-03/ok-nested-hierarchy.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "single-level-collection",
+      "rule": "R1xx-03",
+      "file": "R1xx-03/ok-single-level-collection.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "three-level-hierarchy",
+      "rule": "R1xx-03",
+      "file": "R1xx-03/ok-three-level-hierarchy.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "camel-segment",
+      "rule": "R1xx-04",
+      "file": "R1xx-04/vio-camel-segment.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-04"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "mixed-case-segment",
+      "rule": "R1xx-04",
+      "file": "R1xx-04/vio-mixed-case-segment.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-01",
+        "R1xx-04",
+        "R2xx-05",
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 5,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "pascal-param",
+      "rule": "R1xx-04",
+      "file": "R1xx-04/vio-pascal-param.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-04"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "underscore-segment",
+      "rule": "R1xx-04",
+      "file": "R1xx-04/vio-underscore-segment.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-04"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "kebab-standard",
+      "rule": "R1xx-04",
+      "file": "R1xx-04/ok-kebab-standard.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "acronym-lowercase",
+      "rule": "R1xx-04",
+      "file": "R1xx-04/ok-acronym-lowercase.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "numeric-segment",
+      "rule": "R1xx-04",
+      "file": "R1xx-04/ok-numeric-segment.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "mixed-suffix-convention",
+      "rule": "R1xx-05",
+      "file": "R1xx-05/vio-mixed-suffix-convention.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-05",
+        "R4xx-02"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "mixed-json-key",
+      "rule": "R1xx-05",
+      "file": "R1xx-05/vio-mixed-json-key.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-05",
+        "R4xx-02"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "self-id-mix",
+      "rule": "R1xx-05",
+      "file": "R1xx-05/vio-self-id-mix.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-05"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "consistent-reference-ids",
+      "rule": "R1xx-05",
+      "file": "R1xx-05/ok-consistent-reference-ids.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "self-and-reference",
+      "rule": "R1xx-05",
+      "file": "R1xx-05/ok-self-and-reference.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "no-id-projection",
+      "rule": "R1xx-05",
+      "file": "R1xx-05/ok-no-id-projection.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "get-request-body",
+      "rule": "R2xx-01",
+      "file": "R2xx-01/vio-get-request-body.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "get-requestpart",
+      "rule": "R2xx-01",
+      "file": "R2xx-01/vio-get-requestpart.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "get-list-body",
+      "rule": "R2xx-01",
+      "file": "R2xx-01/vio-get-list-body.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-01",
+        "R2xx-01"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "get-item-body",
+      "rule": "R2xx-01",
+      "file": "R2xx-01/vio-get-item-body.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "get-query-object",
+      "rule": "R2xx-01",
+      "file": "R2xx-01/ok-get-query-object.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "get-pathvars-only",
+      "rule": "R2xx-01",
+      "file": "R2xx-01/ok-get-pathvars-only.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "get-header-and-query",
+      "rule": "R2xx-01",
+      "file": "R2xx-01/ok-get-header-and-query.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-implicit-200",
+      "rule": "R2xx-02",
+      "file": "R2xx-02/vio-post-implicit-200.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-explicit-200",
+      "rule": "R2xx-02",
+      "file": "R2xx-02/vio-post-explicit-200.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-subresource",
+      "rule": "R2xx-02",
+      "file": "R2xx-02/vio-post-subresource.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-201-responsestatus",
+      "rule": "R2xx-02",
+      "file": "R2xx-02/ok-post-201-responsestatus.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-202-async",
+      "rule": "R2xx-02",
+      "file": "R2xx-02/ok-post-202-async.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-action-search",
+      "rule": "R2xx-02",
+      "file": "R2xx-02/ok-post-action-search.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "patch-full-dto",
+      "rule": "R2xx-03",
+      "file": "R2xx-03/vio-patch-full-dto.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "patch-full-entity",
+      "rule": "R2xx-03",
+      "file": "R2xx-03/vio-patch-full-entity.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "patch-responseentity-full",
+      "rule": "R2xx-03",
+      "file": "R2xx-03/vio-patch-responseentity-full.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "patch-full-record",
+      "rule": "R2xx-03",
+      "file": "R2xx-03/vio-patch-full-record.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "patch-partial-dto",
+      "rule": "R2xx-03",
+      "file": "R2xx-03/ok-patch-partial-dto.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "patch-map-partial",
+      "rule": "R2xx-03",
+      "file": "R2xx-03/ok-patch-map-partial.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "patch-void-response",
+      "rule": "R2xx-03",
+      "file": "R2xx-03/ok-patch-void-response.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "delete-body-list",
+      "rule": "R2xx-04",
+      "file": "R2xx-04/vio-delete-body-list.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-04"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "delete-body-reason",
+      "rule": "R2xx-04",
+      "file": "R2xx-04/vio-delete-body-reason.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-04"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "delete-bulk-body",
+      "rule": "R2xx-04",
+      "file": "R2xx-04/vio-delete-bulk-body.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-04"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "delete-query-ids",
+      "rule": "R2xx-04",
+      "file": "R2xx-04/ok-delete-query-ids.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "delete-item",
+      "rule": "R2xx-04",
+      "file": "R2xx-04/ok-delete-item.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "delete-etag-header",
+      "rule": "R2xx-04",
+      "file": "R2xx-04/ok-delete-etag-header.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "get-export",
+      "rule": "R2xx-05",
+      "file": "R2xx-05/vio-get-export.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-05"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "put-action-word",
+      "rule": "R2xx-05",
+      "file": "R2xx-05/vio-put-action-word.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-05"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "delete-cleanup",
+      "rule": "R2xx-05",
+      "file": "R2xx-05/vio-delete-cleanup.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-05"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-colon-restore",
+      "rule": "R2xx-05",
+      "file": "R2xx-05/ok-post-colon-restore.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-search-action",
+      "rule": "R2xx-05",
+      "file": "R2xx-05/ok-post-search-action.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "put-partial-shape",
+      "rule": "R2xx-06",
+      "file": "R2xx-06/vio-put-partial-shape.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-06"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "put-partial-name",
+      "rule": "R2xx-06",
+      "file": "R2xx-06/vio-put-partial-name.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-06"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "put-map-payload",
+      "rule": "R2xx-06",
+      "file": "R2xx-06/vio-put-map-payload.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-06"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "put-entity-response",
+      "rule": "R2xx-06",
+      "file": "R2xx-06/vio-put-entity-response.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-06"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "put-full-same",
+      "rule": "R2xx-06",
+      "file": "R2xx-06/ok-put-full-same.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "put-no-content",
+      "rule": "R2xx-06",
+      "file": "R2xx-06/ok-put-no-content.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "put-wrapped-same",
+      "rule": "R2xx-06",
+      "file": "R2xx-06/ok-put-wrapped-same.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "list-unpaginated",
+      "rule": "R3xx-01",
+      "file": "R3xx-01/vio-list-unpaginated.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "list-projections",
+      "rule": "R3xx-01",
+      "file": "R3xx-01/vio-list-projections.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "page-without-pageable",
+      "rule": "R3xx-01",
+      "file": "R3xx-01/vio-page-without-pageable.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "list-pageable",
+      "rule": "R3xx-01",
+      "file": "R3xx-01/ok-list-pageable.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "list-page-size-params",
+      "rule": "R3xx-01",
+      "file": "R3xx-01/ok-list-page-size-params.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "list-limit-capped",
+      "rule": "R3xx-01",
+      "file": "R3xx-01/ok-list-limit-capped.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "list-bare-list",
+      "rule": "R3xx-02",
+      "file": "R3xx-02/vio-list-bare-list.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "set-response",
+      "rule": "R3xx-02",
+      "file": "R3xx-02/vio-set-response.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "array-response",
+      "rule": "R3xx-02",
+      "file": "R3xx-02/vio-array-response.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "page-envelope",
+      "rule": "R3xx-02",
+      "file": "R3xx-02/ok-page-envelope.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "custom-envelope",
+      "rule": "R3xx-02",
+      "file": "R3xx-02/ok-custom-envelope.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "size-unbounded",
+      "rule": "R3xx-03",
+      "file": "R3xx-03/vio-size-unbounded.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "limit-unbounded",
+      "rule": "R3xx-03",
+      "file": "R3xx-03/vio-limit-unbounded.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "pagesize-camel",
+      "rule": "R3xx-03",
+      "file": "R3xx-03/vio-pagesize-camel.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-01",
+        "R3xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "size-capped",
+      "rule": "R3xx-03",
+      "file": "R3xx-03/ok-size-capped.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "page-offset-params",
+      "rule": "R3xx-03",
+      "file": "R3xx-03/ok-page-offset-params.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "page-vs-page-response",
+      "rule": "R3xx-04",
+      "file": "R3xx-04/vio-page-vs-page-response.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "page-vs-list",
+      "rule": "R3xx-04",
+      "file": "R3xx-04/vio-page-vs-list.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [
+        "R3xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "params-vs-pageable",
+      "rule": "R3xx-04",
+      "file": "R3xx-04/vio-params-vs-pageable.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [
+        "R3xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "envelope-shape-mix",
+      "rule": "R3xx-04",
+      "file": "R3xx-04/vio-envelope-shape-mix.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "page-everywhere",
+      "rule": "R3xx-04",
+      "file": "R3xx-04/ok-page-everywhere.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "page-response-everywhere",
+      "rule": "R3xx-04",
+      "file": "R3xx-04/ok-page-response-everywhere.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "params-everywhere",
+      "rule": "R3xx-04",
+      "file": "R3xx-04/ok-params-everywhere.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "entity-response",
+      "rule": "R4xx-01",
+      "file": "R4xx-01/vio-entity-response.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "entity-generic-page",
+      "rule": "R4xx-01",
+      "file": "R4xx-01/vio-entity-generic-page.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "entity-payload",
+      "rule": "R4xx-01",
+      "file": "R4xx-01/vio-entity-payload.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "entity-list-response",
+      "rule": "R4xx-01",
+      "file": "R4xx-01/vio-entity-list-response.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R3xx-02",
+        "R4xx-01"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "dto-response",
+      "rule": "R4xx-01",
+      "file": "R4xx-01/ok-dto-response.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "dto-shadowed-entity-name",
+      "rule": "R4xx-01",
+      "file": "R4xx-01/ok-dto-shadowed-entity-name.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "entity-query-param-only",
+      "rule": "R4xx-01",
+      "file": "R4xx-01/ok-entity-query-param-only.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "snake-case-field",
+      "rule": "R4xx-02",
+      "file": "R4xx-02/vio-snake-case-field.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "json-key-snake",
+      "rule": "R4xx-02",
+      "file": "R4xx-02/vio-json-key-snake.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "pascal-field",
+      "rule": "R4xx-02",
+      "file": "R4xx-02/vio-pascal-field.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "camel-standard",
+      "rule": "R4xx-02",
+      "file": "R4xx-02/ok-camel-standard.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "acronym-camel",
+      "rule": "R4xx-02",
+      "file": "R4xx-02/ok-acronym-camel.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "json-camel-key",
+      "rule": "R4xx-02",
+      "file": "R4xx-02/ok-json-camel-key.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "instant-as-string",
+      "rule": "R4xx-03",
+      "file": "R4xx-03/vio-instant-as-string.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "epoch-as-long",
+      "rule": "R4xx-03",
+      "file": "R4xx-03/vio-epoch-as-long.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "localdatetime-field",
+      "rule": "R4xx-03",
+      "file": "R4xx-03/vio-localdatetime-field.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R4xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "offsetdatetime",
+      "rule": "R4xx-03",
+      "file": "R4xx-03/ok-offsetdatetime.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "localdate-birth-date",
+      "rule": "R4xx-03",
+      "file": "R4xx-03/ok-localdate-birth-date.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "dto-suffix-mix",
+      "rule": "R4xx-04",
+      "file": "R4xx-04/vio-dto-suffix-mix.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "record-vs-dto",
+      "rule": "R4xx-04",
+      "file": "R4xx-04/vio-record-vs-dto.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "response-vs-dto",
+      "rule": "R4xx-04",
+      "file": "R4xx-04/vio-response-vs-dto.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "dto-only",
+      "rule": "R4xx-04",
+      "file": "R4xx-04/ok-dto-only.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "request-response-pair",
+      "rule": "R4xx-04",
+      "file": "R4xx-04/ok-request-response-pair.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "record-only",
+      "rule": "R4xx-04",
+      "file": "R4xx-04/ok-record-only.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "map-handler",
+      "rule": "R5xx-01",
+      "file": "R5xx-01/vio-map-handler.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R5xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "problemdetail-deviant",
+      "rule": "R5xx-01",
+      "file": "R5xx-01/vio-problemdetail-deviant.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R5xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "errorresponse-deviant",
+      "rule": "R5xx-01",
+      "file": "R5xx-01/vio-errorresponse-deviant.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R5xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "second-envelope-class",
+      "rule": "R5xx-01",
+      "file": "R5xx-01/vio-second-envelope-class.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R5xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "unified-problemdetail",
+      "rule": "R5xx-01",
+      "file": "R5xx-01/ok-unified-problemdetail.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "no-consensus",
+      "rule": "R5xx-01",
+      "file": "R5xx-01/ok-no-consensus.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "business-exception-500",
+      "rule": "R5xx-02",
+      "file": "R5xx-02/vio-business-exception-500.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R5xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "exception-self-500",
+      "rule": "R5xx-02",
+      "file": "R5xx-02/vio-exception-self-500.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R5xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "advice-class-500",
+      "rule": "R5xx-02",
+      "file": "R5xx-02/vio-advice-class-500.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R5xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "two-business-500",
+      "rule": "R5xx-02",
+      "file": "R5xx-02/vio-two-business-500.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R5xx-02"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "notfound-404",
+      "rule": "R5xx-02",
+      "file": "R5xx-02/ok-notfound-404.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "external-exception-500",
+      "rule": "R5xx-02",
+      "file": "R5xx-02/ok-external-exception-500.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "nonsuffix-500",
+      "rule": "R5xx-02",
+      "file": "R5xx-02/ok-nonsuffix-500.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-200-implicit",
+      "rule": "R5xx-03",
+      "file": "R5xx-03/vio-post-200-implicit.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-200-declared",
+      "rule": "R5xx-03",
+      "file": "R5xx-03/vio-post-200-declared.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-subresource-200",
+      "rule": "R5xx-03",
+      "file": "R5xx-03/vio-post-subresource-200.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "fire_count": 2,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-201-created",
+      "rule": "R5xx-03",
+      "file": "R5xx-03/ok-post-201-created.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "post-colon-action",
+      "rule": "R5xx-03",
+      "file": "R5xx-03/ok-post-colon-action.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "two-advices",
+      "rule": "R5xx-04",
+      "file": "R5xx-04/vio-two-advices.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "advice-plus-rest-wrapper",
+      "rule": "R5xx-04",
+      "file": "R5xx-04/vio-advice-plus-rest-wrapper.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "two-envelope-classes",
+      "rule": "R5xx-04",
+      "file": "R5xx-04/vio-two-envelope-classes.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "advice-plus-local-handler",
+      "rule": "R5xx-04",
+      "file": "R5xx-04/vio-advice-plus-local-handler.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "single-advice",
+      "rule": "R5xx-04",
+      "file": "R5xx-04/ok-single-advice.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "advice-plus-local-ok",
+      "rule": "R5xx-04",
+      "file": "R5xx-04/ok-advice-plus-local-ok.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "single-advice-many-exceptions",
+      "rule": "R5xx-04",
+      "file": "R5xx-04/ok-single-advice-many-exceptions.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "unversioned-base",
+      "rule": "R6xx-01",
+      "file": "R6xx-01/vio-unversioned-base.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "enable-r6xx-01",
+      "expected_miss": false,
+      "fired": [
+        "R6xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "unversioned-plain",
+      "rule": "R6xx-01",
+      "file": "R6xx-01/vio-unversioned-plain.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "enable-r6xx-01",
+      "expected_miss": false,
+      "fired": [
+        "R6xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "unversioned-nested",
+      "rule": "R6xx-01",
+      "file": "R6xx-01/vio-unversioned-nested.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "enable-r6xx-01",
+      "expected_miss": false,
+      "fired": [
+        "R6xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "versioned-base",
+      "rule": "R6xx-01",
+      "file": "R6xx-01/ok-versioned-base.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "enable-r6xx-01",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "empty-base",
+      "rule": "R6xx-01",
+      "file": "R6xx-01/ok-empty-base.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "enable-r6xx-01",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "rpc-fetch-member-data",
+      "rule": "R6xx-02",
+      "file": "R6xx-02/vio-rpc-fetch-member-data.proto",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R6xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "rpc-do-stuff",
+      "rule": "R6xx-02",
+      "file": "R6xx-02/vio-rpc-do-stuff.proto",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R6xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "rpc-verb-no-noun",
+      "rule": "R6xx-02",
+      "file": "R6xx-02/vio-rpc-verb-no-noun.proto",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R6xx-02"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "standard-crud",
+      "rule": "R6xx-02",
+      "file": "R6xx-02/ok-standard-crud.proto",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "verb-noun-custom",
+      "rule": "R6xx-02",
+      "file": "R6xx-02/ok-verb-noun-custom.proto",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "batch-and-search",
+      "rule": "R6xx-02",
+      "file": "R6xx-02/ok-batch-and-search.proto",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "one-v2-endpoint",
+      "rule": "R6xx-03",
+      "file": "R6xx-03/vio-one-v2-endpoint.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "v2-among-v1",
+      "rule": "R6xx-03",
+      "file": "R6xx-03/vio-v2-among-v1.java",
+      "expect": "hit",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "version-suffix-drift",
+      "rule": "R6xx-03",
+      "file": "R6xx-03/vio-version-suffix-drift.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [
+        "R1xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "all-v1",
+      "rule": "R6xx-03",
+      "file": "R6xx-03/ok-all-v1.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "unversioned-consistent",
+      "rule": "R6xx-03",
+      "file": "R6xx-03/ok-unversioned-consistent.java",
+      "expect": "miss",
+      "tier": "near-miss",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "nested-generic-wildcard",
+      "rule": "R4xx-01",
+      "file": "_global/vio-nested-generic-wildcard.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "wildcard-request-mapping",
+      "rule": "R1xx-01",
+      "file": "_global/vio-wildcard-request-mapping.java",
+      "expect": "parse-ok",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "overload-same-path",
+      "rule": "R2xx-03",
+      "file": "_global/vio-overload-same-path.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R2xx-03"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "meta-annotation-composed",
+      "rule": "R2xx-01",
+      "file": "_global/vio-meta-annotation-composed.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 2,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "multiple-base-paths",
+      "rule": "R6xx-03",
+      "file": "_global/vio-multiple-base-paths.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": true,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 2,
+      "verdict": "honored-expected-miss"
+    },
+    {
+      "id": "uppercase-path-variable",
+      "rule": "R1xx-04",
+      "file": "_global/vio-uppercase-path-variable.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-04"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "commented-out-mapping",
+      "rule": "R1xx-02",
+      "file": "_global/ok-commented-out-mapping.java",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "proto-commented-service",
+      "rule": "R6xx-02",
+      "file": "_global/vio-proto-commented-service.proto",
+      "expect": "miss",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "nested-class-controller",
+      "rule": "R1xx-01",
+      "file": "_global/vio-nested-class-controller.java",
+      "expect": "hit",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [
+        "R1xx-01"
+      ],
+      "fire_count": 1,
+      "diag_count": 0,
+      "verdict": "ok"
+    },
+    {
+      "id": "no-api-plain-service",
+      "rule": null,
+      "file": "_global/ok-no-api-plain-service.java",
+      "expect": "parse-ok",
+      "tier": "baseline",
+      "config": "default",
+      "expected_miss": false,
+      "fired": [],
+      "fire_count": 0,
+      "diag_count": 0,
+      "verdict": "ok"
+    }
+  ],
+  "agreement": {
+    "strict": 90.05847953216374,
+    "declared": 100
+  }
+}
