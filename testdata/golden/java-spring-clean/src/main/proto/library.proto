@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package library.v1;
+
+// Clean proto (w3-07 golden showcase, clean case): every rpc is a Standard
+// Method name or a VerbNoun custom method — R6xx-02 stays silent.
+service LibraryService {
+  rpc GetBook(GetBookRequest) returns (Book);
+  rpc ListBooks(ListBooksRequest) returns (ListBooksResponse);
+  rpc CreateBook(CreateBookRequest) returns (Book);
+  rpc UpdateBook(UpdateBookRequest) returns (Book);
+  rpc DeleteBook(DeleteBookRequest) returns (DeleteBookResponse);
+  rpc ArchiveBook(ArchiveBookRequest) returns (ArchiveBookResponse);
+}
+
+message GetBookRequest {
+  int64 book_id = 1;
+}
+
+message Book {
+  int64 id = 1;
+  string title = 2;
+}
+
+message ListBooksRequest {
+  int32 page = 1;
+  int32 size = 2;
+}
+
+message ListBooksResponse {
+  repeated Book books = 1;
+  int32 total = 2;
+}
+
+message CreateBookRequest {
+  Book book = 1;
+}
+
+message UpdateBookRequest {
+  int64 book_id = 1;
+  Book book = 2;
+}
+
+message DeleteBookRequest {
+  int64 book_id = 1;
+}
+
+message DeleteBookResponse {
+  bool deleted = 1;
+}
+
+message ArchiveBookRequest {
+  int64 book_id = 1;
+}
+
+message ArchiveBookResponse {
+  bool archived = 1;
+}
