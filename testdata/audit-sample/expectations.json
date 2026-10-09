@@ -70,7 +70,7 @@
       "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
       "line": 8,
       "pattern_ref": "w1-03 §2.4 (182 DTOs mix id spellings)",
-      "note": "one type carries two reference-id spellings: reportID (ID-style) + branch_id (_id-style)"
+      "note": "one type carries two reference-id spellings: reportID (ID-style) + branch_id (_id-style); bound to the surface via ReportResource GET /reports/summary (w4-04 construct fix — audit rules evaluate surface-bound types only)"
     },
     {
       "id": "as-009",

@@ -1,11 +1,12 @@
 # testdata/audit-sample — FP/FN audit sample set (w4-04, test-strategy §7)
 
-A ~49-operation Spring Boot-style API surface that **reproduces the
-military-youth patterns w1-03 documented** (pain 1–7 + §2.1–§2.4) on a
-fictional youth-union domain (`com.youthunion.audit`, `/api/youth-union/…`).
-**No military-youth source is copied** (charter §12): every file is freshly
-written, minimal code that exhibits the documented *pattern* — the same
-policy the adversarial corpus follows, one tier closer to the real app.
+A 51-operation API surface (41 HTTP method-level endpoints + 10 rpc) that
+**reproduces the military-youth patterns w1-03 documented** (pain 1–7 +
+§2.1–§2.4) on a fictional youth-union domain (`com.youthunion.audit`,
+`/api/youth-union/…`). **No military-youth source is copied** (charter §12):
+every file is freshly written, minimal code that exhibits the documented
+*pattern* — the same policy the adversarial corpus follows, one tier closer
+to the real app.
 
 ## Layout
 
@@ -17,7 +18,7 @@ policy the adversarial corpus follows, one tier closer to the real app.
 | `src/…/dto/` | payload types: clean baseline, mixed-convention DTO, `PageResponse<T>`, import pair |
 | `src/…/service/` | app-owned exceptions (`*Exception` — R5xx-02 signal) |
 | `src/…/config/` | `GlobalErrorAdvice` (4 handlers, 1 deviant) + `ResponseWrapper` (2nd advice) |
-| `src/…/web/rest/` | 8 controllers / **39 HTTP endpoints** |
+| `src/…/web/rest/` | 8 controllers / **41 HTTP method-level endpoints** (incl. the `GET /reports/summary` surface-binding added by the w4-04 construct fix) |
 | `proto/` | 2 services / **10 rpc** (3 non-standard, 1 commented-out corner) |
 
 ## Pattern → construct map (w1-03 traceability)

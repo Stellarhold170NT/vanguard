@@ -144,6 +144,14 @@ type row struct {
 	AipRef    string
 }
 
+// labeledRow is one labeler-filled verdict line from the machine sheet.
+type labeledRow struct {
+	GateVerdict string
+	ReasonCode  string
+	Note        string
+	AipRef      string
+}
+
 // ---------------------------------------------------------------------------
 // Results (test-strategy §7.5)
 
@@ -400,8 +408,13 @@ var (
 
 // countEndpoints is the sample inventory (a labeling-population number,
 // NOT a discovery claim — recall-discovery is §6.2's separate metric).
+// Only source files count: expectations/README prose may mention
+// annotation spellings, and notes are not endpoints.
 func countEndpoints(sample string) (http int, rpc int) {
 	for _, f := range collectSampleFiles(sample) {
+		if !strings.HasSuffix(f, ".java") && !strings.HasSuffix(f, ".proto") {
+			continue
+		}
 		b, err := os.ReadFile(filepath.Join(sample, f))
 		if err != nil {
 			continue
@@ -552,7 +565,7 @@ func writeCSVFile(path string, rows, fnRows []row) error {
 	return writeFile(path, []byte(b.String()))
 }
 
-func readLabeledCSV(path string) (map[string]row, error) {
+func readLabeledCSV(path string) (map[string]labeledRow, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
@@ -574,13 +587,13 @@ func readLabeledCSV(path string) (map[string]row, error) {
 			return nil, fmt.Errorf("%s: missing column %q", path, col)
 		}
 	}
-	out := map[string]row{}
+	out := map[string]labeledRow{}
 	for _, rec := range records[1:] {
 		if len(rec) == 0 || strings.TrimSpace(rec[want["id"]]) == "" {
 			continue
 		}
 		id := strings.TrimSpace(rec[want["id"]])
-		out[id] = row{
+		out[id] = labeledRow{
 			GateVerdict: strings.TrimSpace(rec[want["gate_verdict"]]),
 			ReasonCode:  csvField(rec, want, "reason_code"),
 			Note:        csvField(rec, want, "note"),
@@ -600,7 +613,7 @@ func csvField(rec []string, want map[string]int, col string) string {
 
 // validateLabels checks the verdict vocabulary against the row kind
 // (§7.1/§7.3: TP/FP belong to findings, FN/CLAIM-REJECTED to misses).
-func validateLabels(labeled map[string]row, rows, fnRows []row) error {
+func validateLabels(labeled map[string]labeledRow, rows, fnRows []row) error {
 	kind := map[string]string{}
 	for _, r := range rows {
 		kind[r.ID] = "finding"
@@ -758,7 +771,7 @@ func appendUnique(dst []string, lists ...[]string) []string {
 // UNCLEAR, are unresolved; DISPUTED rows are additionally listed as
 // disputes. CLAIM-REJECTED removes a claim from the audit universe (no
 // denominator impact).
-func applyVerdicts(res *results, rows, fnRows []row, labeled map[string]row) {
+func applyVerdicts(res *results, rows, fnRows []row, labeled map[string]labeledRow) {
 	idRules := map[string][]string{}
 	idKind := map[string]string{}
 	for _, r := range append(append([]row{}, rows...), fnRows...) {

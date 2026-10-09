@@ -1,0 +1,555 @@
+{
+  "schema": "vanguard-audit-findings/1",
+  "tool": "tools/audit-check",
+  "vanguard": "vanguard 0.1.0-dev (commit unknown, built unknown)",
+  "report": {
+    "findings": [
+      {
+        "ruleId": "R6xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "proto/legacy_report.proto",
+          "line": 10
+        },
+        "message": "rpc FetchReportData in service LegacyReportService is not a Standard Method name (Get*/List*/Create*/Update*/Delete*) or a VerbNoun custom method — the name leaks into every generated client."
+      },
+      {
+        "ruleId": "R6xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "proto/legacy_report.proto",
+          "line": 10
+        },
+        "message": "rpc RemoveById in service LegacyReportService is not a Standard Method name (Get*/List*/Create*/Update*/Delete*) or a VerbNoun custom method — the name leaks into every generated client."
+      },
+      {
+        "ruleId": "R6xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "proto/legacy_report.proto",
+          "line": 10
+        },
+        "message": "rpc DoExport in service LegacyReportService is not a Standard Method name (Get*/List*/Create*/Update*/Delete*) or a VerbNoun custom method — the name leaks into every generated client."
+      },
+      {
+        "ruleId": "R5xx-02",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/config/GlobalErrorAdvice.java",
+          "line": 40
+        },
+        "message": "@ExceptionHandler maps the business exception YouthUnionException to HTTP 500 — a business rule violation is a 4xx outcome, not a server failure."
+      },
+      {
+        "ruleId": "R5xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/config/GlobalErrorAdvice.java",
+          "line": 45
+        },
+        "message": "@ExceptionHandler for IllegalStateException answers Map\u003cString, Object\u003e while 3 of 4 handlers answer with ErrorResponse — clients would parse two error contracts."
+      },
+      {
+        "ruleId": "R4xx-03",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/dto/AuthTokenDto.java",
+          "line": 4
+        },
+        "message": "Field \"expiresAt\" holds a time value as long — clients get no RFC3339 structure to parse."
+      },
+      {
+        "ruleId": "R1xx-05",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/dto/MovementLogDto.java",
+          "line": 8
+        },
+        "message": "Type MovementLogDto names its own id \"movementLogId\" while other types use \"id\" — keep one self-id convention (AIP-140)."
+      },
+      {
+        "ruleId": "R1xx-05",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+          "line": 8
+        },
+        "message": "Type ReportSummaryDto mixes reference-id spellings (\"ID\"-style (reportID), \"_id\"-style (branch_id)) — keep one: \u003cresource\u003eId (AIP-140)."
+      },
+      {
+        "ruleId": "R1xx-05",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+          "line": 8
+        },
+        "message": "Type ReportSummaryDto names its own id \"reportId\" while other types use \"id\" — keep one self-id convention (AIP-140)."
+      },
+      {
+        "ruleId": "R4xx-02",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+          "line": 10
+        },
+        "message": "Field \"branch_id\" is not lowerCamelCase — the payload JSON convention is lowerCamelCase."
+      },
+      {
+        "ruleId": "R4xx-02",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+          "line": 11
+        },
+        "message": "Field \"created_date\" is not lowerCamelCase — the payload JSON convention is lowerCamelCase."
+      },
+      {
+        "ruleId": "R4xx-03",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+          "line": 11
+        },
+        "message": "Field \"created_date\" holds a time value as String — clients get no RFC3339 structure to parse."
+      },
+      {
+        "ruleId": "R2xx-02",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/AuthResource.java",
+          "line": 22
+        },
+        "message": "POST endpoint login looks like a resource create (single AuthTokenDto response, no action path) but does not declare 201 Created — verify that this POST creates, and answer 201."
+      },
+      {
+        "ruleId": "R3xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/AuthResource.java",
+          "line": 27
+        },
+        "message": "GET /api/youth-union/auth/permissions returns an unpaginated collection — one client request can dump the whole table."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/AuthResource.java",
+          "line": 27
+        },
+        "message": "/api/youth-union/auth/permissions returns a bare List\u003cPermissionDto\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R1xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 22
+        },
+        "message": "Collection path segment \"all-by-Name\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122)."
+      },
+      {
+        "ruleId": "R1xx-04",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 22
+        },
+        "message": "Path segment \"all-by-Name\" is not kebab-case — keep one segment convention (AIP-122)."
+      },
+      {
+        "ruleId": "R2xx-05",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 22
+        },
+        "message": "Endpoint searchByName (GET /api/youth-union/magazine-posts/search/all-by-Name) looks like an action (non-CRUD) — AIP-136 custom methods read POST \u003ccollection\u003e/{id}:\u003caction\u003e (verify manually)."
+      },
+      {
+        "ruleId": "R3xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 22
+        },
+        "message": "GET /api/youth-union/magazine-posts/search/all-by-Name returns an unpaginated collection — one client request can dump the whole table."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 22
+        },
+        "message": "/api/youth-union/magazine-posts/search/all-by-Name returns a bare List\u003cMagazinePostDto\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R1xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 27
+        },
+        "message": "Collection path segment \"all-by-condition\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122)."
+      },
+      {
+        "ruleId": "R2xx-05",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 27
+        },
+        "message": "Endpoint searchByCondition (GET /api/youth-union/magazine-posts/search/all-by-condition) looks like an action (non-CRUD) — AIP-136 custom methods read POST \u003ccollection\u003e/{id}:\u003caction\u003e (verify manually)."
+      },
+      {
+        "ruleId": "R3xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 27
+        },
+        "message": "GET /api/youth-union/magazine-posts/search/all-by-condition returns an unpaginated collection — one client request can dump the whole table."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 27
+        },
+        "message": "/api/youth-union/magazine-posts/search/all-by-condition returns a bare List\u003cMagazinePostDto\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R3xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 37
+        },
+        "message": "GET /api/youth-union/magazine-posts/{magazineId}/comments returns an unpaginated collection — one client request can dump the whole table."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 37
+        },
+        "message": "/api/youth-union/magazine-posts/{magazineId}/comments returns a bare List\u003cCommentDto\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R2xx-03",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+          "line": 42
+        },
+        "message": "PATCH endpoint patch takes the full MagazinePostDto payload it also returns — a full replacement belongs to PUT, partial updates send a smaller DTO."
+      },
+      {
+        "ruleId": "R1xx-02",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+          "line": 28
+        },
+        "message": "Path segment \"update\" states the CRUD verb \"update\" — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135)."
+      },
+      {
+        "ruleId": "R1xx-02",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+          "line": 32
+        },
+        "message": "Path segment \"update\" states the CRUD verb \"update\" — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135)."
+      },
+      {
+        "ruleId": "R1xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+          "line": 36
+        },
+        "message": "Collection path segment \"all-by-condition\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122)."
+      },
+      {
+        "ruleId": "R2xx-05",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+          "line": 36
+        },
+        "message": "Endpoint search (GET /api/youth-union/movement-logs/search/all-by-condition) looks like an action (non-CRUD) — AIP-136 custom methods read POST \u003ccollection\u003e/{id}:\u003caction\u003e (verify manually)."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+          "line": 52
+        },
+        "message": "/api/youth-union/movement-logs/export returns a bare byte[] — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R4xx-01",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+          "line": 57
+        },
+        "message": "POST /api/youth-union/movement-logs/import exposes the ORM entity YouthMember — the database schema and lazy relations leak into the wire contract."
+      },
+      {
+        "ruleId": "R3xx-03",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+          "line": 24
+        },
+        "message": "Query parameter \"size\" has no upper bound — a single client can request unbounded pages."
+      },
+      {
+        "ruleId": "R1xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+          "line": 29
+        },
+        "message": "Collection path segment \"archived\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122)."
+      },
+      {
+        "ruleId": "R3xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+          "line": 29
+        },
+        "message": "GET /api/youth-union/reports/archived returns an unpaginated collection — one client request can dump the whole table."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+          "line": 29
+        },
+        "message": "/api/youth-union/reports/archived returns a bare List\u003cReportDto\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+          "line": 39
+        },
+        "message": "/api/youth-union/reports/export-by-condition returns a bare byte[] — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R1xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/RouteIndexResource.java",
+          "line": 18
+        },
+        "message": "Collection path segment \"api\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122)."
+      },
+      {
+        "ruleId": "R3xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/RouteIndexResource.java",
+          "line": 18
+        },
+        "message": "GET /api returns an unpaginated collection — one client request can dump the whole table."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/RouteIndexResource.java",
+          "line": 18
+        },
+        "message": "/api returns a bare List\u003cString\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R1xx-02",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 24
+        },
+        "message": "Path segment \"find-by-id\" states the CRUD verb \"find\" — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135)."
+      },
+      {
+        "ruleId": "R1xx-03",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 24
+        },
+        "message": "Variable {id} sits under the action segment \"find-by-id\" — serve the item under its resource: /\u003ccollection\u003e/{id} (AIP-127)."
+      },
+      {
+        "ruleId": "R2xx-05",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 24
+        },
+        "message": "Endpoint findById (GET /api/youth-union/training-courses/find-by-id/{id}) looks like an action (non-CRUD) — AIP-136 custom methods read POST \u003ccollection\u003e/{id}:\u003caction\u003e (verify manually)."
+      },
+      {
+        "ruleId": "R1xx-02",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 29
+        },
+        "message": "Path segment \"find-all-id-active\" states the CRUD verb \"find\" — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135)."
+      },
+      {
+        "ruleId": "R2xx-05",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 29
+        },
+        "message": "Endpoint findAllIdActive (GET /api/youth-union/training-courses/find-all-id-active) looks like an action (non-CRUD) — AIP-136 custom methods read POST \u003ccollection\u003e/{id}:\u003caction\u003e (verify manually)."
+      },
+      {
+        "ruleId": "R3xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 29
+        },
+        "message": "GET /api/youth-union/training-courses/find-all-id-active returns an unpaginated collection — one client request can dump the whole table."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 29
+        },
+        "message": "/api/youth-union/training-courses/find-all-id-active returns a bare List\u003cLong\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R1xx-02",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 34
+        },
+        "message": "Path segment \"delete\" states the CRUD verb \"delete\" — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135)."
+      },
+      {
+        "ruleId": "R2xx-02",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 48
+        },
+        "message": "POST endpoint create looks like a resource create (single TrainingCourseDto response, no action path) but does not declare 201 Created — verify that this POST creates, and answer 201."
+      },
+      {
+        "ruleId": "R5xx-03",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+          "line": 48
+        },
+        "message": "POST /api/youth-union/training-courses relies on the implicit 200 while creating a resource — declare 201 Created so clients can tell creation from a plain success."
+      },
+      {
+        "ruleId": "R1xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/UnionFeeResource.java",
+          "line": 31
+        },
+        "message": "Collection path segment \"by-member\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122)."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/UnionFeeResource.java",
+          "line": 31
+        },
+        "message": "/api/youth-union/union-fees/by-member/{memberId} returns a bare List\u003cUnionFeeDto\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R1xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+          "line": 62
+        },
+        "message": "Collection path segment \"auto-complete\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122)."
+      },
+      {
+        "ruleId": "R3xx-01",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+          "line": 62
+        },
+        "message": "GET /api/youth-union/youths/auto-complete returns an unpaginated collection — one client request can dump the whole table."
+      },
+      {
+        "ruleId": "R3xx-02",
+        "severity": "INFO",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+          "line": 62
+        },
+        "message": "/api/youth-union/youths/auto-complete returns a bare List\u003cString\u003e — a bare JSON array leaves no room for total/page metadata."
+      },
+      {
+        "ruleId": "R2xx-01",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+          "line": 62
+        },
+        "message": "GET endpoint autoComplete declares a request body (YouthAutocompleteRequest) — many HTTP clients silently drop GET bodies."
+      },
+      {
+        "ruleId": "R2xx-04",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+          "line": 67
+        },
+        "message": "DELETE endpoint removeBatch declares a request body (List\u003cString\u003e) — model bulk deletes as query parameters or a batch path instead."
+      },
+      {
+        "ruleId": "R4xx-01",
+        "severity": "ERROR",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+          "line": 71
+        },
+        "message": "GET /api/youth-union/youths/current exposes the ORM entity YouthMember — the database schema and lazy relations leak into the wire contract."
+      },
+      {
+        "ruleId": "R2xx-06",
+        "severity": "WARN",
+        "location": {
+          "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+          "line": 76
+        },
+        "message": "PUT endpoint updateStatus takes payload YouthStatusUpdate but returns YouthMemberDto — the mismatch looks like a partial update, which belongs to PATCH."
+      }
+    ],
+    "diagnostics": [],
+    "summary": {
+      "files": 34,
+      "skippedFiles": 1,
+      "parseDiagnostics": 0
+    }
+  }
+}

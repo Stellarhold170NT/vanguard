@@ -32,11 +32,20 @@ func TestAlignMatchesSlotsWithinTolerance(t *testing.T) {
 		findingAt("R2xx-03", "src/B.java", 46), // 5 lines away -> NOT matched
 	}}
 	rows, fnRows := align(rep, exp, []string{"src/A.java", "src/B.java"})
-	if len(rows) != 1 || rows[0].ID != "F-001" {
-		t.Fatalf("want 1 finding row F-001, got %+v", rows)
+	// two finding rows: the matched A.java span + the unexpected B.java
+	// firing (5 lines off the slot — becomes an unexpected row, the gate
+	// labels it), plus one fn candidate for the unmatched slot
+	if len(rows) != 2 {
+		t.Fatalf("want 2 finding rows, got %+v", rows)
+	}
+	if rows[0].ID != "F-001" || rows[0].File != "src/A.java" {
+		t.Fatalf("first row should be the matched A.java span, got %+v", rows[0])
 	}
 	if len(rows[0].FromSlots) != 1 || rows[0].FromSlots[0] != "as-001" {
 		t.Fatalf("row should carry slot as-001, got %v", rows[0].FromSlots)
+	}
+	if len(rows[1].FromSlots) != 0 {
+		t.Fatalf("B.java firing must be an unexpected row, got %v", rows[1].FromSlots)
 	}
 	if len(fnRows) != 1 || fnRows[0].ID != "as-002" {
 		t.Fatalf("unmatched slot must become fn candidate as-002, got %v", fnRows)
@@ -114,7 +123,7 @@ func inventory() (*results, []row, []row) {
 
 func TestApplyVerdictsMath(t *testing.T) {
 	res, rows, fnRows := inventory()
-	labeled := map[string]row{
+	labeled := map[string]labeledRow{
 		"F-001": {GateVerdict: "TP"},
 		"F-002": {GateVerdict: "FP", ReasonCode: "heuristic-context"},
 		"F-003": {GateVerdict: "TP"},
@@ -153,7 +162,7 @@ func TestApplyVerdictsMath(t *testing.T) {
 
 func TestApplyVerdictsUnresolvedAndDisputed(t *testing.T) {
 	res, rows, fnRows := inventory()
-	labeled := map[string]row{
+	labeled := map[string]labeledRow{
 		"F-001":  {GateVerdict: "TP"},
 		"F-002":  {GateVerdict: "UNCLEAR", Note: "need context"},
 		"F-003":  {GateVerdict: "DISPUTED", Note: "charter vs aip.dev"},
@@ -176,13 +185,13 @@ func TestApplyVerdictsUnresolvedAndDisputed(t *testing.T) {
 func TestValidateLabelsRejectsWrongKindVerdict(t *testing.T) {
 	rows := []row{{ID: "F-001", Kind: "finding", Rules: []string{"R1xx-02"}}}
 	fnRows := []row{{ID: "as-001", Kind: "fn-candidate", Rules: []string{"R1xx-02"}}}
-	if err := validateLabels(map[string]row{"F-001": {GateVerdict: "FN"}}, rows, fnRows); err == nil {
+	if err := validateLabels(map[string]labeledRow{"F-001": {GateVerdict: "FN"}}, rows, fnRows); err == nil {
 		t.Fatal("FN on a finding row must be rejected")
 	}
-	if err := validateLabels(map[string]row{"as-001": {GateVerdict: "TP"}}, rows, fnRows); err == nil {
+	if err := validateLabels(map[string]labeledRow{"as-001": {GateVerdict: "TP"}}, rows, fnRows); err == nil {
 		t.Fatal("TP on a fn-candidate row must be rejected")
 	}
-	if err := validateLabels(map[string]row{"F-001": {GateVerdict: "FP"}, "as-001": {GateVerdict: "FN"}}, rows, fnRows); err != nil {
+	if err := validateLabels(map[string]labeledRow{"F-001": {GateVerdict: "FP"}, "as-001": {GateVerdict: "FN"}}, rows, fnRows); err != nil {
 		t.Fatalf("valid labels must pass: %v", err)
 	}
 }
@@ -205,13 +214,13 @@ func TestCSVRoundTrip(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(string(raw), `"msg | with pipe"`) {
-		t.Fatal("csv writer must quote the pipe")
+	if !strings.Contains(string(raw), `"R1xx-02, R1xx-03"`) {
+		t.Fatal("csv writer must quote the comma-carrying rules field")
 	}
 
-	// the labeler fills the verdict columns in place
-	labeled := strings.ReplaceAll(string(raw), "F-001,finding,R1xx-02, R1xx-03", "F-001,finding,R1xx-02, R1xx-03")
-	edited := strings.Replace(labeled, ",https://google.aip.dev/131", "TP,heuristic-context,lexicon too wide,https://google.aip.dev/131", 1)
+	// the labeler fills the verdict columns in place: the three empty
+	// verdict fields (gate_verdict, reason_code, note) become three values
+	edited := strings.Replace(string(raw), ",,,https://google.aip.dev/131", "TP,heuristic-context,lexicon too wide,https://google.aip.dev/131", 1)
 	if err := os.WriteFile(path, []byte(edited), 0o644); err != nil {
 		t.Fatal(err)
 	}
@@ -228,7 +237,7 @@ func TestCSVRoundTrip(t *testing.T) {
 
 	// unknown ids are a stale sheet, not a measurement: the id check
 	// lives in validateLabels (rows are fixed by align)
-	if err := validateLabels(map[string]row{"ZZZ-001": {GateVerdict: "TP"}}, rows, fnRows); err == nil {
+	if err := validateLabels(map[string]labeledRow{"ZZZ-001": {GateVerdict: "TP"}}, rows, fnRows); err == nil {
 		t.Fatal("unknown row id must be rejected as stale")
 	}
 }
