@@ -12,8 +12,11 @@ Fires when ALL of:
 1. the method is an HTTP method whose verb is **not POST** (a POST endpoint
    already satisfies the verb half of the convention; reshaping its path
    overlaps the R1xx family, so POST stays silent);
-2. the path carries at least one literal (non-template) segment that
-   tokenizes to an action-verb token.
+2. the **method-level path** carries at least one literal (non-template)
+   segment that tokenizes to an action-verb token. The service base path is
+   removed first (`methodRelPath`): one `@RequestMapping("/v1/search")`
+   decision must not make every endpoint under it read as an action — the
+   action shape is the method mapping's own segments.
 
 **The lexicon** (shared with R2xx-02, `rules/methods.go actionVerbs`):
 activate, assign, approve, calculate, cancel, cleanup, clone, compute,

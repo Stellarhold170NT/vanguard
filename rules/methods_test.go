@@ -152,9 +152,9 @@ func TestPostCreates201(t *testing.T) {
 		t.Fatalf("rules[1] = %s, want R2xx-02", r.ID)
 	}
 	cases := []struct {
-		name  string
-		m     ir.Method
-		fire  bool
+		name string
+		m    ir.Method
+		fire bool
 	}{
 		{"implicit 200 create", method(ir.VerbPost, "/books", "CreateBookRequest", "BookDto", 0, false), true},
 		{"declared 200", method(ir.VerbPost, "/books", "CreateBookRequest", "BookDto", 200, false), true},
@@ -306,6 +306,44 @@ func TestActionTokens(t *testing.T) {
 	if segs := actionSegments("/books/{id}/generate-code"); len(segs) != 1 || segs[0] != "generate-code" {
 		t.Fatalf("actionSegments = %v, want [generate-code]", segs)
 	}
+}
+
+// TestBasePathStripping pins the method-level-path discipline: an action
+// word in the service's BASE path must not taint every endpoint under it —
+// the verb rules judge the method-level shape (with a context Service),
+// and the create detection treats a POST on the base itself as the
+// collection root.
+func TestBasePathStripping(t *testing.T) {
+	rules, err := MethodRules()
+	if err != nil {
+		t.Fatalf("MethodRules: %v", err)
+	}
+	ctx := &engine.LintContext{Service: &ir.Service{Name: "Search", BasePath: "/v1/search"}}
+	// GET /v1/search/archive under base /v1/search: the method path "/archive"
+	// carries no action token — the base-path "search" must not fire R2xx-05.
+	m := method(ir.VerbGet, "/v1/search/archive", "", "ArchiveResult", 200, false)
+	if got := runCheckCtx(t, rules[4], ctx, m); len(got) != 0 {
+		t.Fatalf("base-path action word: %d findings, want 0", len(got))
+	}
+	// The method-level shape still fires.
+	m = method(ir.VerbGet, "/v1/search/archive/export", "", "Report", 200, false)
+	if got := runCheckCtx(t, rules[4], ctx, m); len(got) != 1 {
+		t.Fatalf("method-level action: %d findings, want 1", len(got))
+	} else if want := "POST /v1/search/archive:export"; got[0].Suggestion != want {
+		t.Fatalf("suggestion %q, want %q", got[0].Suggestion, want)
+	}
+	// R2xx-02: a POST on the base path itself is the collection root (a
+	// create-shaped path), not an empty segment.
+	create := method(ir.VerbPost, "/v1/orders", "CreateOrderRequest", "Order", 200, false)
+	if got := runCheckCtx(t, rules[1], ctx, create); len(got) != 1 {
+		t.Fatalf("POST on base path: %d findings, want 1 (create-shaped)", len(got))
+	}
+}
+
+// runCheckCtx applies one rule's check with an explicit context.
+func runCheckCtx(t *testing.T, r engine.Rule, ctx *engine.LintContext, m ir.Method) []engine.Finding {
+	t.Helper()
+	return r.Check(ctx, m)
 }
 
 // TestSuggestionsAreReplacementText pins the §3.0 suggestion discipline on

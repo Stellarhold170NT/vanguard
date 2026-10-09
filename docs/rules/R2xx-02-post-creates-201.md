@@ -17,11 +17,13 @@ A POST is treated as a create only when ALL of:
    (`Response.Type.Name != ""`) and non-collection
    (`Response.IsCollection` / `Type.IsCollection` false) — a void POST has
    too weak a create signal;
-3. the path is create-shaped: no `:action` custom-method suffix anywhere,
-   no action-verb token (see the R2xx-05 lexicon) in any literal segment,
-   and a literal final segment — a create posts to a collection
-   (`/books`, `/books/{id}/reviews`), never to an item template
-   (`/books/{id}`).
+3. the method-level path is create-shaped (the service base path is
+   removed first — the base is one controller-wide naming decision; a POST
+   on the base itself counts as the collection root): no `:action`
+   custom-method suffix anywhere, no action-verb token (see the R2xx-05
+   lexicon) in any literal segment, and a literal final segment — a create
+   posts to a collection (`/books`, `/books/{id}/reviews`), never to an
+   item template (`/books/{id}`).
 
 Because the detection is heuristic, the message carries
 "verify that this POST creates, and answer 201".

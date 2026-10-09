@@ -5,6 +5,7 @@
 [vanguard] skip scratch: matched .vanguardignore
 [vanguard] skip snapshot.pretty: matched .vanguardignore
 [vanguard] skip snapshot.stderr: matched .vanguardignore
+[vanguard] adapter java: detect=false — no .java file in the walked set
 [vanguard] adapter stub: detect=true — 2 .stub.json file(s) present
 [vanguard] selected adapter: stub
 [vanguard] parse: 1 service(s), 1 type(s), 0 gRPC service(s), 1 diagnostic(s)

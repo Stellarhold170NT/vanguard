@@ -11,7 +11,7 @@
     "skippedFiles": 4,
     "parseDiagnostics": 0,
     "findings": {
-      "error": 2,
+      "error": 3,
       "warning": 1,
       "info": 0
     },
@@ -19,6 +19,18 @@
     "durationMs": 0
   },
   "findings": [
+    {
+      "ruleId": "R2xx-01",
+      "slug": "get-no-body",
+      "severity": "ERROR",
+      "message": "GET endpoint demoBadSearchRecords declares a request body (SearchRequest) — many HTTP clients silently drop GET bodies.",
+      "suggestion": "move the payload to query parameters",
+      "location": {
+        "file": "app/api.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
     {
       "ruleId": "R6xx-91",
       "slug": "demo-bad-method-name",

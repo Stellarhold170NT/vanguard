@@ -186,46 +186,66 @@ func tokenizeSegment(segment string) []string {
 	return toks
 }
 
-// createShapedPath is R2xx-02's create detection (documented heuristic):
+// createShapedPath is R2xx-02's create detection (documented heuristic),
+// applied to the method-level path (the service base path removed — the
+// base is a controller-wide naming decision, not this endpoint's shape):
 // no custom-method suffix anywhere (":verb" marks an AIP-136 action), no
 // action-verb token in any literal segment, and a literal final segment —
-// a create posts to a collection (AIP-133), never to an item template.
-func createShapedPath(p string) bool {
-	if strings.Contains(p, ":") {
+// a create posts to a collection ("" = the base itself counts as the
+// collection), never to an item template.
+func createShapedPath(rel string) bool {
+	if strings.Contains(rel, ":") {
 		return false
 	}
-	segs := strings.Split(strings.Trim(p, "/"), "/")
-	if len(segs) == 0 || segs[len(segs)-1] == "" || strings.Contains(segs[len(segs)-1], "{") {
+	if rel == "" {
+		return true
+	}
+	segs := strings.Split(strings.Trim(rel, "/"), "/")
+	if segs[len(segs)-1] == "" || strings.Contains(segs[len(segs)-1], "{") {
 		return false
 	}
-	return len(actionSegments(p)) == 0
+	return len(actionSegments(rel)) == 0
 }
 
-// customMethodSuggestion builds the AIP-136 replacement for an action
-// path (R2xx-05, the acceptance-critical suggestion): the action segment
+// methodRelPath removes the owning service's base path prefix. The base
+// path is one naming decision for the whole controller (@RequestMapping
+// "/v1/search" must not make every endpoint under it read as an action);
+// the verb rules judge the method-level shape. Falls back to the full path
+// when the engine context carries no service (unit tests, hand-built IR).
+func methodRelPath(ctx *engine.LintContext, p string) string {
+	if ctx == nil || ctx.Service == nil {
+		return p
+	}
+	base := ctx.Service.BasePath
+	if base != "" && (p == base || strings.HasPrefix(p, base+"/")) {
+		return strings.TrimPrefix(p, base)
+	}
+	return p
+}
+
+// customMethodSuggestion builds the AIP-136 replacement for an action path
+// (R2xx-05, the acceptance-critical suggestion): the action segment
 // becomes a ":action" suffix on the preceding id segment, or on the
 // collection root. When the action is the whole path the collection name
-// is not derivable, so the placeholder stays visible.
-func customMethodSuggestion(p string) string {
+// is not derivable, so the placeholder stays visible. actionSeg is the
+// action segment found on the method-level path; its last occurrence in
+// the full path anchors the reshape.
+func customMethodSuggestion(p, actionSeg string) string {
 	segs := strings.Split(strings.Trim(p, "/"), "/")
 	idx := -1
 	for i, seg := range segs {
-		if strings.Contains(seg, "{") {
-			continue
-		}
-		if hasActionToken(seg) {
-			idx = i // last action segment wins: /a/search/{id}/renew → :renew
+		if seg == actionSeg {
+			idx = i
 		}
 	}
 	if idx < 0 {
 		return "POST <collection>:{id}:<action>"
 	}
-	action := segs[idx]
 	prefix := strings.Join(segs[:idx], "/")
 	if prefix == "" {
-		return "POST <collection>:" + action
+		return "POST <collection>:" + actionSeg
 	}
-	return "POST /" + prefix + ":" + action
+	return "POST /" + prefix + ":" + actionSeg
 }
 
 // getNoBodyCheck implements R2xx-01 (ERROR, measured): a GET that declares
@@ -251,7 +271,7 @@ func getNoBodyCheck(_ *engine.LintContext, node ir.Node) []engine.Finding {
 // non-template path — must declare 201/202. Void and collection responses
 // are too weak a create signal; the rule prefers missing a marginal case
 // over flooding (FP priority #1), and the message asks for verification.
-func postCreates201Check(_ *engine.LintContext, node ir.Node) []engine.Finding {
+func postCreates201Check(ctx *engine.LintContext, node ir.Node) []engine.Finding {
 	m, ok := node.(ir.Method)
 	if !ok || m.Verb != ir.VerbPost || !m.Verb.IsHTTP() {
 		return nil
@@ -263,7 +283,7 @@ func postCreates201Check(_ *engine.LintContext, node ir.Node) []engine.Finding {
 	if resp.Name == "" || m.Response.IsCollection || resp.IsCollection {
 		return nil
 	}
-	if !createShapedPath(m.Path) {
+	if !createShapedPath(methodRelPath(ctx, m.Path)) {
 		return nil
 	}
 	return []engine.Finding{{
@@ -313,21 +333,24 @@ func deleteNoBodyCheck(_ *engine.LintContext, node ir.Node) []engine.Finding {
 
 // customMethodPostCheck implements R2xx-05 (INFO, heuristic): an action
 // path served by a non-POST verb reads as a misplaced custom method;
-// AIP-136 spells them POST <collection>/{id}:<action>. POST endpoints
-// already satisfy the verb half of the convention — reshaping their path
-// overlaps the R1xx family, so they stay silent.
-func customMethodPostCheck(_ *engine.LintContext, node ir.Node) []engine.Finding {
+// AIP-136 spells them POST <collection>/{id}:<action>. The action scan
+// runs on the method-level path (service base path removed — see
+// methodRelPath). POST endpoints already satisfy the verb half of the
+// convention — reshaping their path overlaps the R1xx family, so they
+// stay silent.
+func customMethodPostCheck(ctx *engine.LintContext, node ir.Node) []engine.Finding {
 	m, ok := node.(ir.Method)
 	if !ok || !m.Verb.IsHTTP() || m.Verb == ir.VerbPost {
 		return nil
 	}
-	segs := actionSegments(m.Path)
+	segs := actionSegments(methodRelPath(ctx, m.Path))
 	if len(segs) == 0 {
 		return nil
 	}
+	action := segs[len(segs)-1]
 	return []engine.Finding{{
 		Message:    fmt.Sprintf("Endpoint %s (%s %s) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually).", m.OperationName, m.Verb, m.Path),
-		Suggestion: customMethodSuggestion(m.Path),
+		Suggestion: customMethodSuggestion(m.Path, action),
 		Location:   m.Location,
 	}}
 }
