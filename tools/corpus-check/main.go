@@ -198,6 +198,16 @@ func main() {
 	minAgreement := flag.Float64("min-agreement", 85, "gate on the declared agreement percent")
 	flag.Parse()
 
+	// Resolve defaults BEFORE absolutizing: filepath.Abs("") silently
+	// returns the CWD, which would defeat the -bin/-out defaults below.
+	advRoot := filepath.Join(*repo, "testdata", "adversarial")
+	if *bin == "" {
+		*bin = filepath.Join(*repo, "bin", "vanguard")
+	}
+	if *out == "" {
+		*out = filepath.Join(*repo, "testdata", "corpus-results.json")
+	}
+
 	// The per-case scan runs with cmd.Dir inside a temp dir; every path the
 	// harness passes on (binary, configs, case files) must be absolute.
 	if abs, err := filepath.Abs(*repo); err == nil {
@@ -209,14 +219,7 @@ func main() {
 	if abs, err := filepath.Abs(*out); err == nil {
 		*out = abs
 	}
-
-	advRoot := filepath.Join(*repo, "testdata", "adversarial")
-	if *bin == "" {
-		*bin = filepath.Join(*repo, "bin", "vanguard")
-	}
-	if *out == "" {
-		*out = filepath.Join(*repo, "testdata", "corpus-results.json")
-	}
+	advRoot = filepath.Join(*repo, "testdata", "adversarial")
 
 	raw, err := os.ReadFile(filepath.Join(advRoot, "manifest.json"))
 	if err != nil {
