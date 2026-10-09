@@ -14,7 +14,7 @@ COMMIT  ?= $(shell git rev-parse --short HEAD 2>/dev/null || echo unknown)
 DATE    ?= $(shell date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown)
 LDFLAGS ?= -X main.version=$(VERSION) -X main.commit=$(COMMIT) -X main.date=$(DATE)
 
-.PHONY: build test vet lint ci bin golden golden-update clean
+.PHONY: build test vet lint ci bin golden golden-update mutation clean
 
 ## build: compile all packages
 build:
@@ -43,6 +43,15 @@ golden:
 golden-update:
 	@echo "== golden-update (intentional snapshot rewrite) =="
 	$(GO) test ./internal/golden/ -run TestGoldenCases -update
+
+## mutation: run the mutation harness (w4-02) — the real binary against
+## mutated corpus ok-cases, gate on declared catch-rate >= 90%, and write
+## testdata/mutation-results.json. Budget: <= 5 min (test-strategy §4.4);
+## the harness itself enforces a 4-minute deadline.
+mutation:
+	@echo "== mutation (w4-02 catch-rate harness) =="
+	$(GO) test ./internal/mutation/ -run TestMutationHarness -count=1 -v -timeout 9m \
+		-args -write-results -out testdata/mutation-results.json
 
 ## vet: go vet over all packages
 vet:
