@@ -1,10 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/default-scan · stub · stub
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
- 2 services · 10 rules (10 active) · 2 files in <duration>
-=======
- 2 services · 11 rules (11 active) · 2 files in <duration>
+ 2 services · 27 rules (27 active) · 2 files in <duration>
 
  [ERROR] R2xx-01 get-no-body (1)
  ──────────────────────────────────────────────────────────────────
@@ -12,13 +7,6 @@
    GET endpoint demoBadSearchArchive declares a request body (ArchiveQuery) — many HTTP clients silently drop GET bodies.
    suggest: move the payload to query parameters
    suppress: // vanguard:ignore R2xx-01 <reason>
->>>>>>> agent-w3-04
-=======
- 2 services · 11 rules (11 active) · 2 files in <duration>
->>>>>>> agent-w3-05
-=======
- 2 services · 10 rules (10 active) · 2 files in <duration>
->>>>>>> agent-w3-06
 
  [ERROR] R6xx-91 demo-bad-method-name (3)
  ──────────────────────────────────────────────────────────────────
@@ -56,10 +44,6 @@
    suppress: // vanguard:ignore R6xx-93 <reason>
 
  ──────────────────────────────────────────────────────────────────
-<<<<<<< HEAD
- 6 findings · 4 ERROR · 1 WARN · 1 INFO · 0 suppressed
-=======
- 6 findings · 3 ERROR · 2 WARN · 1 INFO · 0 suppressed
->>>>>>> agent-w3-05
+ 7 findings · 4 ERROR · 2 WARN · 1 INFO · 0 suppressed
  2 files with findings · 2 scanned · 5 skipped · 0 parse diagnostics
  next: vanguard explain R6xx-91

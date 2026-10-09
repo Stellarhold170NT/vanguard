@@ -1,13 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/suppression-config · stub · stub · config: <case>/.vanguard.yaml
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
- 2 services · 10 rules (10 active) · 2 files in <duration>
-=======
- 2 services · 11 rules (11 active) · 2 files in <duration>
->>>>>>> agent-w3-04
-=======
- 2 services · 11 rules (11 active) · 2 files in <duration>
+ 2 services · 27 rules (27 active) · 2 files in <duration>
 
  [WARN]  R3xx-01 list-paginated (2)
  ──────────────────────────────────────────────────────────────────
@@ -19,10 +11,6 @@
  src/api.stub.json:1:1
    GET /v1/loans/loans returns an unpaginated collection — one client request can dump the whole table.
    suggest: add a Pageable parameter or page/size query parameters to bound the result set
->>>>>>> agent-w3-05
-=======
- 2 services · 10 rules (10 active) · 2 files in <duration>
->>>>>>> agent-w3-06
 
  [WARN]  R6xx-92 demo-no-response-type (2)
  ──────────────────────────────────────────────────────────────────

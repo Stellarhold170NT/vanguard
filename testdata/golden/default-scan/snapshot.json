@@ -11,13 +11,8 @@
     "skippedFiles": 5,
     "parseDiagnostics": 0,
     "findings": {
-<<<<<<< HEAD
       "error": 4,
-      "warning": 1,
-=======
-      "error": 3,
       "warning": 2,
->>>>>>> agent-w3-05
       "info": 1
     },
     "suppressed": 0,

@@ -1,10 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/multi-format-consistency · stub · stub
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
- 1 services · 10 rules (10 active) · 1 files in <duration>
-=======
- 1 services · 11 rules (11 active) · 1 files in <duration>
+ 1 services · 27 rules (27 active) · 1 files in <duration>
 
  [ERROR] R2xx-01 get-no-body (1)
  ──────────────────────────────────────────────────────────────────
@@ -12,13 +7,6 @@
    GET endpoint demoBadSearchInventory declares a request body (SearchRequest) — many HTTP clients silently drop GET bodies.
    suggest: move the payload to query parameters
    suppress: // vanguard:ignore R2xx-01 <reason>
->>>>>>> agent-w3-04
-=======
- 1 services · 11 rules (11 active) · 1 files in <duration>
->>>>>>> agent-w3-05
-=======
- 1 services · 10 rules (10 active) · 1 files in <duration>
->>>>>>> agent-w3-06
 
  [ERROR] R6xx-91 demo-bad-method-name (2)
  ──────────────────────────────────────────────────────────────────
