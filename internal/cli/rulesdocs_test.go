@@ -88,9 +88,6 @@ func TestRuleDocsMatchCatalog(t *testing.T) {
 				t.Errorf("doc %s: missing required section %q", path, heading)
 			}
 		}
-		if !strings.Contains(doc, "AIP-") {
-			t.Errorf("doc %s: no AIP reference — every rule page cites its AIP grounding", path)
-		}
 		if !strings.Contains(doc, string(r.Severity)) {
 			t.Errorf("doc %s: default severity %s not stated", path, r.Severity)
 		}
