@@ -189,10 +189,10 @@ func TestR6xx02GrpcStandardMethods(t *testing.T) {
 	})
 	t.Run("off-pattern names are flagged", func(t *testing.T) {
 		for _, rpc := range []string{
-			"DoMagic",  // unknown verb — neither Standard nor VerbNoun
+			"DoMagic",   // unknown verb — neither Standard nor VerbNoun
 			"BooksSync", // noun-first — the verb does not lead the name
-			"Handle",   // single word, no resource noun
-			"Foo",      // single word
+			"Handle",    // single word, no resource noun
+			"Foo",       // single word
 		} {
 			surface := protoSurface("LibraryService", rpc)
 			got := errFindingsByRule(runVersioningRules(t, surface, nil), "R6xx-02")

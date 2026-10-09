@@ -42,9 +42,9 @@ func (errorHandlerSelector) Matches(node ir.Node) bool {
 const r5xx01Auto = "auto"
 
 var r5xx01Schemes = map[string]bool{
-	r5xx01Auto:              true,
-	"code-message-details":  true,
-	"problem-json":          true,
+	r5xx01Auto:             true,
+	"code-message-details": true,
+	"problem-json":         true,
 }
 
 // problemJSONFields is the RFC-7807 member set; a problem+json body must
