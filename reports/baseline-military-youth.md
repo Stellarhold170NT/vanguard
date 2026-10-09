@@ -12,7 +12,7 @@
 Backend military-youth có **182 REST endpoint** (24 controller, `src/main/java`). Một đợt quét tĩnh
 toàn bộ source bằng bộ ~27 quy tắc thiết kế API (chuẩn AIP — Google API Improvement Guidelines)
 phát hiện **244 điểm cần xem lại**, sau khi xét từng điểm trên source code thật còn lại **129 vấn đề
-thật** (52 còn lại là báo nhầm của tool, chi tiết phần 6).
+thật** (115 còn lại là báo nhầm của tool, chi tiết phần 6).
 
 | Con số | Giá trị | Ý nghĩa cho team |
 |---|---|---|
