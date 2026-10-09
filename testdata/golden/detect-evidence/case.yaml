@@ -1,0 +1,13 @@
+exit: 0
+args: ["--verbose"]
+formats: [pretty]
+snapshot: both
+note: >-
+  Detect evidence and the best-effort error path (charter §5.3, §6.2 -v):
+  --verbose streams the walker trail (scratch/ via .vanguardignore and
+  node_modules/ as built-in skips), language candidates, the adapter
+  verdicts, the selection, parse counts and the parse diagnostic for
+  broken.stub.json — a malformed file becomes a diagnostic, never an
+  abort (§5.3), and stdout still renders a clean report (exit 0).
+  The stderr snapshot pins the evidence; the pretty snapshot pins the
+  report with its parse-diagnostics count.

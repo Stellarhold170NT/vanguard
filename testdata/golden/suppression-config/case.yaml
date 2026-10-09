@@ -1,0 +1,8 @@
+exit: 0
+note: >-
+  Path-scoped config suppression (charter §6.4.1): R6xx-91 is silenced for
+  legacy/** with a reason. The legacy file also carries an unsuppressed
+  R6xx-92 WARN, so the snapshot pins the boundary precisely — the ERROR
+  disappears (counted in the summary, §6.6 "N suppressed"), the WARN from
+  the same file survives, and the exit code drops to 0 because only the
+  surviving findings decide §6.3.

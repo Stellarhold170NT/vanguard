@@ -1,0 +1,191 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "vanguard",
+          "version": "0.1.0-dev",
+          "informationUri": "https://github.com/Stellarhold170NT/vanguard",
+          "rules": [
+            {
+              "id": "R6xx-91",
+              "name": "demo-bad-method-name",
+              "shortDescription": {
+                "text": "Method names must not carry the demoBad fixture marker — one canonical operation name per endpoint."
+              },
+              "fullDescription": {
+                "text": "Method names must not carry the demoBad fixture marker — one canonical operation name per endpoint."
+              },
+              "helpUri": "docs/rules/R6xx-91-demo-bad-method-name.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "demo"
+              }
+            },
+            {
+              "id": "R6xx-92",
+              "name": "demo-no-response-type",
+              "shortDescription": {
+                "text": "Every operation must declare a response type — clients cannot deserialize an undeclared result."
+              },
+              "fullDescription": {
+                "text": "Every operation must declare a response type — clients cannot deserialize an undeclared result."
+              },
+              "helpUri": "docs/rules/R6xx-92-demo-no-response-type.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "demo"
+              }
+            },
+            {
+              "id": "R6xx-93",
+              "name": "demo-get-with-body",
+              "shortDescription": {
+                "text": "GET endpoints should not declare a request body — many HTTP clients silently drop GET bodies."
+              },
+              "fullDescription": {
+                "text": "GET endpoints should not declare a request body — many HTTP clients silently drop GET bodies."
+              },
+              "helpUri": "docs/rules/R6xx-93-demo-get-with-body.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "demo"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "R6xx-91",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Method name \"demoBadGetBook\" carries the demoBad fixture marker — name the operation after what it does."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "app/library.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "5171f12688e6d7d6"
+          }
+        },
+        {
+          "ruleId": "R6xx-91",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Method name \"demoBadDeleteShelf\" carries the demoBad fixture marker — name the operation after what it does."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "app/library.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "e24a409ae4a87319"
+          }
+        },
+        {
+          "ruleId": "R6xx-91",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Method name \"demoBadSearchArchive\" carries the demoBad fixture marker — name the operation after what it does."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "app/search.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "8407d324b5a38495"
+          }
+        },
+        {
+          "ruleId": "R6xx-92",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Method findDuplicates declares no response type — clients cannot deserialize an undeclared result."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "app/search.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "53922bfc512b5713"
+          }
+        },
+        {
+          "ruleId": "R6xx-93",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "GET endpoint demoBadSearchArchive declares a request body — many HTTP clients silently drop GET bodies."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "app/search.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "6922676e4a2cd3c0"
+          }
+        }
+      ],
+      "columnKind": "utf16CodeUnits"
+    }
+  ]
+}
