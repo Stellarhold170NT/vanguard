@@ -1,0 +1,2606 @@
+{
+  "schema": "vanguard-mutation-results/1",
+  "tool": "internal/mutation",
+  "vanguard": "vanguard 0.1.0-dev (commit unknown, built unknown)",
+  "selection": {
+    "formula": "per (target rule, mutator) cell: pool = corpus manifest ok-cases (expect: miss) of the pairing's pool rule, sorted by file path ascending; apply the mutator to each until maxPerCell valid mutations are collected; files the mutator cannot transform are counted as not_applicable. No randomness — two runs select the same cases.",
+    "max_per_cell": 3,
+    "manifest_cases": 171
+  },
+  "totals": {
+    "valid": 56,
+    "hit": 48,
+    "missed": 0,
+    "honored_expected_miss": 8,
+    "broken_syntax": 0,
+    "not_applicable": 59,
+    "harness_error": 0
+  },
+  "catch_rate": {
+    "strict": 85.71428571428571,
+    "declared": 100
+  },
+  "per_rule": [
+    {
+      "rule": "R1xx-01",
+      "registered": true,
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R1xx-02",
+      "registered": true,
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R1xx-03",
+      "registered": true,
+      "valid": 6,
+      "hit": 6,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R1xx-04",
+      "registered": true,
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R1xx-05",
+      "registered": true,
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R2xx-01",
+      "registered": true,
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R2xx-02",
+      "registered": true,
+      "valid": 5,
+      "hit": 5,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 45,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R2xx-03",
+      "registered": true,
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R2xx-04",
+      "registered": true,
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R2xx-05",
+      "registered": true,
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R2xx-06",
+      "registered": true,
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R3xx-01",
+      "registered": true,
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R3xx-02",
+      "registered": true,
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R3xx-03",
+      "registered": true,
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R3xx-04",
+      "registered": false,
+      "valid": 2,
+      "hit": 0,
+      "missed": 0,
+      "honored_expected_miss": 2,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 0,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R4xx-01",
+      "registered": true,
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R4xx-02",
+      "registered": true,
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R4xx-03",
+      "registered": true,
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R4xx-04",
+      "registered": false,
+      "valid": 2,
+      "hit": 0,
+      "missed": 0,
+      "honored_expected_miss": 2,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 0,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R5xx-01",
+      "registered": true,
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R5xx-02",
+      "registered": true,
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 2,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R5xx-03",
+      "registered": true,
+      "valid": 5,
+      "hit": 5,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 45,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R5xx-04",
+      "registered": false,
+      "valid": 3,
+      "hit": 0,
+      "missed": 0,
+      "honored_expected_miss": 3,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 0,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R6xx-01",
+      "registered": true,
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R6xx-02",
+      "registered": true,
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "rule": "R6xx-03",
+      "registered": false,
+      "valid": 1,
+      "hit": 0,
+      "missed": 0,
+      "honored_expected_miss": 1,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 0,
+      "declared_pct": 100
+    }
+  ],
+  "per_mutator": [
+    {
+      "mutator": "inject-verb-path",
+      "kind": "must",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "singularize-path",
+      "kind": "must",
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "flatten-resource-path",
+      "kind": "must",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "mis-case-path",
+      "kind": "must",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "body-into-get",
+      "kind": "must",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "verb-swap",
+      "kind": "must",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 42,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "remove-status-mapping",
+      "kind": "must",
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 3,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "body-into-delete",
+      "kind": "must",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "swap-put-patch",
+      "kind": "must",
+      "valid": 4,
+      "hit": 4,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 2,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "drop-pagination-param",
+      "kind": "must",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "split-pagination-style",
+      "kind": "must",
+      "valid": 2,
+      "hit": 0,
+      "missed": 0,
+      "honored_expected_miss": 2,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 0,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "entity-into-response",
+      "kind": "must",
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "snake-case-field",
+      "kind": "must",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "error-map-handler",
+      "kind": "must",
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "business-exception-500",
+      "kind": "must",
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 2,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "add-second-advice",
+      "kind": "must",
+      "valid": 3,
+      "hit": 0,
+      "missed": 0,
+      "honored_expected_miss": 3,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 0,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "unversioned-path",
+      "kind": "must",
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "mix-id-field",
+      "kind": "optional",
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "action-get-swap",
+      "kind": "optional",
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "unwrap-envelope",
+      "kind": "optional",
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "remove-size-cap",
+      "kind": "optional",
+      "valid": 1,
+      "hit": 1,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "time-field-to-string",
+      "kind": "optional",
+      "valid": 2,
+      "hit": 2,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "dto-suffix-mix",
+      "kind": "optional",
+      "valid": 2,
+      "hit": 0,
+      "missed": 0,
+      "honored_expected_miss": 2,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 0,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "rename-rpc-nonstandard",
+      "kind": "optional",
+      "valid": 3,
+      "hit": 3,
+      "missed": 0,
+      "honored_expected_miss": 0,
+      "broken_syntax": 0,
+      "not_applicable": 0,
+      "harness_error": 0,
+      "strict_pct": 100,
+      "declared_pct": 100
+    },
+    {
+      "mutator": "bump-one-path-version",
+      "kind": "optional",
+      "valid": 1,
+      "hit": 0,
+      "missed": 0,
+      "honored_expected_miss": 1,
+      "broken_syntax": 0,
+      "not_applicable": 1,
+      "harness_error": 0,
+      "strict_pct": 0,
+      "declared_pct": 100
+    }
+  ],
+  "blind_spots": [],
+  "cases": [
+    {
+      "id": "action-get-swap/R2xx-05/post-colon-restore",
+      "mutator": "action-get-swap",
+      "kind": "optional",
+      "pool_rule": "R2xx-05",
+      "target_rules": [
+        "R2xx-05"
+      ],
+      "file": "R2xx-05/ok-post-colon-restore.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "action-get-swap/R2xx-05/post-search-action",
+      "mutator": "action-get-swap",
+      "kind": "optional",
+      "pool_rule": "R2xx-05",
+      "target_rules": [
+        "R2xx-05"
+      ],
+      "file": "R2xx-05/ok-post-search-action.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-01",
+        "R2xx-05",
+        "R3xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "add-second-advice/R5xx-04/advice-plus-local-ok",
+      "mutator": "add-second-advice",
+      "kind": "must",
+      "pool_rule": "R5xx-04",
+      "target_rules": [
+        "R5xx-04"
+      ],
+      "file": "R5xx-04/ok-advice-plus-local-ok.java",
+      "config": "default",
+      "verdict": "honored-expected-miss",
+      "diag_count": 0,
+      "honored_expected_miss": true,
+      "miss_reason": "target rule not registered in the v0.1 rule registry (w4-01 report §7.1) — cannot fire by construction"
+    },
+    {
+      "id": "add-second-advice/R5xx-04/single-advice",
+      "mutator": "add-second-advice",
+      "kind": "must",
+      "pool_rule": "R5xx-04",
+      "target_rules": [
+        "R5xx-04"
+      ],
+      "file": "R5xx-04/ok-single-advice.java",
+      "config": "default",
+      "verdict": "honored-expected-miss",
+      "fired": [
+        "R5xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": true,
+      "miss_reason": "target rule not registered in the v0.1 rule registry (w4-01 report §7.1) — cannot fire by construction"
+    },
+    {
+      "id": "add-second-advice/R5xx-04/single-advice-many-exceptions",
+      "mutator": "add-second-advice",
+      "kind": "must",
+      "pool_rule": "R5xx-04",
+      "target_rules": [
+        "R5xx-04"
+      ],
+      "file": "R5xx-04/ok-single-advice-many-exceptions.java",
+      "config": "default",
+      "verdict": "honored-expected-miss",
+      "fired": [
+        "R5xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": true,
+      "miss_reason": "target rule not registered in the v0.1 rule registry (w4-01 report §7.1) — cannot fire by construction"
+    },
+    {
+      "id": "body-into-delete/R2xx-04/delete-etag-header",
+      "mutator": "body-into-delete",
+      "kind": "must",
+      "pool_rule": "R2xx-04",
+      "target_rules": [
+        "R2xx-04"
+      ],
+      "file": "R2xx-04/ok-delete-etag-header.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-04"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "body-into-delete/R2xx-04/delete-item",
+      "mutator": "body-into-delete",
+      "kind": "must",
+      "pool_rule": "R2xx-04",
+      "target_rules": [
+        "R2xx-04"
+      ],
+      "file": "R2xx-04/ok-delete-item.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-04"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "body-into-delete/R2xx-04/delete-query-ids",
+      "mutator": "body-into-delete",
+      "kind": "must",
+      "pool_rule": "R2xx-04",
+      "target_rules": [
+        "R2xx-04"
+      ],
+      "file": "R2xx-04/ok-delete-query-ids.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-04"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "body-into-get/R2xx-01/get-header-and-query",
+      "mutator": "body-into-get",
+      "kind": "must",
+      "pool_rule": "R2xx-01",
+      "target_rules": [
+        "R2xx-01"
+      ],
+      "file": "R2xx-01/ok-get-header-and-query.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-01",
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "body-into-get/R2xx-01/get-pathvars-only",
+      "mutator": "body-into-get",
+      "kind": "must",
+      "pool_rule": "R2xx-01",
+      "target_rules": [
+        "R2xx-01"
+      ],
+      "file": "R2xx-01/ok-get-pathvars-only.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "body-into-get/R2xx-01/get-query-object",
+      "mutator": "body-into-get",
+      "kind": "must",
+      "pool_rule": "R2xx-01",
+      "target_rules": [
+        "R2xx-01"
+      ],
+      "file": "R2xx-01/ok-get-query-object.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "bump-one-path-version/R6xx-03/all-v1",
+      "mutator": "bump-one-path-version",
+      "kind": "optional",
+      "pool_rule": "R6xx-03",
+      "target_rules": [
+        "R6xx-03"
+      ],
+      "file": "R6xx-03/ok-all-v1.java",
+      "config": "default",
+      "verdict": "honored-expected-miss",
+      "diag_count": 0,
+      "honored_expected_miss": true,
+      "miss_reason": "target rule not registered in the v0.1 rule registry (w4-01 report §7.1) — cannot fire by construction"
+    },
+    {
+      "id": "bump-one-path-version/R6xx-03/unversioned-consistent",
+      "mutator": "bump-one-path-version",
+      "kind": "optional",
+      "pool_rule": "R6xx-03",
+      "target_rules": [
+        "R6xx-03"
+      ],
+      "file": "R6xx-03/ok-unversioned-consistent.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "business-exception-500/R5xx-02/external-exception-500",
+      "mutator": "business-exception-500",
+      "kind": "must",
+      "pool_rule": "R5xx-02",
+      "target_rules": [
+        "R5xx-02"
+      ],
+      "file": "R5xx-02/ok-external-exception-500.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "business-exception-500/R5xx-02/nonsuffix-500",
+      "mutator": "business-exception-500",
+      "kind": "must",
+      "pool_rule": "R5xx-02",
+      "target_rules": [
+        "R5xx-02"
+      ],
+      "file": "R5xx-02/ok-nonsuffix-500.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "business-exception-500/R5xx-02/notfound-404",
+      "mutator": "business-exception-500",
+      "kind": "must",
+      "pool_rule": "R5xx-02",
+      "target_rules": [
+        "R5xx-02"
+      ],
+      "file": "R5xx-02/ok-notfound-404.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R5xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "drop-pagination-param/R3xx-01/list-limit-capped",
+      "mutator": "drop-pagination-param",
+      "kind": "must",
+      "pool_rule": "R3xx-01",
+      "target_rules": [
+        "R3xx-01"
+      ],
+      "file": "R3xx-01/ok-list-limit-capped.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R3xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "drop-pagination-param/R3xx-01/list-page-size-params",
+      "mutator": "drop-pagination-param",
+      "kind": "must",
+      "pool_rule": "R3xx-01",
+      "target_rules": [
+        "R3xx-01"
+      ],
+      "file": "R3xx-01/ok-list-page-size-params.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R3xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "drop-pagination-param/R3xx-01/list-pageable",
+      "mutator": "drop-pagination-param",
+      "kind": "must",
+      "pool_rule": "R3xx-01",
+      "target_rules": [
+        "R3xx-01"
+      ],
+      "file": "R3xx-01/ok-list-pageable.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R3xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "dto-suffix-mix/R4xx-04/dto-only",
+      "mutator": "dto-suffix-mix",
+      "kind": "optional",
+      "pool_rule": "R4xx-04",
+      "target_rules": [
+        "R4xx-04"
+      ],
+      "file": "R4xx-04/ok-dto-only.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "dto-suffix-mix/R4xx-04/record-only",
+      "mutator": "dto-suffix-mix",
+      "kind": "optional",
+      "pool_rule": "R4xx-04",
+      "target_rules": [
+        "R4xx-04"
+      ],
+      "file": "R4xx-04/ok-record-only.java",
+      "config": "default",
+      "verdict": "honored-expected-miss",
+      "diag_count": 0,
+      "honored_expected_miss": true,
+      "miss_reason": "target rule not registered in the v0.1 rule registry (w4-01 report §7.1) — cannot fire by construction"
+    },
+    {
+      "id": "dto-suffix-mix/R4xx-04/request-response-pair",
+      "mutator": "dto-suffix-mix",
+      "kind": "optional",
+      "pool_rule": "R4xx-04",
+      "target_rules": [
+        "R4xx-04"
+      ],
+      "file": "R4xx-04/ok-request-response-pair.java",
+      "config": "default",
+      "verdict": "honored-expected-miss",
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": true,
+      "miss_reason": "target rule not registered in the v0.1 rule registry (w4-01 report §7.1) — cannot fire by construction"
+    },
+    {
+      "id": "entity-into-response/R4xx-01/dto-response",
+      "mutator": "entity-into-response",
+      "kind": "must",
+      "pool_rule": "R4xx-01",
+      "target_rules": [
+        "R4xx-01"
+      ],
+      "file": "R4xx-01/ok-dto-response.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R4xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "entity-into-response/R4xx-01/dto-shadowed-entity-name",
+      "mutator": "entity-into-response",
+      "kind": "must",
+      "pool_rule": "R4xx-01",
+      "target_rules": [
+        "R4xx-01"
+      ],
+      "file": "R4xx-01/ok-dto-shadowed-entity-name.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "entity-into-response/R4xx-01/entity-query-param-only",
+      "mutator": "entity-into-response",
+      "kind": "must",
+      "pool_rule": "R4xx-01",
+      "target_rules": [
+        "R4xx-01"
+      ],
+      "file": "R4xx-01/ok-entity-query-param-only.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R4xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "error-map-handler/R5xx-01/no-consensus",
+      "mutator": "error-map-handler",
+      "kind": "must",
+      "pool_rule": "R5xx-01",
+      "target_rules": [
+        "R5xx-01"
+      ],
+      "file": "R5xx-01/ok-no-consensus.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "error-map-handler/R5xx-01/unified-problemdetail",
+      "mutator": "error-map-handler",
+      "kind": "must",
+      "pool_rule": "R5xx-01",
+      "target_rules": [
+        "R5xx-01"
+      ],
+      "file": "R5xx-01/ok-unified-problemdetail.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R5xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "flatten-resource-path/R1xx-03/nested-hierarchy",
+      "mutator": "flatten-resource-path",
+      "kind": "must",
+      "pool_rule": "R1xx-03",
+      "target_rules": [
+        "R1xx-03"
+      ],
+      "file": "R1xx-03/ok-nested-hierarchy.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-02",
+        "R1xx-03",
+        "R2xx-05"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "flatten-resource-path/R1xx-03/single-level-collection",
+      "mutator": "flatten-resource-path",
+      "kind": "must",
+      "pool_rule": "R1xx-03",
+      "target_rules": [
+        "R1xx-03"
+      ],
+      "file": "R1xx-03/ok-single-level-collection.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-02",
+        "R1xx-03",
+        "R2xx-05"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "flatten-resource-path/R1xx-03/three-level-hierarchy",
+      "mutator": "flatten-resource-path",
+      "kind": "must",
+      "pool_rule": "R1xx-03",
+      "target_rules": [
+        "R1xx-03"
+      ],
+      "file": "R1xx-03/ok-three-level-hierarchy.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-02",
+        "R1xx-03",
+        "R2xx-05"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "inject-verb-path/R1xx-02/noun-getter",
+      "mutator": "inject-verb-path",
+      "kind": "must",
+      "pool_rule": "R1xx-02",
+      "target_rules": [
+        "R1xx-02",
+        "R1xx-03"
+      ],
+      "file": "R1xx-02/ok-noun-getter.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-02",
+        "R1xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "inject-verb-path/R1xx-02/noun-updates",
+      "mutator": "inject-verb-path",
+      "kind": "must",
+      "pool_rule": "R1xx-02",
+      "target_rules": [
+        "R1xx-02",
+        "R1xx-03"
+      ],
+      "file": "R1xx-02/ok-noun-updates.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-02",
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "inject-verb-path/R1xx-02/preview-noun",
+      "mutator": "inject-verb-path",
+      "kind": "must",
+      "pool_rule": "R1xx-02",
+      "target_rules": [
+        "R1xx-02",
+        "R1xx-03"
+      ],
+      "file": "R1xx-02/ok-preview-noun.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-02",
+        "R1xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "mis-case-path/R1xx-04/acronym-lowercase",
+      "mutator": "mis-case-path",
+      "kind": "must",
+      "pool_rule": "R1xx-04",
+      "target_rules": [
+        "R1xx-04"
+      ],
+      "file": "R1xx-04/ok-acronym-lowercase.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-04"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "mis-case-path/R1xx-04/kebab-standard",
+      "mutator": "mis-case-path",
+      "kind": "must",
+      "pool_rule": "R1xx-04",
+      "target_rules": [
+        "R1xx-04"
+      ],
+      "file": "R1xx-04/ok-kebab-standard.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-04"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "mis-case-path/R1xx-04/numeric-segment",
+      "mutator": "mis-case-path",
+      "kind": "must",
+      "pool_rule": "R1xx-04",
+      "target_rules": [
+        "R1xx-04"
+      ],
+      "file": "R1xx-04/ok-numeric-segment.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-04"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "mix-id-field/R1xx-05/consistent-reference-ids",
+      "mutator": "mix-id-field",
+      "kind": "optional",
+      "pool_rule": "R1xx-05",
+      "target_rules": [
+        "R1xx-05"
+      ],
+      "file": "R1xx-05/ok-consistent-reference-ids.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-05"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "mix-id-field/R1xx-05/no-id-projection",
+      "mutator": "mix-id-field",
+      "kind": "optional",
+      "pool_rule": "R1xx-05",
+      "target_rules": [
+        "R1xx-05"
+      ],
+      "file": "R1xx-05/ok-no-id-projection.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "mix-id-field/R1xx-05/self-and-reference",
+      "mutator": "mix-id-field",
+      "kind": "optional",
+      "pool_rule": "R1xx-05",
+      "target_rules": [
+        "R1xx-05"
+      ],
+      "file": "R1xx-05/ok-self-and-reference.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-05"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "remove-size-cap/R3xx-03/page-offset-params",
+      "mutator": "remove-size-cap",
+      "kind": "optional",
+      "pool_rule": "R3xx-03",
+      "target_rules": [
+        "R3xx-03"
+      ],
+      "file": "R3xx-03/ok-page-offset-params.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "remove-size-cap/R3xx-03/size-capped",
+      "mutator": "remove-size-cap",
+      "kind": "optional",
+      "pool_rule": "R3xx-03",
+      "target_rules": [
+        "R3xx-03"
+      ],
+      "file": "R3xx-03/ok-size-capped.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R3xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "remove-status-mapping/R2xx-02/post-201-responsestatus",
+      "mutator": "remove-status-mapping",
+      "kind": "must",
+      "pool_rule": "R2xx-02",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-02/ok-post-201-responsestatus.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "remove-status-mapping/R2xx-02/post-202-async",
+      "mutator": "remove-status-mapping",
+      "kind": "must",
+      "pool_rule": "R2xx-02",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-02/ok-post-202-async.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "remove-status-mapping/R2xx-02/post-action-search",
+      "mutator": "remove-status-mapping",
+      "kind": "must",
+      "pool_rule": "R2xx-02",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-02/ok-post-action-search.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "remove-status-mapping/R5xx-03/post-201-created",
+      "mutator": "remove-status-mapping",
+      "kind": "must",
+      "pool_rule": "R5xx-03",
+      "target_rules": [
+        "R5xx-03",
+        "R2xx-02"
+      ],
+      "file": "R5xx-03/ok-post-201-created.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "remove-status-mapping/R5xx-03/post-colon-action",
+      "mutator": "remove-status-mapping",
+      "kind": "must",
+      "pool_rule": "R5xx-03",
+      "target_rules": [
+        "R5xx-03",
+        "R2xx-02"
+      ],
+      "file": "R5xx-03/ok-post-colon-action.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "rename-rpc-nonstandard/R6xx-02/batch-and-search",
+      "mutator": "rename-rpc-nonstandard",
+      "kind": "optional",
+      "pool_rule": "R6xx-02",
+      "target_rules": [
+        "R6xx-02"
+      ],
+      "file": "R6xx-02/ok-batch-and-search.proto",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R6xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "rename-rpc-nonstandard/R6xx-02/standard-crud",
+      "mutator": "rename-rpc-nonstandard",
+      "kind": "optional",
+      "pool_rule": "R6xx-02",
+      "target_rules": [
+        "R6xx-02"
+      ],
+      "file": "R6xx-02/ok-standard-crud.proto",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R6xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "rename-rpc-nonstandard/R6xx-02/verb-noun-custom",
+      "mutator": "rename-rpc-nonstandard",
+      "kind": "optional",
+      "pool_rule": "R6xx-02",
+      "target_rules": [
+        "R6xx-02"
+      ],
+      "file": "R6xx-02/ok-verb-noun-custom.proto",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R6xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "singularize-path/R1xx-01/camel-plural",
+      "mutator": "singularize-path",
+      "kind": "must",
+      "pool_rule": "R1xx-01",
+      "target_rules": [
+        "R1xx-01"
+      ],
+      "file": "R1xx-01/ok-camel-plural.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-01",
+        "R1xx-04"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "singularize-path/R1xx-01/plural-standard",
+      "mutator": "singularize-path",
+      "kind": "must",
+      "pool_rule": "R1xx-01",
+      "target_rules": [
+        "R1xx-01"
+      ],
+      "file": "R1xx-01/ok-plural-standard.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R1xx-01",
+        "R3xx-01",
+        "R3xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "singularize-path/R1xx-01/uncountable-noun",
+      "mutator": "singularize-path",
+      "kind": "must",
+      "pool_rule": "R1xx-01",
+      "target_rules": [
+        "R1xx-01"
+      ],
+      "file": "R1xx-01/ok-uncountable-noun.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "snake-case-field/R4xx-02/acronym-camel",
+      "mutator": "snake-case-field",
+      "kind": "must",
+      "pool_rule": "R4xx-02",
+      "target_rules": [
+        "R4xx-02"
+      ],
+      "file": "R4xx-02/ok-acronym-camel.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R4xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "snake-case-field/R4xx-02/camel-standard",
+      "mutator": "snake-case-field",
+      "kind": "must",
+      "pool_rule": "R4xx-02",
+      "target_rules": [
+        "R4xx-02"
+      ],
+      "file": "R4xx-02/ok-camel-standard.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R4xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "snake-case-field/R4xx-02/json-camel-key",
+      "mutator": "snake-case-field",
+      "kind": "must",
+      "pool_rule": "R4xx-02",
+      "target_rules": [
+        "R4xx-02"
+      ],
+      "file": "R4xx-02/ok-json-camel-key.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R4xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "split-pagination-style/R3xx-04/page-everywhere",
+      "mutator": "split-pagination-style",
+      "kind": "must",
+      "pool_rule": "R3xx-04",
+      "target_rules": [
+        "R3xx-04"
+      ],
+      "file": "R3xx-04/ok-page-everywhere.java",
+      "config": "default",
+      "verdict": "honored-expected-miss",
+      "fired": [
+        "R3xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": true,
+      "miss_reason": "target rule not registered in the v0.1 rule registry (w4-01 report §7.1) — cannot fire by construction"
+    },
+    {
+      "id": "split-pagination-style/R3xx-04/page-response-everywhere",
+      "mutator": "split-pagination-style",
+      "kind": "must",
+      "pool_rule": "R3xx-04",
+      "target_rules": [
+        "R3xx-04"
+      ],
+      "file": "R3xx-04/ok-page-response-everywhere.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "split-pagination-style/R3xx-04/params-everywhere",
+      "mutator": "split-pagination-style",
+      "kind": "must",
+      "pool_rule": "R3xx-04",
+      "target_rules": [
+        "R3xx-04"
+      ],
+      "file": "R3xx-04/ok-params-everywhere.java",
+      "config": "default",
+      "verdict": "honored-expected-miss",
+      "fired": [
+        "R3xx-02",
+        "R3xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": true,
+      "miss_reason": "target rule not registered in the v0.1 rule registry (w4-01 report §7.1) — cannot fire by construction"
+    },
+    {
+      "id": "swap-put-patch/R2xx-03/patch-map-partial",
+      "mutator": "swap-put-patch",
+      "kind": "must",
+      "pool_rule": "R2xx-03",
+      "target_rules": [
+        "R2xx-06"
+      ],
+      "file": "R2xx-03/ok-patch-map-partial.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-06"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "swap-put-patch/R2xx-03/patch-partial-dto",
+      "mutator": "swap-put-patch",
+      "kind": "must",
+      "pool_rule": "R2xx-03",
+      "target_rules": [
+        "R2xx-06"
+      ],
+      "file": "R2xx-03/ok-patch-partial-dto.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-06"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "swap-put-patch/R2xx-03/patch-void-response",
+      "mutator": "swap-put-patch",
+      "kind": "must",
+      "pool_rule": "R2xx-03",
+      "target_rules": [
+        "R2xx-06"
+      ],
+      "file": "R2xx-03/ok-patch-void-response.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "swap-put-patch/R2xx-06/put-full-same",
+      "mutator": "swap-put-patch",
+      "kind": "must",
+      "pool_rule": "R2xx-06",
+      "target_rules": [
+        "R2xx-03"
+      ],
+      "file": "R2xx-06/ok-put-full-same.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "swap-put-patch/R2xx-06/put-no-content",
+      "mutator": "swap-put-patch",
+      "kind": "must",
+      "pool_rule": "R2xx-06",
+      "target_rules": [
+        "R2xx-03"
+      ],
+      "file": "R2xx-06/ok-put-no-content.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "swap-put-patch/R2xx-06/put-wrapped-same",
+      "mutator": "swap-put-patch",
+      "kind": "must",
+      "pool_rule": "R2xx-06",
+      "target_rules": [
+        "R2xx-03"
+      ],
+      "file": "R2xx-06/ok-put-wrapped-same.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "time-field-to-string/R4xx-03/localdate-birth-date",
+      "mutator": "time-field-to-string",
+      "kind": "optional",
+      "pool_rule": "R4xx-03",
+      "target_rules": [
+        "R4xx-03"
+      ],
+      "file": "R4xx-03/ok-localdate-birth-date.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R4xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "time-field-to-string/R4xx-03/offsetdatetime",
+      "mutator": "time-field-to-string",
+      "kind": "optional",
+      "pool_rule": "R4xx-03",
+      "target_rules": [
+        "R4xx-03"
+      ],
+      "file": "R4xx-03/ok-offsetdatetime.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R4xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "unversioned-path/R6xx-01/empty-base",
+      "mutator": "unversioned-path",
+      "kind": "must",
+      "pool_rule": "R6xx-01",
+      "target_rules": [
+        "R6xx-01"
+      ],
+      "file": "R6xx-01/ok-empty-base.java",
+      "config": "enable-r6xx-01",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "unversioned-path/R6xx-01/versioned-base",
+      "mutator": "unversioned-path",
+      "kind": "must",
+      "pool_rule": "R6xx-01",
+      "target_rules": [
+        "R6xx-01"
+      ],
+      "file": "R6xx-01/ok-versioned-base.java",
+      "config": "enable-r6xx-01",
+      "verdict": "hit",
+      "fired": [
+        "R6xx-01"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "unwrap-envelope/R3xx-02/custom-envelope",
+      "mutator": "unwrap-envelope",
+      "kind": "optional",
+      "pool_rule": "R3xx-02",
+      "target_rules": [
+        "R3xx-02"
+      ],
+      "file": "R3xx-02/ok-custom-envelope.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R3xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "unwrap-envelope/R3xx-02/page-envelope",
+      "mutator": "unwrap-envelope",
+      "kind": "optional",
+      "pool_rule": "R3xx-02",
+      "target_rules": [
+        "R3xx-02"
+      ],
+      "file": "R3xx-02/ok-page-envelope.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R3xx-02"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/acronym-lowercase",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-04/ok-acronym-lowercase.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/camel-plural",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-01/ok-camel-plural.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/consistent-reference-ids",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-05/ok-consistent-reference-ids.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/custom-envelope",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-02/ok-custom-envelope.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/delete-etag-header",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-04/ok-delete-etag-header.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/delete-item",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-04/ok-delete-item.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/delete-query-ids",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-04/ok-delete-query-ids.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/dto-response",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R4xx-01/ok-dto-response.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/dto-shadowed-entity-name",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R4xx-01/ok-dto-shadowed-entity-name.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/entity-query-param-only",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R4xx-01/ok-entity-query-param-only.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/get-header-and-query",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-01/ok-get-header-and-query.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/get-pathvars-only",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-01/ok-get-pathvars-only.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/get-query-object",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-01/ok-get-query-object.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/kebab-standard",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-04/ok-kebab-standard.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/list-limit-capped",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-01/ok-list-limit-capped.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/list-page-size-params",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-01/ok-list-page-size-params.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/list-pageable",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-01/ok-list-pageable.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/nested-hierarchy",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-03/ok-nested-hierarchy.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/no-id-projection",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-05/ok-no-id-projection.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/noun-getter",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-02/ok-noun-getter.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/noun-updates",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-02/ok-noun-updates.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/numeric-segment",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-04/ok-numeric-segment.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/page-envelope",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-02/ok-page-envelope.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/page-everywhere",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-04/ok-page-everywhere.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/page-offset-params",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-03/ok-page-offset-params.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/page-response-everywhere",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-04/ok-page-response-everywhere.java",
+      "config": "default",
+      "verdict": "hit",
+      "fired": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "diag_count": 0,
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/params-everywhere",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-04/ok-params-everywhere.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/patch-map-partial",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-03/ok-patch-map-partial.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/patch-partial-dto",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-03/ok-patch-partial-dto.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/patch-void-response",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-03/ok-patch-void-response.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/plural-standard",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-01/ok-plural-standard.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/post-201-responsestatus",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-02/ok-post-201-responsestatus.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/post-202-async",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-02/ok-post-202-async.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/post-action-search",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-02/ok-post-action-search.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/post-colon-restore",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-05/ok-post-colon-restore.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/post-search-action",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-05/ok-post-search-action.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/preview-noun",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-02/ok-preview-noun.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/put-full-same",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-06/ok-put-full-same.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/put-no-content",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-06/ok-put-no-content.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/put-wrapped-same",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R2xx-06/ok-put-wrapped-same.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/self-and-reference",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-05/ok-self-and-reference.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/single-level-collection",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-03/ok-single-level-collection.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/size-capped",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R3xx-03/ok-size-capped.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/three-level-hierarchy",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-03/ok-three-level-hierarchy.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    },
+    {
+      "id": "verb-swap/*/uncountable-noun",
+      "mutator": "verb-swap",
+      "kind": "must",
+      "pool_rule": "*",
+      "target_rules": [
+        "R2xx-02",
+        "R5xx-03"
+      ],
+      "file": "R1xx-01/ok-uncountable-noun.java",
+      "config": "default",
+      "verdict": "not-applicable",
+      "diag_count": 0,
+      "note": "mutator found no applicable pattern in this ok-case",
+      "honored_expected_miss": false
+    }
+  ]
+}
