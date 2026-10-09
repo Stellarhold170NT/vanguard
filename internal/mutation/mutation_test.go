@@ -305,6 +305,9 @@ func TestMutationHarness(t *testing.T) {
 		if out == "" {
 			out = filepath.Join(root, "testdata", "mutation-results.json")
 		}
+		if !filepath.IsAbs(out) {
+			out = filepath.Join(root, out) // relative -out resolves against the module root, never the test CWD (w4-01 corpus-check lesson)
+		}
 		opts.OutPath = out
 	}
 	res, err := Run(opts)
