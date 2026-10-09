@@ -121,12 +121,12 @@ type results struct {
 }
 
 type tallyJSON struct {
-	OK               int `json:"ok"`
-	DeclaredMiss     int `json:"declared_miss_honored"`
-	ViolationMissed  int `json:"violation_missed"`
-	FalsePositive    int `json:"false_positive"`
-	UnexpectedDiag   int `json:"unexpected_diag"`
-	HarnessError     int `json:"harness_error"`
+	OK              int `json:"ok"`
+	DeclaredMiss    int `json:"declared_miss_honored"`
+	ViolationMissed int `json:"violation_missed"`
+	FalsePositive   int `json:"false_positive"`
+	UnexpectedDiag  int `json:"unexpected_diag"`
+	HarnessError    int `json:"harness_error"`
 }
 
 type ruleTally struct {
@@ -197,6 +197,18 @@ func main() {
 	deadline := flag.Duration("deadline", 8*time.Minute, "whole-run deadline (A2: bounded work)")
 	minAgreement := flag.Float64("min-agreement", 85, "gate on the declared agreement percent")
 	flag.Parse()
+
+	// The per-case scan runs with cmd.Dir inside a temp dir; every path the
+	// harness passes on (binary, configs, case files) must be absolute.
+	if abs, err := filepath.Abs(*repo); err == nil {
+		*repo = abs
+	}
+	if abs, err := filepath.Abs(*bin); err == nil {
+		*bin = abs
+	}
+	if abs, err := filepath.Abs(*out); err == nil {
+		*out = abs
+	}
 
 	advRoot := filepath.Join(*repo, "testdata", "adversarial")
 	if *bin == "" {
