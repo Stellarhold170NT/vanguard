@@ -1,0 +1,7 @@
+# java-spring-clean config (w3-07): R6xx-01 is OPTED IN here too — every
+# service base carries a version segment, so the enabled policy rule must
+# stay silent (the clean counterpart of the /legacy service).
+version: 1
+rules:
+  R6xx-01:
+    disabled: false

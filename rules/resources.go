@@ -141,13 +141,15 @@ func pathTokens(seg string) []string {
 	for _, word := range strings.FieldsFunc(seg, func(r rune) bool {
 		return r == '-' || r == '_' || r == '.' || r == ' '
 	}) {
-		out = append(out, camelWords(word)...)
+		out = append(out, camelCaseTokens(word)...)
 	}
 	return out
 }
 
-// camelWords splits a single word at case boundaries, lower-cased.
-func camelWords(word string) []string {
+// camelCaseTokens splits a single word at case boundaries, lower-cased
+// (pagination.go's camelWords is the name-level splitter — this one is the
+// within-word tokenizer shared by pathTokens, w3-07 merge).
+func camelCaseTokens(word string) []string {
 	rs := []rune(word)
 	if len(rs) < 2 {
 		return []string{strings.ToLower(word)}
@@ -311,11 +313,11 @@ func isVowel(r rune) bool {
 	return false
 }
 
-// actionSegments are non-resource sub-paths (custom-method territory —
-// R2xx-05's subject) and aggregate endpoints. They are exempt from the
-// final-segment plural check so GET /books/search is not read as a singular
-// collection.
-var actionSegments = map[string]bool{
+// aggregateSegments are non-resource sub-paths (custom-method territory —
+// R2xx-05's subject, whose actionSegments scan lives in methods.go) and
+// aggregate endpoints. They are exempt from the final-segment plural check
+// so GET /books/search is not read as a singular collection.
+var aggregateSegments = map[string]bool{
 	"search": true, "export": true, "count": true, "lookup": true,
 	"stats": true, "statistics": true, "health": true, "status": true,
 	"info": true, "metrics": true, "exists": true, "actuator": true,
@@ -388,7 +390,7 @@ func pluralCollectionCheck(_ *engine.LintContext, node ir.Node) []engine.Finding
 	last := len(segs) - 1
 	if m.Verb == ir.VerbGet && responseIsCollection(m) &&
 		isPlainResourceSegment(segs[last]) &&
-		!actionSegments[strings.ToLower(segs[last])] &&
+		!aggregateSegments[strings.ToLower(segs[last])] &&
 		!isPluralNoun(segs[last]) {
 		out = append(out, pluralCollectionFinding(m, segs, last))
 	}
@@ -497,7 +499,7 @@ func pathCasingCheck(_ *engine.LintContext, node ir.Node) []engine.Finding {
 			}
 			out = append(out, engine.Finding{
 				Message:    fmt.Sprintf("Path variable {%s} is not lowerCamelCase — keep one variable convention (AIP-122).", name),
-				Suggestion: pathWithSegment(m.Path, i, "{"+toLowerCamel(name)+"}"),
+				Suggestion: pathWithSegment(m.Path, i, "{"+pathTokenLowerCamel(name)+"}"),
 				Location:   m.Location,
 			})
 		default:
@@ -523,8 +525,10 @@ func toKebab(seg string) string {
 	return strings.Join(toks, "-")
 }
 
-// toLowerCamel converts a variable name to lowerCamelCase.
-func toLowerCamel(name string) string {
+// pathTokenLowerCamel converts a variable name to lowerCamelCase via the
+// R1xx path tokens (payload.go's toLowerCamel is the R4xx field-name
+// variant — both predate the w3-07 merge, so the names stay separate).
+func pathTokenLowerCamel(name string) string {
 	toks := pathTokens(name)
 	if len(toks) == 0 {
 		return name

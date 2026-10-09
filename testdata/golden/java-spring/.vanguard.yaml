@@ -1,0 +1,7 @@
+# java-spring showcase config (w3-07): opt into the default-off policy rule
+# R6xx-01 so the golden coverage proves it fires on the /legacy service and
+# stays silent on every versioned service. Everything else stays default.
+version: 1
+rules:
+  R6xx-01:
+    disabled: false

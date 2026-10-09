@@ -1,5 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/suppression-config · stub · stub · config: <case>/.vanguard.yaml
- 2 services · 27 rules (27 active) · 2 files in <duration>
+ 2 services · 11 rules (11 active) · 2 files in <duration>
 
  [WARN]  R3xx-01 list-paginated (2)
  ──────────────────────────────────────────────────────────────────

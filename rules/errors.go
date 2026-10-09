@@ -305,10 +305,14 @@ func lastPathSegment(path string) string {
 	return ""
 }
 
-// createShapedLastSeg reports whether a POST path reads as a creation: the
+// r5xxCreateShapedPath reports whether a POST path reads as a creation: the
 // final segment is a literal (no template variable, no AIP-136 custom
-// method colon) and carries no action word.
-func createShapedLastSeg(path string) bool {
+// method colon) and carries no action word. Deliberately the R5xx-03
+// variant — it judges only the final segment against the family's own
+// action-word set; methods.go's createShapedPath (R2xx-02) scans the whole
+// method-level path. The two stay separate after the w3-07 merge so each
+// family keeps the exact heuristic its tests pin.
+func r5xxCreateShapedPath(path string) bool {
 	last := lastPathSegment(path)
 	if last == "" || strings.Contains(last, "{") || strings.Contains(last, ":") {
 		return false
@@ -329,7 +333,7 @@ func statusSemanticsCheck(_ *engine.LintContext, node ir.Node) []engine.Finding 
 	if m.Response.StatusCode != 0 && m.Response.StatusCode != 200 {
 		return nil
 	}
-	if !createShapedLastSeg(m.Path) {
+	if !r5xxCreateShapedPath(m.Path) {
 		return nil
 	}
 	var message string

@@ -1,0 +1,9 @@
+target: .
+exit: 0
+note: >-
+  The clean rewrite of the java-spring showcase (w3-07): the same library
+  service written to the AIP conventions — every registered rule (including
+  the demo set and the opted-in R6xx-01) has the opportunity to fire on
+  this repo and must stay silent. Pins exit 0 with an empty findings array
+  in all three formats: the FP guard for the whole W3 rule set on a rich
+  Spring surface.

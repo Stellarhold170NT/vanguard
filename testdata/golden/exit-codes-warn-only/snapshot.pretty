@@ -1,5 +1,5 @@
- vanguard 0.1.0-dev · testdata/golden/exit-codes-warn-only · stub · stub · config: <case>/.vanguard.yaml
- 1 services · 27 rules (27 active) · 1 files in <duration>
+ vanguard 0.1.0-dev · testdata/golden/exit-codes-warn-only · stub · stub
+ 1 services · 11 rules (11 active) · 1 files in <duration>
 
  [WARN]  R3xx-01 list-paginated (1)
  ──────────────────────────────────────────────────────────────────
@@ -17,5 +17,5 @@
 
  ──────────────────────────────────────────────────────────────────
  2 findings · 0 ERROR · 1 WARN · 1 INFO · 0 suppressed
- 1 files with findings · 1 scanned · 5 skipped · 0 parse diagnostics
+ 1 files with findings · 1 scanned · 4 skipped · 0 parse diagnostics
  next: vanguard explain R3xx-01

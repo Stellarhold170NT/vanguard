@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package library.v1;
+
+// R6xx-02 showcase (w3-07): DoMagic is neither a Standard Method name nor a
+// VerbNoun custom method; GetBook/ListBooks/SyncData are compliant.
+service LibraryService {
+  rpc GetBook(GetBookRequest) returns (Book);
+  rpc ListBooks(ListBooksRequest) returns (ListBooksResponse);
+  rpc SyncData(SyncRequest) returns (SyncResponse);
+  rpc DoMagic(MagicRequest) returns (MagicResponse);
+}
+
+message GetBookRequest {
+  int64 book_id = 1;
+}
+
+message Book {
+  int64 id = 1;
+  string title = 2;
+}
+
+message ListBooksRequest {
+  int32 page = 1;
+  int32 size = 2;
+}
+
+message ListBooksResponse {
+  repeated Book books = 1;
+  int32 total = 2;
+}
+
+message SyncRequest {
+  string source = 1;
+}
+
+message SyncResponse {
+  int32 synced = 1;
+}
+
+message MagicRequest {
+  string payload = 1;
+}
+
+message MagicResponse {
+  string result = 1;
+}

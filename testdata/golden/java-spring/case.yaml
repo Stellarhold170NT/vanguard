@@ -1,0 +1,11 @@
+target: .
+exit: 1
+note: >-
+  The W3 showcase repo (w3-07): one synthetic Spring Boot "library" service
+  whose endpoints collectively violate every registered rule — the 22 real
+  W2/W3 rules plus the 5 demo rules — with a clean counterpart endpoint per
+  rule in the same repo (see README.md for the rule → file:line map).
+  Snapshots pin the full finding set in all three formats; the companion
+  case java-spring-clean pins the same rules staying silent on the clean
+  rewrite (exit 0). .vanguard.yaml opts into R6xx-01 (default-off policy
+  rule) so the coverage test sees it fire on the /legacy service.
