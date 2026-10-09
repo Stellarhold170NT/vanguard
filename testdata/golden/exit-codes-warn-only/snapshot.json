@@ -12,13 +12,25 @@
     "parseDiagnostics": 0,
     "findings": {
       "error": 0,
-      "warning": 0,
+      "warning": 1,
       "info": 1
     },
     "suppressed": 0,
     "durationMs": 0
   },
   "findings": [
+    {
+      "ruleId": "R3xx-01",
+      "slug": "list-paginated",
+      "severity": "WARN",
+      "message": "GET /v1/bulletin/notices returns an unpaginated collection — one client request can dump the whole table.",
+      "suggestion": "add a Pageable parameter or page/size query parameters to bound the result set",
+      "location": {
+        "file": "app/api.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
     {
       "ruleId": "R6xx-93",
       "slug": "demo-get-with-body",

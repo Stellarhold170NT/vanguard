@@ -1,0 +1,20 @@
+# R4xx-02 field-casing — DTO fields must be lowerCamelCase in the JSON
+# payload (charter §3.4, AIP-140; w1-03 §2.4: 182 DTO files mix casing
+# conventions). WARN: convention-level, but per charter §3.2 conflict note
+# DTO field casing belongs to THIS rule (R1xx keeps path/resource naming).
+# The check reads the effective JSON name: Field.JSONName when the adapter
+# resolved @JsonProperty/@SerializedName, Field.Name otherwise.
+id: R4xx-02
+slug: field-casing
+category: payload
+severity: WARN
+summary: DTO fields must serialize as lowerCamelCase — snake_case or PascalCase field names break the payload JSON convention.
+docPath: docs/rules/R4xx-02-field-casing.md
+exampleGood: |
+  public record BookDto(
+          Long id,
+          String authorName) { ... }
+exampleBad: |
+  public record BookDto(
+          Long id,
+          @JsonProperty("author_name") String authorName) { ... }

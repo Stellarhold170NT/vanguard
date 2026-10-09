@@ -1,5 +1,6 @@
  vanguard 0.1.0-dev · testdata/golden/default-scan · stub · stub
 <<<<<<< HEAD
+<<<<<<< HEAD
  2 services · 10 rules (10 active) · 2 files in <duration>
 =======
  2 services · 11 rules (11 active) · 2 files in <duration>
@@ -11,6 +12,9 @@
    suggest: move the payload to query parameters
    suppress: // vanguard:ignore R2xx-01 <reason>
 >>>>>>> agent-w3-04
+=======
+ 2 services · 11 rules (11 active) · 2 files in <duration>
+>>>>>>> agent-w3-05
 
  [ERROR] R6xx-91 demo-bad-method-name (3)
  ──────────────────────────────────────────────────────────────────
@@ -27,6 +31,13 @@
    Method name "demoBadSearchArchive" carries the demoBad fixture marker — name the operation after what it does.
    suggest: searchArchive
 
+ [WARN]  R3xx-01 list-paginated (1)
+ ──────────────────────────────────────────────────────────────────
+ app/library.stub.json:1:1
+   GET /v1/library/books returns an unpaginated collection — one client request can dump the whole table.
+   suggest: add a Pageable parameter or page/size query parameters to bound the result set
+   suppress: // vanguard:ignore R3xx-01 <reason>
+
  [WARN]  R6xx-92 demo-no-response-type (1)
  ──────────────────────────────────────────────────────────────────
  app/search.stub.json:1:1
@@ -41,6 +52,10 @@
    suppress: // vanguard:ignore R6xx-93 <reason>
 
  ──────────────────────────────────────────────────────────────────
+<<<<<<< HEAD
  6 findings · 4 ERROR · 1 WARN · 1 INFO · 0 suppressed
+=======
+ 6 findings · 3 ERROR · 2 WARN · 1 INFO · 0 suppressed
+>>>>>>> agent-w3-05
  2 files with findings · 2 scanned · 5 skipped · 0 parse diagnostics
  next: vanguard explain R6xx-91

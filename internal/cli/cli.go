@@ -345,45 +345,36 @@ func (inv *invoker) resolveConfig(root string) (*engine.Config, string, error) {
 	return cfg, path, nil
 }
 
-// defaultRegistrySource pins the registrySource seam for tests: production
-// resolves to defaultRegistry (builtin rules). Tests substitute a fixture
-// registry so the §6.3 exit-1 plumbing is observable end-to-end.
+// registrySource is the rule-source seam: production resolves to
+// defaultRegistry (builtin rules). Tests substitute a fixture registry so
+// the §6.3 exit-1 plumbing is observable end-to-end — the builtin set has
+// no stub-reachable violation (R6xx-99 flags raw trailing slashes, which
+// the stub path merge cleans per the IR contract, discovery/stub.go
+// mergeStubPath); the w3-01+ adapters make R6xx-99 reachable for real.
 var registrySource = defaultRegistry
 
-// defaultRegistry assembles the production rule set: the demo set (R6xx-99
-// plus the w2-07 stub-reachable fixtures R6xx-91/92/93) and, from w3-03 on,
-// the real rule families registered next to them. The w2-07 comment that
-// the builtin set had "no stub-reachable violation" no longer holds — the
-// R2xx verbs family (w3-04) fires on real HTTP surfaces of every adapter,
-// stub included. All of them come from data records under rules/data
+// defaultRegistry assembles the production rule set: the whole demo set
+// (R6xx-99 plus the w2-07 stub-reachable fixtures R6xx-91/92/93), the w3-05
+// pagination family (R3xx-01..03) and the w3-05 payload family
+// (R4xx-01..03). All of them come from data records under rules/data
 // joined to their checks by the registry (charter §3.0, §5.4).
 func defaultRegistry() (*rules.Registry, error) {
 	reg := rules.NewRegistry()
-	demoRules, err := rules.DemoRules()
-	if err != nil {
-		return nil, fmt.Errorf("load builtin rules: %w", err)
-	}
-	for _, rule := range demoRules {
-		if err := reg.Register(rule); err != nil {
-			return nil, fmt.Errorf("register %s: %w", rule.ID, err)
+	for _, build := range []func() ([]engine.Rule, error){
+		rules.DemoRules,
+		rules.ResourceRules,
+		rules.MethodRules,
+		rules.PaginationRules,
+		rules.PayloadRules,
+	} {
+		family, err := build()
+		if err != nil {
+			return nil, fmt.Errorf("load builtin rules: %w", err)
 		}
-	}
-	methodRules, err := rules.MethodRules()
-	if err != nil {
-		return nil, fmt.Errorf("load builtin rules: %w", err)
-	}
-	for _, rule := range methodRules {
-		if err := reg.Register(rule); err != nil {
-			return nil, fmt.Errorf("register %s: %w", rule.ID, err)
-		}
-	}
-	resourceRules, err := rules.ResourceRules()
-	if err != nil {
-		return nil, fmt.Errorf("load builtin rules: %w", err)
-	}
-	for _, rule := range resourceRules {
-		if err := reg.Register(rule); err != nil {
-			return nil, fmt.Errorf("register %s: %w", rule.ID, err)
+		for _, rule := range family {
+			if err := reg.Register(rule); err != nil {
+				return nil, fmt.Errorf("register %s: %w", rule.ID, err)
+			}
 		}
 	}
 	return reg, nil

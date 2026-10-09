@@ -1,0 +1,17 @@
+# R3xx-02 list-envelope — a collection response should be wrapped in an
+# envelope with items + paging metadata (charter §3.3, AIP-158; w1-03 pain
+# 4: a bare JSON array leaves no room for total/page and forces breaking
+# changes when paging metadata is needed later). INFO: a convention note,
+# Spring's Page<T> and custom envelope records already comply.
+id: R3xx-02
+slug: list-envelope
+category: pagination
+severity: INFO
+summary: Collection responses should be wrapped in an envelope carrying items plus paging metadata (total, page) instead of a bare JSON array.
+docPath: docs/rules/R3xx-02-list-envelope.md
+exampleGood: |
+  @GetMapping
+  public Page<BookDto> list(Pageable pageable) { ... }
+exampleBad: |
+  @GetMapping
+  public List<BookDto> list() { ... }
