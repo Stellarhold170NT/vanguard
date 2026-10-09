@@ -86,14 +86,15 @@ func TestPayloadFixtureFindsExactly(t *testing.T) {
 		// The entity's snake_case field is out of R4xx-02's DTO scope.
 		"src/main/java/com/example/payload/domain/Customer.java": {},
 	}
-	if len(byFile) != len(want) {
-		t.Fatalf("files with findings = %v, want exactly the %d fixture files", byFile, len(want))
+	// Every file that MUST be silent is absent from the report; every file
+	// with findings must be a known fixture file with the exact rule set.
+	for file := range byFile {
+		if _, known := want[file]; !known {
+			t.Fatalf("unexpected findings in %s: %v", file, byFile[file])
+		}
 	}
 	for file, wantRules := range want {
-		gotRules, ok := byFile[file]
-		if !ok {
-			t.Fatalf("no findings for %s: %v", file, byFile)
-		}
+		gotRules := byFile[file]
 		if len(gotRules) != len(wantRules) {
 			t.Fatalf("%s: rule counts = %v, want %v", file, gotRules, wantRules)
 		}
