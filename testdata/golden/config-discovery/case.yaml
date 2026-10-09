@@ -1,0 +1,8 @@
+target: app
+exit: 1
+note: >-
+  The config lives in the CASE directory while the scan targets the app/
+  subdirectory: engine.Discover must walk UP from the scan root and apply
+  it. The manifest raises R6xx-92 (demo-no-response-type) from WARN to
+  ERROR, so this case proves both the walk-up discovery and a severity
+  override: without the config the same repo scans clean (exit 0).

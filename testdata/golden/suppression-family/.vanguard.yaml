@@ -1,0 +1,7 @@
+# Family-prefix suppression: the whole R6xx demo family is exempt under
+# generated/ (§6.5 — exact id or family prefix).
+version: 1
+suppressions:
+  - rule: R6xx
+    paths: ["**/generated/**"]
+    reason: "generated stubs are exempt from the demo family"

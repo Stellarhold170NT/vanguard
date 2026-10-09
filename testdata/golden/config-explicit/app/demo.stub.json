@@ -1,0 +1,12 @@
+{
+  "service": "Orders",
+  "basePath": "/v1/orders",
+  "methods": [
+    {"name": "demoBadGetOrder", "verb": "GET", "path": "/orders/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Order", "statusCode": 200}}
+  ],
+  "types": [
+    {"name": "Order", "kind": "record", "fields": [{"name": "id", "type": "string"}]}
+  ]
+}

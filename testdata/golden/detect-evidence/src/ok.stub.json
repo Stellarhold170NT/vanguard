@@ -1,0 +1,12 @@
+{
+  "service": "Reading",
+  "basePath": "/v1/reading",
+  "methods": [
+    {"name": "getPassage", "verb": "GET", "path": "/passages/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Passage", "statusCode": 200}}
+  ],
+  "types": [
+    {"name": "Passage", "kind": "record", "fields": [{"name": "id", "type": "string"}]}
+  ]
+}

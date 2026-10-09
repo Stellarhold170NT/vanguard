@@ -1,0 +1,24 @@
+{
+  "service": "Ties",
+  "basePath": "/v1/ties",
+  "methods": [
+    {"name": "demoBadAlpha", "verb": "GET", "path": "/alpha",
+     "response": {"type": "Alpha", "statusCode": 200}},
+    {"name": "plainBeta", "verb": "POST", "path": "/beta"},
+    {"name": "demoBadGamma", "verb": "DELETE", "path": "/gamma/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Gamma", "statusCode": 204}},
+    {"name": "plainDelta", "verb": "POST", "path": "/delta"},
+    {"name": "demoBadEpsilon", "verb": "GET", "path": "/epsilon",
+     "response": {"type": "Epsilon", "statusCode": 200}},
+    {"name": "demoBadZeta", "verb": "PUT", "path": "/zeta/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Zeta", "statusCode": 200}}
+  ],
+  "types": [
+    {"name": "Alpha", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "Gamma", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "Epsilon", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "Zeta", "kind": "record", "fields": [{"name": "id", "type": "string"}]}
+  ]
+}

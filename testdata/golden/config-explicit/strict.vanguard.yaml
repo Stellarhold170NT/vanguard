@@ -1,0 +1,3 @@
+# The explicitly selected config: every rule at its metadata default.
+version: 1
+rules: {}

@@ -1,0 +1,19 @@
+{
+  "service": "GeneratedProxy",
+  "basePath": "/v1/proxy",
+  "methods": [
+    {"name": "demoBadFetchProxy", "verb": "GET", "path": "/proxy/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "ProxyView", "statusCode": 200}},
+    {"name": "syncProxy", "verb": "POST", "path": "/proxy/sync"},
+    {"name": "demoBadScanProxy", "verb": "GET", "path": "/proxy/scan",
+     "params": [{"name": "req", "in": "body", "type": "ScanRequest"}],
+     "payload": "ScanRequest",
+     "response": {"type": "ScanResult", "statusCode": 200}}
+  ],
+  "types": [
+    {"name": "ProxyView", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "ScanRequest", "kind": "record", "fields": [{"name": "target", "type": "string"}]},
+    {"name": "ScanResult", "kind": "record", "fields": [{"name": "hits", "type": "int32"}]}
+  ]
+}

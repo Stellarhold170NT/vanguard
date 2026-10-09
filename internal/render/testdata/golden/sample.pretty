@@ -1,0 +1,31 @@
+ vanguard 0.1.0 · ./military-youth · java · spring-boot 4.0.2 · config: ./.vanguard.yaml
+ 24 services · 185 endpoints · 11 grpc services · 26 rules (25 active) · 598 files in 3.2s
+
+ [ERROR] R2xx-01 get-no-body (2)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/viettel/tcct/web/rest/OrderResource.java:58:30
+   GET endpoint declares @RequestBody — GET must not have a body.
+   suggest: use @RequestParam for the fields, or switch to POST /auto-complete
+   suppress: // vanguard:ignore R2xx-01 <reason>
+
+ src/main/java/com/viettel/tcct/web/rest/YouthResource.java:113:44
+   GET endpoint declares @RequestBody — GET must not have a body.
+   suggest: use @RequestParam for the fields, or switch to POST /auto-complete
+
+ [WARN]  R1xx-02 no-verb-path (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/viettel/tcct/web/rest/MovementReportResource.java:134:24
+   Path "/update/draft" contains the verb "update" — use PUT/PATCH on the resource path.
+   suggest: PUT /api/military-youth/movement-reports/{id}
+   suppress: // vanguard:ignore R1xx-02 <reason>
+
+ [INFO]  R4xx-02 string-timestamp (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/viettel/tcct/model/Youth.java:27:11
+   Field "createdAt" uses the type String — prefer a temporal type.
+   suppress: // vanguard:ignore R4xx-02 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 4 findings · 2 ERROR · 1 WARN · 1 INFO · 2 suppressed
+ 4 files with findings · 598 scanned · 3 skipped · 1 parse diagnostics
+ next: vanguard explain R2xx-01

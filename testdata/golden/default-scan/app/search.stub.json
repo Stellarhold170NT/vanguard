@@ -1,0 +1,18 @@
+{
+  "service": "Search",
+  "basePath": "/v1/search",
+  "methods": [
+    {"name": "demoBadSearchArchive", "verb": "GET", "path": "/archive",
+     "params": [{"name": "req", "in": "body", "type": "ArchiveQuery"}],
+     "payload": "ArchiveQuery",
+     "response": {"type": "ArchiveResult", "statusCode": 200}},
+    {"name": "findDuplicates", "verb": "POST", "path": "/duplicates",
+     "params": [{"name": "req", "in": "body", "type": "DuplicateQuery"}],
+     "payload": "DuplicateQuery"}
+  ],
+  "types": [
+    {"name": "ArchiveQuery", "kind": "record", "fields": [{"name": "term", "type": "string"}]},
+    {"name": "ArchiveResult", "kind": "record", "fields": [{"name": "hits", "type": "int32"}]},
+    {"name": "DuplicateQuery", "kind": "record", "fields": [{"name": "title", "type": "string"}]}
+  ]
+}

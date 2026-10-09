@@ -1,0 +1,14 @@
+# R6xx-91 demo-bad-method-name — W2 golden-fixture rule (w2-07).
+# One rule = one YAML record (charter §3.0); registered by the CLI's
+# demo set next to R6xx-99 so the stub adapter can produce real ERROR
+# findings end to end. The check is demo_rules.go demoBadCheck.
+id: R6xx-91
+slug: demo-bad-method-name
+category: demo
+severity: ERROR
+summary: Method names must not carry the demoBad fixture marker — one canonical operation name per endpoint.
+docPath: docs/rules/R6xx-91-demo-bad-method-name.md
+exampleGood: |
+  GET /api/v1/orders/{id} — getOrder
+exampleBad: |
+  GET /api/v1/orders/{id} — demoBadGetOrder

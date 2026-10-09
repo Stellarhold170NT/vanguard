@@ -1,0 +1,35 @@
+{
+  "vanguard": "0.1.0-dev",
+  "schema": 1,
+  "target": "testdata/golden/config-discovery/app",
+  "source": {
+    "lang": "stub",
+    "framework": "stub"
+  },
+  "summary": {
+    "files": 1,
+    "skippedFiles": 0,
+    "parseDiagnostics": 0,
+    "findings": {
+      "error": 1,
+      "warning": 0,
+      "info": 0
+    },
+    "suppressed": 0,
+    "durationMs": 0
+  },
+  "findings": [
+    {
+      "ruleId": "R6xx-92",
+      "slug": "demo-no-response-type",
+      "severity": "ERROR",
+      "message": "Method searchEntries declares no response type — clients cannot deserialize an undeclared result.",
+      "location": {
+        "file": "api.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "diagnostics": []
+}

@@ -1,0 +1,3 @@
+# Harness artifacts are not API sources (testdata/golden/README.md).
+/case.yaml
+/snapshot.*
