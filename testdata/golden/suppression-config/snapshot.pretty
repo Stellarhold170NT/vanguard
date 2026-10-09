@@ -1,5 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/suppression-config · stub · stub · config: <case>/.vanguard.yaml
- 2 services · 5 rules (5 active) · 2 files in <duration>
+ 2 services · 10 rules (10 active) · 2 files in <duration>
 
  [WARN]  R6xx-92 demo-no-response-type (2)
  ──────────────────────────────────────────────────────────────────
