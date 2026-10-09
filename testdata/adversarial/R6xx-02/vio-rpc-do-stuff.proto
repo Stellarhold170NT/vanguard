@@ -1,0 +1,9 @@
+// corpus: R6xx-02 vio rpc-do-stuff
+// lure: rpc DoStuff — the name carries no verb contract at all.
+syntax = "proto3";
+
+package library.v1;
+
+service LibraryAdmin {
+  rpc DoStuff(DoStuffRequest) returns (DoStuffResponse);
+}

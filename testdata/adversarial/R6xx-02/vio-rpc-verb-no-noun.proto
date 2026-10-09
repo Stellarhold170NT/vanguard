@@ -1,0 +1,9 @@
+// corpus: R6xx-02 vio rpc-verb-no-noun
+// lure: rpc Process — the action verb alone is not a custom method; VerbNoun needs the noun.
+syntax = "proto3";
+
+package library.v1;
+
+service BatchService {
+  rpc Process(ProcessRequest) returns (ProcessResponse);
+}

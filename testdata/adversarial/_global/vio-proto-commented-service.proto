@@ -1,0 +1,9 @@
+// corpus: _global vio proto-commented-service
+// lure: a proto service entirely inside comments — the declaration reader must not see a service.
+syntax = "proto3";
+
+package library.v1;
+
+// service CommentedLibrary {
+//   rpc GetBook(GetBookRequest) returns (Book);
+// }

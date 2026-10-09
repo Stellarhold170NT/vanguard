@@ -1,0 +1,10 @@
+// corpus: R6xx-02 ok verb-noun-custom
+// lure: ArchiveBook and RestoreBook — AIP-136 custom methods with known action verbs.
+syntax = "proto3";
+
+package library.v1;
+
+service ArchiveService {
+  rpc ArchiveBook(ArchiveBookRequest) returns (Book);
+  rpc RestoreBook(RestoreBookRequest) returns (Book);
+}

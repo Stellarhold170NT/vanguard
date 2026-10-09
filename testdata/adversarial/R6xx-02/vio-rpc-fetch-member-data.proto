@@ -1,0 +1,9 @@
+// corpus: R6xx-02 vio rpc-fetch-member-data
+// lure: rpc FetchMemberData — neither a Standard Method name nor a known VerbNoun.
+syntax = "proto3";
+
+package library.v1;
+
+service LibraryQuery {
+  rpc FetchMemberData(FetchMemberDataRequest) returns (FetchMemberDataResponse);
+}
