@@ -3,4 +3,7 @@ formats: [pretty, json]
 note: >-
   §6.3 exit 0 with findings: only WARN (demo-no-response-type) and INFO
   (demo-get-with-body) fire — no ERROR, so the scan is green even though
-  the report is not empty. Display and exit stay decoupled.
+  the report is not empty. Display and exit stay decoupled. The
+  .vanguard.yaml disables the R2xx verbs family (w3-04): its R2xx-01 ERROR
+  would fire on searchNotices (GET + body) and flip the pinned exit — the
+  case tests the demo family's severity mix, not the verbs family.

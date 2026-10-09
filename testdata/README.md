@@ -12,6 +12,7 @@ Planned layout (populated from W2 onwards):
 | `java-adapter/` | Synthetic Java files exercising the tree-sitter adapter (see its README) | w3-01 |
 | `spring-repo/` | Synthetic Spring Boot service exercising the Spring mapping (see its README) | w3-02 |
 | `spring-overlay/` | Same repo shape with a committed OpenAPI spec for the springdoc overlay | w3-02 |
+| `methods-rules/` | Per-rule positive + negative Spring controllers for the R2xx family (see its README) | w3-04 |
 | `golden/` | Golden snapshot inputs/outputs for the render and IR contracts | w2-07 |
 | `adversarial/<rule-id>/` | `ok-<slug>.java` / `vio-<slug>.java` cases, ≥3 vio + ≥2 ok per rule | w4-01 |
 | `mutation/` | Mutator definitions for the catch-rate harness (target ≥90%) | w4-02 |
