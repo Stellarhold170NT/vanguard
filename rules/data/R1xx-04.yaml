@@ -1,0 +1,16 @@
+# R1xx-04 path-casing — charter §3.1 (AIP-122, camel-case-uris phóng tác).
+# One casing convention per app: literal path segments are kebab-case and
+# path variables are camelCase (w1-03 pain 2: /search/all-by-Name next to
+# seven /search/all-by-condition routes).
+id: R1xx-04
+slug: path-casing
+category: resources
+severity: WARN
+summary: Path segments are kebab-case, path variables camelCase — one casing convention across the app (AIP-122).
+docPath: docs/rules/R1xx-04-path-casing.md
+exampleGood: |
+  @GetMapping("/audio-books/{bookId}")
+  public AudioBookDto get(@PathVariable Long bookId)
+exampleBad: |
+  @GetMapping("/audioBooks/{BookId}")
+  public AudioBookDto get(@PathVariable Long bookId)

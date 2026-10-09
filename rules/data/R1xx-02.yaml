@@ -1,0 +1,16 @@
+# R1xx-02 no-verb-path — charter §3.1 (AIP-131, AIP-133, AIP-135).
+# The HTTP verb already carries the action; a CRUD verb inside the path
+# duplicates it and forks the endpoint surface (w1-03 pain 1+3: 5x
+# @DeleteMapping("/delete") next to plain DELETE routes).
+id: R1xx-02
+slug: no-verb-path
+category: resources
+severity: ERROR
+summary: No CRUD verb in the path — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135).
+docPath: docs/rules/R1xx-02-no-verb-path.md
+exampleGood: |
+  @DeleteMapping("/records/{id}")
+  public void delete(@PathVariable Long id)
+exampleBad: |
+  @DeleteMapping("/delete/{id}")
+  public void delete(@PathVariable Long id)

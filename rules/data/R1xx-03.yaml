@@ -1,0 +1,16 @@
+# R1xx-03 resource-path-pattern — charter §3.1 (AIP-127, AIP-131).
+# Resource paths follow /collection/{id}/sub-collection/{subId}: every path
+# variable sits under the resource it addresses, and no flat action-shaped
+# route replaces the hierarchy (w1-03 pain 1: /find-by-id/{id}).
+id: R1xx-03
+slug: resource-path-pattern
+category: resources
+severity: WARN
+summary: Resource paths follow /collection/{id}/sub-collection/{subId} — no flat or parameter-first routes (AIP-127, AIP-131).
+docPath: docs/rules/R1xx-03-resource-path-pattern.md
+exampleGood: |
+  @GetMapping("/authors/{authorId}/books/{bookId}")
+  public BookDto get(@PathVariable Long authorId, @PathVariable Long bookId)
+exampleBad: |
+  @GetMapping("/find-by-id/{id}")
+  public BookDto get(@PathVariable Long id)
