@@ -8,10 +8,53 @@
           "name": "vanguard",
           "version": "0.1.0-dev",
           "informationUri": "https://github.com/Stellarhold170NT/vanguard",
-          "rules": []
+          "rules": [
+            {
+              "id": "R4xx-02",
+              "name": "field-casing",
+              "shortDescription": {
+                "text": "DTO fields must serialize as lowerCamelCase — snake_case or PascalCase field names break the payload JSON convention."
+              },
+              "fullDescription": {
+                "text": "DTO fields must serialize as lowerCamelCase — snake_case or PascalCase field names break the payload JSON convention."
+              },
+              "helpUri": "docs/rules/R4xx-02-field-casing.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "payload"
+              }
+            }
+          ]
         }
       },
-      "results": [],
+      "results": [
+        {
+          "ruleId": "R4xx-02",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Field \"total_amount\" is not lowerCamelCase — the payload JSON convention is lowerCamelCase."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/orders.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "a25fa20b26aff0f1"
+          }
+        }
+      ],
       "columnKind": "utf16CodeUnits"
     }
   ]

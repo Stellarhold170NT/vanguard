@@ -1,0 +1,17 @@
+# R4xx-01 no-entity-in-payload — an API payload/response must not expose an
+# ORM entity type (charter §3.4, AIP-121/203; w1-03 pain 6: GET /current
+# returned the Youth entity directly). ERROR: the strongest family signal —
+# the entity index comes from the IR (Type.IsEntity, w3-02 adapter), the
+# package match disambiguates same-name DTOs (see the rule doc heuristic).
+id: R4xx-01
+slug: no-entity-in-payload
+category: payload
+severity: ERROR
+summary: API payloads and responses must not expose ORM entity types — map entities to dedicated DTOs before they reach the wire.
+docPath: docs/rules/R4xx-01-no-entity-in-payload.md
+exampleGood: |
+  @GetMapping("/current")
+  public YouthResponse current(@PathVariable Long id) { ... }
+exampleBad: |
+  @GetMapping("/current")
+  public Youth current(@PathVariable Long id) { ... }

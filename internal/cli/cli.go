@@ -365,6 +365,8 @@ func defaultRegistry() (*rules.Registry, error) {
 		rules.DemoRules,
 		rules.ErrorRules,
 		rules.VersioningRules,
+		rules.PaginationRules,
+		rules.PayloadRules,
 	} {
 		family, err := build()
 		if err != nil {

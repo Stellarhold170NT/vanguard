@@ -1,13 +1,6 @@
  vanguard 0.1.0-dev · testdata/golden/severity-display-vs-exit · stub · stub
  1 services · 11 rules (11 active) · 1 files in <duration>
 
- [ERROR] R2xx-01 get-no-body (1)
- ──────────────────────────────────────────────────────────────────
- app/api.stub.json:1:1
-   GET endpoint demoBadSearchRecords declares a request body (SearchRequest) — many HTTP clients silently drop GET bodies.
-   suggest: move the payload to query parameters
-   suppress: // vanguard:ignore R2xx-01 <reason>
-
  [ERROR] R6xx-91 demo-bad-method-name (2)
  ──────────────────────────────────────────────────────────────────
  app/api.stub.json:1:1
@@ -26,6 +19,6 @@
    suppress: // vanguard:ignore R6xx-92 <reason>
 
  ──────────────────────────────────────────────────────────────────
- 4 findings · 3 ERROR · 1 WARN · 0 INFO · 0 suppressed
+ 3 findings · 2 ERROR · 1 WARN · 0 INFO · 0 suppressed
  1 files with findings · 1 scanned · 4 skipped · 0 parse diagnostics
  next: vanguard explain R6xx-91

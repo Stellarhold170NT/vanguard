@@ -11,14 +11,26 @@
     "skippedFiles": 5,
     "parseDiagnostics": 0,
     "findings": {
-      "error": 4,
-      "warning": 1,
+      "error": 3,
+      "warning": 2,
       "info": 1
     },
     "suppressed": 0,
     "durationMs": 0
   },
   "findings": [
+    {
+      "ruleId": "R3xx-01",
+      "slug": "list-paginated",
+      "severity": "WARN",
+      "message": "GET /v1/library/books returns an unpaginated collection — one client request can dump the whole table.",
+      "suggestion": "add a Pageable parameter or page/size query parameters to bound the result set",
+      "location": {
+        "file": "app/library.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
     {
       "ruleId": "R6xx-91",
       "slug": "demo-bad-method-name",
@@ -39,18 +51,6 @@
       "suggestion": "deleteShelf",
       "location": {
         "file": "app/library.stub.json",
-        "line": 1,
-        "column": 1
-      }
-    },
-    {
-      "ruleId": "R2xx-01",
-      "slug": "get-no-body",
-      "severity": "ERROR",
-      "message": "GET endpoint demoBadSearchArchive declares a request body (ArchiveQuery) — many HTTP clients silently drop GET bodies.",
-      "suggestion": "move the payload to query parameters",
-      "location": {
-        "file": "app/search.stub.json",
         "line": 1,
         "column": 1
       }

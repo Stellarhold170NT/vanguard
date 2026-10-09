@@ -1,0 +1,18 @@
+# R4xx-03 time-field-standard — time-like fields should use Instant or
+# OffsetDateTime (RFC3339 on the wire), not String or legacy date types
+# (charter §3.4, AIP-142; no direct recon hit — declared transparently in
+# the charter, kept as a guard for the 182 hand-written DTOs). INFO.
+id: R4xx-03
+slug: time-field-standard
+category: payload
+severity: INFO
+summary: Time-like fields (createdAt, validUntil, …) should use Instant/OffsetDateTime — RFC3339 on the wire — instead of String or legacy date types.
+docPath: docs/rules/R4xx-03-time-field-standard.md
+exampleGood: |
+  public record AuditDto(
+          Instant createdAt,
+          Instant validUntil) { ... }
+exampleBad: |
+  public record AuditDto(
+          String createdAt,
+          Date validUntil) { ... }

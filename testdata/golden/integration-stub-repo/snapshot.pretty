@@ -1,6 +1,14 @@
  vanguard 0.1.0-dev · ./testdata/stub-repo · stub · stub-http
  1 services · 11 rules (11 active) · 3 files in <duration>
 
+ [WARN]  R4xx-02 field-casing (1)
  ──────────────────────────────────────────────────────────────────
- 0 findings · 0 ERROR · 0 WARN · 0 INFO · 0 suppressed
- 0 files with findings · 3 scanned · 3 skipped · 2 parse diagnostics
+ src/orders.stub.json:1:1
+   Field "total_amount" is not lowerCamelCase — the payload JSON convention is lowerCamelCase.
+   suggest: totalAmount
+   suppress: // vanguard:ignore R4xx-02 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 1 findings · 0 ERROR · 1 WARN · 0 INFO · 0 suppressed
+ 1 files with findings · 3 scanned · 3 skipped · 2 parse diagnostics
+ next: vanguard explain R4xx-02
