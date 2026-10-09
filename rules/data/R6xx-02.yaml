@@ -1,0 +1,24 @@
+# R6xx-02 grpc-standard-methods — a proto rpc should carry a Standard
+# Method name (Get/List/Create/Update/Delete, batch variants, Search) or a
+# VerbNoun custom-method name (charter §3.6, AIP-131..136 applied to rpc;
+# w1-03 §2.3: 11 services / 88 rpcs in src/main/proto, and an off-pattern
+# rpc name leaks into all 10 generated *GrpcService impl classes). INFO,
+# declaration-level only: the reader sees service + rpc names, never
+# message bodies (the raw-proto-parser trap is deliberately avoided).
+id: R6xx-02
+slug: grpc-standard-methods
+category: versioning
+severity: INFO
+summary: A proto rpc should be named as a Standard Method (Get/List/Create/Update/Delete…) or a VerbNoun custom method — an off-pattern name leaks into every generated client.
+docPath: docs/rules/R6xx-02-grpc-standard-methods.md
+exampleGood: |
+  service LibraryService {
+    rpc GetBook(GetBookRequest) returns (Book);
+    rpc ArchiveBook(ArchiveBookRequest) returns (Book);
+  }
+exampleBad: |
+  service LibraryService {
+    rpc DoStuff(DoStuffRequest) returns (Book);
+  }
+options:
+  - allow

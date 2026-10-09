@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package shop.v1;
+
+option java_package = "com.example.shop.grpc";
+
+// A commented-out declaration is not an API surface — the reader must
+// never count it:
+// service GhostService {
+//   rpc GetGhost(GetGhostRequest) returns (Ghost);
+// }
+
+// Standard Methods and one VerbNoun custom method — compliant.
+service LibraryService {
+  rpc GetBook(GetBookRequest) returns (Book);
+  rpc ListBooks(ListBooksRequest) returns (ListBooksResponse);
+  rpc SyncData(SyncDataRequest) returns (SyncDataResponse);
+
+  // R6xx-02 positive: neither Standard nor VerbNoun.
+  rpc DoMagic(DoMagicRequest) returns (DoMagicResponse);
+}
+
+// Fully compliant second service.
+service AuditService {
+  rpc GetAuditTrail(GetAuditTrailRequest) returns (AuditTrail);
+}

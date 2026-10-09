@@ -1,0 +1,19 @@
+# R5xx-03 status-semantics — a POST that creates a resource answers 201
+# (Created) or 202 (Accepted), not 200 (charter §3.5, AIP-133/193; w1-03
+# pain 3: the JHipster convention is 201 for create, a new endpoint that
+# drifts back to 200 is a silent regression). WARN, status-side reading —
+# the verb/path side is the charter's R2xx-02 (the two are a designed pair).
+id: R5xx-03
+slug: status-semantics
+category: errors
+severity: WARN
+summary: A POST that creates a resource must answer 201 (Created) or 202 (Accepted) — 200 (declared or the implicit convention) hides the creation from clients.
+docPath: docs/rules/R5xx-03-status-semantics.md
+exampleGood: |
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public OrderDto create(@RequestBody CreateOrderRequest req) { ... }
+exampleBad: |
+  @PostMapping
+  @ResponseStatus(HttpStatus.OK)
+  public OrderDto create(@RequestBody CreateOrderRequest req) { ... }

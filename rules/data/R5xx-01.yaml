@@ -1,0 +1,19 @@
+# R5xx-01 unified-error-shape — every @ExceptionHandler answers with the
+# app's ONE error envelope (charter §3.5, AIP-193; w1-03 pain 5: the
+# ExceptionTranslator contract breaks the moment a new handler returns its
+# own Map/wrapper). WARN: the endpoint still works, but clients would have
+# to parse two error contracts depending on which failure hit.
+id: R5xx-01
+slug: unified-error-shape
+category: errors
+severity: WARN
+summary: Every @ExceptionHandler must answer with the app's one error envelope — a handler returning a different structure splits the error contract clients parse.
+docPath: docs/rules/R5xx-01-unified-error-shape.md
+exampleGood: |
+  @ExceptionHandler(BookNotFoundException.class)
+  public ErrorResponse handleNotFound(BookNotFoundException ex) { ... }
+exampleBad: |
+  @ExceptionHandler(ValidationFailed.class)
+  public Map<String, Object> handleValidation(ValidationFailed ex) { ... }
+options:
+  - scheme

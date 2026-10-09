@@ -1,0 +1,19 @@
+# R6xx-01 versioned-path — the service base path should carry a version
+# segment (charter §3.6, AIP-215/180; w1-03 §2.1: the sample app has no
+# /v1 anywhere). WARN and DEFAULT-OFF: versioning is a policy choice, not a
+# defect — enabling it on an app that never versioned would flood the
+# report. The pattern is configurable via the versionPattern option
+# (default /v[0-9]+).
+id: R6xx-01
+slug: versioned-path
+category: versioning
+severity: WARN
+defaultDisabled: true
+summary: The service base path should carry a version segment (/v1 by default) — an unversioned base path pins clients to an unversioned contract.
+docPath: docs/rules/R6xx-01-versioned-path.md
+exampleGood: |
+  @RequestMapping("/api/v1/orders")
+exampleBad: |
+  @RequestMapping("/api/orders")
+options:
+  - versionPattern
