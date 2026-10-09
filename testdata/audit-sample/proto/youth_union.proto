@@ -1,0 +1,23 @@
+// audit-sample: gRPC declarations (pattern w1-03 §2.3 — Standard Method
+// and VerbNoun rpc names; the clean service).
+syntax = "proto3";
+
+package youthunion.v1;
+
+service YouthUnionQuery {
+  rpc GetYouthMember(GetYouthMemberRequest) returns (YouthMemberMessage);
+  rpc ListMovementLogs(ListMovementLogsRequest) returns (stream MovementLogMessage);
+  rpc SearchLogs(SearchLogsRequest) returns (SearchLogsResponse);
+}
+
+service YouthUnionCommand {
+  rpc CreateMovementLog(CreateMovementLogRequest) returns (MovementLogMessage);
+  rpc UpdateMovementLog(UpdateMovementLogRequest) returns (MovementLogMessage);
+  rpc DeleteMovementLog(DeleteMovementLogRequest) returns (DeleteMovementLogResponse);
+  rpc SyncDepartments(SyncDepartmentsRequest) returns (SyncDepartmentsResponse);
+}
+
+message YouthMemberMessage {
+  int64 id = 1;
+  string full_name = 2;
+}

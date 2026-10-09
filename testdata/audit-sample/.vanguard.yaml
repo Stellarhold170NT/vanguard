@@ -1,0 +1,24 @@
+# audit-sample — version 1 (docs/config.md is the spec).
+#
+# The FP/FN audit (w4-04, test-strategy §7) measures the DEFAULT product
+# surface: every rule at its charter §3 severity, demo family R6xx-9x off,
+# policy rule R6xx-01 off (military-youth ships unversioned paths by
+# documented choice — w1-03 §2.1; enabling R6xx-01 is a w5-04 policy
+# question, not a defect scan).
+version: 1
+
+rules:
+  # demo golden-fixture family (w2-07) — not part of the audited product
+  # surface (charter §3.6: demo rules ship default-on WARN; the corpus
+  # harness relies on them, the audit harness does not).
+  R6xx-91: { disabled: true }
+  R6xx-92: { disabled: true }
+  R6xx-93: { disabled: true }
+  R6xx-94: { disabled: true }
+  R6xx-95: { disabled: true }
+  R6xx-96: { disabled: true }
+  R6xx-97: { disabled: true }
+  R6xx-98: { disabled: true }
+  R6xx-99: { disabled: true }
+  # policy rule (charter §3.6) — default-off; see header comment.
+  R6xx-01: { disabled: true }

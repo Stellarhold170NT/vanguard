@@ -1,0 +1,239 @@
+{
+  "schema": "vanguard-audit-results/1",
+  "tool": "tools/audit-check",
+  "vanguard": "vanguard 0.1.0-dev (commit unknown, built unknown)",
+  "labeled": false,
+  "meta": {
+    "sample": "testdata/audit-sample",
+    "http_endpoints": 41,
+    "rpc_declarations": 10,
+    "finding_rows": 32,
+    "fn_candidate_rows": 0,
+    "unexpected_rows": 7,
+    "declared_gaps": 4,
+    "parse_diagnostics": 0
+  },
+  "per_rule": [
+    {
+      "rule": "R1xx-01",
+      "claimed": 0,
+      "observed": 7,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R1xx-02",
+      "claimed": 5,
+      "observed": 5,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R1xx-03",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R1xx-04",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R1xx-05",
+      "claimed": 2,
+      "observed": 2,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R2xx-01",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R2xx-02",
+      "claimed": 1,
+      "observed": 2,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R2xx-03",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R2xx-04",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R2xx-05",
+      "claimed": 5,
+      "observed": 5,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R2xx-06",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R3xx-01",
+      "claimed": 5,
+      "observed": 8,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R3xx-02",
+      "claimed": 6,
+      "observed": 11,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R3xx-03",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R4xx-01",
+      "claimed": 2,
+      "observed": 2,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R4xx-02",
+      "claimed": 2,
+      "observed": 2,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R4xx-03",
+      "claimed": 1,
+      "observed": 2,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R5xx-01",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R5xx-02",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R5xx-03",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    },
+    {
+      "rule": "R6xx-02",
+      "claimed": 1,
+      "observed": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": "n/a",
+      "recall": "n/a"
+    }
+  ],
+  "aggregate": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 0,
+    "precision": "n/a",
+    "recall": "n/a",
+    "fp_share_pct": 0
+  },
+  "disputes": null,
+  "unresolved": null,
+  "max_fp_share_pct": 15
+}
