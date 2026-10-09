@@ -1,0 +1,6 @@
+exit: 0
+formats: [pretty, json]
+note: >-
+  §6.3 exit 0 with findings: only WARN (demo-no-response-type) and INFO
+  (demo-get-with-body) fire — no ERROR, so the scan is green even though
+  the report is not empty. Display and exit stay decoupled.

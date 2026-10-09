@@ -1,0 +1,11 @@
+target: "{module}/testdata/stub-repo"
+exit: 0
+formats: [pretty, json, sarif]
+note: >-
+  The integration case (w2-07 deliverable 3): the production binary — the
+  exact artifact CI builds — scans the committed testdata/stub-repo the
+  same way CI invokes it. The stub repo exercises the walker's built-in
+  node_modules skip, the .vanguardignore scratch/ exclusion, and a broken
+  stub file that becomes a parse diagnostic (exit stays 0, §5.3/§6.3).
+  Any wiring regression between discovery, engine and render turns this
+  snapshot red.

@@ -1,0 +1,8 @@
+exit: 0
+formats: [pretty, json]
+note: >-
+  Rule disable via config (charter §6.4.1 rules.R6xx-91.disabled): the repo
+  carries a would-be ERROR (demoBadGetStock) and an active WARN
+  (demo-no-response-type on takeStock). The snapshot pins that disabling
+  one rule removes only its findings — the engine still runs the others,
+  and the exit code follows the surviving findings (§6.3).

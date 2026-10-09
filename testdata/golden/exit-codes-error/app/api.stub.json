@@ -1,0 +1,12 @@
+{
+  "service": "Payments",
+  "basePath": "/v1/payments",
+  "methods": [
+    {"name": "demoBadGetCharge", "verb": "GET", "path": "/charges/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Charge", "statusCode": 200}}
+  ],
+  "types": [
+    {"name": "Charge", "kind": "record", "fields": [{"name": "id", "type": "string"}]}
+  ]
+}

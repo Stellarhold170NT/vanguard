@@ -1,0 +1,13 @@
+{
+  "service": "Reports",
+  "basePath": "/v1/reports",
+  "methods": [
+    {"name": "listArchivedReports", "verb": "GET", "path": "/legacy/reports",
+     "response": {"type": "ReportList", "statusCode": 200}},
+    {"name": "listReports", "verb": "GET", "path": "/reports",
+     "response": {"type": "ReportList", "statusCode": 200}}
+  ],
+  "types": [
+    {"name": "ReportList", "kind": "record", "fields": [{"name": "items", "type": "string"}]}
+  ]
+}

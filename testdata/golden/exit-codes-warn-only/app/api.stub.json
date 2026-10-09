@@ -1,0 +1,18 @@
+{
+  "service": "Bulletin",
+  "basePath": "/v1/bulletin",
+  "methods": [
+    {"name": "listNotices", "verb": "GET", "path": "/notices",
+     "response": {"type": "NoticeList", "statusCode": 200, "isCollection": true}},
+    {"name": "searchNotices", "verb": "GET", "path": "/notices/search",
+     "params": [{"name": "req", "in": "body", "type": "SearchRequest"}],
+     "payload": "SearchRequest",
+     "response": {"type": "SearchResult", "statusCode": 200}}
+  ],
+  "types": [
+    {"name": "Notice", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "NoticeList", "kind": "record", "fields": [{"name": "items", "type": "Notice"}]},
+    {"name": "SearchRequest", "kind": "record", "fields": [{"name": "term", "type": "string"}]},
+    {"name": "SearchResult", "kind": "record", "fields": [{"name": "hits", "type": "int32"}]}
+  ]
+}

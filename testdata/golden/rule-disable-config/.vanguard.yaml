@@ -1,0 +1,5 @@
+# R6xx-91 is a demo fixture rule; this repo opts out of it.
+version: 1
+rules:
+  R6xx-91:
+    disabled: true

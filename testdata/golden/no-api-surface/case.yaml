@@ -1,0 +1,8 @@
+exit: 0
+formats: [pretty]
+snapshot: both
+note: >-
+  A repo with no API surface at all (no .stub.json, no adapter detect):
+  charter §6.3 pins exit 0 with a clear notice — "nothing to check is not
+  an error". The stderr snapshot stays empty (no --verbose); the pretty
+  stdout snapshot pins the notice wording.

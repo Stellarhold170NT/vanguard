@@ -1,0 +1,9 @@
+exit: 1
+formats: [json, pretty]
+note: >-
+  Sort stability under maximum tie pressure (charter B-6, §6.6): the stub
+  adapter places every node at file-level 1:1, so all six findings share
+  one (file, line, column) key and the order falls to ruleId and the
+  engine's deterministic emission order. The json snapshot pins the exact
+  array order — the byte-identity the harness asserts across runs is the
+  flakiness detector.

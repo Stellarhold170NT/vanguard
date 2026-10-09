@@ -1,0 +1,6 @@
+# Decoy: discovery would pick this one (nearest .vanguard.yaml from the
+# scan root). The run uses --config instead — this file must NOT apply.
+version: 1
+rules:
+  R6xx-91:
+    disabled: true

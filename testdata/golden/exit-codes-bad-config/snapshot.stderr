@@ -1,0 +1,2 @@
+vanguard: bad.vanguard.yaml:5: unknown key "severiity" (known under a rule: severity, disabled, options)
+Run 'vanguard scan --help' for usage.

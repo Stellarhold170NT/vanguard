@@ -1,0 +1,46 @@
+{
+  "vanguard": "0.1.0-dev",
+  "schema": 1,
+  "target": "testdata/golden/suppression-config",
+  "source": {
+    "lang": "stub",
+    "framework": "stub"
+  },
+  "summary": {
+    "files": 2,
+    "skippedFiles": 6,
+    "parseDiagnostics": 0,
+    "findings": {
+      "error": 0,
+      "warning": 2,
+      "info": 0
+    },
+    "suppressed": 1,
+    "durationMs": 0
+  },
+  "findings": [
+    {
+      "ruleId": "R6xx-92",
+      "slug": "demo-no-response-type",
+      "severity": "WARN",
+      "message": "Method exportLedger declares no response type — clients cannot deserialize an undeclared result.",
+      "location": {
+        "file": "legacy/old-api.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "ruleId": "R6xx-92",
+      "slug": "demo-no-response-type",
+      "severity": "WARN",
+      "message": "Method renewLoan declares no response type — clients cannot deserialize an undeclared result.",
+      "location": {
+        "file": "src/api.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "diagnostics": []
+}

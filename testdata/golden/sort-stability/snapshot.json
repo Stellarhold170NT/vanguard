@@ -1,0 +1,94 @@
+{
+  "vanguard": "0.1.0-dev",
+  "schema": 1,
+  "target": "testdata/golden/sort-stability",
+  "source": {
+    "lang": "stub",
+    "framework": "stub"
+  },
+  "summary": {
+    "files": 1,
+    "skippedFiles": 4,
+    "parseDiagnostics": 0,
+    "findings": {
+      "error": 4,
+      "warning": 2,
+      "info": 0
+    },
+    "suppressed": 0,
+    "durationMs": 0
+  },
+  "findings": [
+    {
+      "ruleId": "R6xx-91",
+      "slug": "demo-bad-method-name",
+      "severity": "ERROR",
+      "message": "Method name \"demoBadAlpha\" carries the demoBad fixture marker — name the operation after what it does.",
+      "suggestion": "alpha",
+      "location": {
+        "file": "app/ties.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "ruleId": "R6xx-91",
+      "slug": "demo-bad-method-name",
+      "severity": "ERROR",
+      "message": "Method name \"demoBadGamma\" carries the demoBad fixture marker — name the operation after what it does.",
+      "suggestion": "gamma",
+      "location": {
+        "file": "app/ties.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "ruleId": "R6xx-91",
+      "slug": "demo-bad-method-name",
+      "severity": "ERROR",
+      "message": "Method name \"demoBadEpsilon\" carries the demoBad fixture marker — name the operation after what it does.",
+      "suggestion": "epsilon",
+      "location": {
+        "file": "app/ties.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "ruleId": "R6xx-91",
+      "slug": "demo-bad-method-name",
+      "severity": "ERROR",
+      "message": "Method name \"demoBadZeta\" carries the demoBad fixture marker — name the operation after what it does.",
+      "suggestion": "zeta",
+      "location": {
+        "file": "app/ties.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "ruleId": "R6xx-92",
+      "slug": "demo-no-response-type",
+      "severity": "WARN",
+      "message": "Method plainBeta declares no response type — clients cannot deserialize an undeclared result.",
+      "location": {
+        "file": "app/ties.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "ruleId": "R6xx-92",
+      "slug": "demo-no-response-type",
+      "severity": "WARN",
+      "message": "Method plainDelta declares no response type — clients cannot deserialize an undeclared result.",
+      "location": {
+        "file": "app/ties.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "diagnostics": []
+}
