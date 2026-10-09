@@ -86,14 +86,8 @@ func (s verbSelector) Matches(node ir.Node) bool {
 	return ok && m.Verb == s.verb && m.Verb.IsHTTP()
 }
 
-// httpMethodSelector matches any HTTP-verb Method (R2xx-05 scans every
-// endpoint shape for action paths).
-type httpMethodSelector struct{}
-
-func (httpMethodSelector) Matches(node ir.Node) bool {
-	m, ok := node.(ir.Method)
-	return ok && m.Verb.IsHTTP()
-}
+// (httpMethodSelector lives in resources.go — one selector shared by the
+// R1xx and R2xx families, w3-07 merge.)
 
 // bodyParamOf returns the method's in=body parameter, or nil. The stub and
 // spring adapters fill Payload and this param together, but a rule must
