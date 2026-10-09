@@ -171,6 +171,13 @@ suppressions:
 	exit, stdout, stderr := runVanguard(t, root, quickCase, "scan", ".", "--format", "json")
 	assertNormalExit(t, exit)
 
+	// The hostile globs are schema-valid, so the config must LOAD (rejecting
+	// a config is legal exit-2 behaviour, but this fixture pins the stronger
+	// outcome: the scan proceeds and still reports the inside violation).
+	if n := countFindings(t, stdout); n == 0 {
+		t.Fatalf("hostile-glob config suppressed all scanning — expected the inside violation to be reported:\n%s", stdout)
+	}
+
 	for _, stream := range []string{stdout, stderr} {
 		if strings.Contains(stream, outside) {
 			t.Fatalf("scan output references a path outside the scan root (%s):\n%s", outside, stream)
@@ -197,6 +204,10 @@ func TestScanArgumentWithDotDotSegmentsIsAResolvedRoot(t *testing.T) {
 
 	exit, stdout, stderr := runVanguard(t, nested, quickCase, "scan", "../..", "--format", "json")
 	assertNormalExit(t, exit)
+
+	if n := countFindings(t, stdout); n == 0 {
+		t.Fatalf("a `..`-bearing scan argument must resolve and still scan (expected findings):\n%s", stdout)
+	}
 
 	if strings.Contains(stdout, "../../") || strings.Contains(stderr, "../../") {
 		t.Fatalf("paths must be relative to the resolved root, got ../../ references\nstdout:\n%s\nstderr:\n%s", stdout, stderr)
