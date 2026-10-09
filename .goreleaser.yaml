@@ -1,0 +1,133 @@
+# .goreleaser.yaml — Vanguard release pipeline (w6-01).
+#
+# Charter R4: static CLI, runs from anywhere — packaging is part of the ship
+# process, reproducible from a tag. Matrix: linux/darwin/windows × amd64/arm64.
+#
+# The tree-sitter grammar is cgo (charter B-1; w3-01/w4-03 evidence: "cgo
+# enabled (tree-sitter)" — CGO_ENABLED=0 build fails: build constraints
+# exclude the tree-sitter Go files), so every target cross-compiles through
+# `zig cc` as the C compiler. ALL six targets — including linux/amd64 — are
+# pinned to one zig version so a local build, the sandbox verification and CI
+# run the identical toolchain path and builds stay reproducible from the tag.
+# Running this pipeline anywhere therefore requires zig (>= 0.16) on PATH —
+# see the release SOP in reports/w6-01.md.
+#
+# darwin linking: Go's darwin cgo resolver hard-codes `-lresolv`
+# ($GOROOT/src/internal/syscall/unix/net_darwin.go — applied on every cgo
+# darwin build, the netgo tag cannot exclude it) and runtime/cgo/cgo.go adds
+# `#cgo darwin,arm64 LDFLAGS: -framework CoreFoundation`. zig cc's bundled
+# macOS libc ships neither a libresolv stub nor CoreFoundation framework
+# stubs, so cross-compiling the tree-sitter cgo grammar for darwin fails at
+# link time. internal/buildconf (blank-imported by cmd/vanguard) registers
+# `-L${SRCDIR} -F${SRCDIR}/Frameworks` so the linker finds the in-repo
+# internal/buildconf stubs — no environment-specific paths (sandbox-verified
+# w6-01: without the stubs both darwin targets fail).
+#
+# Verified with goreleaser v2.18.3: `goreleaser check` + full
+# `release --skip=publish` (6/6 targets, archives, checksums, changelog) in
+# the dind sandbox (w6-01 report §3 documents versions, sha256 and the exact
+# commands).
+version: 2
+
+project_name: vanguard
+
+builds:
+  - id: vanguard
+    main: ./cmd/vanguard
+    binary: vanguard
+    env:
+      - CGO_ENABLED=1
+    flags:
+      - -trimpath
+      - -buildvcs=false
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    # Build identity wired into cmd/vanguard's vars (w2-06 contract):
+    # `vanguard version` prints version/commit/date from these.
+    ldflags:
+      - -s -w -X main.version={{ .Version }} -X main.commit={{ .FullCommit }} -X main.date={{ .Date }}
+    # mod_timestamp pins the binaries' file mtimes to the tag commit —
+    # artifacts stay reproducible from the tag instead of carrying
+    # packaging-time mtimes (goreleaser v2 moved this field from archives
+    # to builds; archive members LICENSE/README still carry checkout mtimes —
+    # documented limitation in the w6-01 report).
+    mod_timestamp: '{{ .CommitTimestamp }}'
+    # One explicit zig target per platform/arch — including the "native"
+    # linux/amd64, so no build silently depends on the host C compiler.
+    overrides:
+      - goos: linux
+        goarch: amd64
+        env:
+          - CGO_ENABLED=1
+          - CC=zig cc -target x86_64-linux-musl
+      - goos: linux
+        goarch: arm64
+        env:
+          - CGO_ENABLED=1
+          - CC=zig cc -target aarch64-linux-musl
+      - goos: darwin
+        goarch: amd64
+        env:
+          - CGO_ENABLED=1
+          - CC=zig cc -target x86_64-macos
+      - goos: darwin
+        goarch: arm64
+        env:
+          - CGO_ENABLED=1
+          - CC=zig cc -target aarch64-macos
+      - goos: windows
+        goarch: amd64
+        env:
+          - CGO_ENABLED=1
+          - CC=zig cc -target x86_64-windows-gnu
+      - goos: windows
+        goarch: arm64
+        env:
+          - CGO_ENABLED=1
+          - CC=zig cc -target aarch64-windows-gnu
+
+archives:
+  - id: default
+    formats:
+      - tar.gz
+    name_template: >-
+      {{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    files:
+      - LICENSE
+      - README.md
+
+checksum:
+  name_template: checksums.txt
+  algorithm: sha256
+
+changelog:
+  # Changelog is assembled from commit messages since the previous tag
+  # (the release workflow checks out with fetch-depth: 0 for this).
+  # Vanguard uses conventional commits with a scope — `type(area): subject`
+  # — so the excludes match the bare type prefix to cover both styles.
+  sort: asc
+  use: git
+  filters:
+    exclude:
+      - '^docs'
+      - '^test'
+      - '^chore'
+      - '^ci'
+      - '^build'
+      - '^style'
+      - '^Merge'
+
+release:
+  # Publish immediately (w6-01 brief): no draft; tag-suffixed versions
+  # (v0.1.0-rc1) are marked pre-release automatically.
+  draft: false
+  prerelease: auto

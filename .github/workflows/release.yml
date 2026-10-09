@@ -1,0 +1,65 @@
+# Release pipeline — publishes a GitHub Release for every `v*` tag (w6-01).
+#
+# Trigger: `git push origin v0.1.0` (the SOP in reports/w6-01.md §5 — pushing
+# the tag is what starts this workflow; forgetting it is the classic trap).
+#
+# What it does: full test pass → goreleaser builds linux/darwin/windows ×
+# amd64/arm64 (cgo cross-compiles via zig cc, see .goreleaser.yaml — all six
+# targets pinned to zig 0.16.0), archives tar.gz/zip + sha256 checksums.txt,
+# changelog from commits, publishes the release with draft=false.
+#
+# Scope note (w6-01): this workflow does NOT build Docker images — Docker
+# packaging is w6-04's deliverable and will extend or follow this pipeline.
+#
+# Verification level (w6-01, sandbox dind-sandbox:29): actionlint v1.7.7
+# syntax check (0 errors) + action inputs verified against the published
+# action.yml of goreleaser/goreleaser-action@v6 and mlugg/setup-zig@v1 + the
+# goreleaser pipeline itself (same .goreleaser.yaml, goreleaser v2.18.3)
+# executed end-to-end via `release --skip=publish` — 6/6 targets, archives,
+# checksums, changelog. No real GitHub-hosted runner exists in the sandbox —
+# that residual risk is documented in the w6-01 report §7.
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  # goreleaser creates the release and uploads assets.
+  contents: write
+
+jobs:
+  release:
+    name: goreleaser release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          # Full history — the changelog is assembled from commit messages
+          # since the previous tag, which a depth-1 checkout cannot see.
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Set up zig (cgo cross toolchain)
+        uses: mlugg/setup-zig@v1
+        with:
+          # Matches the zig version the w6-01 sandbox verification ran with.
+          version: 0.16.0
+
+      - name: Run tests
+        run: go test ./...
+
+      - name: Run goreleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: v2.18.3
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
