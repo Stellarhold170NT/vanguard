@@ -13,7 +13,7 @@ Planned layout (populated from W2 onwards):
 | `spring-repo/` | Synthetic Spring Boot service exercising the Spring mapping (see its README) | w3-02 |
 | `spring-overlay/` | Same repo shape with a committed OpenAPI spec for the springdoc overlay | w3-02 |
 | `golden/` | Golden snapshot inputs/outputs for the render and IR contracts | w2-07 |
-| `adversarial/<rule-id>/` | `ok-<slug>.java` / `vio-<slug>.java` cases, ≥3 vio + ≥2 ok per rule | w4-01 |
+| `adversarial/<rule-id>/` | `ok-<slug>.java` / `vio-<slug>.java` cases, ≥3 vio + ≥2 ok per rule; manifest `adversarial/manifest.yaml` (§3.6) | w3-03 (R1xx seed), w4-01 (full corpus) |
 | `mutation/` | Mutator definitions for the catch-rate harness (target ≥90%) | w4-02 |
 
 Rules for corpus authors:
