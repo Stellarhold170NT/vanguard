@@ -1,0 +1,14 @@
+# R1xx-05 id-field-naming — charter §3.1 (AIP-122, AIP-140).
+# Id fields stay consistent: id for the self id, <resource>Id for
+# references. v0.1 detects MIXED usage and reports it — it does not enforce
+# one convention (w1-03 §2.4: 182 DTOs mixing three naming schemes).
+id: R1xx-05
+slug: id-field-naming
+category: resources
+severity: INFO
+summary: Id fields stay consistent — id for the self id, <resource>Id for references; reports mixed usage (AIP-122, AIP-140).
+docPath: docs/rules/R1xx-05-id-field-naming.md
+exampleGood: |
+  record BookDto(Long id, Long authorId, Long publisherId)
+exampleBad: |
+  record BookDto(Long bookID, Long author_id, Long publisherId)
