@@ -701,4 +701,27 @@ Mỗi workflow **được phép giả định** những điều sau (nếu thự
 
 ---
 
+## 13. Phụ lục E — Backlog v0.1.1 (đề xuất từ postmortem w5-06, chờ gate phê duyệt)
+
+> Sinh từ postmortem GATE CH4 (`reports/w5-06.md`, task #31). Đây là **danh mục đề xuất có thứ tự ưu tiên** — input hợp đồng cho chu kỳ W3 kế tiếp; **chưa có mục nào được thi hành** trong task w5-06. Mỗi mục mang id `ADJ-xx` để truy vết qua các task của cycle W3 sau này. Tiêu chí nghiệm thu đo được (QC Φ1–Φ5) và toàn bộ ngữ cảnh/lead nguồn: `reports/w5-06.md` §6.
+
+| Prio | ID | Loại | Mục | Rule(s) | Effort |
+|---|---|---|---|---|---|
+| P1 | ADJ-01 | fix-rule (adapter+rule) | Adapter capture `ResponseEntity.created(...)` → IR `Response.StatusCode`=201 (cluster C1a — vắng diện gây 14 FP giả) | R2xx-02, R5xx-03 | M |
+| P1 | ADJ-02 | fix-rule | Predicate create-shape đòi **tín hiệu create** (tên method `create*/save*/register*` hoặc token path); mở rộng action lexicon (filter, approval, recall, reject, send, split, merge, dissolve, permission, generate, sync, submit) — mỗi entry lexicon mới phải có fixture (kỷ luật w4-04 §6.2) và sync `internal/mutation/mutators.go` (C1b) | R2xx-02, R5xx-03 | M |
+| P1 | ADJ-03 | fix-rule | Phân vai segment (collection noun vs action vs base path) khi kiểm số nhiều; thống nhất base-segment checking giữa các method (C3, FN-4/FN-5) | R1xx-01 | M |
+| P1 | ADJ-04 | config + rule metadata | Thêm key `defaultDisabled` cho demo rules (mở rộng schema config v1 — cần duyệt, w5-04 §4 C4); tạm bù bằng config disable T-2 | R6xx-92/93 | S |
+| P2 | ADJ-05 | new-rule (đăng ký engine) | Đăng ký 4 rule charter-chưa-đăng-ký: R3xx-04, R4xx-04, R5xx-04, R6xx-03 (declared gaps dm-01..04; mutation strict 85.7%→dự báo 100% khi pass) | — | L |
+| P2 | ADJ-06 | fix-rule | **Verify-trước-rồi-sửa** package-resolution trên direct response TypeRef (FN-1/2/3) — IR dump + regression fixture trước khi đụng rule | R4xx-01 | M |
+| P1 | ADJ-07 | fix-rule (redesign) | R2xx-05: chỉ fire khi có tín hiệu side effect (**uni của path-verb + method-name verb** — khử blindness FN-6), hoặc đổi message thành verify-hint điều kiện (C2) | R2xx-05 | M |
+| P2 | ADJ-08 | process (orchestrator) | Merge `agent-w4-05` (glob-fix) vào main **trước W6**; sau merge tái chạy dry-run T-1: kỳ vọng 244→232 (w5-04 §6 T-1 / §10.2) | — | S |
+| P2 | ADJ-09 | fix-rule (adapter) | gRPC: verify + khử gap IR — 3 service shell/0 rpc vs 11 service/88 rpc đếm raw w1-03 (w5-03 §5.3) | R6xx-02 | M |
+| P3 | ADJ-10 | corpus | Mở rộng corpus theo w4-02 §7: bare-create ok-case cho R2xx-02 (mở pool remove-status-mapping 1→≥2), GET-single ok-case cho R2xx-01 | — | M |
+| P3 | ADJ-11 | investigation | Tra không-match 54-vs-27 parse diagnostics (report vs discovery layer; w5-03 §5.4) — cho đến khi giải quyết xong: gắn cờ traceability risk khi đọc diagnostics | — | S |
+| ✓ done | ADJ-12 | data-integrity | (ĐÃ THỰC HIỆN trong w5-06) Vá 1 dòng prose `reports/w5-04.md` §2 (WARN 75/68 → **64/79**, INFO 31/46 → **42/35**; tổng 129/115 không đổi) theo đối chiếu 3 nguồn `reports/w5-05.md` §3 | — | S |
+
+Protocol cho backlog này: sau phê duyệt CH4, mục nào bị bác sẽ ghi rationale vào mục tương ứng của `reports/w5-06.md` (giữ Audit log); thay đổi ngoài danh mục này = phát sinh → đi qua issue của task phát hiện (§3.8).
+
+---
+
 *Hết charter v1. Mọi sửa đổi sau CH1 phải có entry trong Phụ lục C (log quyết định) — charter sống bằng tính truy vết, không bằng trí nhớ.*
