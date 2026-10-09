@@ -1,0 +1,1230 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "vanguard",
+          "version": "0.1.0-dev",
+          "informationUri": "https://github.com/Stellarhold170NT/vanguard",
+          "rules": [
+            {
+              "id": "R1xx-02",
+              "name": "no-verb-path",
+              "shortDescription": {
+                "text": "No CRUD verb in the path — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135)."
+              },
+              "fullDescription": {
+                "text": "No CRUD verb in the path — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135)."
+              },
+              "helpUri": "docs/rules/R1xx-02-no-verb-path.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "resources"
+              }
+            },
+            {
+              "id": "R2xx-01",
+              "name": "get-no-body",
+              "shortDescription": {
+                "text": "GET endpoints must not declare a request body — many HTTP clients silently drop GET bodies."
+              },
+              "fullDescription": {
+                "text": "GET endpoints must not declare a request body — many HTTP clients silently drop GET bodies."
+              },
+              "helpUri": "docs/rules/R2xx-01-get-no-body.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "methods"
+              }
+            },
+            {
+              "id": "R4xx-01",
+              "name": "no-entity-in-payload",
+              "shortDescription": {
+                "text": "API payloads and responses must not expose ORM entity types — map entities to dedicated DTOs before they reach the wire."
+              },
+              "fullDescription": {
+                "text": "API payloads and responses must not expose ORM entity types — map entities to dedicated DTOs before they reach the wire."
+              },
+              "helpUri": "docs/rules/R4xx-01-no-entity-in-payload.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "payload"
+              }
+            },
+            {
+              "id": "R5xx-02",
+              "name": "no-500-for-business",
+              "shortDescription": {
+                "text": "A business exception (declared in the scanned repo) must not be mapped to HTTP 500 — 500 is reserved for unexpected server failures."
+              },
+              "fullDescription": {
+                "text": "A business exception (declared in the scanned repo) must not be mapped to HTTP 500 — 500 is reserved for unexpected server failures."
+              },
+              "helpUri": "docs/rules/R5xx-02-no-500-for-business.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "errors"
+              }
+            },
+            {
+              "id": "R6xx-91",
+              "name": "demo-bad-method-name",
+              "shortDescription": {
+                "text": "Method names must not carry the demoBad fixture marker — one canonical operation name per endpoint."
+              },
+              "fullDescription": {
+                "text": "Method names must not carry the demoBad fixture marker — one canonical operation name per endpoint."
+              },
+              "helpUri": "docs/rules/R6xx-91-demo-bad-method-name.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "demo"
+              }
+            },
+            {
+              "id": "R1xx-01",
+              "name": "plural-collection",
+              "shortDescription": {
+                "text": "Collection paths use plural nouns — /book reads as one item, /books as the collection (AIP-131, AIP-122)."
+              },
+              "fullDescription": {
+                "text": "Collection paths use plural nouns — /book reads as one item, /books as the collection (AIP-131, AIP-122)."
+              },
+              "helpUri": "docs/rules/R1xx-01-plural-collection.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "resources"
+              }
+            },
+            {
+              "id": "R1xx-03",
+              "name": "resource-path-pattern",
+              "shortDescription": {
+                "text": "Resource paths follow /collection/{id}/sub-collection/{subId} — no flat or parameter-first routes (AIP-127, AIP-131)."
+              },
+              "fullDescription": {
+                "text": "Resource paths follow /collection/{id}/sub-collection/{subId} — no flat or parameter-first routes (AIP-127, AIP-131)."
+              },
+              "helpUri": "docs/rules/R1xx-03-resource-path-pattern.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "resources"
+              }
+            },
+            {
+              "id": "R1xx-04",
+              "name": "path-casing",
+              "shortDescription": {
+                "text": "Path segments are kebab-case, path variables camelCase — one casing convention across the app (AIP-122)."
+              },
+              "fullDescription": {
+                "text": "Path segments are kebab-case, path variables camelCase — one casing convention across the app (AIP-122)."
+              },
+              "helpUri": "docs/rules/R1xx-04-path-casing.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "resources"
+              }
+            },
+            {
+              "id": "R2xx-02",
+              "name": "post-creates-201",
+              "shortDescription": {
+                "text": "A POST endpoint that creates a resource should declare 201 Created, not the implicit 200."
+              },
+              "fullDescription": {
+                "text": "A POST endpoint that creates a resource should declare 201 Created, not the implicit 200."
+              },
+              "helpUri": "docs/rules/R2xx-02-post-creates-201.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "methods"
+              }
+            },
+            {
+              "id": "R2xx-03",
+              "name": "patch-partial",
+              "shortDescription": {
+                "text": "A PATCH endpoint should send a partial payload — a body typed as the full response entity means the update is a full replacement (PUT)."
+              },
+              "fullDescription": {
+                "text": "A PATCH endpoint should send a partial payload — a body typed as the full response entity means the update is a full replacement (PUT)."
+              },
+              "helpUri": "docs/rules/R2xx-03-patch-partial.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "methods"
+              }
+            },
+            {
+              "id": "R2xx-04",
+              "name": "delete-no-body",
+              "shortDescription": {
+                "text": "DELETE endpoints should not declare a request body — model bulk deletes as a batch path or query parameters."
+              },
+              "fullDescription": {
+                "text": "DELETE endpoints should not declare a request body — model bulk deletes as a batch path or query parameters."
+              },
+              "helpUri": "docs/rules/R2xx-04-delete-no-body.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "methods"
+              }
+            },
+            {
+              "id": "R2xx-06",
+              "name": "put-full-update",
+              "shortDescription": {
+                "text": "A PUT endpoint should receive the full replacement entity — a payload type that differs from the declared response type looks like a partial update (PATCH)."
+              },
+              "fullDescription": {
+                "text": "A PUT endpoint should receive the full replacement entity — a payload type that differs from the declared response type looks like a partial update (PATCH)."
+              },
+              "helpUri": "docs/rules/R2xx-06-put-full-update.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "methods"
+              }
+            },
+            {
+              "id": "R3xx-01",
+              "name": "list-paginated",
+              "shortDescription": {
+                "text": "List endpoints must accept pagination parameters (Pageable or page/size) — an unpaginated GET collection lets one client dump the whole table."
+              },
+              "fullDescription": {
+                "text": "List endpoints must accept pagination parameters (Pageable or page/size) — an unpaginated GET collection lets one client dump the whole table."
+              },
+              "helpUri": "docs/rules/R3xx-01-list-paginated.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "pagination"
+              }
+            },
+            {
+              "id": "R4xx-02",
+              "name": "field-casing",
+              "shortDescription": {
+                "text": "DTO fields must serialize as lowerCamelCase — snake_case or PascalCase field names break the payload JSON convention."
+              },
+              "fullDescription": {
+                "text": "DTO fields must serialize as lowerCamelCase — snake_case or PascalCase field names break the payload JSON convention."
+              },
+              "helpUri": "docs/rules/R4xx-02-field-casing.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "payload"
+              }
+            },
+            {
+              "id": "R5xx-01",
+              "name": "unified-error-shape",
+              "shortDescription": {
+                "text": "Every @ExceptionHandler must answer with the app's one error envelope — a handler returning a different structure splits the error contract clients parse."
+              },
+              "fullDescription": {
+                "text": "Every @ExceptionHandler must answer with the app's one error envelope — a handler returning a different structure splits the error contract clients parse."
+              },
+              "helpUri": "docs/rules/R5xx-01-unified-error-shape.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "errors"
+              }
+            },
+            {
+              "id": "R5xx-03",
+              "name": "status-semantics",
+              "shortDescription": {
+                "text": "A POST that creates a resource must answer 201 (Created) or 202 (Accepted) — 200 (declared or the implicit convention) hides the creation from clients."
+              },
+              "fullDescription": {
+                "text": "A POST that creates a resource must answer 201 (Created) or 202 (Accepted) — 200 (declared or the implicit convention) hides the creation from clients."
+              },
+              "helpUri": "docs/rules/R5xx-03-status-semantics.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "errors"
+              }
+            },
+            {
+              "id": "R6xx-01",
+              "name": "versioned-path",
+              "shortDescription": {
+                "text": "The service base path should carry a version segment (/v1 by default) — an unversioned base path pins clients to an unversioned contract."
+              },
+              "fullDescription": {
+                "text": "The service base path should carry a version segment (/v1 by default) — an unversioned base path pins clients to an unversioned contract."
+              },
+              "helpUri": "docs/rules/R6xx-01-versioned-path.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "versioning"
+              }
+            },
+            {
+              "id": "R6xx-92",
+              "name": "demo-no-response-type",
+              "shortDescription": {
+                "text": "Every operation must declare a response type — clients cannot deserialize an undeclared result."
+              },
+              "fullDescription": {
+                "text": "Every operation must declare a response type — clients cannot deserialize an undeclared result."
+              },
+              "helpUri": "docs/rules/R6xx-92-demo-no-response-type.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "demo"
+              }
+            },
+            {
+              "id": "R1xx-05",
+              "name": "id-field-naming",
+              "shortDescription": {
+                "text": "Id fields stay consistent — id for the self id, <resource>Id for references; reports mixed usage (AIP-122, AIP-140)."
+              },
+              "fullDescription": {
+                "text": "Id fields stay consistent — id for the self id, <resource>Id for references; reports mixed usage (AIP-122, AIP-140)."
+              },
+              "helpUri": "docs/rules/R1xx-05-id-field-naming.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "resources"
+              }
+            },
+            {
+              "id": "R2xx-05",
+              "name": "custom-method-post",
+              "shortDescription": {
+                "text": "An action (non-CRUD) endpoint reads best as an AIP-136 custom method — POST <collection>/{id}:<action>."
+              },
+              "fullDescription": {
+                "text": "An action (non-CRUD) endpoint reads best as an AIP-136 custom method — POST <collection>/{id}:<action>."
+              },
+              "helpUri": "docs/rules/R2xx-05-custom-method-post.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "methods"
+              }
+            },
+            {
+              "id": "R3xx-02",
+              "name": "list-envelope",
+              "shortDescription": {
+                "text": "Collection responses should be wrapped in an envelope carrying items plus paging metadata (total, page) instead of a bare JSON array."
+              },
+              "fullDescription": {
+                "text": "Collection responses should be wrapped in an envelope carrying items plus paging metadata (total, page) instead of a bare JSON array."
+              },
+              "helpUri": "docs/rules/R3xx-02-list-envelope.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "pagination"
+              }
+            },
+            {
+              "id": "R3xx-03",
+              "name": "unbounded-page-size",
+              "shortDescription": {
+                "text": "Size/limit query parameters should carry an upper bound (@Max) so one client cannot request unbounded pages."
+              },
+              "fullDescription": {
+                "text": "Size/limit query parameters should carry an upper bound (@Max) so one client cannot request unbounded pages."
+              },
+              "helpUri": "docs/rules/R3xx-03-unbounded-page-size.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "pagination"
+              }
+            },
+            {
+              "id": "R4xx-03",
+              "name": "time-field-standard",
+              "shortDescription": {
+                "text": "Time-like fields (createdAt, validUntil, …) should use Instant/OffsetDateTime — RFC3339 on the wire — instead of String or legacy date types."
+              },
+              "fullDescription": {
+                "text": "Time-like fields (createdAt, validUntil, …) should use Instant/OffsetDateTime — RFC3339 on the wire — instead of String or legacy date types."
+              },
+              "helpUri": "docs/rules/R4xx-03-time-field-standard.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "payload"
+              }
+            },
+            {
+              "id": "R6xx-02",
+              "name": "grpc-standard-methods",
+              "shortDescription": {
+                "text": "A proto rpc should be named as a Standard Method (Get/List/Create/Update/Delete…) or a VerbNoun custom method — an off-pattern name leaks into every generated client."
+              },
+              "fullDescription": {
+                "text": "A proto rpc should be named as a Standard Method (Get/List/Create/Update/Delete…) or a VerbNoun custom method — an off-pattern name leaks into every generated client."
+              },
+              "helpUri": "docs/rules/R6xx-02-grpc-standard-methods.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "versioning"
+              }
+            },
+            {
+              "id": "R6xx-93",
+              "name": "demo-get-with-body",
+              "shortDescription": {
+                "text": "GET endpoints should not declare a request body — many HTTP clients silently drop GET bodies."
+              },
+              "fullDescription": {
+                "text": "GET endpoints should not declare a request body — many HTTP clients silently drop GET bodies."
+              },
+              "helpUri": "docs/rules/R6xx-93-demo-get-with-body.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "demo"
+              }
+            },
+            {
+              "id": "R6xx-94",
+              "name": "demo-legacy-path",
+              "shortDescription": {
+                "text": "Legacy path segments should migrate to the versioned route — /legacy/ paths are transitional debt."
+              },
+              "fullDescription": {
+                "text": "Legacy path segments should migrate to the versioned route — /legacy/ paths are transitional debt."
+              },
+              "helpUri": "docs/rules/R6xx-94-demo-legacy-path.md",
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "properties": {
+                "category": "demo"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "R3xx-02",
+          "ruleIndex": 20,
+          "level": "note",
+          "message": {
+            "text": "/api/v1/books returns a bare List<BookDto> — a bare JSON array leaves no room for total/page metadata."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 26
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "dd6cf54004dfeb5c"
+          }
+        },
+        {
+          "ruleId": "R3xx-03",
+          "ruleIndex": 21,
+          "level": "note",
+          "message": {
+            "text": "Query parameter \"size\" has no upper bound — a single client can request unbounded pages."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 31,
+                  "startColumn": 81
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "804c1b197aa187e7"
+          }
+        },
+        {
+          "ruleId": "R1xx-04",
+          "ruleIndex": 7,
+          "level": "warning",
+          "message": {
+            "text": "Path variable {BookId} is not lowerCamelCase — keep one variable convention (AIP-122)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 20
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "145164cefbfd5329"
+          }
+        },
+        {
+          "ruleId": "R1xx-02",
+          "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "Path segment \"find-by-id\" states the CRUD verb \"find\" — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 20
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "7265b051ca084e5c"
+          }
+        },
+        {
+          "ruleId": "R1xx-03",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Variable {id} sits under the action segment \"find-by-id\" — serve the item under its resource: /<collection>/{id} (AIP-127)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 20
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "77d4154e24c78137"
+          }
+        },
+        {
+          "ruleId": "R2xx-05",
+          "ruleIndex": 19,
+          "level": "note",
+          "message": {
+            "text": "Endpoint findBookById (GET /api/v1/books/find-by-id/{id}) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 20
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "1b833db915ab9fec"
+          }
+        },
+        {
+          "ruleId": "R2xx-02",
+          "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "POST endpoint createBook looks like a resource create (single BookDto response, no action path) but does not declare 201 Created — verify that this POST creates, and answer 201."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 20
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "af652587215665fd"
+          }
+        },
+        {
+          "ruleId": "R5xx-03",
+          "ruleIndex": 15,
+          "level": "warning",
+          "message": {
+            "text": "POST /api/v1/books relies on the implicit 200 while creating a resource — declare 201 Created so clients can tell creation from a plain success."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 20
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "f90ca8f12706bb9c"
+          }
+        },
+        {
+          "ruleId": "R4xx-01",
+          "ruleIndex": 2,
+          "level": "error",
+          "message": {
+            "text": "POST /api/v1/books/import exposes the ORM entity Book — the database schema and lazy relations leak into the wire contract."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookController.java"
+                },
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 17
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "fc8cae957c043d8f"
+          }
+        },
+        {
+          "ruleId": "R1xx-05",
+          "ruleIndex": 18,
+          "level": "note",
+          "message": {
+            "text": "Type BookDto mixes reference-id spellings (\"ID\"-style (bookID), \"_id\"-style (author_id)) — keep one: <resource>Id (AIP-140)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookDto.java"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 15
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "02a45eb5310e114d"
+          }
+        },
+        {
+          "ruleId": "R1xx-05",
+          "ruleIndex": 18,
+          "level": "note",
+          "message": {
+            "text": "Type BookDto names its own id \"bookID\" while other types use \"id\" — keep one self-id convention (AIP-140)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookDto.java"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 15
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "6f040ea69ede0631"
+          }
+        },
+        {
+          "ruleId": "R4xx-02",
+          "ruleIndex": 13,
+          "level": "warning",
+          "message": {
+            "text": "Field \"author_id\" is not lowerCamelCase — the payload JSON convention is lowerCamelCase."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookDto.java"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 41
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "ebe78de548dfc50f"
+          }
+        },
+        {
+          "ruleId": "R4xx-02",
+          "ruleIndex": 13,
+          "level": "warning",
+          "message": {
+            "text": "Field \"created_at\" is not lowerCamelCase — the payload JSON convention is lowerCamelCase."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookDto.java"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 59
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "407eaebcef488313"
+          }
+        },
+        {
+          "ruleId": "R4xx-03",
+          "ruleIndex": 22,
+          "level": "note",
+          "message": {
+            "text": "Field \"created_at\" holds a time value as String — clients get no RFC3339 structure to parse."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/book/BookDto.java"
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 59
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "5fa3afefe17f414c"
+          }
+        },
+        {
+          "ruleId": "R5xx-02",
+          "ruleIndex": 3,
+          "level": "error",
+          "message": {
+            "text": "@ExceptionHandler maps the business exception BusinessException to HTTP 500 — a business rule violation is a 4xx outcome, not a server failure."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/err/GlobalExceptionHandler.java"
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 26
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "17a4ca9a436fbd9c"
+          }
+        },
+        {
+          "ruleId": "R5xx-01",
+          "ruleIndex": 14,
+          "level": "warning",
+          "message": {
+            "text": "@ExceptionHandler for ValidationFailed answers Map<String, Object> while 2 of 3 handlers answer with ErrorResponse — clients would parse two error contracts."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/err/GlobalExceptionHandler.java"
+                },
+                "region": {
+                  "startLine": 37,
+                  "startColumn": 32
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "a5a6c7e5abee5d4a"
+          }
+        },
+        {
+          "ruleId": "R6xx-01",
+          "ruleIndex": 16,
+          "level": "warning",
+          "message": {
+            "text": "Base path /legacy/reports carries no version segment matching \"/v[0-9]+\" — clients cannot pin the contract version."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/legacy/LegacyReportController.java"
+                },
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 14
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "0f2f0e41ff0ee0db"
+          }
+        },
+        {
+          "ruleId": "R6xx-94",
+          "ruleIndex": 25,
+          "level": "note",
+          "message": {
+            "text": "Method getReport is served from a legacy path (/legacy/reports/{reportId}) — migrate the route to its versioned form."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/legacy/LegacyReportController.java"
+                },
+                "region": {
+                  "startLine": 18,
+                  "startColumn": 22
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "0b43f16a412400e1"
+          }
+        },
+        {
+          "ruleId": "R1xx-01",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "Collection path segment \"loan\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/loan/LoanController.java"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 26
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "972406edf2fb8530"
+          }
+        },
+        {
+          "ruleId": "R3xx-02",
+          "ruleIndex": 20,
+          "level": "note",
+          "message": {
+            "text": "/api/v1/loan returns a bare List<LoanDto> — a bare JSON array leaves no room for total/page metadata."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/loan/LoanController.java"
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 26
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "e4e733aab9100ab3"
+          }
+        },
+        {
+          "ruleId": "R6xx-93",
+          "ruleIndex": 24,
+          "level": "note",
+          "message": {
+            "text": "GET endpoint autoComplete declares a request body — many HTTP clients silently drop GET bodies."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/member/MemberController.java"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 30
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "b94b7842c1b12835"
+          }
+        },
+        {
+          "ruleId": "R2xx-01",
+          "ruleIndex": 1,
+          "level": "error",
+          "message": {
+            "text": "GET endpoint autoComplete declares a request body (MemberQuery) — many HTTP clients silently drop GET bodies."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/member/MemberController.java"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 68
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "b87ac52ec073213d"
+          }
+        },
+        {
+          "ruleId": "R2xx-04",
+          "ruleIndex": 10,
+          "level": "warning",
+          "message": {
+            "text": "DELETE endpoint deleteMember declares a request body (List<Long>) — model bulk deletes as query parameters or a batch path instead."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/member/MemberController.java"
+                },
+                "region": {
+                  "startLine": 41,
+                  "startColumn": 59
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "dd473db9d7357d2a"
+          }
+        },
+        {
+          "ruleId": "R2xx-06",
+          "ruleIndex": 11,
+          "level": "warning",
+          "message": {
+            "text": "PUT endpoint updateMember takes payload MemberUpdateRequest but returns MemberDto — the mismatch looks like a partial update, which belongs to PATCH."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/member/MemberController.java"
+                },
+                "region": {
+                  "startLine": 46,
+                  "startColumn": 68
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "6998db9bdbc86adc"
+          }
+        },
+        {
+          "ruleId": "R2xx-03",
+          "ruleIndex": 9,
+          "level": "warning",
+          "message": {
+            "text": "PATCH endpoint patchMember takes the full MemberDto payload it also returns — a full replacement belongs to PUT, partial updates send a smaller DTO."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/member/MemberController.java"
+                },
+                "region": {
+                  "startLine": 51,
+                  "startColumn": 57
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "cbcabfdc4a94efcc"
+          }
+        },
+        {
+          "ruleId": "R2xx-05",
+          "ruleIndex": 19,
+          "level": "note",
+          "message": {
+            "text": "Endpoint exportMembers (GET /api/v1/members/export) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/member/MemberController.java"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 28
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "891b2ebf60a19ed8"
+          }
+        },
+        {
+          "ruleId": "R3xx-01",
+          "ruleIndex": 12,
+          "level": "warning",
+          "message": {
+            "text": "GET /api/v1/members/export returns an unpaginated collection — one client request can dump the whole table."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/member/MemberController.java"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 28
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "4667182a447ff456"
+          }
+        },
+        {
+          "ruleId": "R3xx-02",
+          "ruleIndex": 20,
+          "level": "note",
+          "message": {
+            "text": "/api/v1/members/export returns a bare List<MemberDto> — a bare JSON array leaves no room for total/page metadata."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/member/MemberController.java"
+                },
+                "region": {
+                  "startLine": 56,
+                  "startColumn": 28
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "ead35cc9b2d514b4"
+          }
+        },
+        {
+          "ruleId": "R6xx-91",
+          "ruleIndex": 4,
+          "level": "error",
+          "message": {
+            "text": "Method name \"demoBadGetOrder\" carries the demoBad fixture marker — name the operation after what it does."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/order/OrderController.java"
+                },
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 17
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "dcac9bb65f35b959"
+          }
+        },
+        {
+          "ruleId": "R6xx-92",
+          "ruleIndex": 17,
+          "level": "warning",
+          "message": {
+            "text": "Method demoBadGetOrder declares no response type — clients cannot deserialize an undeclared result."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/order/OrderController.java"
+                },
+                "region": {
+                  "startLine": 19,
+                  "startColumn": 17
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "1cbcc9fb98f2d707"
+          }
+        },
+        {
+          "ruleId": "R6xx-92",
+          "ruleIndex": 17,
+          "level": "warning",
+          "message": {
+            "text": "Method archiveOrder declares no response type — clients cannot deserialize an undeclared result."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/library/order/OrderController.java"
+                },
+                "region": {
+                  "startLine": 23,
+                  "startColumn": 17
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "a8e0ea6cdce3f4f9"
+          }
+        },
+        {
+          "ruleId": "R6xx-02",
+          "ruleIndex": 23,
+          "level": "note",
+          "message": {
+            "text": "rpc DoMagic in service LibraryService is not a Standard Method name (Get*/List*/Create*/Update*/Delete*) or a VerbNoun custom method — the name leaks into every generated client."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/proto/library.proto"
+                },
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "6f71a9704f166b30"
+          }
+        }
+      ],
+      "columnKind": "utf16CodeUnits"
+    }
+  ]
+}

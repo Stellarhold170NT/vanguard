@@ -1,5 +1,12 @@
  vanguard 0.1.0-dev · testdata/golden/multi-format-consistency · stub · stub
- 1 services · 11 rules (11 active) · 1 files in <duration>
+ 1 services · 27 rules (27 active) · 1 files in <duration>
+
+ [ERROR] R2xx-01 get-no-body (1)
+ ──────────────────────────────────────────────────────────────────
+ app/inventory.stub.json:1:1
+   GET endpoint demoBadSearchInventory declares a request body (SearchRequest) — many HTTP clients silently drop GET bodies.
+   suggest: move the payload to query parameters
+   suppress: // vanguard:ignore R2xx-01 <reason>
 
  [ERROR] R6xx-91 demo-bad-method-name (2)
  ──────────────────────────────────────────────────────────────────
@@ -18,6 +25,13 @@
    Method writeOffItem declares no response type — clients cannot deserialize an undeclared result.
    suppress: // vanguard:ignore R6xx-92 <reason>
 
+ [INFO]  R2xx-05 custom-method-post (1)
+ ──────────────────────────────────────────────────────────────────
+ app/inventory.stub.json:1:1
+   Endpoint demoBadSearchInventory (GET /v1/inventory/items/search) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually).
+   suggest: POST /v1/inventory/items:search
+   suppress: // vanguard:ignore R2xx-05 <reason>
+
  [INFO]  R6xx-93 demo-get-with-body (1)
  ──────────────────────────────────────────────────────────────────
  app/inventory.stub.json:1:1
@@ -26,6 +40,6 @@
    suppress: // vanguard:ignore R6xx-93 <reason>
 
  ──────────────────────────────────────────────────────────────────
- 4 findings · 2 ERROR · 1 WARN · 1 INFO · 0 suppressed
+ 6 findings · 3 ERROR · 1 WARN · 2 INFO · 0 suppressed
  1 files with findings · 1 scanned · 5 skipped · 0 parse diagnostics
  next: vanguard explain R6xx-91
