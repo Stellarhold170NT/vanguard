@@ -8,7 +8,7 @@
   },
   "summary": {
     "files": 3,
-    "skippedFiles": 2,
+    "skippedFiles": 3,
     "parseDiagnostics": 2,
     "findings": {
       "error": 0,
