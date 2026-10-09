@@ -1,0 +1,17 @@
+# R2xx-02 post-creates-201 — Methods & verbs family (w3-04).
+# Convention (WARN): the create detection is a heuristic (collection-shaped
+# path, single-resource response), so the finding always asks the reader to
+# verify; it never blocks CI (only ERROR changes the exit code, §6.3).
+id: R2xx-02
+slug: post-creates-201
+category: methods
+severity: WARN
+summary: A POST endpoint that creates a resource should declare 201 Created, not the implicit 200.
+docPath: docs/rules/R2xx-02-post-creates-201.md
+exampleGood: |
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public BookDto createBook(@RequestBody CreateBookRequest request)
+exampleBad: |
+  @PostMapping
+  public ResponseEntity<BookDto> createBook(@RequestBody CreateBookRequest request)
