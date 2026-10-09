@@ -1,0 +1,10 @@
+exit: 0
+formats: [pretty, json]
+note: >-
+  The w2-07 data-driven acceptance: rule R6xx-94 (demo-legacy-path) was
+  added to the default registry with ONE YAML record (rules/data/) and ONE
+  table row (rules/demo_rules.go) — zero changes to internal/golden or any
+  engine/render file. The commit that introduces this directory proves it:
+  the harness diff is empty, only rules/ and this directory (plus the
+  mechanical "5 rules" header in every existing snapshot, regenerated via
+  make golden-update) changed.

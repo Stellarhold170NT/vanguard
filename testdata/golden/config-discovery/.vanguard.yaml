@@ -1,0 +1,5 @@
+# Discovered by walking up from the app/ scan root (charter §6.4.2 #1).
+version: 1
+rules:
+  R6xx-92:
+    severity: ERROR

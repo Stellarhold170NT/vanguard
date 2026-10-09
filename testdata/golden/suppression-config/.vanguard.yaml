@@ -1,0 +1,6 @@
+# Path-scoped suppression: silences R6xx-91 under legacy/ only (§6.4.1).
+version: 1
+suppressions:
+  - rule: R6xx-91
+    paths: ["legacy/**"]
+    reason: "legacy module, cleanup tracked in the W3 backlog"

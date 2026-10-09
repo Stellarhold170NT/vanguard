@@ -1,0 +1,8 @@
+{
+  "service": "DraftIgnored",
+  "basePath": "/v1/draft",
+  "methods": [
+    {"name": "demoBadDraftCall", "verb": "GET", "path": "/draft",
+     "response": {"type": "Draft", "statusCode": 200}}
+  ]
+}

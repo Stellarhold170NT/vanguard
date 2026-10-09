@@ -1,0 +1,34 @@
+# .vanguard.yaml — commented example (schema v1, docs/config.md is the spec).
+# Discovery: the nearest .vanguard.yaml from the scan root upwards wins;
+# CLI flags (--config/--no-config) override the file entirely (charter §6.4.2).
+
+version: 1                          # required; v0.1 reads only version 1
+
+frameworks: {}                      # empty = auto-detect; force with e.g.
+# frameworks:
+#   java: [spring-boot-mvc]
+
+include: ["**"]                     # globs relative to THIS file's directory
+exclude:                            # applied after discovery's built-in ignores
+  - "**/generated/**"
+  - "vendor/**"
+
+rules:                              # per-rule override: family prefix or exact id
+  # Downgrade a whole family …
+  R1xx:
+    severity: WARN
+  # … and re-enable / re-escalate one rule of it (exact id wins, §6.4.2 #4).
+  R1xx-02:
+    severity: ERROR
+    disabled: false
+  # R6xx-01 is default-OFF (policy rule, charter §3.6): opt in explicitly.
+  R6xx-01:
+    disabled: false
+    options:                        # only keys declared in the rule metadata;
+      versionPattern: "/v[0-9]+"    # an unknown option key is exit 2
+
+suppressions: []                    # path-scoped: {rule, paths, reason}, e.g.
+# suppressions:
+#   - rule: R1xx
+#     paths: ["src/legacy/**"]
+#     reason: "legacy module, refactor planned W3"

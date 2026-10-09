@@ -1,0 +1,14 @@
+ vanguard 0.1.0-dev · testdata/golden/data-driven-proof · stub · stub
+ 1 services · 5 rules (5 active) · 1 files in <duration>
+
+ [INFO]  R6xx-94 demo-legacy-path (1)
+ ──────────────────────────────────────────────────────────────────
+ app/api.stub.json:1:1
+   Method listArchivedReports is served from a legacy path (/v1/reports/legacy/reports) — migrate the route to its versioned form.
+   suggest: move the route under its versioned prefix
+   suppress: // vanguard:ignore R6xx-94 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 1 findings · 0 ERROR · 0 WARN · 1 INFO · 0 suppressed
+ 1 files with findings · 1 scanned · 4 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-94

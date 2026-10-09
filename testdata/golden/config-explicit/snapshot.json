@@ -1,0 +1,36 @@
+{
+  "vanguard": "0.1.0-dev",
+  "schema": 1,
+  "target": "testdata/golden/config-explicit",
+  "source": {
+    "lang": "stub",
+    "framework": "stub"
+  },
+  "summary": {
+    "files": 2,
+    "skippedFiles": 5,
+    "parseDiagnostics": 0,
+    "findings": {
+      "error": 1,
+      "warning": 0,
+      "info": 0
+    },
+    "suppressed": 0,
+    "durationMs": 0
+  },
+  "findings": [
+    {
+      "ruleId": "R6xx-91",
+      "slug": "demo-bad-method-name",
+      "severity": "ERROR",
+      "message": "Method name \"demoBadGetOrder\" carries the demoBad fixture marker — name the operation after what it does.",
+      "suggestion": "getOrder",
+      "location": {
+        "file": "app/demo.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "diagnostics": []
+}

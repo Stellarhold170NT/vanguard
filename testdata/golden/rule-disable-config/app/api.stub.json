@@ -1,0 +1,13 @@
+{
+  "service": "Stockroom",
+  "basePath": "/v1/stockroom",
+  "methods": [
+    {"name": "demoBadGetStock", "verb": "GET", "path": "/items/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "StockItem", "statusCode": 200}},
+    {"name": "takeStock", "verb": "POST", "path": "/items/take"}
+  ],
+  "types": [
+    {"name": "StockItem", "kind": "record", "fields": [{"name": "id", "type": "string"}]}
+  ]
+}

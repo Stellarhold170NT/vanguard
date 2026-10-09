@@ -1,0 +1,5 @@
+# A typo'd key under a rule override — must fail with file:line (§6.3).
+version: 1
+rules:
+  R6xx-91:
+    severiity: ERROR

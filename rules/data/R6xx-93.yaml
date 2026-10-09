@@ -1,0 +1,13 @@
+# R6xx-93 demo-get-with-body — W2 golden-fixture rule (w2-07).
+# INFO member of the demo set: stub GET methods carrying a payload produce
+# real INFO findings, completing the severity taxonomy in golden snapshots.
+id: R6xx-93
+slug: demo-get-with-body
+category: demo
+severity: INFO
+summary: GET endpoints should not declare a request body — many HTTP clients silently drop GET bodies.
+docPath: docs/rules/R6xx-93-demo-get-with-body.md
+exampleGood: |
+  GET /api/v1/orders?page=0&size=20
+exampleBad: |
+  GET /api/v1/orders/search with body SearchRequest

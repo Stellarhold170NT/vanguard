@@ -1,0 +1,19 @@
+{
+  "service": "Archive",
+  "basePath": "/v1/archive",
+  "methods": [
+    {"name": "demoBadGetRecord", "verb": "GET", "path": "/records/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Record", "statusCode": 200}},
+    {"name": "demoBadSearchRecords", "verb": "GET", "path": "/records/search",
+     "params": [{"name": "req", "in": "body", "type": "SearchRequest"}],
+     "payload": "SearchRequest",
+     "response": {"type": "SearchResult", "statusCode": 200}},
+    {"name": "compactArchive", "verb": "POST", "path": "/compact"}
+  ],
+  "types": [
+    {"name": "Record", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "SearchRequest", "kind": "record", "fields": [{"name": "term", "type": "string"}]},
+    {"name": "SearchResult", "kind": "record", "fields": [{"name": "hits", "type": "int32"}]}
+  ]
+}

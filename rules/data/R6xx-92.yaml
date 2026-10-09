@@ -1,0 +1,14 @@
+# R6xx-92 demo-no-response-type — W2 golden-fixture rule (w2-07).
+# WARN member of the demo set: stub methods without a "response" block
+# produce real WARN findings, so severity grouping (ERROR→WARN→INFO,
+# charter §6.6) is observable in golden snapshots.
+id: R6xx-92
+slug: demo-no-response-type
+category: demo
+severity: WARN
+summary: Every operation must declare a response type — clients cannot deserialize an undeclared result.
+docPath: docs/rules/R6xx-92-demo-no-response-type.md
+exampleGood: |
+  GET /api/v1/orders/{id} → 200 Order
+exampleBad: |
+  GET /api/v1/orders/{id} → (no response declared)

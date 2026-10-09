@@ -1,0 +1,9 @@
+exit: 1
+args: ["--config", "{case}/strict.vanguard.yaml"]
+formats: [pretty, json]
+note: >-
+  --config must beat discovery (charter §6.4.2 #2). The case directory
+  holds a decoy .vanguard.yaml that DISABLES R6xx-91 — had discovery won,
+  the demoBad method would be silent and the exit code 0. Passing
+  strict.vanguard.yaml explicitly keeps the rule active: exit 1 and the
+  header pins the exact config path passed on the command line.

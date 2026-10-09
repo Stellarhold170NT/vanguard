@@ -1,0 +1,14 @@
+ vanguard 0.1.0-dev · testdata/golden/config-explicit · stub · stub · config: testdata/golden/config-explicit/strict.vanguard.yaml
+ 1 services · 5 rules (5 active) · 2 files in <duration>
+
+ [ERROR] R6xx-91 demo-bad-method-name (1)
+ ──────────────────────────────────────────────────────────────────
+ app/demo.stub.json:1:1
+   Method name "demoBadGetOrder" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: getOrder
+   suppress: // vanguard:ignore R6xx-91 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 1 findings · 1 ERROR · 0 WARN · 0 INFO · 0 suppressed
+ 1 files with findings · 2 scanned · 5 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-91
