@@ -35,7 +35,7 @@ func errSurface(handlers []ir.ErrorHandler, types ...ir.Type) *ir.ApiSurface {
 	return s
 }
 
-func pojo(name string, fields ...string) ir.Type {
+func errEnvelope(name string, fields ...string) ir.Type {
 	t := ir.Type{Name: name, Kind: ir.KindPOJO, Package: "com.example.app.dto",
 		Location: ir.Location{File: "src/" + name + ".java", Line: 5, Column: 7}}
 	for _, f := range fields {
@@ -52,6 +52,15 @@ func pojo(name string, fields ...string) ir.Type {
 // config that pins rule options).
 func runErrorRules(t *testing.T, surface *ir.ApiSurface, cfg *engine.Config) []engine.Finding {
 	t.Helper()
+	return runErrorReport(t, surface, cfg).Findings
+}
+
+// runErrorReport lints and hands back the whole report — the panicking-rule
+// diagnostics (an invalid option value) are observable there, not as a raw
+// panic: the engine isolates a panicking rule into a diagnostic and
+// continues (§5.4).
+func runErrorReport(t *testing.T, surface *ir.ApiSurface, cfg *engine.Config) *engine.Report {
+	t.Helper()
 	rs, err := ErrorRules()
 	if err != nil {
 		t.Fatalf("ErrorRules: %v", err)
@@ -66,7 +75,7 @@ func runErrorRules(t *testing.T, surface *ir.ApiSurface, cfg *engine.Config) []e
 	if err != nil {
 		t.Fatalf("Run: %v", err)
 	}
-	return report.Findings
+	return report
 }
 
 // TestR5xxRulesFromData pins the data-driven identity of the family.
@@ -92,6 +101,18 @@ func TestR5xxRulesFromData(t *testing.T) {
 	}
 }
 
+// errFindingsByRule keeps the findings of one rule (the family-scoped
+// filter the R5xx/R6xx assertions read through).
+func errFindingsByRule(findings []engine.Finding, id string) []engine.Finding {
+	var out []engine.Finding
+	for _, f := range findings {
+		if f.RuleID == id {
+			out = append(out, f)
+		}
+	}
+	return out
+}
+
 // TestR5xx01MajorityEnvelope — auto mode: the envelope most handlers
 // return IS the app's standard; a deviating handler splits the contract.
 func TestR5xx01MajorityEnvelope(t *testing.T) {
@@ -101,9 +122,9 @@ func TestR5xx01MajorityEnvelope(t *testing.T) {
 			errHandler("IllegalArgumentException", "ErrorResponse", 0),
 			errHandler("ValidationFailed", "Map<String,Object>", 400),
 		},
-		pojo("ErrorResponse", "code", "message", "details"),
+		errEnvelope("ErrorResponse", "code", "message", "details"),
 	)
-	findings := findByRule(runErrorRules(t, surface, nil), "R5xx-01")
+	findings := errFindingsByRule(runErrorRules(t, surface, nil), "R5xx-01")
 	if len(findings) != 1 {
 		t.Fatalf("findings = %d, want 1 (the Map handler only): %+v", len(findings), findings)
 	}
@@ -135,8 +156,8 @@ func TestR5xx01SilentWithoutConsensus(t *testing.T) {
 			errHandler("A", "Map<String,Object>", 400),
 		},
 	} {
-		surface := errSurface(handlers, pojo("ErrorResponse", "code", "message"))
-		if got := findByRule(runErrorRules(t, surface, nil), "R5xx-01"); len(got) != 0 {
+		surface := errSurface(handlers, errEnvelope("ErrorResponse", "code", "message"))
+		if got := errFindingsByRule(runErrorRules(t, surface, nil), "R5xx-01"); len(got) != 0 {
 			t.Errorf("%s: findings = %d, want 0: %+v", name, len(got), got)
 		}
 	}
@@ -159,10 +180,10 @@ func TestR5xx01PinnedScheme(t *testing.T) {
 				errHandler("C", "UnknownType", 400),
 				errHandler("D", "", 400),
 			},
-			pojo("ErrorResponse", "code", "message", "details"),
-			pojo("BareError", "reason"),
+			errEnvelope("ErrorResponse", "code", "message", "details"),
+			errEnvelope("BareError", "reason"),
 		)
-		findings := findByRule(runErrorRules(t, surface, enabled("code-message-details")), "R5xx-01")
+		findings := errFindingsByRule(runErrorRules(t, surface, enabled("code-message-details")), "R5xx-01")
 		if len(findings) != 1 {
 			t.Fatalf("findings = %d, want 1 (BareError only): %+v", len(findings), findings)
 		}
@@ -176,22 +197,25 @@ func TestR5xx01PinnedScheme(t *testing.T) {
 				errHandler("A", "Problem", 400),
 				errHandler("B", "BareError", 400),
 			},
-			pojo("Problem", "title", "status", "detail"),
-			pojo("BareError", "reason"),
+			errEnvelope("Problem", "title", "status", "detail"),
+			errEnvelope("BareError", "reason"),
 		)
-		findings := findByRule(runErrorRules(t, surface, enabled("problem-json")), "R5xx-01")
+		findings := errFindingsByRule(runErrorRules(t, surface, enabled("problem-json")), "R5xx-01")
 		if len(findings) != 1 || !strings.Contains(findings[0].Message, "BareError") {
 			t.Fatalf("findings = %+v, want 1 on BareError", findings)
 		}
 	})
 	t.Run("unknown scheme value", func(t *testing.T) {
-		defer func() {
-			if r := recover(); r == nil {
-				t.Fatal("unknown scheme option must be loud (panic → engine diagnostic), got silence")
-			}
-		}()
-		surface := errSurface([]ir.ErrorHandler{errHandler("A", "ErrorResponse", 404)}, pojo("ErrorResponse", "code"))
-		_ = runErrorRules(t, surface, enabled("yaml-ish"))
+		surface := errSurface([]ir.ErrorHandler{errHandler("A", "ErrorResponse", 404)}, errEnvelope("ErrorResponse", "code"))
+		// The engine isolates the panicking rule into a diagnostic naming
+		// the rule and the bad option — loud, non-fatal (§5.4).
+		report := runErrorReport(t, surface, enabled("yaml-ish"))
+		if len(report.Diagnostics) != 1 || !strings.Contains(report.Diagnostics[0].Message, "invalid scheme option") {
+			t.Fatalf("diagnostics = %+v, want the unknown-scheme panic surfaced", report.Diagnostics)
+		}
+		if len(report.Findings) != 0 {
+			t.Fatalf("the unknown-scheme rule must produce no findings: %+v", report.Findings)
+		}
 	})
 }
 
@@ -235,8 +259,8 @@ func TestR5xx02No500ForBusiness(t *testing.T) {
 		}(), true},
 	}
 	for _, tc := range cases {
-		surface := errSurface([]ir.ErrorHandler{tc.handler}, pojo("ErrorResponse", "code", "message"))
-		got := findByRule(runErrorRules(t, surface, nil), "R5xx-02")
+		surface := errSurface([]ir.ErrorHandler{tc.handler}, errEnvelope("ErrorResponse", "code", "message"))
+		got := errFindingsByRule(runErrorRules(t, surface, nil), "R5xx-02")
 		if tc.want && len(got) != 1 {
 			t.Errorf("%s: findings = %d, want 1: %+v", tc.name, len(got), got)
 		}
@@ -278,7 +302,7 @@ func TestR5xx03StatusSemantics(t *testing.T) {
 	for _, tc := range cases {
 		surface := errSurface(nil)
 		surface.Services = []ir.Service{{Name: "OrderController", Methods: []ir.Method{tc.method}}}
-		got := findByRule(runErrorRules(t, surface, nil), "R5xx-03")
+		got := errFindingsByRule(runErrorRules(t, surface, nil), "R5xx-03")
 		if tc.want && len(got) != 1 {
 			t.Errorf("%s: findings = %d, want 1: %+v", tc.name, len(got), got)
 		}

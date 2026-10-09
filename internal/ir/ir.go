@@ -300,11 +300,20 @@ func (t Type) Loc() Location { return t.Location }
 // responds with ("" when it returns void). StatusCode is the declared
 // status — from @ResponseStatus; 0 means undeclared, and consumers infer
 // 4xx/5xx from the exception.
+//
+// ExceptionPackage and ExceptionStatus are the w3-06 additions read from
+// the exception's own declaration when that declaration is inside the
+// scanned repo: ExceptionPackage is the resolved package ("" when the
+// class is external or undeclared — the R5xx-02 app-ownership signal) and
+// ExceptionStatus is the @ResponseStatus the exception class itself
+// carries (0 when it declares none).
 type ErrorHandler struct {
-	ExceptionType string   `json:"exceptionType"`
-	ResponseType  string   `json:"responseType,omitempty"`
-	StatusCode    int      `json:"statusCode,omitempty"`
-	Location      Location `json:"location"`
+	ExceptionType    string   `json:"exceptionType"`
+	ResponseType     string   `json:"responseType,omitempty"`
+	StatusCode       int      `json:"statusCode,omitempty"`
+	ExceptionPackage string   `json:"exceptionPackage,omitempty"`
+	ExceptionStatus  int      `json:"exceptionStatus,omitempty"`
+	Location         Location `json:"location"`
 }
 
 // Loc implements Node.

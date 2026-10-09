@@ -239,6 +239,9 @@ func (v *validator) errorHandler(h *ErrorHandler, i int, seen map[string]bool) {
 	if !validStatus(h.StatusCode) {
 		v.add(h.Location, "%s: status code %d out of range (want 0 (undeclared) or 100..599)", what, h.StatusCode)
 	}
+	if !validStatus(h.ExceptionStatus) {
+		v.add(h.Location, "%s: exception-declared status %d out of range (want 0 (none) or 100..599)", what, h.ExceptionStatus)
+	}
 	v.loc(h.Location, what)
 	if h.ExceptionType != "" {
 		if seen[h.ExceptionType] {

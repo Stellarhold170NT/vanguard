@@ -354,19 +354,25 @@ func (inv *invoker) resolveConfig(root string) (*engine.Config, string, error) {
 var registrySource = defaultRegistry
 
 // defaultRegistry assembles the production rule set: the whole demo set
-// (R6xx-99 plus the w2-07 stub-reachable fixtures R6xx-91/92/93) today;
-// w3-03+ families register here next to them. All of them come from data
-// records under rules/data joined to their checks by the registry
-// (charter §3.0, §5.4).
+// (R6xx-99 plus the w2-07 stub-reachable fixtures R6xx-91/92/93) and the
+// w3-06 errors family (R5xx-01..03) and versioning family (R6xx-01..02).
+// All of them come from data records under rules/data joined to their
+// checks by the registry (charter §3.0, §5.4).
 func defaultRegistry() (*rules.Registry, error) {
 	reg := rules.NewRegistry()
-	demoRules, err := rules.DemoRules()
-	if err != nil {
-		return nil, fmt.Errorf("load builtin rules: %w", err)
-	}
-	for _, rule := range demoRules {
-		if err := reg.Register(rule); err != nil {
-			return nil, fmt.Errorf("register %s: %w", rule.ID, err)
+	for _, build := range []func() ([]engine.Rule, error){
+		rules.DemoRules,
+		rules.ErrorRules,
+		rules.VersioningRules,
+	} {
+		family, err := build()
+		if err != nil {
+			return nil, fmt.Errorf("load builtin rules: %w", err)
+		}
+		for _, rule := range family {
+			if err := reg.Register(rule); err != nil {
+				return nil, fmt.Errorf("register %s: %w", rule.ID, err)
+			}
 		}
 	}
 	return reg, nil
