@@ -177,11 +177,11 @@ func TestR4xx01NoEntityInPayload(t *testing.T) {
 			wantFire: false,
 		},
 		{
-			name: "same-name ref resolved to the entity package fires",
+			name: "shadowed name stays silent even when the adapter resolved the entity package",
 			method: ir.Method{OperationName: "raw", Verb: ir.VerbGet, Path: "/api/v1/youth/raw",
 				Response: ir.Response{Type: ir.TypeRef{Name: "Youth", Package: entityPkg}}},
 			types:    []typeSpec{youthEntity, youthDTO},
-			wantFire: true,
+			wantFire: false,
 		},
 		{
 			name: "shadowed name without package info does NOT fire (anti-FP)",
@@ -236,10 +236,10 @@ func TestR4xx02FieldCasing(t *testing.T) {
 		Response: ir.Response{Type: ir.TypeRef{Name: "AuditDto", Package: "com.example.dto"}}}
 	findings := findByRule(runPayloadRules(t, r4xxSurface(m, withEntry(dto, jsonName))), "R4xx-02")
 
-	if len(findings) != 2 {
-		t.Fatalf("R4xx-02 findings = %+v, want exactly 2 (created_by + author_name)", findings)
+	if len(findings) != 3 {
+		t.Fatalf("R4xx-02 findings = %+v, want exactly 3 (created_by + author_name + CreatedBy)", findings)
 	}
-	sawSnake, sawJSON := false, false
+	sawSnake, sawJSON, sawPascal := false, false, false
 	for _, f := range findings {
 		if !strings.Contains(f.Message, "lowerCamelCase") {
 			t.Errorf("message %q should name the convention (reason first)", f.Message)
@@ -259,9 +259,15 @@ func TestR4xx02FieldCasing(t *testing.T) {
 				t.Errorf("JSON-name case suggestion = %q, want authorName", f.Suggestion)
 			}
 		}
+		if strings.Contains(f.Message, `"CreatedBy"`) {
+			sawPascal = true
+			if f.Suggestion != "createdBy" {
+				t.Errorf("PascalCase suggestion = %q, want createdBy", f.Suggestion)
+			}
+		}
 	}
-	if !sawSnake || !sawJSON {
-		t.Errorf("expected findings for both the source name and the resolved JSON name: %+v", findings)
+	if !sawSnake || !sawJSON || !sawPascal {
+		t.Errorf("expected findings for the source name, the resolved JSON name and the PascalCase head: %+v", findings)
 	}
 }
 

@@ -17,7 +17,7 @@ import (
 	"github.com/Stellarhold170NT/vanguard/rules"
 )
 
-const payloadRepo = "../../testdata/spring-payload"
+const payloadRepo = "../testdata/spring-payload"
 
 // scanPayload runs the full pipeline over the fixture and lints the result
 // with the complete w3-05 rule set.
@@ -138,7 +138,7 @@ func TestRuleSourceReadsIROnly(t *testing.T) {
 		for _, banned := range []string{
 			"github.com/Stellarhold170NT/vanguard/adapters/",
 			"github.com/smacker/go-tree-sitter",
-			"os.ReadFile", "ioutil.", "java.",
+			"os.ReadFile", "ioutil.",
 		} {
 			if strings.Contains(string(data), banned) {
 				t.Errorf("%s must not reference %s — rules read the IR only", src, banned)

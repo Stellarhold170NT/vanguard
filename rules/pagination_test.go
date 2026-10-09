@@ -134,14 +134,23 @@ func TestR3xx01ListPaginated(t *testing.T) {
 			want: false,
 		},
 		{
-			name:   "item path /{id} is not a list endpoint",
-			method: func() ir.Method { m := listMethod("getOrder", "/api/v1/orders/{id}"); m.Response.IsCollection = false; m.Response.Type = ir.TypeRef{Name: "OrderResponse"}; return m }(),
-			want:   false,
+			name: "item path /{id} is not a list endpoint",
+			method: func() ir.Method {
+				m := listMethod("getOrder", "/api/v1/orders/{id}")
+				m.Response.IsCollection = false
+				m.Response.Type = ir.TypeRef{Name: "OrderResponse"}
+				return m
+			}(),
+			want: false,
 		},
 		{
-			name:   "non-GET verb is out of scope",
-			method: func() ir.Method { m := listMethod("exportOrders", "/api/v1/orders/export"); m.Verb = ir.VerbPost; return m }(),
-			want:   false,
+			name: "non-GET verb is out of scope",
+			method: func() ir.Method {
+				m := listMethod("exportOrders", "/api/v1/orders/export")
+				m.Verb = ir.VerbPost
+				return m
+			}(),
+			want: false,
 		},
 		{
 			name: "scalar response is out of scope",
