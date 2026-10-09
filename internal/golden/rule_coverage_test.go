@@ -4,10 +4,15 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"testing"
 )
+
+// ruleIDShape is the §3.0 id grammar, used to read the --list-rules
+// catalog rows without importing the rules package.
+var ruleIDShape = regexp.MustCompile(`^R[1-6]xx-[0-9]{2}$`)
 
 // The W3 rule-coverage contract (w3-07): the java-spring showcase must
 // produce at least one finding for every registered rule, and its clean
@@ -36,9 +41,11 @@ func ruleIDsFromCatalog(t *testing.T, bin, root string) []string {
 	}
 	var ids []string
 	for _, line := range strings.Split(string(res.Stdout), "\n") {
-		parts := strings.Split(line, "\t")
-		if len(parts) >= 4 && strings.HasPrefix(parts[0], "R") {
-			ids = append(ids, parts[0])
+		// The catalog is a tabwriter table: the id is the first
+		// whitespace-separated cell of a data row.
+		fields := strings.Fields(line)
+		if len(fields) >= 4 && ruleIDShape.MatchString(fields[0]) {
+			ids = append(ids, fields[0])
 		}
 	}
 	if len(ids) == 0 {
