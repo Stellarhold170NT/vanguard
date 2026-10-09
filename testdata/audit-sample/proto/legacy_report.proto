@@ -1,0 +1,22 @@
+// audit-sample: legacy rpc names (pattern w1-03 §2.3 — non-standard names
+// leaking into generated clients). FetchReportData / RemoveById /
+// DoExport are neither Standard Methods nor known VerbNoun custom methods.
+// The commented-out service mirrors the w1-03 corner: commented code is
+// not an API surface and must be ignored.
+syntax = "proto3";
+
+package youthunion.legacy;
+
+service LegacyReportService {
+  rpc FetchReportData(FetchReportDataRequest) returns (ReportSummaryMessage);
+  rpc RemoveById(RemoveByIdRequest) returns (RemoveByIdResponse);
+  rpc DoExport(DoExportRequest) returns (stream ReportSummaryMessage);
+}
+
+// service RetiredService {
+//   rpc GetOldThing(GetOldThingRequest) returns (OldThing);
+// }
+
+message ReportSummaryMessage {
+  int64 id = 1;
+}

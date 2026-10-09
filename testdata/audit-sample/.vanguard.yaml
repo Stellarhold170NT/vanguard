@@ -1,0 +1,8 @@
+# audit-sample — version 1 (docs/config.md is the spec).
+#
+# The FP/FN audit (w4-04, test-strategy §7) measures the DEFAULT product
+# surface: every rule at its charter §3 severity, demo family R6xx-9x off,
+# policy rule R6xx-01 off (military-youth ships unversioned paths by
+# documented choice — w1-03 §2.1; enabling R6xx-01 is a w5-04 policy
+# question, not a defect scan).
+version: 1

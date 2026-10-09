@@ -1,0 +1,424 @@
+{
+  "schema": "vanguard-audit-expectations/1",
+  "sample": "testdata/audit-sample",
+  "authored": "w4-04 (task #24), BEFORE the first scan — test-strategy §9.1 anti-gaming: claims are fixed before measurement and never tuned against results",
+  "reading": {
+    "slots": "pre-registered violation claims: charter §3 says this construct violates the named rule. The gate CH3 labeler confirms (TP when a finding fires / FN when none does) or rejects the claim itself (CLAIM-REJECTED). line tolerance is +-4 (annotation vs method-line anchoring).",
+    "ok_slots": "expected-silent anchors: documented-clean constructs that every named rule must leave alone. Any finding here is an unexpected row (candidate FP).",
+    "declared": "chartered rules that are NOT registered in the v0.1 registry (22 real rules at w3-07 head). They cannot fire; listed for coverage transparency, excluded from the recall denominator (w4-01 declared-agreement discipline)."
+  },
+  "slots": [
+    {
+      "id": "as-001",
+      "rule": "R1xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+      "line": 27,
+      "pattern_ref": "w1-03 pain 1 (MovementReportResource.java:134 @PostMapping(\"/update/draft\"))",
+      "note": "path segment update/ states the CRUD verb update; the HTTP verb carries the action"
+    },
+    {
+      "id": "as-002",
+      "rule": "R1xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+      "line": 31,
+      "pattern_ref": "w1-03 pain 1 (MovementReportResource.java:145 @PostMapping(\"/update/submit\"))",
+      "note": "path segment update/ states the CRUD verb update"
+    },
+    {
+      "id": "as-003",
+      "rule": "R1xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 23,
+      "pattern_ref": "w1-03 pain 1+3 (/find-by-id/{id} flat route)",
+      "note": "path segment find-by-id carries the CRUD verb token find"
+    },
+    {
+      "id": "as-004",
+      "rule": "R1xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 28,
+      "pattern_ref": "w1-03 pain 1 (/find-all-id-active)",
+      "note": "path segment find-all-id-active carries the CRUD verb token find"
+    },
+    {
+      "id": "as-005",
+      "rule": "R1xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 33,
+      "pattern_ref": "w1-03 pain 3 (@DeleteMapping(\"/delete\") x5 in military-youth, e.g. TrainingPlanResource.java:219)",
+      "note": "path segment delete states the CRUD verb delete; DELETE /{id} is the app's other shape"
+    },
+    {
+      "id": "as-006",
+      "rule": "R1xx-03",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 23,
+      "pattern_ref": "w1-03 pain 1 (/find-by-id/{id} serves the item under an action segment)",
+      "note": "variable {id} sits under the action segment find-by-id"
+    },
+    {
+      "id": "as-007",
+      "rule": "R1xx-04",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+      "line": 21,
+      "pattern_ref": "w1-03 pain 2 (MagazineArticlesResource.java:55 @GetMapping(\"/search/all-by-Name\"))",
+      "note": "literal segment all-by-Name breaks kebab-case (uppercase N mid-segment)"
+    },
+    {
+      "id": "as-008",
+      "rule": "R1xx-05",
+      "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+      "line": 8,
+      "pattern_ref": "w1-03 §2.4 (182 DTOs mix id spellings)",
+      "note": "one type carries two reference-id spellings: reportID (ID-style) + branch_id (_id-style)"
+    },
+    {
+      "id": "as-009",
+      "rule": "R1xx-05",
+      "file": "src/main/java/com/youthunion/audit/dto/MovementLogDto.java",
+      "line": 8,
+      "pattern_ref": "w1-03 §2.4 (self-id styles mixed across the surface)",
+      "note": "type spells its own id movementLogId while other surface types use id — v0.1 reports the mix, does not enforce"
+    },
+    {
+      "id": "as-010",
+      "rule": "R2xx-01",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 61,
+      "pattern_ref": "w1-03 pain 7a (YouthResource.java:113-117 GET /auto-complete + @RequestBody)",
+      "note": "GET declares a request body — common HTTP clients silently drop it"
+    },
+    {
+      "id": "as-011",
+      "rule": "R2xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 47,
+      "pattern_ref": "w1-03 pain 3 contrast (JHipster baseline creates answer 201; a new POST missing it regresses silently)",
+      "note": "create-shaped POST (single DTO response, no action segment) without 201/202"
+    },
+    {
+      "id": "as-012",
+      "rule": "R2xx-03",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+      "line": 41,
+      "pattern_ref": "w1-03 pain 7c (update semantics mixed; 4 real PATCHes beside PUT-partial)",
+      "note": "PATCH takes the full MagazinePostDto it also returns — full replacement belongs to PUT"
+    },
+    {
+      "id": "as-013",
+      "rule": "R2xx-04",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 66,
+      "pattern_ref": "w1-03 pain 7b (YouthResource.java:76-79 @DeleteMapping + @RequestBody List<String> ids)",
+      "note": "DELETE declares a request body; bulk deletes read as batch path or query params"
+    },
+    {
+      "id": "as-014",
+      "rule": "R2xx-05",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+      "line": 35,
+      "pattern_ref": "w1-03 pain 1+9 (7x GET /search/all-by-condition)",
+      "note": "action-shaped route served by GET; AIP-136 custom methods read POST <collection>/{id}:<action>"
+    },
+    {
+      "id": "as-015",
+      "rule": "R2xx-05",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+      "line": 21,
+      "pattern_ref": "w1-03 pain 2 (same route as the casing violation)",
+      "note": "action-shaped route (search) served by GET — multi-rule span with as-007"
+    },
+    {
+      "id": "as-016",
+      "rule": "R2xx-05",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+      "line": 26,
+      "pattern_ref": "w1-03 pain 1+9 (/search/all-by-condition spelled correctly yet still action-shaped)",
+      "note": "action-shaped route served by GET"
+    },
+    {
+      "id": "as-017",
+      "rule": "R2xx-05",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 23,
+      "pattern_ref": "w1-03 pain 1 (find-by-id reads as an action route)",
+      "note": "third rule on the as-003 span"
+    },
+    {
+      "id": "as-018",
+      "rule": "R2xx-05",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 28,
+      "pattern_ref": "w1-03 pain 1 (find-all-id-active reads as an action route)",
+      "note": "action-shaped route served by GET"
+    },
+    {
+      "id": "as-019",
+      "rule": "R2xx-06",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 75,
+      "pattern_ref": "w1-03 pain 7c (YouthResource.java:62-64 partialUpdateYouth on PUT)",
+      "note": "PUT payload YouthStatusUpdate differs from response YouthMemberDto — reads as a partial update, PATCH owns those"
+    },
+    {
+      "id": "as-020",
+      "rule": "R3xx-01",
+      "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+      "line": 27,
+      "pattern_ref": "w1-03 pain 4 (unpaginated list endpoints beside 13 Page returns)",
+      "note": "GET /archived returns an unpaginated collection — one request dumps the table"
+    },
+    {
+      "id": "as-021",
+      "rule": "R3xx-01",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+      "line": 36,
+      "pattern_ref": "w1-03 pain 4",
+      "note": "item-scoped sub-collection list without pagination input"
+    },
+    {
+      "id": "as-022",
+      "rule": "R3xx-01",
+      "file": "src/main/java/com/youthunion/audit/web/rest/AuthResource.java",
+      "line": 26,
+      "pattern_ref": "w1-03 §2.1 auth surface (VauthzController /permission)",
+      "note": "permission list unpaginated"
+    },
+    {
+      "id": "as-023",
+      "rule": "R3xx-01",
+      "file": "src/main/java/com/youthunion/audit/web/rest/RouteIndexResource.java",
+      "line": 17,
+      "pattern_ref": "w1-03 §2.1 (RoutesController — the odd base path)",
+      "note": "route index returns an unpaginated collection"
+    },
+    {
+      "id": "as-024",
+      "rule": "R3xx-01",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 28,
+      "pattern_ref": "w1-03 pain 1 (id-list endpoints unpaginated)",
+      "note": "List<Long> id dump without pagination"
+    },
+    {
+      "id": "as-025",
+      "rule": "R3xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+      "line": 27,
+      "pattern_ref": "w1-03 pain 4 (bare arrays leave no room for total/page metadata)",
+      "note": "bare List<ReportDto> response"
+    },
+    {
+      "id": "as-026",
+      "rule": "R3xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MagazinePostResource.java",
+      "line": 36,
+      "pattern_ref": "w1-03 pain 4",
+      "note": "bare List<CommentDto> response"
+    },
+    {
+      "id": "as-027",
+      "rule": "R3xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/AuthResource.java",
+      "line": 26,
+      "pattern_ref": "w1-03 §2.1 auth surface",
+      "note": "bare List<PermissionDto> response"
+    },
+    {
+      "id": "as-028",
+      "rule": "R3xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/RouteIndexResource.java",
+      "line": 17,
+      "pattern_ref": "w1-03 §2.1 (RoutesController)",
+      "note": "bare List<String> response"
+    },
+    {
+      "id": "as-029",
+      "rule": "R3xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/UnionFeeResource.java",
+      "line": 30,
+      "pattern_ref": "w1-03 pain 4 (item-scoped bare lists)",
+      "note": "bare List<UnionFeeDto> under /by-member/{memberId} — R3xx-01 stays silent here (item path), R3xx-02 still reads the wire shape"
+    },
+    {
+      "id": "as-030",
+      "rule": "R3xx-02",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 28,
+      "pattern_ref": "w1-03 pain 4",
+      "note": "bare List<Long> response"
+    },
+    {
+      "id": "as-031",
+      "rule": "R3xx-03",
+      "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+      "line": 23,
+      "pattern_ref": "w1-03 pain 4 (custom page params without a cap — Pageable caps are resolver-side, hand-rolled params have none)",
+      "note": "query param size carries no @Max — unbounded page size"
+    },
+    {
+      "id": "as-032",
+      "rule": "R4xx-01",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 70,
+      "pattern_ref": "w1-03 pain 6 (YouthResource.java:121-124 GET /current returns the entity)",
+      "note": "response type is the scanned @Entity YouthMember — DB schema and lazy relations leak to the wire"
+    },
+    {
+      "id": "as-033",
+      "rule": "R4xx-01",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+      "line": 56,
+      "pattern_ref": "w1-03 pain 6 (YouthResource.java:83-87 import returns ImportResult<Youth>)",
+      "note": "entity rides the response as a generic argument ImportResult<YouthMember>"
+    },
+    {
+      "id": "as-034",
+      "rule": "R4xx-02",
+      "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+      "line": 10,
+      "pattern_ref": "w1-03 §2.4 (mixed field conventions across 182 DTOs)",
+      "note": "JSON key branch_id is not lowerCamelCase"
+    },
+    {
+      "id": "as-035",
+      "rule": "R4xx-02",
+      "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+      "line": 11,
+      "pattern_ref": "w1-03 §2.4",
+      "note": "JSON key created_date is not lowerCamelCase"
+    },
+    {
+      "id": "as-036",
+      "rule": "R4xx-03",
+      "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+      "line": 11,
+      "pattern_ref": "w1-03 §2.4 (recon had no direct time-field hit — declared as a defensive check in charter §3.4)",
+      "note": "time-like field created_date typed String — no RFC3339 structure for clients"
+    },
+    {
+      "id": "as-037",
+      "rule": "R5xx-01",
+      "file": "src/main/java/com/youthunion/audit/config/GlobalErrorAdvice.java",
+      "line": 44,
+      "pattern_ref": "w1-03 pain 5 (ExceptionTranslator RFC-7807 beside a second envelope; new Map handlers break the shared contract)",
+      "note": "3 of 4 handlers answer ErrorResponse; the legacy Map handler deviates — two error contracts for clients"
+    },
+    {
+      "id": "as-038",
+      "rule": "R5xx-02",
+      "file": "src/main/java/com/youthunion/audit/config/GlobalErrorAdvice.java",
+      "line": 38,
+      "pattern_ref": "charter §3.5 R5xx-02 (AIP-193, design-new rule; FP-safe name+ownership heuristic)",
+      "note": "app-owned YouthUnionException mapped to 500 — a business outcome as a server fault"
+    },
+    {
+      "id": "as-039",
+      "rule": "R5xx-03",
+      "file": "src/main/java/com/youthunion/audit/web/rest/TrainingCourseResource.java",
+      "line": 47,
+      "pattern_ref": "w1-03 pain 3 (status side of the create contract; pairs with R2xx-02 on the same span)",
+      "note": "create-shaped POST relies on the implicit 200"
+    },
+    {
+      "id": "as-040",
+      "rule": "R6xx-02",
+      "file": "proto/legacy_report.proto",
+      "line": 10,
+      "pattern_ref": "w1-03 §2.3 (non-standard rpc names leak into 10 generated client classes)",
+      "note": "FetchReportData / RemoveById / DoExport are neither Standard Methods nor known VerbNoun names; findings anchor at the service node"
+    }
+  ],
+  "ok_slots": [
+    {
+      "id": "ok-001",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 36,
+      "note": "clean paginated list — R3xx-01/02, R1xx-01 silent (Page envelope + Pageable + plural final segment)"
+    },
+    {
+      "id": "ok-002",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 41,
+      "note": "clean create — 201 declared (R2xx-02, R5xx-03 silent)"
+    },
+    {
+      "id": "ok-003",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 47,
+      "note": "clean full update — PUT payload == response type (R2xx-06 silent)"
+    },
+    {
+      "id": "ok-004",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 52,
+      "note": "clean partial update — PATCH payload type differs from response (R2xx-03 silent)"
+    },
+    {
+      "id": "ok-005",
+      "file": "src/main/java/com/youthunion/audit/web/rest/YouthMemberResource.java",
+      "line": 57,
+      "note": "clean item delete — no body (R2xx-04 silent)"
+    },
+    {
+      "id": "ok-006",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+      "line": 45,
+      "note": "clean create with 201 (R2xx-02, R5xx-03 silent)"
+    },
+    {
+      "id": "ok-007",
+      "file": "src/main/java/com/youthunion/audit/web/rest/MovementLogResource.java",
+      "line": 51,
+      "note": "POST /export returning byte[] — silent under R2xx-05 (POST satisfies the verb half) and R3xx-02 (not a collection)"
+    },
+    {
+      "id": "ok-008",
+      "file": "src/main/java/com/youthunion/audit/web/rest/AuthResource.java",
+      "line": 31,
+      "note": "POST /sync-departments — sync is a known action verb; POST stays silent under R2xx-05"
+    },
+    {
+      "id": "ok-009",
+      "file": "proto/youth_union.proto",
+      "line": 7,
+      "note": "standard + VerbNoun rpc names (R6xx-02 silent; Search* and Sync* count as standard/known)"
+    },
+    {
+      "id": "ok-010",
+      "file": "src/main/java/com/youthunion/audit/dto/YouthMemberDto.java",
+      "line": 8,
+      "note": "clean DTO — camelCase fields, Instant time field, exact id (R4xx-02/03, R1xx-05 silent)"
+    }
+  ],
+  "declared": [
+    {
+      "id": "dm-01",
+      "rule": "R3xx-04",
+      "file": "src/main/java/com/youthunion/audit/web/rest/ReportResource.java",
+      "line": 22,
+      "miss_reason": "charter rule not registered in the v0.1 registry (22 real rules at w3-07 head); the sample does carry the trigger (Page<T> vs PageResponse<T> vs bare List coexistence)"
+    },
+    {
+      "id": "dm-02",
+      "rule": "R4xx-04",
+      "file": "src/main/java/com/youthunion/audit/dto/ReportSummaryDto.java",
+      "line": 8,
+      "miss_reason": "charter rule not registered in the v0.1 registry; the sample carries the trigger (Dto/Request/Response/Result suffixes coexist)"
+    },
+    {
+      "id": "dm-03",
+      "rule": "R5xx-04",
+      "file": "src/main/java/com/youthunion/audit/config/ResponseWrapper.java",
+      "line": 13,
+      "miss_reason": "charter rule not registered in the v0.1 registry; the sample carries the trigger (two @ControllerAdvice sources)"
+    },
+    {
+      "id": "dm-04",
+      "rule": "R6xx-03",
+      "file": "src/main/java/com/youthunion/audit/web/rest/RouteIndexResource.java",
+      "line": 14,
+      "miss_reason": "charter rule not registered in the v0.1 registry; the sample carries the trigger (bare /api beside /api/youth-union/...)"
+    }
+  ]
+}
