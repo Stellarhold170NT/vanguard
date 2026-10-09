@@ -1,0 +1,21 @@
+# R5xx-02 no-500-for-business — a business exception must not be mapped to
+# HTTP 500 (charter §3.5, AIP-193; w1-03: 500 is "the server is broken", a
+# business rule violation is a client-comprehensible 4xx outcome). ERROR:
+# the mapping actively lies to monitoring and to clients. FP-safe by
+# construction: the rule fires only on exceptions the scan knows are
+# declared inside the repo (adapter resolves the package), never on the
+# java.lang/Spring fallback handlers of external exceptions.
+id: R5xx-02
+slug: no-500-for-business
+category: errors
+severity: ERROR
+summary: A business exception (declared in the scanned repo) must not be mapped to HTTP 500 — 500 is reserved for unexpected server failures.
+docPath: docs/rules/R5xx-02-no-500-for-business.md
+exampleGood: |
+  @ExceptionHandler(InsufficientBalanceException.class)
+  @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+  public ErrorResponse handle(InsufficientBalanceException ex) { ... }
+exampleBad: |
+  @ExceptionHandler(InsufficientBalanceException.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  public ErrorResponse handle(InsufficientBalanceException ex) { ... }

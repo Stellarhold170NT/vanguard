@@ -1,6 +1,7 @@
  vanguard 0.1.0-dev · testdata/golden/severity-display-vs-exit · stub · stub
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  1 services · 10 rules (10 active) · 1 files in <duration>
 =======
  1 services · 11 rules (11 active) · 1 files in <duration>
@@ -15,6 +16,9 @@
 =======
  1 services · 11 rules (11 active) · 1 files in <duration>
 >>>>>>> agent-w3-05
+=======
+ 1 services · 10 rules (10 active) · 1 files in <duration>
+>>>>>>> agent-w3-06
 
  [ERROR] R6xx-91 demo-bad-method-name (2)
  ──────────────────────────────────────────────────────────────────

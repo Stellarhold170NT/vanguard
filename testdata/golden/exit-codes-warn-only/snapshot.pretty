@@ -1,6 +1,7 @@
 <<<<<<< HEAD
  vanguard 0.1.0-dev · testdata/golden/exit-codes-warn-only · stub · stub
 <<<<<<< HEAD
+<<<<<<< HEAD
  1 services · 10 rules (10 active) · 1 files in <duration>
 =======
  vanguard 0.1.0-dev · testdata/golden/exit-codes-warn-only · stub · stub · config: <case>/.vanguard.yaml
@@ -16,6 +17,9 @@
    suggest: add a Pageable parameter or page/size query parameters to bound the result set
    suppress: // vanguard:ignore R3xx-01 <reason>
 >>>>>>> agent-w3-05
+=======
+ 1 services · 10 rules (10 active) · 1 files in <duration>
+>>>>>>> agent-w3-06
 
  [INFO]  R6xx-93 demo-get-with-body (1)
  ──────────────────────────────────────────────────────────────────

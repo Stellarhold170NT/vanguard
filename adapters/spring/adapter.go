@@ -45,7 +45,7 @@ func DetectJavaFiles(files []string) []string {
 // silent IR corruption. Never returns an error, never aborts.
 func (a *Adapter) ParseSurface(files []string) (*ir.ApiSurface, []ir.Diagnostic) {
 	res, diags := java.New(a.root).Parse(files)
-	m := &mapper{index: buildTypeIndex(res.Files)}
+	m := &mapper{index: buildTypeIndex(res.Files), classes: buildClassIndex(res.Files)}
 
 	surface := &ir.ApiSurface{Source: ir.Source{Lang: Language}}
 	info := detectFramework(a.root, files, res)
@@ -72,12 +72,35 @@ func (a *Adapter) ParseSurface(files []string) (*ir.ApiSurface, []ir.Diagnostic)
 		}
 	}
 
+	surface.GrpcServices = grpcServicesFrom(a.root, files)
 	m.emitTypes(surface, res.Files)
 	a.applyOverlay(surface, files, &diags)
 
 	diags = append(diags, surface.Validate()...)
 	surface.Diagnostics = diags
 	return surface, diags
+}
+
+// buildClassIndex indexes every extracted declaration, nested included, by
+// simple name — the exception-class lookup the R5xx-02 app-ownership
+// signal reads (first declaration wins, mirroring buildTypeIndex).
+func buildClassIndex(files []*java.File) map[string]*java.Class {
+	idx := map[string]*java.Class{}
+	var walk func(cls *java.Class)
+	walk = func(cls *java.Class) {
+		if _, seen := idx[cls.Name]; !seen {
+			idx[cls.Name] = cls
+		}
+		for _, n := range cls.Nested {
+			walk(n)
+		}
+	}
+	for _, f := range files {
+		for _, c := range f.Types {
+			walk(c)
+		}
+	}
+	return idx
 }
 
 // emitTypes extracts the DTO layer: every record/POJO-with-getters the API

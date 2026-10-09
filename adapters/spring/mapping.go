@@ -521,8 +521,12 @@ func firstSignal(params []java.Param) ir.Location {
 }
 
 // mapper carries the shared context of one mapping pass over a Result.
+// classes is the exception-class lookup (simple name → declaration) the
+// advice mapping reads to resolve an exception's own package and
+// @ResponseStatus (the R5xx-02 app-ownership signal).
 type mapper struct {
-	index typeIndex
+	index   typeIndex
+	classes map[string]*java.Class
 }
 
 // typeRef converts a raw type use into the IR's TypeRef: transport
@@ -786,12 +790,25 @@ func (m *mapper) mapAdvice(c *java.Class, sink *[]ir.Diagnostic) []ir.ErrorHandl
 		}
 		resp := m.response(cm.ReturnType, 0, cm.Location)
 		for _, ex := range excs {
-			out = append(out, ir.ErrorHandler{
+			h := ir.ErrorHandler{
 				ExceptionType: ex,
 				ResponseType:  resp.Type.Name,
 				StatusCode:    status,
 				Location:      cm.Location,
-			})
+			}
+			// The exception's own declaration (when it lives inside the
+			// scanned repo) supplies the R5xx-02 signals: the resolved
+			// package (app ownership) and the @ResponseStatus the class
+			// itself carries.
+			if cls := m.classes[ex]; cls != nil {
+				h.ExceptionPackage = m.index[ex]
+				for _, a := range cls.Annotations {
+					if a.Name == "ResponseStatus" {
+						h.ExceptionStatus, _ = httpStatusOf(a)
+					}
+				}
+			}
+			out = append(out, h)
 		}
 	}
 	return out
