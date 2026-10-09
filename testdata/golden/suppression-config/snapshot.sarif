@@ -10,6 +10,23 @@
           "informationUri": "https://github.com/Stellarhold170NT/vanguard",
           "rules": [
             {
+              "id": "R3xx-01",
+              "name": "list-paginated",
+              "shortDescription": {
+                "text": "List endpoints must accept pagination parameters (Pageable or page/size) — an unpaginated GET collection lets one client dump the whole table."
+              },
+              "fullDescription": {
+                "text": "List endpoints must accept pagination parameters (Pageable or page/size) — an unpaginated GET collection lets one client dump the whole table."
+              },
+              "helpUri": "docs/rules/R3xx-01-list-paginated.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "pagination"
+              }
+            },
+            {
               "id": "R6xx-92",
               "name": "demo-no-response-type",
               "shortDescription": {
@@ -31,8 +48,32 @@
       },
       "results": [
         {
-          "ruleId": "R6xx-92",
+          "ruleId": "R3xx-01",
           "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "GET /v1/ledger/entries returns an unpaginated collection — one client request can dump the whole table."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "legacy/old-api.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "fc98ddd183fa9d14"
+          }
+        },
+        {
+          "ruleId": "R6xx-92",
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Method exportLedger declares no response type — clients cannot deserialize an undeclared result."
@@ -55,8 +96,32 @@
           }
         },
         {
-          "ruleId": "R6xx-92",
+          "ruleId": "R3xx-01",
           "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "GET /v1/loans/loans returns an unpaginated collection — one client request can dump the whole table."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/api.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "a88a091377079041"
+          }
+        },
+        {
+          "ruleId": "R6xx-92",
+          "ruleIndex": 1,
           "level": "warning",
           "message": {
             "text": "Method renewLoan declares no response type — clients cannot deserialize an undeclared result."

@@ -1,5 +1,16 @@
  vanguard 0.1.0-dev · testdata/golden/suppression-config · stub · stub · config: <case>/.vanguard.yaml
- 2 services · 5 rules (5 active) · 2 files in <duration>
+ 2 services · 11 rules (11 active) · 2 files in <duration>
+
+ [WARN]  R3xx-01 list-paginated (2)
+ ──────────────────────────────────────────────────────────────────
+ legacy/old-api.stub.json:1:1
+   GET /v1/ledger/entries returns an unpaginated collection — one client request can dump the whole table.
+   suggest: add a Pageable parameter or page/size query parameters to bound the result set
+   suppress: // vanguard:ignore R3xx-01 <reason>
+
+ src/api.stub.json:1:1
+   GET /v1/loans/loans returns an unpaginated collection — one client request can dump the whole table.
+   suggest: add a Pageable parameter or page/size query parameters to bound the result set
 
  [WARN]  R6xx-92 demo-no-response-type (2)
  ──────────────────────────────────────────────────────────────────
@@ -11,6 +22,6 @@
    Method renewLoan declares no response type — clients cannot deserialize an undeclared result.
 
  ──────────────────────────────────────────────────────────────────
- 2 findings · 0 ERROR · 2 WARN · 0 INFO · 1 suppressed
+ 4 findings · 0 ERROR · 4 WARN · 0 INFO · 1 suppressed
  2 files with findings · 2 scanned · 6 skipped · 0 parse diagnostics
- next: vanguard explain R6xx-92
+ next: vanguard explain R3xx-01

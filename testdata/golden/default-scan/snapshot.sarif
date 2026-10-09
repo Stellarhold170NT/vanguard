@@ -27,6 +27,23 @@
               }
             },
             {
+              "id": "R3xx-01",
+              "name": "list-paginated",
+              "shortDescription": {
+                "text": "List endpoints must accept pagination parameters (Pageable or page/size) — an unpaginated GET collection lets one client dump the whole table."
+              },
+              "fullDescription": {
+                "text": "List endpoints must accept pagination parameters (Pageable or page/size) — an unpaginated GET collection lets one client dump the whole table."
+              },
+              "helpUri": "docs/rules/R3xx-01-list-paginated.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "pagination"
+              }
+            },
+            {
               "id": "R6xx-92",
               "name": "demo-no-response-type",
               "shortDescription": {
@@ -64,6 +81,30 @@
         }
       },
       "results": [
+        {
+          "ruleId": "R3xx-01",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "GET /v1/library/books returns an unpaginated collection — one client request can dump the whole table."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "app/library.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "58a4ae7d2128b23a"
+          }
+        },
         {
           "ruleId": "R6xx-91",
           "ruleIndex": 0,
@@ -138,7 +179,7 @@
         },
         {
           "ruleId": "R6xx-92",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Method findDuplicates declares no response type — clients cannot deserialize an undeclared result."
@@ -162,7 +203,7 @@
         },
         {
           "ruleId": "R6xx-93",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "GET endpoint demoBadSearchArchive declares a request body — many HTTP clients silently drop GET bodies."

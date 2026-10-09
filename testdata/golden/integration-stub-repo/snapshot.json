@@ -12,13 +12,26 @@
     "parseDiagnostics": 2,
     "findings": {
       "error": 0,
-      "warning": 0,
+      "warning": 1,
       "info": 0
     },
     "suppressed": 0,
     "durationMs": 0
   },
-  "findings": [],
+  "findings": [
+    {
+      "ruleId": "R4xx-02",
+      "slug": "field-casing",
+      "severity": "WARN",
+      "message": "Field \"total_amount\" is not lowerCamelCase — the payload JSON convention is lowerCamelCase.",
+      "suggestion": "totalAmount",
+      "location": {
+        "file": "src/orders.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
   "diagnostics": [
     {
       "message": "invalid JSON in stub file: unexpected end of JSON input",
