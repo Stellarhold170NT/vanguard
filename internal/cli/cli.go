@@ -355,9 +355,9 @@ var registrySource = defaultRegistry
 
 // defaultRegistry assembles the production rule set: the whole demo set
 // (R6xx-99 plus the w2-07 stub-reachable fixtures R6xx-91/92/93) and the
-// w3-06 errors family (R5xx-01..03) and versioning family (R6xx-01..02).
-// All of them come from data records under rules/data joined to their
-// checks by the registry (charter §3.0, §5.4).
+// W3 rule families as they land (w3-03: R1xx resources & naming; w3-06:
+// R5xx errors, R6xx versioning). All of them come from data records under
+// rules/data joined to their checks by the registry (charter §3.0, §5.4).
 func defaultRegistry() (*rules.Registry, error) {
 	reg := rules.NewRegistry()
 	for _, build := range []func() ([]engine.Rule, error){
@@ -373,6 +373,15 @@ func defaultRegistry() (*rules.Registry, error) {
 			if err := reg.Register(rule); err != nil {
 				return nil, fmt.Errorf("register %s: %w", rule.ID, err)
 			}
+		}
+	}
+	resourceRules, err := rules.ResourceRules()
+	if err != nil {
+		return nil, fmt.Errorf("load builtin rules: %w", err)
+	}
+	for _, rule := range resourceRules {
+		if err := reg.Register(rule); err != nil {
+			return nil, fmt.Errorf("register %s: %w", rule.ID, err)
 		}
 	}
 	return reg, nil

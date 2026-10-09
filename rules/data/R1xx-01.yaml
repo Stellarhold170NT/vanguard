@@ -1,0 +1,16 @@
+# R1xx-01 plural-collection — charter §3.1 (AIP-131, AIP-122).
+# Collection paths use plural nouns: /book reads as one item, /books reads
+# as the collection. w1-03 §2.1: 23/24 controllers already follow the plural
+# convention — a lone singular controller forks the URL space for clients.
+id: R1xx-01
+slug: plural-collection
+category: resources
+severity: WARN
+summary: Collection paths use plural nouns — /book reads as one item, /books as the collection (AIP-131, AIP-122).
+docPath: docs/rules/R1xx-01-plural-collection.md
+exampleGood: |
+  @GetMapping("/books/{id}")
+  public BookDto get(@PathVariable Long id)
+exampleBad: |
+  @GetMapping("/book/{id}")
+  public BookDto get(@PathVariable Long id)

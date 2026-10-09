@@ -1,0 +1,250 @@
+# Adversarial corpus manifest (test-strategy §3.6) — w3-03 seed for the
+# R1xx family. The w4-01/w4-02 harness reads this file directly.
+# expect: hit  = the rule MUST report >= 1 finding on the file
+# expect: miss = the rule MUST stay silent on the file
+
+- id: singular-collection-path
+  rule: R1xx-01
+  file: R1xx-01/vio-singular-collection-path.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    GET /book/{id} - singular collection segment before a path variable.
+
+- id: singular-list-endpoint
+  rule: R1xx-01
+  file: R1xx-01/vio-singular-list-endpoint.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    GET /training-plan returning Page of plans - the final segment of a
+    collection GET is the list route itself.
+
+- id: singular-sub-collection
+  rule: R1xx-01
+  file: R1xx-01/vio-singular-sub-collection.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    /books/{bookId}/review/{reviewId} - sub-collection noun singular while
+    the sibling /books/{bookId}/reviews is plural, the fork the rule
+    prevents.
+
+- id: uncountable-noun
+  rule: R1xx-01
+  file: R1xx-01/ok-uncountable-noun.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    /equipment/{id} - uncountable noun, never flagged as singular.
+
+- id: plural-standard
+  rule: R1xx-01
+  file: R1xx-01/ok-plural-standard.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    /books and /books/{id} - the convention the app already follows.
+
+- id: delete-verb-path
+  rule: R1xx-02
+  file: R1xx-02/vio-delete-verb-path.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    @DeleteMapping("/delete/{id}") - the verb is stated twice; the HTTP
+    verb already carries the action.
+
+- id: update-draft-path
+  rule: R1xx-02
+  file: R1xx-02/vio-update-draft-path.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    POST /update/draft - the verb "update" hides as the first segment of
+    an action-phrase route.
+
+- id: camel-verb-path
+  rule: R1xx-02
+  file: R1xx-02/vio-camel-verb-path.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    /getUserById - camelCase splits into get|user|by|id; the exact token
+    get matches.
+
+- id: noun-getter
+  rule: R1xx-02
+  file: R1xx-02/ok-noun-getter.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    /budget-getter - "getter" is not the token "get"; token-boundary
+    matching only, never substrings.
+
+- id: noun-updates
+  rule: R1xx-02
+  file: R1xx-02/ok-noun-updates.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    GET /updates and POST /statistics/rebuild - "updates" is the resource
+    noun and "rebuild" is a non-CRUD action verb (R2xx-05's subject).
+
+- id: flat-find-route
+  rule: R1xx-03
+  file: R1xx-03/vio-flat-find-route.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    /find-by-id/{id} - the variable sits under an action segment instead
+    of the resource that owns it.
+
+- id: consecutive-params
+  rule: R1xx-03
+  file: R1xx-03/vio-consecutive-params.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    /orders/{orderId}/{itemId} - the sub-collection owning the second id
+    is missing.
+
+- id: param-first-path
+  rule: R1xx-03
+  file: R1xx-03/vio-param-first-path.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    /{memberId}/loans - the route starts with a path variable, no
+    collection anchor before it.
+
+- id: nested-hierarchy
+  rule: R1xx-03
+  file: R1xx-03/ok-nested-hierarchy.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    /authors/{authorId}/books/{bookId} - the canonical two-level
+    hierarchy is silent.
+
+- id: single-level-collection
+  rule: R1xx-03
+  file: R1xx-03/ok-single-level-collection.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    /libraries/{libraryId} - the minimal legal shape, silent.
+
+- id: mixed-case-segment
+  rule: R1xx-04
+  file: R1xx-04/vio-mixed-case-segment.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    /search/all-by-Name - a capital inside the kebab segment splits the
+    family in two.
+
+- id: camel-segment
+  rule: R1xx-04
+  file: R1xx-04/vio-camel-segment.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    /loanOrders - camelCase literal segment; the suggestion is the
+    kebab-cased path.
+
+- id: pascal-param
+  rule: R1xx-04
+  file: R1xx-04/vio-pascal-param.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    /trainings/{YouthId} - PascalCase path variable; lowerCamel is the
+    one variable convention.
+
+- id: kebab-standard
+  rule: R1xx-04
+  file: R1xx-04/ok-kebab-standard.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    /audio-books/{bookId} - plain kebab segments with a camel variable.
+
+- id: acronym-lowercase
+  rule: R1xx-04
+  file: R1xx-04/ok-acronym-lowercase.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    /api-keys/{keyId} - a lower-case acronym inside kebab stays
+    consistent.
+
+- id: mixed-suffix-convention
+  rule: R1xx-05
+  file: R1xx-05/vio-mixed-suffix-convention.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    StockItemDto mixes bookID / member_id / publisherId - three spellings
+    of the reference-id convention in one type.
+
+- id: mixed-json-key
+  rule: R1xx-05
+  file: R1xx-05/vio-mixed-json-key.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    user_id vs orderId JSON keys - the serialized name is what clients
+    see, so a JSON key spelling counts.
+
+- id: self-id-mix
+  rule: R1xx-05
+  file: R1xx-05/vio-self-id-mix.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    OrderDto{orderId} next to MemberDto{id} - the surface-level self-id
+    mix; v0.1 reports it, it does not enforce one convention.
+
+- id: consistent-reference-ids
+  rule: R1xx-05
+  file: R1xx-05/ok-consistent-reference-ids.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    AuthorDigestDto{editorId, publisherId} - one consistent reference
+    spelling, nothing to report.
+
+- id: self-and-reference
+  rule: R1xx-05
+  file: R1xx-05/ok-self-and-reference.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    LoanDto{id, bookId, memberId} - the charter convention itself: id for
+    the self id, resource-Id for references.

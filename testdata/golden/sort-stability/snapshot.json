@@ -12,13 +12,37 @@
     "parseDiagnostics": 0,
     "findings": {
       "error": 4,
-      "warning": 2,
+      "warning": 4,
       "info": 0
     },
     "suppressed": 0,
     "durationMs": 0
   },
   "findings": [
+    {
+      "ruleId": "R1xx-01",
+      "slug": "plural-collection",
+      "severity": "WARN",
+      "message": "Collection path segment \"gamma\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122).",
+      "suggestion": "/v1/ties/gammas/{id}",
+      "location": {
+        "file": "app/ties.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "ruleId": "R1xx-01",
+      "slug": "plural-collection",
+      "severity": "WARN",
+      "message": "Collection path segment \"zeta\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122).",
+      "suggestion": "/v1/ties/zetas/{id}",
+      "location": {
+        "file": "app/ties.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
     {
       "ruleId": "R6xx-91",
       "slug": "demo-bad-method-name",
