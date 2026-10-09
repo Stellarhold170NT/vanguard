@@ -1,5 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/sort-stability · stub · stub
- 1 services · 10 rules (10 active) · 1 files in <duration>
+ 1 services · 11 rules (11 active) · 1 files in <duration>
 
  [ERROR] R6xx-91 demo-bad-method-name (4)
  ──────────────────────────────────────────────────────────────────
@@ -20,17 +20,6 @@
    Method name "demoBadZeta" carries the demoBad fixture marker — name the operation after what it does.
    suggest: zeta
 
- [WARN]  R1xx-01 plural-collection (2)
- ──────────────────────────────────────────────────────────────────
- app/ties.stub.json:1:1
-   Collection path segment "gamma" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122).
-   suggest: /v1/ties/gammas/{id}
-   suppress: // vanguard:ignore R1xx-01 <reason>
-
- app/ties.stub.json:1:1
-   Collection path segment "zeta" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122).
-   suggest: /v1/ties/zetas/{id}
-
  [WARN]  R6xx-92 demo-no-response-type (2)
  ──────────────────────────────────────────────────────────────────
  app/ties.stub.json:1:1
@@ -41,6 +30,6 @@
    Method plainDelta declares no response type — clients cannot deserialize an undeclared result.
 
  ──────────────────────────────────────────────────────────────────
- 8 findings · 4 ERROR · 4 WARN · 0 INFO · 0 suppressed
+ 6 findings · 4 ERROR · 2 WARN · 0 INFO · 0 suppressed
  1 files with findings · 1 scanned · 4 skipped · 0 parse diagnostics
  next: vanguard explain R6xx-91

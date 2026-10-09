@@ -1,0 +1,16 @@
+# R2xx-06 put-full-update — Methods & verbs family (w3-04).
+# Convention (WARN): the partial-detection compares the PUT payload type
+# with the declared response type (documented heuristic in docs/rules/…);
+# the symmetric counterpart of R2xx-03 (w1-03 pain 7c, partialUpdateYouth).
+id: R2xx-06
+slug: put-full-update
+category: methods
+severity: WARN
+summary: A PUT endpoint should receive the full replacement entity — a payload type that differs from the declared response type looks like a partial update (PATCH).
+docPath: docs/rules/R2xx-06-put-full-update.md
+exampleGood: |
+  @PutMapping("/{id}")
+  public CogDto fullUpdate(@PathVariable Long id, @RequestBody CogDto body)
+exampleBad: |
+  @PutMapping("/{id}")
+  public ResponseEntity<CogDto> partialUpdate(@PathVariable Long id, @RequestBody CogUpdateRequest request)

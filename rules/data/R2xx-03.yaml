@@ -1,0 +1,16 @@
+# R2xx-03 patch-partial — Methods & verbs family (w3-04).
+# Convention (WARN): the full-payload detection compares the body type with
+# the declared response type (documented heuristic in docs/rules/…); when
+# they differ the rule stays silent (FP priority #1).
+id: R2xx-03
+slug: patch-partial
+category: methods
+severity: WARN
+summary: A PATCH endpoint should send a partial payload — a body typed as the full response entity means the update is a full replacement (PUT).
+docPath: docs/rules/R2xx-03-patch-partial.md
+exampleGood: |
+  @PatchMapping("/{id}/status")
+  public GadgetDto patchStatus(@PathVariable Long id, @RequestBody GadgetStatusUpdate update)
+exampleBad: |
+  @PatchMapping("/{id}")
+  public GadgetDto fullPatch(@PathVariable Long id, @RequestBody GadgetDto body)

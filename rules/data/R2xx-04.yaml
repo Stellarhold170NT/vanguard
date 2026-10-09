@@ -1,0 +1,16 @@
+# R2xx-04 delete-no-body — Methods & verbs family (w3-04).
+# Convention (WARN): a DELETE body is legal but rarely supported by client
+# stacks (same dropped-body failure mode as GET); the charter's Spring
+# convention routes bulk deletes through batch paths or query parameters
+# (w1-03 pain 7b).
+id: R2xx-04
+slug: delete-no-body
+category: methods
+severity: WARN
+summary: DELETE endpoints should not declare a request body — model bulk deletes as a batch path or query parameters.
+docPath: docs/rules/R2xx-04-delete-no-body.md
+exampleGood: |
+  DELETE /api/v1/books?ids=1,2,3
+exampleBad: |
+  @DeleteMapping
+  public void deleteBooks(@RequestBody List<String> ids)

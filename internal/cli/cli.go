@@ -345,19 +345,20 @@ func (inv *invoker) resolveConfig(root string) (*engine.Config, string, error) {
 	return cfg, path, nil
 }
 
-// registrySource is the rule-source seam: production resolves to
-// defaultRegistry (builtin rules). Tests substitute a fixture registry so
-// the §6.3 exit-1 plumbing is observable end-to-end — the builtin set has
-// no stub-reachable violation (R6xx-99 flags raw trailing slashes, which
-// the stub path merge cleans per the IR contract, discovery/stub.go
-// mergeStubPath); the w3-01+ adapters make R6xx-99 reachable for real.
+// defaultRegistrySource pins the registrySource seam for tests: production
+// resolves to defaultRegistry (builtin rules). Tests substitute a fixture
+// registry so the §6.3 exit-1 plumbing is observable end-to-end.
 var registrySource = defaultRegistry
 
-// defaultRegistry assembles the production rule set: the whole demo set
-// (R6xx-99 plus the w2-07 stub-reachable fixtures R6xx-91/92/93) and the
-// W3 rule families as they land (w3-03: R1xx resources & naming; w3-06:
-// R5xx errors, R6xx versioning). All of them come from data records under
-// rules/data joined to their checks by the registry (charter §3.0, §5.4).
+// defaultRegistry assembles the production rule set: the demo set (R6xx-99
+// plus the w2-07 stub-reachable fixtures R6xx-91/92/93) and the W3 rule
+// families as they land (w3-03: R1xx resources & naming; w3-04: R2xx
+// methods & verbs; w3-05: R3xx pagination + R4xx payload; w3-06: R5xx
+// errors + R6xx versioning). The w2-07 comment that the builtin set had
+// "no stub-reachable violation" no longer holds — the R2xx verbs family
+// (w3-04) fires on real HTTP surfaces of every adapter, stub included.
+// All of them come from data records under rules/data joined to their
+// checks by the registry (charter §3.0, §5.4).
 func defaultRegistry() (*rules.Registry, error) {
 	reg := rules.NewRegistry()
 	for _, build := range []func() ([]engine.Rule, error){
@@ -380,6 +381,15 @@ func defaultRegistry() (*rules.Registry, error) {
 		return nil, fmt.Errorf("load builtin rules: %w", err)
 	}
 	for _, rule := range resourceRules {
+		if err := reg.Register(rule); err != nil {
+			return nil, fmt.Errorf("register %s: %w", rule.ID, err)
+		}
+	}
+	methodRules, err := rules.MethodRules()
+	if err != nil {
+		return nil, fmt.Errorf("load builtin rules: %w", err)
+	}
+	for _, rule := range methodRules {
 		if err := reg.Register(rule); err != nil {
 			return nil, fmt.Errorf("register %s: %w", rule.ID, err)
 		}

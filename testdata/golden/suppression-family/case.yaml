@@ -6,4 +6,7 @@ note: >-
   generated/** — four in total (R6xx-91 twice, R6xx-92 and R6xx-93 once
   each: one of every severity) — while the same rule family stays active
   outside that glob. Pins: family matching, glob scoping, and a summary
-  whose suppressed count (4) exceeds its finding count (1).
+  whose suppressed count (4) exceeds its finding count (1). The config also
+  disables the R2xx verbs family case-wide (w3-04): its R2xx-01 ERROR on
+  demoBadScanProxy (GET + body) would flip the pinned exit — the case tests
+  R6xx family suppression, not the verbs family.

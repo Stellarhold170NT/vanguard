@@ -1,12 +1,5 @@
  vanguard 0.1.0-dev · testdata/golden/suppression-family · stub · stub · config: <case>/.vanguard.yaml
- 2 services · 10 rules (10 active) · 2 files in <duration>
-
- [WARN]  R1xx-01 plural-collection (1)
- ──────────────────────────────────────────────────────────────────
- generated/gen-api.stub.json:1:1
-   Collection path segment "proxy" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122).
-   suggest: /v1/proxy/proxies/{id}
-   suppress: // vanguard:ignore R1xx-01 <reason>
+ 2 services · 11 rules (11 active) · 2 files in <duration>
 
  [WARN]  R6xx-92 demo-no-response-type (1)
  ──────────────────────────────────────────────────────────────────
@@ -15,6 +8,6 @@
    suppress: // vanguard:ignore R6xx-92 <reason>
 
  ──────────────────────────────────────────────────────────────────
- 2 findings · 0 ERROR · 2 WARN · 0 INFO · 4 suppressed
- 2 files with findings · 2 scanned · 5 skipped · 0 parse diagnostics
- next: vanguard explain R1xx-01
+ 1 findings · 0 ERROR · 1 WARN · 0 INFO · 4 suppressed
+ 1 files with findings · 2 scanned · 5 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-92
