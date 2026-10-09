@@ -235,5 +235,53 @@
   },
   "disputes": null,
   "unresolved": null,
-  "max_fp_share_pct": 15
+  "max_fp_share_pct": 15,
+  "military_youth": {
+    "role": "w5-04 verifier triage — agent-labeled per docs/fpfn-protocol.md §0 (W5 row); PENDING gate CH3 ratification. Tuning/suppression are proposals only, nothing applied.",
+    "provenance": {
+      "scan_artifact": "artifacts/w5-02/scan.json (program workspace)",
+      "scan_sha256": "c4d7001310d68efbfecd2560c67b0a334a466e15a0911e2a1bcb1aec55791934",
+      "binary": "vanguard f2fc550 (commit f2fc550, build 56c657bc…)",
+      "target": "mil-svc-youth VFS workspace (military-youth), fingerprint ced5aa22…, 774 files / 753 scanned",
+      "triage_evidence": "reports/w5-04.md (244-row sheet, per-span source reading in sandbox dind-sandbox:29)",
+      "date": "2026-10-09"
+    },
+    "counts": {
+      "findings": 244,
+      "tp": 129,
+      "fp": 115,
+      "fn_candidates": 6,
+      "fp_share_pct": 47.1,
+      "note": "FP share is agent-labeled, pre-ratification; dominated by 4 heuristic clusters (R2xx-02/R5xx-03 create-shape, R1xx-01 action segments, R2xx-05 GET reads, demo rules R6xx-92/93) — see reports/w5-04.md §4"
+    },
+    "per_rule": [
+      {"rule": "R1xx-01", "findings": 21, "tp": 2, "fp": 19, "fn_candidates": 2},
+      {"rule": "R1xx-02", "findings": 14, "tp": 14, "fp": 0, "fn_candidates": 0},
+      {"rule": "R1xx-03", "findings": 2, "tp": 2, "fp": 0, "fn_candidates": 0},
+      {"rule": "R1xx-04", "findings": 1, "tp": 1, "fp": 0, "fn_candidates": 0},
+      {"rule": "R2xx-01", "findings": 2, "tp": 1, "fp": 1, "fn_candidates": 0},
+      {"rule": "R2xx-02", "findings": 30, "tp": 12, "fp": 18, "fn_candidates": 0},
+      {"rule": "R2xx-03", "findings": 4, "tp": 0, "fp": 4, "fn_candidates": 0},
+      {"rule": "R2xx-04", "findings": 14, "tp": 14, "fp": 0, "fn_candidates": 0},
+      {"rule": "R2xx-05", "findings": 34, "tp": 4, "fp": 30, "fn_candidates": 1},
+      {"rule": "R2xx-06", "findings": 7, "tp": 1, "fp": 6, "fn_candidates": 0},
+      {"rule": "R3xx-01", "findings": 20, "tp": 20, "fp": 0, "fn_candidates": 0},
+      {"rule": "R3xx-02", "findings": 27, "tp": 24, "fp": 3, "fn_candidates": 0},
+      {"rule": "R4xx-01", "findings": 8, "tp": 8, "fp": 0, "fn_candidates": 3},
+      {"rule": "R4xx-03", "findings": 11, "tp": 11, "fp": 0, "fn_candidates": 0},
+      {"rule": "R5xx-03", "findings": 32, "tp": 12, "fp": 20, "fn_candidates": 0},
+      {"rule": "R6xx-02", "findings": 3, "tp": 3, "fp": 0, "fn_candidates": 0},
+      {"rule": "R6xx-92", "findings": 12, "tp": 0, "fp": 12, "fn_candidates": 0},
+      {"rule": "R6xx-93", "findings": 2, "tp": 0, "fp": 2, "fn_candidates": 0}
+    ],
+    "fn_candidates": [
+      {"rule": "R4xx-01", "location": "src/main/java/com/viettel/tcct/web/rest/YouthResource.java:~121", "missed": "GET /api/military-youth/youths/current returns ORM entity Youth directly (w1-03 pain 6 documents this span)", "hypothesis": "entityRef() on direct response TypeRef goes silent on package mismatch while the generic-arg path fired for the same entity at YouthResource.java:86 (rules/payload.go)", "reason_code": "predicate-gap"},
+      {"rule": "R4xx-01", "location": "src/main/java/com/viettel/tcct/web/rest/MemberEvaluationResource.java:~139", "missed": "POST create returns ResponseEntity<MemberEvaluation>, MemberEvaluation is @Entity (domain/MemberEvaluation.java)", "hypothesis": "same package-resolution gap; identical UnionEvaluation spans (116/150) fired", "reason_code": "predicate-gap"},
+      {"rule": "R4xx-01", "location": "src/main/java/com/viettel/tcct/web/rest/MemberEvaluationResource.java:~158", "missed": "PUT /{id} returns ResponseEntity<MemberEvaluation> entity", "hypothesis": "same package-resolution gap", "reason_code": "predicate-gap"},
+      {"rule": "R1xx-01", "location": "src/main/java/com/viettel/tcct/web/rest/DepartmentResource.java:20", "missed": "base path /api/military-youth/department is a singular collection identifier (AIP-122 'must be plural'); rule only caught method-path segments (tree/search)", "hypothesis": "base segment not checked when the method path has its own segment (the singular base WAS caught on InnovationByUnit via PUT /{id} — inconsistent)", "reason_code": "predicate-gap"},
+      {"rule": "R1xx-01", "location": "src/main/java/com/viettel/tcct/web/rest/CategoryDataResource.java:~17", "missed": "base path /api/military-youth/category-data — same singular-base gap as DepartmentResource", "hypothesis": "same base-segment gap", "reason_code": "predicate-gap"},
+      {"rule": "R2xx-05", "location": "src/main/java/com/viettel/tcct/web/rest/RoutesController.java:49", "missed": "GET /routes syncRestRoutes mutates state (syncs route registry) — side-effecting GET should be POST (AIP-136); rule fired on VauthzController syncDepartment only because the action verb sat in the path", "hypothesis": "method-name-only actions are invisible when the path looks like a resource", "reason_code": "predicate-gap"}
+    ],
+    "fn_scope": "manual read of the 24 controllers/DTO files touched by findings + targeted greps (import/export/create/delete patterns, entity exposure). Not an exhaustive corpus-wide FN sweep — full FN measurement belongs to the mutation harness (w4-02)."
+  }
 }
