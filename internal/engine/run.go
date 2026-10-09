@@ -37,7 +37,11 @@ func (l *Linter) Run(surface *ir.ApiSurface, cfg *Config) (*Report, error) {
 		return nil, errors.New("engine: no API surface to lint")
 	}
 	var duration durationMeasure
-	defer duration.start()
+	// start() must run BEFORE the lint work, not via defer: a deferred call
+	// only fires after ms() was already read, leaving DurationMS at a
+	// constant 0 (found by w4-03: the §5.4 determinism gate passed on a
+	// dead timer, and the perf bench would have measured nothing).
+	duration.start()
 
 	inline, inlineDiags := NewInlineSuppression(l.Comments)
 	var pathSup *PathSuppressions

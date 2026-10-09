@@ -10,8 +10,11 @@
 //     trusting the caller, groups sort severity desc (ERROR→WARN→INFO) then
 //     rule id asc, and no output iteration walks a bare map. Output contains
 //     no wall-clock timestamp, hostname, PID or absolute path (test strategy
-//     §5.4); the only time-like value is the report's own DurationMS, which
-//     is engine-measured state, not render-time clock reading.
+//     §5.4). DurationMS is engine-measured state, not render-time clock
+//     reading — but it is wall-clock, so the CLI only forwards it under
+//     --timing (w4-03): the default rendered report is byte-identical across
+//     runs, and the pretty header prints the duration segment only when a
+//     real measurement was passed in.
 //   - Streaming: all three renderers write incrementally to the io.Writer —
 //     a 10k-finding report never materializes as one giant string (w2-05
 //     trap list, perf work w4-03).

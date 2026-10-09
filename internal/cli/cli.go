@@ -69,6 +69,7 @@ type invoker struct {
 	rulesSelector string
 	listRulesFlag bool
 	noConfig      bool
+	timing        bool
 
 	exitCode int
 }
@@ -186,6 +187,12 @@ func (inv *invoker) addPipelineFlags(cmd *cobra.Command, withListRules bool) {
 	cmd.Flags().BoolVarP(&inv.verbose, "verbose", "v", false, "evidence trail on stderr (walker, adapter pick, skips)")
 	cmd.Flags().StringVar(&inv.rulesSelector, "rules", "", "comma-separated rule ids or family prefixes to enable (default: all)")
 	cmd.Flags().BoolVar(&inv.noConfig, "no-config", false, "ignore config discovery; run with built-in defaults")
+	// --timing opts into the engine-measured wall clock in the rendered
+	// output (charter §6.6 header "files in 3.2s" / §6.7 durationMs).
+	// Default OFF: the deterministic-output contract (test strategy §5.4 —
+	// byte-identical runs, no wall-clock in the report bytes) applies to
+	// every default invocation; CI and the golden harness never pass it.
+	cmd.Flags().BoolVar(&inv.timing, "timing", false, "include the engine-measured scan duration in the report (default output is deterministic, test-strategy §5.4)")
 	if withListRules {
 		cmd.Flags().BoolVar(&inv.listRulesFlag, "list-rules", false, "print the sorted rule catalog with full metadata, then exit 0")
 	}
@@ -263,6 +270,14 @@ func (inv *invoker) runPipeline(cmd *cobra.Command, root string, isCheck bool) e
 	rep.FilesSkipped = len(res.Skipped)
 	rep.Target = root
 	rep.Diagnostics = append(rep.Diagnostics, res.Diagnostics...)
+	// Deterministic output by default (test strategy §5.4): the engine
+	// measures real wall clock (w4-03 fixed the dead defer-start timer),
+	// but the rendered report only carries it under --timing. Everything
+	// downstream of this point — exit code, display, render — sees the
+	// zeroed duration unless timing was explicitly requested.
+	if !inv.timing {
+		rep.DurationMS = 0
+	}
 	inv.exitCode = engine.ExitCode(rep, nil)
 	// 9. check on a non-TTY stdout: suppress the default pretty report and
 	// keep one summary line on stderr (§6.1). Explicit --format/--output

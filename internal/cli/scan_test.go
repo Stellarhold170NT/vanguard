@@ -3,6 +3,7 @@ package cli
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -378,5 +379,55 @@ func TestScanAcceptanceStubRepoSARIF(t *testing.T) {
 	}
 	if !strings.Contains(string(data), `"version": "2.1.0"`) {
 		t.Fatalf("SARIF file missing the 2.1.0 version line:\n%s", data)
+	}
+}
+
+// TestScanDefaultOutputIsDeterministic pins the w4-03 contract (test
+// strategy §5.4): without --timing the rendered report never carries the
+// engine-measured wall clock — no "in Xms/Xs" segment and durationMs stays
+// 0 — so two runs of the same tree are byte-identical. The golden java-spring
+// corpus (30 tree-sitter files, tens of ms per scan) is the fixture on
+// purpose: a one-file stub repo rounds below the engine's 1 ms resolution
+// and would pass even without the gating.
+func TestScanDefaultOutputIsDeterministic(t *testing.T) {
+	corpus := "../../testdata/golden/java-spring"
+
+	code, jsonOut, _ := runCLI(t, "scan", corpus, "--format", "json")
+	if code != 1 {
+		t.Fatalf("exit code = %d, want 1", code)
+	}
+	if !strings.Contains(jsonOut.String(), `"durationMs": 0`) {
+		t.Fatalf("default JSON must keep durationMs at the deterministic 0 (schema §6.7 still pins the field):\n%s", jsonOut.String())
+	}
+
+	_, prettyOut, _ := runCLI(t, "scan", corpus, "--format", "pretty", "--no-color")
+	if strings.Contains(prettyOut.String(), "files in ") {
+		t.Fatalf("default pretty output must omit the duration segment:\n%s", prettyOut.String())
+	}
+}
+
+// TestScanTimingFlagRestoresDuration pins --timing: the engine-measured
+// wall clock reaches the renderers (charter §6.6 header / §6.7 durationMs)
+// only when explicitly requested. The fixture is 400 stub services so the
+// lint phase reliably exceeds the engine's whole-millisecond resolution —
+// a warm one-file scan rounds to 0 ms and would pass on any machine.
+func TestScanTimingFlagRestoresDuration(t *testing.T) {
+	files := map[string]string{}
+	for i := 0; i < 400; i++ {
+		files[fmt.Sprintf("src/svc%03d.stub.json", i)] = violatingStubService
+	}
+	root := writeStubRepo(t, files)
+
+	code, jsonOut, _ := runCLI(t, "scan", root, "--format", "json", "--timing")
+	if code != 1 {
+		t.Fatalf("exit code = %d, want 1", code)
+	}
+	if strings.Contains(jsonOut.String(), `"durationMs": 0`) {
+		t.Fatalf("--timing JSON must carry the measured duration, got the deterministic 0:\n%s", jsonOut.String())
+	}
+
+	_, prettyOut, _ := runCLI(t, "scan", root, "--format", "pretty", "--no-color", "--timing")
+	if !strings.Contains(prettyOut.String(), "files in ") {
+		t.Fatalf("--timing pretty output must carry the duration segment:\n%s", prettyOut.String())
 	}
 }

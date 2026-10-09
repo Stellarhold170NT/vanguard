@@ -218,6 +218,10 @@ func TestRendererSortsCallerOrder(t *testing.T) {
 // Pretty
 // ---------------------------------------------------------------------------
 
+// TestPrettyHeaderSegments pins both §6.6 stats-line shapes (w4-03): with a
+// real measured duration the line carries "N files in X"; without one (the
+// default deterministic output, §5.4) it degrades to "N files" instead of a
+// misleading "in 0ms".
 func TestPrettyHeaderSegments(t *testing.T) {
 	out := string(renderSample(t, FormatPretty))
 	wantHeader := " vanguard 0.1.0 · ./military-youth · java · spring-boot 4.0.2 · config: ./.vanguard.yaml"
@@ -227,6 +231,30 @@ func TestPrettyHeaderSegments(t *testing.T) {
 	}
 	if !strings.Contains(out, wantStats+"\n") {
 		t.Fatalf("stats line missing:\nwant: %q\ngot:\n%s", wantStats, out)
+	}
+}
+
+// TestPrettyOmitsDurationWhenNotMeasured pins the deterministic default
+// (test strategy §5.4): no "in 0ms" segment; every other byte stays
+// identical to the timed render.
+func TestPrettyOmitsDurationWhenNotMeasured(t *testing.T) {
+	report := sampleReport()
+	report.DurationMS = 0
+	r, err := For(FormatPretty, fullOptions()...)
+	if err != nil {
+		t.Fatalf("For: %v", err)
+	}
+	var buf bytes.Buffer
+	if err := r.Render(&buf, report); err != nil {
+		t.Fatalf("Render: %v", err)
+	}
+	out := buf.String()
+	if strings.Contains(out, "in 0ms") || strings.Contains(out, "files in") {
+		t.Fatalf("untimed render must not carry a duration segment:\n%s", out)
+	}
+	wantStats := " 24 services · 185 endpoints · 11 grpc services · 26 rules (25 active) · 598 files"
+	if !strings.Contains(out, wantStats+"\n") {
+		t.Fatalf("stats line without duration missing:\nwant: %q\ngot:\n%s", wantStats, out)
 	}
 }
 
