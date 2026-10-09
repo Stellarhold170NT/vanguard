@@ -6,32 +6,32 @@
 // (expectations.json, authored before the first scan — anti-gaming §9.1),
 // and materializes the labeling protocol:
 //
-//   generate (default)
-//     - scan the sample once
-//     - align findings <-> expectation slots (same rule, same file,
-//       line within +-4 — annotation vs method-line anchoring)
-//     - write the machine sheet testdata/audit-labeling.csv (one row per
-//       §7.3 line; same-span findings merged, multi-rule rows carry both)
-//     - write the printable sheet reports/w4-04-labeling-sheet.md
-//     - write testdata/audit-findings.json (raw scan evidence) and
-//       testdata/audit-results.json with labeled=false (§7.5 shape,
-//       metrics n/a until the gate labels)
-//     - exit 0
+//	generate (default)
+//	  - scan the sample once
+//	  - align findings <-> expectation slots (same rule, same file,
+//	    line within +-4 — annotation vs method-line anchoring)
+//	  - write the machine sheet testdata/audit-labeling.csv (one row per
+//	    §7.3 line; same-span findings merged, multi-rule rows carry both)
+//	  - write the printable sheet reports/w4-04-labeling-sheet.md
+//	  - write testdata/audit-findings.json (raw scan evidence) and
+//	    testdata/audit-results.json with labeled=false (§7.5 shape,
+//	    metrics n/a until the gate labels)
+//	  - exit 0
 //
-//   merge (-merge <labeled.csv>)
-//     - re-scan the sample (the scanner is deterministic; any drift
-//       between the labeled CSV and the fresh scan is a stale sheet,
-//       not a measurement)
-//     - read the gate's verdicts (TP/FP on finding rows, FN/
-//       CLAIM-REJECTED on fn-candidate rows, UNCLEAR/DISPUTED mid-flight)
-//     - compute per-rule precision/recall + the aggregate FP share
-//       (precision = tp/(tp+fp), recall-audit = tp/(tp+fn), 0/0 -> n/a)
-//     - write testdata/audit-results.json with labeled=true
-//     - exit 0 when the sheet is fully resolved and the FP share is
-//       below -max-fp; exit 1 while rows are unresolved (NE must not
-//       remain, §7.1) or the FP share breaches the ratchet threshold;
-//       exit 2 on harness failure (stale sheet, invalid labels, scan
-//       failure)
+//	merge (-merge <labeled.csv>)
+//	  - re-scan the sample (the scanner is deterministic; any drift
+//	    between the labeled CSV and the fresh scan is a stale sheet,
+//	    not a measurement)
+//	  - read the gate's verdicts (TP/FP on finding rows, FN/
+//	    CLAIM-REJECTED on fn-candidate rows, UNCLEAR/DISPUTED mid-flight)
+//	  - compute per-rule precision/recall + the aggregate FP share
+//	    (precision = tp/(tp+fp), recall-audit = tp/(tp+fn), 0/0 -> n/a)
+//	  - write testdata/audit-results.json with labeled=true
+//	  - exit 0 when the sheet is fully resolved and the FP share is
+//	    below -max-fp; exit 1 while rows are unresolved (NE must not
+//	    remain, §7.1) or the FP share breaches the ratchet threshold;
+//	    exit 2 on harness failure (stale sheet, invalid labels, scan
+//	    failure)
 //
 // The harness never labels: verdicts belong to the gate CH3 person
 // (§7.2 — the agent only prepares sheet + harness). A provisional

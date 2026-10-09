@@ -124,11 +124,11 @@ func inventory() (*results, []row, []row) {
 func TestApplyVerdictsMath(t *testing.T) {
 	res, rows, fnRows := inventory()
 	labeled := map[string]labeledRow{
-		"F-001": {GateVerdict: "TP"},
-		"F-002": {GateVerdict: "FP", ReasonCode: "heuristic-context"},
-		"F-003": {GateVerdict: "TP"},
-		"F-004": {GateVerdict: "TP"},
-		"F-005": {GateVerdict: "FP", ReasonCode: "app-convention"},
+		"F-001":  {GateVerdict: "TP"},
+		"F-002":  {GateVerdict: "FP", ReasonCode: "heuristic-context"},
+		"F-003":  {GateVerdict: "TP"},
+		"F-004":  {GateVerdict: "TP"},
+		"F-005":  {GateVerdict: "FP", ReasonCode: "app-convention"},
 		"as-003": {GateVerdict: "FN", ReasonCode: "predicate-gap"},
 	}
 	applyVerdicts(res, rows, fnRows, labeled)
