@@ -3,6 +3,9 @@ package discovery
 import (
 	"errors"
 	"fmt"
+
+	"github.com/Stellarhold170NT/vanguard/adapters/spring"
+	"github.com/Stellarhold170NT/vanguard/internal/ir"
 )
 
 // AdapterRegistry is the production Registry (satisfies the w2-01 Registry
@@ -86,10 +89,36 @@ func SelectAdapter(reg Registry, files []string) (Adapter, []DetectRecord) {
 	return chosen, records
 }
 
+// springSurfaceAdapter adapts the spring adapter to the Adapter contract.
+// The adapter package deliberately imports only adapters/java and
+// internal/ir — never this package — so the Evidence assembly for its
+// Detect verdict lives here, in the composition root.
+type springSurfaceAdapter struct {
+	delegate *spring.Adapter
+}
+
+func (w springSurfaceAdapter) Language() string { return w.delegate.Language() }
+
+func (w springSurfaceAdapter) Detect(files []string) (bool, Evidence) {
+	hits := spring.DetectJavaFiles(files)
+	if len(hits) == 0 {
+		return false, Evidence{Reason: "no .java file in the walked set"}
+	}
+	return true, Evidence{
+		Reason:  fmt.Sprintf("%d .java file(s) present", len(hits)),
+		Details: hits,
+	}
+}
+
+func (w springSurfaceAdapter) Parse(files []string) (*ir.ApiSurface, []ir.Diagnostic) {
+	return w.delegate.ParseSurface(files)
+}
+
 // NewBuiltinRegistry registers every adapter shipped in this build, bound
-// to the scan root. v0.1 ships the stub only; the java adapter joins ahead
-// of it from w3-01 (order = priority; the two Detect criteria are disjoint
-// — *.stub.json vs java sources — so the order is stable either way).
+// to the scan root: the java adapter (Spring mapping, w3-02) first —
+// registration order doubles as selection priority — and the stub second.
+// The two Detect criteria are disjoint (.java vs *.stub.json) so the
+// order is stable either way.
 //
 // Adapters are root-bound by design: Detect/Parse receive paths RELATIVE to
 // the scan root (the charter §5.3 signature pins the methods, not the path
@@ -97,6 +126,7 @@ func SelectAdapter(reg Registry, files []string) (Adapter, []DetectRecord) {
 // them. See StubAdapter for the reference implementation of the convention.
 func NewBuiltinRegistry(root string) *AdapterRegistry {
 	r := NewRegistry()
-	_ = r.Register(NewStubAdapter(root)) // cannot fail on a fresh registry
+	_ = r.Register(springSurfaceAdapter{delegate: spring.New(root)}) // cannot fail on a fresh registry
+	_ = r.Register(NewStubAdapter(root))                             // cannot fail on a fresh registry
 	return r
 }

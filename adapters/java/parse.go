@@ -11,9 +11,16 @@ import (
 	sitter "github.com/smacker/go-tree-sitter"
 	"github.com/smacker/go-tree-sitter/java"
 
-	"github.com/Stellarhold170NT/vanguard/internal/discovery"
 	"github.com/Stellarhold170NT/vanguard/internal/ir"
 )
+
+// maxReadBytes bounds ONE source file read — the walker's published cap
+// (internal/discovery's DefaultMaxFileSize, 1 MiB) mirrored locally: the
+// builtin registry in internal/discovery wires the spring surface adapter
+// that consumes this package (w3-02), so importing discovery here would
+// cycle. The walker enforces the same cap independently; this is defense
+// in depth.
+const maxReadBytes = 1 << 20 // 1 MiB
 
 // Language is the adapter's id — the registry key discovery uses and the
 // verbose-mode tag once the adapter is wired into the pipeline (w3-02).
@@ -90,10 +97,10 @@ func (a *Adapter) Parse(files []string) (*Result, []ir.Diagnostic) {
 	return res, diags
 }
 
-// read loads one source file, bounded by the discovery size cap — the
-// walker already refuses oversized files (w2-03), but Parse is
-// independently callable, so the guard lives here too (defense in depth,
-// same as the stub adapter).
+// read loads one source file, bounded by the read cap — the walker
+// already refuses oversized files (w2-03), but Parse is independently
+// callable, so the guard lives here too (defense in depth, same as the
+// stub adapter).
 func (a *Adapter) read(rel string) ([]byte, error) {
 	full := filepath.Join(a.root, filepath.FromSlash(rel))
 	f, err := os.Open(full)
@@ -101,12 +108,12 @@ func (a *Adapter) read(rel string) ([]byte, error) {
 		return nil, fmt.Errorf("cannot read %s: %w", rel, err)
 	}
 	defer f.Close()
-	data, err := io.ReadAll(io.LimitReader(f, discovery.DefaultMaxFileSize+1))
+	data, err := io.ReadAll(io.LimitReader(f, maxReadBytes+1))
 	if err != nil {
 		return nil, fmt.Errorf("cannot read %s: %w", rel, err)
 	}
-	if len(data) > discovery.DefaultMaxFileSize {
-		return nil, fmt.Errorf("%s exceeds the %d-byte read cap — file skipped", rel, discovery.DefaultMaxFileSize)
+	if len(data) > maxReadBytes {
+		return nil, fmt.Errorf("%s exceeds the %d-byte read cap — file skipped", rel, maxReadBytes)
 	}
 	return data, nil
 }

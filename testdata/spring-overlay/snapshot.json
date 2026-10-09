@@ -1,0 +1,197 @@
+{
+  "source": {
+    "lang": "java",
+    "framework": "spring-boot",
+    "frameworkVersion": "3.2.5"
+  },
+  "services": [
+    {
+      "name": "BookController",
+      "basePath": "/api/books",
+      "annotations": {
+        "RequestMapping": "@RequestMapping(\"/api/books\")",
+        "RestController": "@RestController"
+      },
+      "methods": [
+        {
+          "operationName": "list",
+          "verb": "GET",
+          "path": "/api/books",
+          "response": {
+            "type": {
+              "name": "List<BookDto>",
+              "isCollection": true
+            },
+            "isCollection": true,
+            "location": {
+              "file": "src/main/java/com/example/overlay/BookController.java",
+              "line": 12,
+              "column": 26
+            }
+          },
+          "pagination": {
+            "style": "none",
+            "location": {
+              "file": "src/main/java/com/example/overlay/BookController.java",
+              "line": 12,
+              "column": 26
+            }
+          },
+          "annotations": {
+            "GetMapping": "@GetMapping",
+            "operationId": "listBooks",
+            "overlay": "src/main/resources/openapi.yaml",
+            "overlaySchemas": "BookDto"
+          },
+          "location": {
+            "file": "src/main/java/com/example/overlay/BookController.java",
+            "line": 12,
+            "column": 26
+          }
+        },
+        {
+          "operationName": "get",
+          "verb": "GET",
+          "path": "/api/books/{id}",
+          "params": [
+            {
+              "name": "id",
+              "in": "path",
+              "type": {
+                "name": "Long"
+              },
+              "location": {
+                "file": "src/main/java/com/example/overlay/BookController.java",
+                "line": 17,
+                "column": 43
+              }
+            }
+          ],
+          "response": {
+            "type": {
+              "name": "BookDto",
+              "package": "com.example.overlay"
+            },
+            "location": {
+              "file": "src/main/java/com/example/overlay/BookController.java",
+              "line": 17,
+              "column": 20
+            }
+          },
+          "pagination": {
+            "style": "none",
+            "location": {
+              "file": "src/main/java/com/example/overlay/BookController.java",
+              "line": 17,
+              "column": 20
+            }
+          },
+          "annotations": {
+            "GetMapping": "@GetMapping(\"/{id}\")",
+            "operationId": "getBook",
+            "overlay": "src/main/resources/openapi.yaml",
+            "overlaySchemas": "BookDto"
+          },
+          "location": {
+            "file": "src/main/java/com/example/overlay/BookController.java",
+            "line": 17,
+            "column": 20
+          }
+        },
+        {
+          "operationName": "create",
+          "verb": "POST",
+          "path": "/api/books",
+          "params": [
+            {
+              "name": "book",
+              "in": "body",
+              "type": {
+                "name": "BookDto",
+                "package": "com.example.overlay"
+              },
+              "location": {
+                "file": "src/main/java/com/example/overlay/BookController.java",
+                "line": 22,
+                "column": 48
+              }
+            }
+          ],
+          "payload": {
+            "name": "BookDto",
+            "package": "com.example.overlay"
+          },
+          "response": {
+            "type": {
+              "name": "BookDto",
+              "package": "com.example.overlay"
+            },
+            "location": {
+              "file": "src/main/java/com/example/overlay/BookController.java",
+              "line": 22,
+              "column": 20
+            }
+          },
+          "pagination": {
+            "style": "none",
+            "location": {
+              "file": "src/main/java/com/example/overlay/BookController.java",
+              "line": 22,
+              "column": 20
+            }
+          },
+          "annotations": {
+            "PostMapping": "@PostMapping"
+          },
+          "location": {
+            "file": "src/main/java/com/example/overlay/BookController.java",
+            "line": 22,
+            "column": 20
+          }
+        }
+      ],
+      "location": {
+        "file": "src/main/java/com/example/overlay/BookController.java",
+        "line": 9,
+        "column": 14
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "BookDto",
+      "kind": "record",
+      "package": "com.example.overlay",
+      "fields": [
+        {
+          "name": "id",
+          "type": {
+            "name": "Long"
+          },
+          "location": {
+            "file": "src/main/java/com/example/overlay/BookDto.java",
+            "line": 3,
+            "column": 28
+          }
+        },
+        {
+          "name": "title",
+          "type": {
+            "name": "String"
+          },
+          "location": {
+            "file": "src/main/java/com/example/overlay/BookDto.java",
+            "line": 3,
+            "column": 39
+          }
+        }
+      ],
+      "location": {
+        "file": "src/main/java/com/example/overlay/BookDto.java",
+        "line": 3,
+        "column": 15
+      }
+    }
+  ],
+  "errorScheme": {}
+}
