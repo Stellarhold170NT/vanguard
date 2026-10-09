@@ -1,0 +1,24 @@
+{
+  "vanguard": "0.1.0-dev",
+  "schema": 1,
+  "target": "testdata/golden/java-spring-clean",
+  "source": {
+    "lang": "java",
+    "framework": "spring-boot",
+    "frameworkVersion": "3.2.4"
+  },
+  "summary": {
+    "files": 24,
+    "skippedFiles": 1,
+    "parseDiagnostics": 0,
+    "findings": {
+      "error": 0,
+      "warning": 0,
+      "info": 0
+    },
+    "suppressed": 0,
+    "durationMs": 0
+  },
+  "findings": [],
+  "diagnostics": []
+}

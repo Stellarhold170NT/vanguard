@@ -1,0 +1,211 @@
+ vanguard 0.1.0-dev · testdata/golden/java-spring · java · spring-boot 3.2.4 · config: <case>/.vanguard.yaml
+ 7 services · 27 rules (27 active) · 29 files in <duration>
+
+ [ERROR] R1xx-02 no-verb-path (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:41:20
+   Path segment "find-by-id" states the CRUD verb "find" — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135).
+   suggest: GET /<collection>/{id}
+   suppress: // vanguard:ignore R1xx-02 <reason>
+
+ [ERROR] R2xx-01 get-no-body (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/member/MemberController.java:36:68
+   GET endpoint autoComplete declares a request body (MemberQuery) — many HTTP clients silently drop GET bodies.
+   suggest: move the payload to query parameters
+   suppress: // vanguard:ignore R2xx-01 <reason>
+
+ [ERROR] R4xx-01 no-entity-in-payload (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:51:17
+   POST /api/v1/books/import exposes the ORM entity Book — the database schema and lazy relations leak into the wire contract.
+   suggest: map the entity to a dedicated DTO (e.g. BookResponse) before it reaches the wire
+   suppress: // vanguard:ignore R4xx-01 <reason>
+
+ [ERROR] R5xx-02 no-500-for-business (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/err/GlobalExceptionHandler.java:26:26
+   @ExceptionHandler maps the business exception BusinessException to HTTP 500 — a business rule violation is a 4xx outcome, not a server failure.
+   suggest: map BusinessException to a 4xx status naming the outcome (e.g. 409 Conflict or 422 Unprocessable Entity)
+   suppress: // vanguard:ignore R5xx-02 <reason>
+
+ [ERROR] R6xx-91 demo-bad-method-name (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/order/OrderController.java:19:17
+   Method name "demoBadGetOrder" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: getOrder
+   suppress: // vanguard:ignore R6xx-91 <reason>
+
+ [WARN]  R1xx-01 plural-collection (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/loan/LoanController.java:21:26
+   Collection path segment "loan" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122).
+   suggest: /api/v1/loans
+   suppress: // vanguard:ignore R1xx-01 <reason>
+
+ [WARN]  R1xx-03 resource-path-pattern (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:41:20
+   Variable {id} sits under the action segment "find-by-id" — serve the item under its resource: /<collection>/{id} (AIP-127).
+   suggest: /<collection>/{id}
+   suppress: // vanguard:ignore R1xx-03 <reason>
+
+ [WARN]  R1xx-04 path-casing (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:36:20
+   Path variable {BookId} is not lowerCamelCase — keep one variable convention (AIP-122).
+   suggest: /api/v1/books/{bookId}
+   suppress: // vanguard:ignore R1xx-04 <reason>
+
+ [WARN]  R2xx-02 post-creates-201 (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:46:20
+   POST endpoint createBook looks like a resource create (single BookDto response, no action path) but does not declare 201 Created — verify that this POST creates, and answer 201.
+   suggest: @ResponseStatus(HttpStatus.CREATED) (or return ResponseEntity.status(HttpStatus.CREATED))
+   suppress: // vanguard:ignore R2xx-02 <reason>
+
+ [WARN]  R2xx-03 patch-partial (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/member/MemberController.java:51:57
+   PATCH endpoint patchMember takes the full MemberDto payload it also returns — a full replacement belongs to PUT, partial updates send a smaller DTO.
+   suggest: replace PATCH with PUT for this full-replacement update
+   suppress: // vanguard:ignore R2xx-03 <reason>
+
+ [WARN]  R2xx-04 delete-no-body (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/member/MemberController.java:41:59
+   DELETE endpoint deleteMember declares a request body (List<Long>) — model bulk deletes as query parameters or a batch path instead.
+   suggest: move the body to query parameters (e.g. ?ids=1,2) or a batch path
+   suppress: // vanguard:ignore R2xx-04 <reason>
+
+ [WARN]  R2xx-06 put-full-update (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/member/MemberController.java:46:68
+   PUT endpoint updateMember takes payload MemberUpdateRequest but returns MemberDto — the mismatch looks like a partial update, which belongs to PATCH.
+   suggest: replace PUT with PATCH for this partial update
+   suppress: // vanguard:ignore R2xx-06 <reason>
+
+ [WARN]  R3xx-01 list-paginated (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/member/MemberController.java:56:28
+   GET /api/v1/members/export returns an unpaginated collection — one client request can dump the whole table.
+   suggest: add a Pageable parameter or page/size query parameters to bound the result set
+   suppress: // vanguard:ignore R3xx-01 <reason>
+
+ [WARN]  R4xx-02 field-casing (2)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookDto.java:14:41
+   Field "author_id" is not lowerCamelCase — the payload JSON convention is lowerCamelCase.
+   suggest: authorId
+   suppress: // vanguard:ignore R4xx-02 <reason>
+
+ src/main/java/com/example/library/book/BookDto.java:14:59
+   Field "created_at" is not lowerCamelCase — the payload JSON convention is lowerCamelCase.
+   suggest: createdAt
+
+ [WARN]  R5xx-01 unified-error-shape (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/err/GlobalExceptionHandler.java:37:32
+   @ExceptionHandler for ValidationFailed answers Map<String, Object> while 2 of 3 handlers answer with ErrorResponse — clients would parse two error contracts.
+   suggest: answer with the shared ErrorResponse envelope from every @ExceptionHandler
+   suppress: // vanguard:ignore R5xx-01 <reason>
+
+ [WARN]  R5xx-03 status-semantics (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:46:20
+   POST /api/v1/books relies on the implicit 200 while creating a resource — declare 201 Created so clients can tell creation from a plain success.
+   suggest: declare @ResponseStatus(HttpStatus.CREATED) — or 202 Accepted for asynchronous creation
+   suppress: // vanguard:ignore R5xx-03 <reason>
+
+ [WARN]  R6xx-01 versioned-path (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/legacy/LegacyReportController.java:15:14
+   Base path /legacy/reports carries no version segment matching "/v[0-9]+" — clients cannot pin the contract version.
+   suggest: add a version segment to the base path (e.g. /api/v1/…), or set the R6xx-01 versionPattern option to your versioning scheme
+   suppress: // vanguard:ignore R6xx-01 <reason>
+
+ [WARN]  R6xx-92 demo-no-response-type (2)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/order/OrderController.java:19:17
+   Method demoBadGetOrder declares no response type — clients cannot deserialize an undeclared result.
+   suppress: // vanguard:ignore R6xx-92 <reason>
+
+ src/main/java/com/example/library/order/OrderController.java:23:17
+   Method archiveOrder declares no response type — clients cannot deserialize an undeclared result.
+
+ [INFO]  R1xx-05 id-field-naming (2)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookDto.java:14:15
+   Type BookDto mixes reference-id spellings ("ID"-style (bookID), "_id"-style (author_id)) — keep one: <resource>Id (AIP-140).
+   suggest: spell every reference id <resource>Id
+   suppress: // vanguard:ignore R1xx-05 <reason>
+
+ src/main/java/com/example/library/book/BookDto.java:14:15
+   Type BookDto names its own id "bookID" while other types use "id" — keep one self-id convention (AIP-140).
+   suggest: rename the field to "id", or align the other types on <resource>Id
+
+ [INFO]  R2xx-05 custom-method-post (2)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:41:20
+   Endpoint findBookById (GET /api/v1/books/find-by-id/{id}) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually).
+   suggest: POST /api/v1/books:find-by-id
+   suppress: // vanguard:ignore R2xx-05 <reason>
+
+ src/main/java/com/example/library/member/MemberController.java:56:28
+   Endpoint exportMembers (GET /api/v1/members/export) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually).
+   suggest: POST /api/v1/members:export
+
+ [INFO]  R3xx-02 list-envelope (3)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:31:26
+   /api/v1/books returns a bare List<BookDto> — a bare JSON array leaves no room for total/page metadata.
+   suggest: wrap the items in an envelope record carrying items plus paging metadata (total, page)
+   suppress: // vanguard:ignore R3xx-02 <reason>
+
+ src/main/java/com/example/library/loan/LoanController.java:21:26
+   /api/v1/loan returns a bare List<LoanDto> — a bare JSON array leaves no room for total/page metadata.
+   suggest: wrap the items in an envelope record carrying items plus paging metadata (total, page)
+
+ src/main/java/com/example/library/member/MemberController.java:56:28
+   /api/v1/members/export returns a bare List<MemberDto> — a bare JSON array leaves no room for total/page metadata.
+   suggest: wrap the items in an envelope record carrying items plus paging metadata (total, page)
+
+ [INFO]  R3xx-03 unbounded-page-size (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookController.java:31:81
+   Query parameter "size" has no upper bound — a single client can request unbounded pages.
+   suggest: annotate the parameter with @Max (e.g. @Max(100)) to cap the page size
+   suppress: // vanguard:ignore R3xx-03 <reason>
+
+ [INFO]  R4xx-03 time-field-standard (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/book/BookDto.java:14:59
+   Field "created_at" holds a time value as String — clients get no RFC3339 structure to parse.
+   suggest: use Instant or OffsetDateTime so the wire format is RFC3339
+   suppress: // vanguard:ignore R4xx-03 <reason>
+
+ [INFO]  R6xx-02 grpc-standard-methods (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/proto/library.proto:7:1
+   rpc DoMagic in service LibraryService is not a Standard Method name (Get*/List*/Create*/Update*/Delete*) or a VerbNoun custom method — the name leaks into every generated client.
+   suggest: rename the rpc to a Standard Method form or a <Verb><Noun> custom method (AIP-136), or allow-list the name in the R6xx-02 config with a reason
+   suppress: // vanguard:ignore R6xx-02 <reason>
+
+ [INFO]  R6xx-93 demo-get-with-body (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/member/MemberController.java:36:30
+   GET endpoint autoComplete declares a request body — many HTTP clients silently drop GET bodies.
+   suggest: move the payload to query parameters
+   suppress: // vanguard:ignore R6xx-93 <reason>
+
+ [INFO]  R6xx-94 demo-legacy-path (1)
+ ──────────────────────────────────────────────────────────────────
+ src/main/java/com/example/library/legacy/LegacyReportController.java:18:22
+   Method getReport is served from a legacy path (/legacy/reports/{reportId}) — migrate the route to its versioned form.
+   suggest: move the route under its versioned prefix
+   suppress: // vanguard:ignore R6xx-94 <reason>
+
+ ──────────────────────────────────────────────────────────────────
+ 32 findings · 5 ERROR · 15 WARN · 12 INFO · 0 suppressed
+ 8 files with findings · 29 scanned · 1 skipped · 0 parse diagnostics
+ next: vanguard explain R1xx-02

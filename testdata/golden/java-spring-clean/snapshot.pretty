@@ -1,6 +1,6 @@
- vanguard 0.1.0-dev · testdata/golden/detect-evidence · stub · stub
- 1 services · 27 rules (27 active) · 2 files in <duration>
+ vanguard 0.1.0-dev · testdata/golden/java-spring-clean · java · spring-boot 3.2.4 · config: <case>/.vanguard.yaml
+ 5 services · 27 rules (27 active) · 24 files in <duration>
 
  ──────────────────────────────────────────────────────────────────
  0 findings · 0 ERROR · 0 WARN · 0 INFO · 0 suppressed
- 0 files with findings · 2 scanned · 6 skipped · 2 parse diagnostics
+ 0 files with findings · 24 scanned · 1 skipped · 0 parse diagnostics

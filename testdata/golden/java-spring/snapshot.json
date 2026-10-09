@@ -1,0 +1,407 @@
+{
+  "vanguard": "0.1.0-dev",
+  "schema": 1,
+  "target": "testdata/golden/java-spring",
+  "source": {
+    "lang": "java",
+    "framework": "spring-boot",
+    "frameworkVersion": "3.2.4"
+  },
+  "summary": {
+    "files": 29,
+    "skippedFiles": 1,
+    "parseDiagnostics": 0,
+    "findings": {
+      "error": 5,
+      "warning": 15,
+      "info": 12
+    },
+    "suppressed": 0,
+    "durationMs": 0
+  },
+  "findings": [
+    {
+      "ruleId": "R3xx-02",
+      "slug": "list-envelope",
+      "severity": "INFO",
+      "message": "/api/v1/books returns a bare List<BookDto> — a bare JSON array leaves no room for total/page metadata.",
+      "suggestion": "wrap the items in an envelope record carrying items plus paging metadata (total, page)",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 31,
+        "column": 26
+      }
+    },
+    {
+      "ruleId": "R3xx-03",
+      "slug": "unbounded-page-size",
+      "severity": "INFO",
+      "message": "Query parameter \"size\" has no upper bound — a single client can request unbounded pages.",
+      "suggestion": "annotate the parameter with @Max (e.g. @Max(100)) to cap the page size",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 31,
+        "column": 81
+      }
+    },
+    {
+      "ruleId": "R1xx-04",
+      "slug": "path-casing",
+      "severity": "WARN",
+      "message": "Path variable {BookId} is not lowerCamelCase — keep one variable convention (AIP-122).",
+      "suggestion": "/api/v1/books/{bookId}",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 36,
+        "column": 20
+      }
+    },
+    {
+      "ruleId": "R1xx-02",
+      "slug": "no-verb-path",
+      "severity": "ERROR",
+      "message": "Path segment \"find-by-id\" states the CRUD verb \"find\" — the HTTP verb already carries the action (AIP-131, AIP-133, AIP-135).",
+      "suggestion": "GET /<collection>/{id}",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 41,
+        "column": 20
+      }
+    },
+    {
+      "ruleId": "R1xx-03",
+      "slug": "resource-path-pattern",
+      "severity": "WARN",
+      "message": "Variable {id} sits under the action segment \"find-by-id\" — serve the item under its resource: /<collection>/{id} (AIP-127).",
+      "suggestion": "/<collection>/{id}",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 41,
+        "column": 20
+      }
+    },
+    {
+      "ruleId": "R2xx-05",
+      "slug": "custom-method-post",
+      "severity": "INFO",
+      "message": "Endpoint findBookById (GET /api/v1/books/find-by-id/{id}) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually).",
+      "suggestion": "POST /api/v1/books:find-by-id",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 41,
+        "column": 20
+      }
+    },
+    {
+      "ruleId": "R2xx-02",
+      "slug": "post-creates-201",
+      "severity": "WARN",
+      "message": "POST endpoint createBook looks like a resource create (single BookDto response, no action path) but does not declare 201 Created — verify that this POST creates, and answer 201.",
+      "suggestion": "@ResponseStatus(HttpStatus.CREATED) (or return ResponseEntity.status(HttpStatus.CREATED))",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 46,
+        "column": 20
+      }
+    },
+    {
+      "ruleId": "R5xx-03",
+      "slug": "status-semantics",
+      "severity": "WARN",
+      "message": "POST /api/v1/books relies on the implicit 200 while creating a resource — declare 201 Created so clients can tell creation from a plain success.",
+      "suggestion": "declare @ResponseStatus(HttpStatus.CREATED) — or 202 Accepted for asynchronous creation",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 46,
+        "column": 20
+      }
+    },
+    {
+      "ruleId": "R4xx-01",
+      "slug": "no-entity-in-payload",
+      "severity": "ERROR",
+      "message": "POST /api/v1/books/import exposes the ORM entity Book — the database schema and lazy relations leak into the wire contract.",
+      "suggestion": "map the entity to a dedicated DTO (e.g. BookResponse) before it reaches the wire",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookController.java",
+        "line": 51,
+        "column": 17
+      }
+    },
+    {
+      "ruleId": "R1xx-05",
+      "slug": "id-field-naming",
+      "severity": "INFO",
+      "message": "Type BookDto mixes reference-id spellings (\"ID\"-style (bookID), \"_id\"-style (author_id)) — keep one: <resource>Id (AIP-140).",
+      "suggestion": "spell every reference id <resource>Id",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookDto.java",
+        "line": 14,
+        "column": 15
+      }
+    },
+    {
+      "ruleId": "R1xx-05",
+      "slug": "id-field-naming",
+      "severity": "INFO",
+      "message": "Type BookDto names its own id \"bookID\" while other types use \"id\" — keep one self-id convention (AIP-140).",
+      "suggestion": "rename the field to \"id\", or align the other types on <resource>Id",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookDto.java",
+        "line": 14,
+        "column": 15
+      }
+    },
+    {
+      "ruleId": "R4xx-02",
+      "slug": "field-casing",
+      "severity": "WARN",
+      "message": "Field \"author_id\" is not lowerCamelCase — the payload JSON convention is lowerCamelCase.",
+      "suggestion": "authorId",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookDto.java",
+        "line": 14,
+        "column": 41
+      }
+    },
+    {
+      "ruleId": "R4xx-02",
+      "slug": "field-casing",
+      "severity": "WARN",
+      "message": "Field \"created_at\" is not lowerCamelCase — the payload JSON convention is lowerCamelCase.",
+      "suggestion": "createdAt",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookDto.java",
+        "line": 14,
+        "column": 59
+      }
+    },
+    {
+      "ruleId": "R4xx-03",
+      "slug": "time-field-standard",
+      "severity": "INFO",
+      "message": "Field \"created_at\" holds a time value as String — clients get no RFC3339 structure to parse.",
+      "suggestion": "use Instant or OffsetDateTime so the wire format is RFC3339",
+      "location": {
+        "file": "src/main/java/com/example/library/book/BookDto.java",
+        "line": 14,
+        "column": 59
+      }
+    },
+    {
+      "ruleId": "R5xx-02",
+      "slug": "no-500-for-business",
+      "severity": "ERROR",
+      "message": "@ExceptionHandler maps the business exception BusinessException to HTTP 500 — a business rule violation is a 4xx outcome, not a server failure.",
+      "suggestion": "map BusinessException to a 4xx status naming the outcome (e.g. 409 Conflict or 422 Unprocessable Entity)",
+      "location": {
+        "file": "src/main/java/com/example/library/err/GlobalExceptionHandler.java",
+        "line": 26,
+        "column": 26
+      }
+    },
+    {
+      "ruleId": "R5xx-01",
+      "slug": "unified-error-shape",
+      "severity": "WARN",
+      "message": "@ExceptionHandler for ValidationFailed answers Map<String, Object> while 2 of 3 handlers answer with ErrorResponse — clients would parse two error contracts.",
+      "suggestion": "answer with the shared ErrorResponse envelope from every @ExceptionHandler",
+      "location": {
+        "file": "src/main/java/com/example/library/err/GlobalExceptionHandler.java",
+        "line": 37,
+        "column": 32
+      }
+    },
+    {
+      "ruleId": "R6xx-01",
+      "slug": "versioned-path",
+      "severity": "WARN",
+      "message": "Base path /legacy/reports carries no version segment matching \"/v[0-9]+\" — clients cannot pin the contract version.",
+      "suggestion": "add a version segment to the base path (e.g. /api/v1/…), or set the R6xx-01 versionPattern option to your versioning scheme",
+      "location": {
+        "file": "src/main/java/com/example/library/legacy/LegacyReportController.java",
+        "line": 15,
+        "column": 14
+      }
+    },
+    {
+      "ruleId": "R6xx-94",
+      "slug": "demo-legacy-path",
+      "severity": "INFO",
+      "message": "Method getReport is served from a legacy path (/legacy/reports/{reportId}) — migrate the route to its versioned form.",
+      "suggestion": "move the route under its versioned prefix",
+      "location": {
+        "file": "src/main/java/com/example/library/legacy/LegacyReportController.java",
+        "line": 18,
+        "column": 22
+      }
+    },
+    {
+      "ruleId": "R1xx-01",
+      "slug": "plural-collection",
+      "severity": "WARN",
+      "message": "Collection path segment \"loan\" is singular — collections use plural nouns so one concept keeps one URL (AIP-131, AIP-122).",
+      "suggestion": "/api/v1/loans",
+      "location": {
+        "file": "src/main/java/com/example/library/loan/LoanController.java",
+        "line": 21,
+        "column": 26
+      }
+    },
+    {
+      "ruleId": "R3xx-02",
+      "slug": "list-envelope",
+      "severity": "INFO",
+      "message": "/api/v1/loan returns a bare List<LoanDto> — a bare JSON array leaves no room for total/page metadata.",
+      "suggestion": "wrap the items in an envelope record carrying items plus paging metadata (total, page)",
+      "location": {
+        "file": "src/main/java/com/example/library/loan/LoanController.java",
+        "line": 21,
+        "column": 26
+      }
+    },
+    {
+      "ruleId": "R6xx-93",
+      "slug": "demo-get-with-body",
+      "severity": "INFO",
+      "message": "GET endpoint autoComplete declares a request body — many HTTP clients silently drop GET bodies.",
+      "suggestion": "move the payload to query parameters",
+      "location": {
+        "file": "src/main/java/com/example/library/member/MemberController.java",
+        "line": 36,
+        "column": 30
+      }
+    },
+    {
+      "ruleId": "R2xx-01",
+      "slug": "get-no-body",
+      "severity": "ERROR",
+      "message": "GET endpoint autoComplete declares a request body (MemberQuery) — many HTTP clients silently drop GET bodies.",
+      "suggestion": "move the payload to query parameters",
+      "location": {
+        "file": "src/main/java/com/example/library/member/MemberController.java",
+        "line": 36,
+        "column": 68
+      }
+    },
+    {
+      "ruleId": "R2xx-04",
+      "slug": "delete-no-body",
+      "severity": "WARN",
+      "message": "DELETE endpoint deleteMember declares a request body (List<Long>) — model bulk deletes as query parameters or a batch path instead.",
+      "suggestion": "move the body to query parameters (e.g. ?ids=1,2) or a batch path",
+      "location": {
+        "file": "src/main/java/com/example/library/member/MemberController.java",
+        "line": 41,
+        "column": 59
+      }
+    },
+    {
+      "ruleId": "R2xx-06",
+      "slug": "put-full-update",
+      "severity": "WARN",
+      "message": "PUT endpoint updateMember takes payload MemberUpdateRequest but returns MemberDto — the mismatch looks like a partial update, which belongs to PATCH.",
+      "suggestion": "replace PUT with PATCH for this partial update",
+      "location": {
+        "file": "src/main/java/com/example/library/member/MemberController.java",
+        "line": 46,
+        "column": 68
+      }
+    },
+    {
+      "ruleId": "R2xx-03",
+      "slug": "patch-partial",
+      "severity": "WARN",
+      "message": "PATCH endpoint patchMember takes the full MemberDto payload it also returns — a full replacement belongs to PUT, partial updates send a smaller DTO.",
+      "suggestion": "replace PATCH with PUT for this full-replacement update",
+      "location": {
+        "file": "src/main/java/com/example/library/member/MemberController.java",
+        "line": 51,
+        "column": 57
+      }
+    },
+    {
+      "ruleId": "R2xx-05",
+      "slug": "custom-method-post",
+      "severity": "INFO",
+      "message": "Endpoint exportMembers (GET /api/v1/members/export) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually).",
+      "suggestion": "POST /api/v1/members:export",
+      "location": {
+        "file": "src/main/java/com/example/library/member/MemberController.java",
+        "line": 56,
+        "column": 28
+      }
+    },
+    {
+      "ruleId": "R3xx-01",
+      "slug": "list-paginated",
+      "severity": "WARN",
+      "message": "GET /api/v1/members/export returns an unpaginated collection — one client request can dump the whole table.",
+      "suggestion": "add a Pageable parameter or page/size query parameters to bound the result set",
+      "location": {
+        "file": "src/main/java/com/example/library/member/MemberController.java",
+        "line": 56,
+        "column": 28
+      }
+    },
+    {
+      "ruleId": "R3xx-02",
+      "slug": "list-envelope",
+      "severity": "INFO",
+      "message": "/api/v1/members/export returns a bare List<MemberDto> — a bare JSON array leaves no room for total/page metadata.",
+      "suggestion": "wrap the items in an envelope record carrying items plus paging metadata (total, page)",
+      "location": {
+        "file": "src/main/java/com/example/library/member/MemberController.java",
+        "line": 56,
+        "column": 28
+      }
+    },
+    {
+      "ruleId": "R6xx-91",
+      "slug": "demo-bad-method-name",
+      "severity": "ERROR",
+      "message": "Method name \"demoBadGetOrder\" carries the demoBad fixture marker — name the operation after what it does.",
+      "suggestion": "getOrder",
+      "location": {
+        "file": "src/main/java/com/example/library/order/OrderController.java",
+        "line": 19,
+        "column": 17
+      }
+    },
+    {
+      "ruleId": "R6xx-92",
+      "slug": "demo-no-response-type",
+      "severity": "WARN",
+      "message": "Method demoBadGetOrder declares no response type — clients cannot deserialize an undeclared result.",
+      "location": {
+        "file": "src/main/java/com/example/library/order/OrderController.java",
+        "line": 19,
+        "column": 17
+      }
+    },
+    {
+      "ruleId": "R6xx-92",
+      "slug": "demo-no-response-type",
+      "severity": "WARN",
+      "message": "Method archiveOrder declares no response type — clients cannot deserialize an undeclared result.",
+      "location": {
+        "file": "src/main/java/com/example/library/order/OrderController.java",
+        "line": 23,
+        "column": 17
+      }
+    },
+    {
+      "ruleId": "R6xx-02",
+      "slug": "grpc-standard-methods",
+      "severity": "INFO",
+      "message": "rpc DoMagic in service LibraryService is not a Standard Method name (Get*/List*/Create*/Update*/Delete*) or a VerbNoun custom method — the name leaks into every generated client.",
+      "suggestion": "rename the rpc to a Standard Method form or a <Verb><Noun> custom method (AIP-136), or allow-list the name in the R6xx-02 config with a reason",
+      "location": {
+        "file": "src/main/proto/library.proto",
+        "line": 7,
+        "column": 1
+      }
+    }
+  ],
+  "diagnostics": []
+}
