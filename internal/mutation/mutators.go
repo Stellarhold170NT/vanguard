@@ -530,8 +530,7 @@ var mutVerbSwap = &Mutator{
 	Apply: func(src []byte) ([]byte, bool) {
 		ls := lineSlice(src)
 		mapIdx, ok := firstActiveLine(ls, "@GetMapping")
-		if !ok || strings.Contains(ls[mapIdx], "@GetMapping(") &&
-			func() bool { p, ok := mappingPath(ls[mapIdx]); return ok && p == "" }() {
+		if !ok {
 			return src, false
 		}
 		closeIdx, ok := sigClose(ls, mapIdx)

@@ -1,6 +1,7 @@
 package mutation
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -268,6 +269,9 @@ func Run(opts Options) (*results, error) {
 				if taken >= opts.MaxPerCell {
 					break
 				}
+				if time.Since(start) > opts.Deadline {
+					return res, fmt.Errorf("mutation: run deadline %s exceeded after %d cases", opts.Deadline, casesRun)
+				}
 				c := man.Cases[ci]
 				casesRun++
 				src, err := os.ReadFile(filepath.Join(advRoot, c.File))
@@ -279,10 +283,12 @@ func Run(opts Options) (*results, error) {
 					continue
 				}
 				mutated, applied := m.Apply(src)
-				keepPath := ""
+				if !applied && opts.MutatedDir != "" {
+					// Debug aid only: never write a file the mutator refused.
+					continue
+				}
 				if opts.MutatedDir != "" {
-					keepPath = filepath.Join(opts.MutatedDir, m.Name+"-"+filepath.Base(c.File))
-					_ = os.WriteFile(keepPath, mutated, 0o644)
+					_ = os.WriteFile(filepath.Join(opts.MutatedDir, m.Name+"-"+filepath.Base(c.File)), mutated, 0o644)
 				}
 				cr := caseResult{ID: m.Name + "/" + poolRule + "/" + c.ID,
 					Mutator: m.Name, Kind: m.Kind, PoolRule: poolRule, Targets: p.Targets,
@@ -327,7 +333,11 @@ func Run(opts Options) (*results, error) {
 				}
 				res.Cases = append(res.Cases, cr)
 				perCell.add(cr.Verdict)
-				if cr.Verdict != verdictNotApp {
+				switch cr.Verdict {
+				case verdictHit, verdictMissed, verdictHonored:
+					// §4.4: the cap counts collected valid mutations —
+					// broken-syntax and harness-error cases do not consume
+					// a cell slot (they say nothing about the rule).
 					taken++
 				}
 			}
@@ -529,9 +539,12 @@ class Companion {
 	return fired, len(rep.Diagnostics), ""
 }
 
-// vanguardVersion reads the binary's version line for the results header.
+// vanguardVersion reads the binary's version line for the results header
+// (bounded by timeout — every exec gets a deadline, process amendment 2).
 func vanguardVersion(bin string, timeout time.Duration) string {
-	cmd := exec.Command(bin, "version")
+	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, bin, "version")
 	out, err := cmd.Output()
 	if err != nil {
 		return "unknown"
