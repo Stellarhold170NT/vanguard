@@ -249,10 +249,10 @@ func typeOf(name string, fields ...ir.Field) ir.Type {
 
 func fieldOf(name, jsonName string) ir.Field {
 	return ir.Field{
-		Name:      name,
-		JSONName:  jsonName,
-		Type:      ir.TypeRef{Name: "Long"},
-		Location:  ir.Location{File: "probe.java", Line: 2, Column: 3},
+		Name:     name,
+		JSONName: jsonName,
+		Type:     ir.TypeRef{Name: "Long"},
+		Location: ir.Location{File: "probe.java", Line: 2, Column: 3},
 	}
 }
 

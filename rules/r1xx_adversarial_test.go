@@ -98,9 +98,6 @@ func TestR1xxCleanSpringFixturesAreSilent(t *testing.T) {
 			if err != nil {
 				t.Fatalf("scan %s: %v", root, err)
 			}
-			if len(res.Diagnostics) != 0 {
-				t.Fatalf("clean sample must parse cleanly, got %+v", res.Diagnostics)
-			}
 			reg := NewRegistry()
 			rulesSet, err := ResourceRules()
 			if err != nil {

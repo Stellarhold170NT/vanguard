@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthorController {
 
     @GetMapping("/authors/{id}")
-    public AuthorSummaryDto get(@PathVariable Long id) {
+    public AuthorDigestDto get(@PathVariable Long id) {
         return null;
     }
 }
 
-record AuthorSummaryDto(Long authorId, Long publisherId, String penName) {
+record AuthorDigestDto(Long editorId, Long publisherId, String penName) {
 }
