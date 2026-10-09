@@ -1,45 +1,66 @@
-# R3xx-02 — list-envelope (INFO)
+# R3xx-02 — list-envelope
+
+| | |
+|---|---|
+| ID | `R3xx-02` |
+| Slug | `list-envelope` |
+| Category | `pagination` |
+| Default severity | **INFO** |
+| AIP reference | AIP-158 |
+| Family | R3xx — pagination |
+
+## Why
 
 A collection response should be wrapped in an envelope that carries the
 items plus paging metadata (total, page) instead of a bare JSON array
 (AIP-158). A bare array leaves no room for metadata and forces a breaking
 change when it is needed later.
 
-## Fires when
+## What fires
 
-- the `ir.Method` response has `IsCollection` true with a non-empty type,
+- The `ir.Method` response has `IsCollection` true with a non-empty type,
   AND the response spelling is a **bare container**: the base type is one
   of `List, ArrayList, LinkedList, Collection, Iterable, Stream, Set,
   HashSet, LinkedHashSet, SortedSet, TreeSet, Queue, Deque`, or the
   spelling ends with `[]` (arrays, varargs).
 
-## Stays silent when
+## What stays silent (FP shield)
 
-- the container is a recognized envelope: Spring's `Page<T>`/`Slice<T>`
-  (they carry total/page metadata by definition) — the rule mirrors the
-  adapter's `collectionBases` minus those envelope shapes;
-- the response type is anything else (a custom `OrderPageResponse`, a
-  generated wrapper). **The rule under-reports rather than guessing**: a
-  custom envelope name is never required to look like one.
+- Recognized envelopes: Spring's `Page<T>` / `Slice<T>` carry total/page
+  metadata by definition.
+- Any other response spelling (a custom `OrderPageResponse`, a generated
+  wrapper) — **the rule under-reports rather than guessing**: a custom
+  envelope name is never required to look like one.
 
-## Scope notes (attack surface — W4, read this)
-
-- Heuristic by design: the IR has no envelope model (w3-02 keeps
-  `Response.Envelope` empty — recognizing an envelope shape is rule
-  territory). The bare-container list is closed and visible above.
-- Independent of input pagination: `GET /search` with a `size` parameter
-  returning `List<T>` still fires — output shape, not input paging.
-- INFO severity: a convention note, not a defect. A codebase that chose
-  bare arrays everywhere can disable the rule or the family in config.
-
-## Good / Bad
+## Spring example — compliant
 
 ```java
-// good — envelope with metadata
-@GetMapping
-public Page<BookDto> list(Pageable pageable) { ... }
-
-// bad — bare array
-@GetMapping
-public List<BookDto> list() { ... }
+// Spring's paging envelope carries the items AND the metadata.
+@GetMapping("/authors")
+public Page<AuthorDto> listAuthors(@RequestParam int page, @RequestParam @Max(100) int size) { ... }
 ```
+
+## Spring example — violation
+
+```java
+// A bare JSON array — no room for paging metadata.
+@GetMapping("/books")
+public List<BookDto> listAllBooks(@RequestParam int page, @RequestParam int size) { ... }
+```
+
+## Suppression
+
+```java
+// vanguard:ignore R3xx-02 <reason>
+```
+
+Path-scoped suppression lives in `.vanguard.yaml` (`suppressions:` with a
+`reason`, §6.4.1) — for endpoints whose bare array is a frozen contract.
+
+## Scope notes
+
+- The envelope set mirrors the adapter's `collectionBases` minus the
+  Spring paging shapes; extending it is a data change, not a rule change.
+- A custom envelope that merely CONTAINS a list (e.g.
+  `MemberSuggestions(List<String>)`) is a non-collection response at the
+  IR level and never fires.

@@ -1,34 +1,69 @@
-# R2xx-03 patch-partial
+# R2xx-03 — patch-partial
 
-`category: methods · severity: WARN · AIP-134` — charter §3.2 (w3-04).
+| | |
+|---|---|
+| ID | `R2xx-03` |
+| Slug | `patch-partial` |
+| Category | `methods` |
+| Default severity | **WARN** |
+| AIP reference | AIP-134 |
+| Family | R2xx — methods & verbs |
 
-A PATCH endpoint should send a partial payload — a body typed as the full
-response entity means the update is a full replacement (PUT).
+## Why
 
-## Heuristic (convention — documented comparison)
+PATCH means partial update. When the PATCH body is typed as the full
+entity (the same type the endpoint returns), the verb and the body
+disagree — the request reads as full replacement done through the wrong
+verb (AIP-134; w1-03 pain 7c, `partialUpdateYouth`).
 
-Fires only when ALL of:
+## What fires
+
+ALL of these hold on the same `ir.Method`:
 
 1. `Verb == PATCH` (HTTP; rpc never matches);
 2. the method declares a payload (`Payload != nil`);
 3. the declared response type is non-empty AND `Payload.Name` equals
-   `Response.Type.Name` case-insensitively (the "body = entity cùng type
-   response" heuristic of the brief) — the same type in and out reads as
-   full-entity replacement.
+   `Response.Type.Name` case-insensitively — the same type in and out
+   reads as full-entity replacement.
 
-When the payload type differs from the response type (a partial DTO) or the
-response is undeclared, the heuristic cannot establish "full" and the rule
-stays silent.
+## What stays silent (FP shield)
 
-## Suggestion
+- A PATCH whose payload type differs from the response type (a partial
+  DTO) — the heuristic cannot establish "full".
+- An undeclared response, or a PATCH without a body.
+- Transport wrappers (`ResponseEntity<...>`, `Mono<...>`) are already
+  unwrapped by the w3-02 adapter, so the comparison sees body types.
 
-`replace PATCH with PUT for this full-replacement update`
+## Spring example — compliant
 
-## False-positive surface
+```java
+// A dedicated partial payload — the verb and the body agree.
+@PatchMapping("/members/{memberId}")
+public MemberDto patchMember(@RequestBody MemberPatch patch, @PathVariable Long memberId) { ... }
+```
 
-A PATCH that legitimately accepts the full representation but applies it
-partially is indistinguishable from a full replacement at the signature
-level — the message names the type so the reader can verify; suppress per
-path if the pattern is intended (§6.4.1). Generic wrappers on the response
-(`ResponseEntity<...>`, `Mono<...>`) are already unwrapped by the w3-02
-adapter, so the comparison sees the body types, not the transport wrappers.
+## Spring example — violation
+
+```java
+// The body is the full MemberDto — PUT semantics on a PATCH verb.
+@PatchMapping("/members/{memberId}")
+public MemberDto patchMember(@RequestBody MemberDto fullEntity, @PathVariable Long memberId) { ... }
+```
+
+## Suppression
+
+```java
+// vanguard:ignore R2xx-03 <reason>
+```
+
+Path-scoped suppression lives in `.vanguard.yaml` (`suppressions:` with a
+`reason`, §6.4.1) — for a PATCH that legitimately accepts the full
+representation and applies it partially.
+
+## Scope notes
+
+- Signature-level heuristic: a same-type PATCH that genuinely applies a
+  subset of fields is indistinguishable — the message names the type so
+  the reader can verify.
+- Symmetric rule: R2xx-06 put-full-update fires on the mirror defect
+  (PUT with a different-type payload).
