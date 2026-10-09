@@ -1,5 +1,9 @@
  vanguard 0.1.0-dev · testdata/golden/config-discovery/app · stub · stub · config: <case>/.vanguard.yaml
+<<<<<<< HEAD
  1 services · 10 rules (10 active) · 1 files in <duration>
+=======
+ 1 services · 11 rules (11 active) · 1 files in <duration>
+>>>>>>> agent-w3-04
 
  [ERROR] R6xx-92 demo-no-response-type (1)
  ──────────────────────────────────────────────────────────────────

@@ -11,14 +11,38 @@
     "skippedFiles": 5,
     "parseDiagnostics": 0,
     "findings": {
-      "error": 2,
+      "error": 3,
       "warning": 1,
-      "info": 1
+      "info": 2
     },
     "suppressed": 0,
     "durationMs": 0
   },
   "findings": [
+    {
+      "ruleId": "R2xx-01",
+      "slug": "get-no-body",
+      "severity": "ERROR",
+      "message": "GET endpoint demoBadSearchInventory declares a request body (SearchRequest) — many HTTP clients silently drop GET bodies.",
+      "suggestion": "move the payload to query parameters",
+      "location": {
+        "file": "app/inventory.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "ruleId": "R2xx-05",
+      "slug": "custom-method-post",
+      "severity": "INFO",
+      "message": "Endpoint demoBadSearchInventory (GET /v1/inventory/items/search) looks like an action (non-CRUD) — AIP-136 custom methods read POST <collection>/{id}:<action> (verify manually).",
+      "suggestion": "POST /v1/inventory/items:search",
+      "location": {
+        "file": "app/inventory.stub.json",
+        "line": 1,
+        "column": 1
+      }
+    },
     {
       "ruleId": "R6xx-91",
       "slug": "demo-bad-method-name",

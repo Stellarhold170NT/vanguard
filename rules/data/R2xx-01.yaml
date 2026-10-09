@@ -1,0 +1,16 @@
+# R2xx-01 get-no-body — Methods & verbs family (w3-04).
+# The one certain rule of the family: the handler itself declares a GET
+# request body, which popular HTTP clients silently drop (charter §3.2,
+# w1-03 pain 7a). ERROR because the endpoint loses its declared input —
+# the contract is broken by the transport, not by convention.
+id: R2xx-01
+slug: get-no-body
+category: methods
+severity: ERROR
+summary: GET endpoints must not declare a request body — many HTTP clients silently drop GET bodies.
+docPath: docs/rules/R2xx-01-get-no-body.md
+exampleGood: |
+  GET /api/v1/books/auto-complete?term=tolkien
+exampleBad: |
+  @GetMapping("/auto-complete")
+  public ResponseEntity<List<BookDto>> autoComplete(@RequestBody BookQuery query)

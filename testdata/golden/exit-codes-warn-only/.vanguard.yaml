@@ -1,0 +1,9 @@
+# (w3-04) This case pins the §6.3 warn-only contract with the demo family:
+# only WARN (demo-no-response-type) and INFO (demo-get-with-body) may fire.
+# The builtin registry grew the R2xx verbs family (w3-04), whose R2xx-01
+# ERROR fires on searchNotices (GET + body) — the family is disabled here so
+# the case keeps testing exactly the demo set's severity/exit decoupling.
+version: 1
+rules:
+  R2xx:
+    disabled: true

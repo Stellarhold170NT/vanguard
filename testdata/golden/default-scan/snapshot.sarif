@@ -10,6 +10,23 @@
           "informationUri": "https://github.com/Stellarhold170NT/vanguard",
           "rules": [
             {
+              "id": "R2xx-01",
+              "name": "get-no-body",
+              "shortDescription": {
+                "text": "GET endpoints must not declare a request body — many HTTP clients silently drop GET bodies."
+              },
+              "fullDescription": {
+                "text": "GET endpoints must not declare a request body — many HTTP clients silently drop GET bodies."
+              },
+              "helpUri": "docs/rules/R2xx-01-get-no-body.md",
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "properties": {
+                "category": "methods"
+              }
+            },
+            {
               "id": "R6xx-91",
               "name": "demo-bad-method-name",
               "shortDescription": {
@@ -66,7 +83,7 @@
       "results": [
         {
           "ruleId": "R6xx-91",
-          "ruleIndex": 0,
+          "ruleIndex": 1,
           "level": "error",
           "message": {
             "text": "Method name \"demoBadGetBook\" carries the demoBad fixture marker — name the operation after what it does."
@@ -90,7 +107,7 @@
         },
         {
           "ruleId": "R6xx-91",
-          "ruleIndex": 0,
+          "ruleIndex": 1,
           "level": "error",
           "message": {
             "text": "Method name \"demoBadDeleteShelf\" carries the demoBad fixture marker — name the operation after what it does."
@@ -113,8 +130,32 @@
           }
         },
         {
-          "ruleId": "R6xx-91",
+          "ruleId": "R2xx-01",
           "ruleIndex": 0,
+          "level": "error",
+          "message": {
+            "text": "GET endpoint demoBadSearchArchive declares a request body (ArchiveQuery) — many HTTP clients silently drop GET bodies."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "app/search.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "61ad075199fadd03"
+          }
+        },
+        {
+          "ruleId": "R6xx-91",
+          "ruleIndex": 1,
           "level": "error",
           "message": {
             "text": "Method name \"demoBadSearchArchive\" carries the demoBad fixture marker — name the operation after what it does."
@@ -138,7 +179,7 @@
         },
         {
           "ruleId": "R6xx-92",
-          "ruleIndex": 1,
+          "ruleIndex": 2,
           "level": "warning",
           "message": {
             "text": "Method findDuplicates declares no response type — clients cannot deserialize an undeclared result."
@@ -162,7 +203,7 @@
         },
         {
           "ruleId": "R6xx-93",
-          "ruleIndex": 2,
+          "ruleIndex": 3,
           "level": "note",
           "message": {
             "text": "GET endpoint demoBadSearchArchive declares a request body — many HTTP clients silently drop GET bodies."

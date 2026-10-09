@@ -1,6 +1,13 @@
 # Family-prefix suppression: the whole R6xx demo family is exempt under
 # generated/ (§6.5 — exact id or family prefix).
+#
+# (w3-04) The R2xx verbs family is disabled case-wide: its R2xx-01 ERROR
+# fires on demoBadScanProxy (GET + body) and would flip the pinned exit 0 —
+# this case tests R6xx family suppression, not the verbs family.
 version: 1
+rules:
+  R2xx:
+    disabled: true
 suppressions:
   - rule: R6xx
     paths: ["**/generated/**"]

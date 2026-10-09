@@ -1,0 +1,17 @@
+# R2xx-05 custom-method-post — Methods & verbs family (w3-04).
+# Recommendation (INFO): AIP-136 custom methods read POST
+# <collection>/{id}:<action>. The action lexicon is a documented heuristic
+# (docs/rules/…); when the endpoint is already POST the rule stays silent —
+# reshaping its path overlaps the R1xx family, and soft INFO findings must
+# not duplicate hard ones.
+id: R2xx-05
+slug: custom-method-post
+category: methods
+severity: INFO
+summary: An action (non-CRUD) endpoint reads best as an AIP-136 custom method — POST <collection>/{id}:<action>.
+docPath: docs/rules/R2xx-05-custom-method-post.md
+exampleGood: |
+  POST /api/v1/books/{id}:archive
+exampleBad: |
+  @GetMapping("/{id}/generate-code")
+  public CodeDto generateCode(@PathVariable Long id)
