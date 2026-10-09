@@ -1,0 +1,19 @@
+# R3xx-03 unbounded-page-size — a size/limit query parameter without an
+# upper bound invites unbounded queries (charter §3.3, AIP-158; w1-03 pain
+# 4: Pageable is used widely but no evidence of a cap exists). INFO: the
+# rule reads Param.Validation for an @Max-style constraint; framework
+# Pageable arguments are out of scope (their cap is resolver territory).
+id: R3xx-03
+slug: unbounded-page-size
+category: pagination
+severity: INFO
+summary: Size/limit query parameters should carry an upper bound (@Max) so one client cannot request unbounded pages.
+docPath: docs/rules/R3xx-03-unbounded-page-size.md
+exampleGood: |
+  @GetMapping("/search")
+  public List<BookDto> search(
+          @RequestParam("size") @Max(100) int size) { ... }
+exampleBad: |
+  @GetMapping("/search")
+  public List<BookDto> search(
+          @RequestParam("size") int size) { ... }

@@ -1,0 +1,16 @@
+# R3xx-01 list-paginated — a GET collection endpoint must accept pagination
+# (charter §3.3, AIP-158; w1-03 pain 4: list endpoints without paging are a
+# table-dump risk). WARN: the endpoint works, but it is one traffic spike
+# away from serializing the whole table.
+id: R3xx-01
+slug: list-paginated
+category: pagination
+severity: WARN
+summary: List endpoints must accept pagination parameters (Pageable or page/size) — an unpaginated GET collection lets one client dump the whole table.
+docPath: docs/rules/R3xx-01-list-paginated.md
+exampleGood: |
+  @GetMapping
+  public Page<BookDto> list(Pageable pageable) { ... }
+exampleBad: |
+  @GetMapping
+  public List<BookDto> list() { ... }
