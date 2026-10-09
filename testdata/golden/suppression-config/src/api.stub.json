@@ -1,0 +1,14 @@
+{
+  "service": "Loans",
+  "basePath": "/v1/loans",
+  "methods": [
+    {"name": "listLoans", "verb": "GET", "path": "/loans",
+     "response": {"type": "LoanList", "statusCode": 200, "isCollection": true}},
+    {"name": "renewLoan", "verb": "POST", "path": "/loans/{id}/renew",
+     "params": [{"name": "id", "in": "path", "type": "string"}]}
+  ],
+  "types": [
+    {"name": "Loan", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "LoanList", "kind": "record", "fields": [{"name": "items", "type": "Loan"}]}
+  ]
+}

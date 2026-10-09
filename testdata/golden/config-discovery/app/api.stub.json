@@ -1,0 +1,16 @@
+{
+  "service": "Catalog",
+  "basePath": "/v1/catalog",
+  "methods": [
+    {"name": "getEntry", "verb": "GET", "path": "/entries/{id}",
+     "params": [{"name": "id", "in": "path", "type": "string"}],
+     "response": {"type": "Entry", "statusCode": 200}},
+    {"name": "searchEntries", "verb": "POST", "path": "/entries/search",
+     "params": [{"name": "req", "in": "body", "type": "SearchRequest"}],
+     "payload": "SearchRequest"}
+  ],
+  "types": [
+    {"name": "Entry", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "SearchRequest", "kind": "record", "fields": [{"name": "term", "type": "string"}]}
+  ]
+}

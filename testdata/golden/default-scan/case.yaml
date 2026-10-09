@@ -1,0 +1,6 @@
+exit: 1
+note: >-
+  No config: the full default pipeline on a two-service stub repo. Findings
+  cover all three severities (R6xx-91 ERROR, R6xx-92 WARN, R6xx-93 INFO) so
+  the charter §6.6 grouping order and the footer counters are pinned in all
+  three formats.

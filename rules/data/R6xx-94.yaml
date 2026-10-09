@@ -1,0 +1,15 @@
+# R6xx-94 demo-legacy-path — W2 golden-fixture rule (w2-07).
+# INFO member of the demo set AND the data-driven acceptance artifact: the
+# whole rule is one YAML record plus one table row in rules/demo_rules.go —
+# no engine, renderer, or harness change (the w2-07 proof commit touches
+# only rules/ and its fixture directory).
+id: R6xx-94
+slug: demo-legacy-path
+category: demo
+severity: INFO
+summary: Legacy path segments should migrate to the versioned route — /legacy/ paths are transitional debt.
+docPath: docs/rules/R6xx-94-demo-legacy-path.md
+exampleGood: |
+  GET /api/v1/reports
+exampleBad: |
+  GET /legacy/reports

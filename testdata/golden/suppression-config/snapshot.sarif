@@ -1,0 +1,85 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "vanguard",
+          "version": "0.1.0-dev",
+          "informationUri": "https://github.com/Stellarhold170NT/vanguard",
+          "rules": [
+            {
+              "id": "R6xx-92",
+              "name": "demo-no-response-type",
+              "shortDescription": {
+                "text": "Every operation must declare a response type — clients cannot deserialize an undeclared result."
+              },
+              "fullDescription": {
+                "text": "Every operation must declare a response type — clients cannot deserialize an undeclared result."
+              },
+              "helpUri": "docs/rules/R6xx-92-demo-no-response-type.md",
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "properties": {
+                "category": "demo"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "R6xx-92",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Method exportLedger declares no response type — clients cannot deserialize an undeclared result."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "legacy/old-api.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "97e07efb65d19d73"
+          }
+        },
+        {
+          "ruleId": "R6xx-92",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Method renewLoan declares no response type — clients cannot deserialize an undeclared result."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/api.stub.json"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "vanguardFindingV1": "14cd42d093b6bc78"
+          }
+        }
+      ],
+      "columnKind": "utf16CodeUnits"
+    }
+  ]
+}

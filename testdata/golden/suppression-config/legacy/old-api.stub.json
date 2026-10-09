@@ -1,0 +1,13 @@
+{
+  "service": "LegacyLedger",
+  "basePath": "/v1/ledger",
+  "methods": [
+    {"name": "demoBadListLedger", "verb": "GET", "path": "/entries",
+     "response": {"type": "LedgerEntryList", "statusCode": 200, "isCollection": true}},
+    {"name": "exportLedger", "verb": "POST", "path": "/export"}
+  ],
+  "types": [
+    {"name": "LedgerEntry", "kind": "record", "fields": [{"name": "id", "type": "string"}]},
+    {"name": "LedgerEntryList", "kind": "record", "fields": [{"name": "items", "type": "LedgerEntry"}]}
+  ]
+}

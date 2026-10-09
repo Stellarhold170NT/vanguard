@@ -1,0 +1,35 @@
+ vanguard 0.1.0-dev · testdata/golden/sort-stability · stub · stub
+ 1 services · 5 rules (5 active) · 1 files in <duration>
+
+ [ERROR] R6xx-91 demo-bad-method-name (4)
+ ──────────────────────────────────────────────────────────────────
+ app/ties.stub.json:1:1
+   Method name "demoBadAlpha" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: alpha
+   suppress: // vanguard:ignore R6xx-91 <reason>
+
+ app/ties.stub.json:1:1
+   Method name "demoBadGamma" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: gamma
+
+ app/ties.stub.json:1:1
+   Method name "demoBadEpsilon" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: epsilon
+
+ app/ties.stub.json:1:1
+   Method name "demoBadZeta" carries the demoBad fixture marker — name the operation after what it does.
+   suggest: zeta
+
+ [WARN]  R6xx-92 demo-no-response-type (2)
+ ──────────────────────────────────────────────────────────────────
+ app/ties.stub.json:1:1
+   Method plainBeta declares no response type — clients cannot deserialize an undeclared result.
+   suppress: // vanguard:ignore R6xx-92 <reason>
+
+ app/ties.stub.json:1:1
+   Method plainDelta declares no response type — clients cannot deserialize an undeclared result.
+
+ ──────────────────────────────────────────────────────────────────
+ 6 findings · 4 ERROR · 2 WARN · 0 INFO · 0 suppressed
+ 1 files with findings · 1 scanned · 4 skipped · 0 parse diagnostics
+ next: vanguard explain R6xx-91

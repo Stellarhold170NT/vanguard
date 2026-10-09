@@ -1,0 +1,9 @@
+exit: 1
+note: >-
+  One scan rendered to all three formats (charter §6.6-6.8); the harness's
+  TestMultiFormatConsistency cross-checks this case's json and sarif
+  snapshots for the same finding identity set (rule, location, message)
+  and the full ERROR/WARN/INFO taxonomy. The finding set mixes suggestions
+  (R6xx-91 carries one) with bare messages (R6xx-92) and a two-findings-on-
+  one-node case (R6xx-91 + R6xx-93 on demoBadSearchInventory) so the
+  cross-check is not vacuous.
