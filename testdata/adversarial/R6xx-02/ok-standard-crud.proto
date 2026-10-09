@@ -1,0 +1,13 @@
+// corpus: R6xx-02 ok standard-crud
+// lure: Get/List/Create/Update/Delete — the Standard Methods the rule is named after.
+syntax = "proto3";
+
+package library.v1;
+
+service BookService {
+  rpc GetBook(GetBookRequest) returns (Book);
+  rpc ListBooks(ListBooksRequest) returns (BookList);
+  rpc CreateBook(CreateBookRequest) returns (Book);
+  rpc UpdateBook(UpdateBookRequest) returns (Book);
+  rpc DeleteBook(DeleteBookRequest) returns (Book);
+}

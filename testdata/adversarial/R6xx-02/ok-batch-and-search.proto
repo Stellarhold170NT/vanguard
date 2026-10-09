@@ -1,0 +1,10 @@
+// corpus: R6xx-02 ok batch-and-search
+// lure: BatchGetMembers and SearchBooks — batch variants and Search count as standard names.
+syntax = "proto3";
+
+package library.v1;
+
+service MemberService {
+  rpc BatchGetMembers(BatchGetMembersRequest) returns (stream Member);
+  rpc SearchMembers(SearchMembersRequest) returns (SearchMembersResponse);
+}

@@ -1,7 +1,24 @@
-# Adversarial corpus manifest (test-strategy §3.6) — w3-03 seed for the
-# R1xx family. The w4-01/w4-02 harness reads this file directly.
-# expect: hit  = the rule MUST report >= 1 finding on the file
-# expect: miss = the rule MUST stay silent on the file
+# Adversarial corpus manifest (test-strategy §3.6) — authored by task w4-01.
+# The w4-02 harness reads this file directly.
+#
+# Semantics:
+#   expect: hit         the `rule` MUST report >= 1 finding for this case
+#   expect: miss        the `rule` MUST stay silent for this case
+#   expect: parse-ok    the file must parse with zero diagnostics (no rule gate)
+#   also_expect         secondary rules this case is known to trip (informational;
+#                       cross-rule hits on an expect: miss case do not fail it —
+#                       the gate is the primary rule only)
+#   expected_miss: true a declared pre-run miss on an expect: hit case — the rule
+#                       is known not to fire (heuristic limit / rule not registered);
+#                       counted as honored, never silently converted
+#
+# Run protocol: one isolated scan per case — the case file (plus any companion
+# files it needs) is the whole scan root, so surface-level rules see exactly
+# one app unit.
+#
+# Config passes:
+#   default         --config .vanguard.yaml        (demo family R6xx-9x off)
+#   enable-r6xx-01  --config .vanguard-r6xx01.yaml (same + R6xx-01 opt-in)
 
 - id: singular-collection-path
   rule: R1xx-01
@@ -10,7 +27,7 @@
   tier: baseline
   config: default
   note: >-
-    GET /book/{id} - singular collection segment before a path variable.
+    singular collection segment before {id} — /book/{id} reads as one book.
 
 - id: singular-list-endpoint
   rule: R1xx-01
@@ -19,8 +36,10 @@
   tier: baseline
   config: default
   note: >-
-    GET /training-plan returning Page of plans - the final segment of a
-    collection GET is the list route itself.
+    list route whose final segment is singular while the response is a page of items.
+  also_expect:
+    - R3xx-01
+    - R3xx-02
 
 - id: singular-sub-collection
   rule: R1xx-01
@@ -29,18 +48,18 @@
   tier: baseline
   config: default
   note: >-
-    /books/{bookId}/review/{reviewId} - sub-collection noun singular while
-    the sibling /books/{bookId}/reviews is plural, the fork the rule
-    prevents.
+    nested sub-collection segment stays singular between two path variables.
+  also_expect:
+    - R3xx-01
 
-- id: uncountable-noun
+- id: singular-list-final
   rule: R1xx-01
-  file: R1xx-01/ok-uncountable-noun.java
-  expect: miss
+  file: R1xx-01/vio-singular-list-final.java
+  expect: hit
   tier: near-miss
   config: default
   note: >-
-    /equipment/{id} - uncountable noun, never flagged as singular.
+    collection GET whose final noun is one token from the plural /books — but paginated, so only the plural rule may speak.
 
 - id: plural-standard
   rule: R1xx-01
@@ -49,17 +68,29 @@
   tier: baseline
   config: default
   note: >-
-    /books and /books/{id} - the convention the app already follows.
+    plain plural collection plus item route — the convention the app already follows.
+  also_expect:
+    - R3xx-01
 
-- id: delete-verb-path
-  rule: R1xx-02
-  file: R1xx-02/vio-delete-verb-path.java
-  expect: hit
-  tier: baseline
+- id: uncountable-noun
+  rule: R1xx-01
+  file: R1xx-01/ok-uncountable-noun.java
+  expect: miss
+  tier: near-miss
   config: default
   note: >-
-    @DeleteMapping("/delete/{id}") - the verb is stated twice; the HTTP
-    verb already carries the action.
+    mass noun /equipment has no plural form — flagging it would be a false positive.
+
+- id: camel-plural
+  rule: R1xx-01
+  file: R1xx-01/ok-camel-plural.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    camelCase plural /bookShelves reads plural at the token level — the casing split is R1xx-04's subject, not this rule's.
+  also_expect:
+    - R1xx-04
 
 - id: update-draft-path
   rule: R1xx-02
@@ -68,8 +99,18 @@
   tier: near-miss
   config: default
   note: >-
-    POST /update/draft - the verb "update" hides as the first segment of
-    an action-phrase route.
+    two-stage action phrase /update/draft — the verb hides under a sub-path.
+
+- id: delete-verb-path
+  rule: R1xx-02
+  file: R1xx-02/vio-delete-verb-path.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    @DeleteMapping("/delete/{id}") — the verb is stated twice, on the method and in the path.
+  also_expect:
+    - R1xx-03
 
 - id: camel-verb-path
   rule: R1xx-02
@@ -78,8 +119,28 @@
   tier: baseline
   config: default
   note: >-
-    /getUserById - camelCase splits into get|user|by|id; the exact token
-    get matches.
+    RPC-style camelCase path /getUserById — the verb hides inside one segment.
+  also_expect:
+    - R1xx-04
+    - R2xx-05
+
+- id: fetch-under-resource
+  rule: R1xx-02
+  file: R1xx-02/vio-fetch-under-resource.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    POST /books/fetch — the action verb hides under the collection; only the path rule may flag it (R2xx-05 stays silent on POST).
+
+- id: create-token
+  rule: R1xx-02
+  file: R1xx-02/vio-create-token.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    POST /create/books — the create verb leads the route instead of the collection.
 
 - id: noun-getter
   rule: R1xx-02
@@ -88,8 +149,9 @@
   tier: near-miss
   config: default
   note: >-
-    /budget-getter - "getter" is not the token "get"; token-boundary
-    matching only, never substrings.
+    "getter" is a domain noun, not the verb get — only exact tokens are verbs.
+  also_expect:
+    - R1xx-01
 
 - id: noun-updates
   rule: R1xx-02
@@ -98,8 +160,18 @@
   tier: near-miss
   config: default
   note: >-
-    GET /updates and POST /statistics/rebuild - "updates" is the resource
-    noun and "rebuild" is a non-CRUD action verb (R2xx-05's subject).
+    "updates" is the plural noun (a feed of updates) — not the verb update.
+  also_expect:
+    - R3xx-01
+
+- id: preview-noun
+  rule: R1xx-02
+  file: R1xx-02/ok-preview-noun.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    plural noun /previews sits one 's' from the action preview — token equality keeps it silent.
 
 - id: flat-find-route
   rule: R1xx-03
@@ -108,18 +180,9 @@
   tier: baseline
   config: default
   note: >-
-    /find-by-id/{id} - the variable sits under an action segment instead
-    of the resource that owns it.
-
-- id: consecutive-params
-  rule: R1xx-03
-  file: R1xx-03/vio-consecutive-params.java
-  expect: hit
-  tier: baseline
-  config: default
-  note: >-
-    /orders/{orderId}/{itemId} - the sub-collection owning the second id
-    is missing.
+    /find-by-id/{id} replaces the resource hierarchy with a flat action route.
+  also_expect:
+    - R1xx-02
 
 - id: param-first-path
   rule: R1xx-03
@@ -128,8 +191,29 @@
   tier: baseline
   config: default
   note: >-
-    /{memberId}/loans - the route starts with a path variable, no
-    collection anchor before it.
+    the path opens with {memberId} — no collection segment anchors the variable.
+  also_expect:
+    - R3xx-01
+
+- id: consecutive-params
+  rule: R1xx-03
+  file: R1xx-03/vio-consecutive-params.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    two path variables in a row — the sub-collection that owns the second id is missing.
+
+- id: param-under-verb
+  rule: R1xx-03
+  file: R1xx-03/vio-param-under-verb.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    {memberId} sits under the action segment /update — the item belongs to the resource, not the action.
+  also_expect:
+    - R1xx-02
 
 - id: nested-hierarchy
   rule: R1xx-03
@@ -138,8 +222,7 @@
   tier: baseline
   config: default
   note: >-
-    /authors/{authorId}/books/{bookId} - the canonical two-level
-    hierarchy is silent.
+    textbook /collection/{id}/sub-collection/{subId} shape — every variable sits under its resource.
 
 - id: single-level-collection
   rule: R1xx-03
@@ -148,17 +231,16 @@
   tier: baseline
   config: default
   note: >-
-    /libraries/{libraryId} - the minimal legal shape, silent.
+    one collection level with its item variable — the minimal legal shape.
 
-- id: mixed-case-segment
-  rule: R1xx-04
-  file: R1xx-04/vio-mixed-case-segment.java
-  expect: hit
-  tier: baseline
+- id: three-level-hierarchy
+  rule: R1xx-03
+  file: R1xx-03/ok-three-level-hierarchy.java
+  expect: miss
+  tier: near-miss
   config: default
   note: >-
-    /search/all-by-Name - a capital inside the kebab segment splits the
-    family in two.
+    three nested levels stay legal while every variable keeps its resource anchor.
 
 - id: camel-segment
   rule: R1xx-04
@@ -167,8 +249,19 @@
   tier: baseline
   config: default
   note: >-
-    /loanOrders - camelCase literal segment; the suggestion is the
-    kebab-cased path.
+    camelCase literal segment /loanOrders — segments are kebab-case, not camel.
+
+- id: mixed-case-segment
+  rule: R1xx-04
+  file: R1xx-04/vio-mixed-case-segment.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    capital N in the middle of a kebab segment — /search/all-by-Name next to all-by-condition.
+  also_expect:
+    - R1xx-01
+    - R2xx-05
 
 - id: pascal-param
   rule: R1xx-04
@@ -177,8 +270,16 @@
   tier: near-miss
   config: default
   note: >-
-    /trainings/{YouthId} - PascalCase path variable; lowerCamel is the
-    one variable convention.
+    {YouthId} starts upper-case — path variables are lowerCamelCase.
+
+- id: underscore-segment
+  rule: R1xx-04
+  file: R1xx-04/vio-underscore-segment.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    snake_case literal /user_profile masquerades as a convention — segments are kebab.
 
 - id: kebab-standard
   rule: R1xx-04
@@ -187,7 +288,7 @@
   tier: baseline
   config: default
   note: >-
-    /audio-books/{bookId} - plain kebab segments with a camel variable.
+    plain kebab segments with a camelCase variable — the convention the app already follows.
 
 - id: acronym-lowercase
   rule: R1xx-04
@@ -196,8 +297,16 @@
   tier: near-miss
   config: default
   note: >-
-    /api-keys/{keyId} - a lower-case acronym inside kebab stays
-    consistent.
+    acronym spelled lower-case inside kebab (/api-keys) stays consistent; variable stays camel.
+
+- id: numeric-segment
+  rule: R1xx-04
+  file: R1xx-04/ok-numeric-segment.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    version segment /v2 is lower-case alphanumerics — legal kebab, nothing to normalize.
 
 - id: mixed-suffix-convention
   rule: R1xx-05
@@ -206,8 +315,9 @@
   tier: baseline
   config: default
   note: >-
-    StockItemDto mixes bookID / member_id / publisherId - three spellings
-    of the reference-id convention in one type.
+    one DTO mixes bookID, member_id and publisherId — three spellings of the same convention.
+  also_expect:
+    - R4xx-02
 
 - id: mixed-json-key
   rule: R1xx-05
@@ -216,8 +326,9 @@
   tier: near-miss
   config: default
   note: >-
-    user_id vs orderId JSON keys - the serialized name is what clients
-    see, so a JSON key spelling counts.
+    JSON keys split conventions — user_id snake against orderId camel in one DTO.
+  also_expect:
+    - R4xx-02
 
 - id: self-id-mix
   rule: R1xx-05
@@ -226,8 +337,7 @@
   tier: near-miss
   config: default
   note: >-
-    OrderDto{orderId} next to MemberDto{id} - the surface-level self-id
-    mix; v0.1 reports it, it does not enforce one convention.
+    OrderDto names its own id orderId while MemberDto uses id — two self-id styles on one surface.
 
 - id: consistent-reference-ids
   rule: R1xx-05
@@ -236,8 +346,7 @@
   tier: baseline
   config: default
   note: >-
-    AuthorDigestDto{editorId, publisherId} - one consistent reference
-    spelling, nothing to report.
+    every reference id uses the same <resource>Id spelling — one convention, nothing to report.
 
 - id: self-and-reference
   rule: R1xx-05
@@ -246,5 +355,1317 @@
   tier: baseline
   config: default
   note: >-
-    LoanDto{id, bookId, memberId} - the charter convention itself: id for
-    the self id, resource-Id for references.
+    the charter convention itself — id for the self id, <resource>Id for references.
+
+- id: no-id-projection
+  rule: R1xx-05
+  file: R1xx-05/ok-no-id-projection.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    a projection DTO without any id-shaped field — neither check has an opinion, silence is correct.
+
+- id: get-request-body
+  rule: R2xx-01
+  file: R2xx-01/vio-get-request-body.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    GET with @RequestBody next to a Pageable — the filter rides a body many clients drop.
+
+- id: get-requestpart
+  rule: R2xx-01
+  file: R2xx-01/vio-get-requestpart.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    @RequestPart on a GET — multipart or not, the adapter binds it as a body and the rule speaks.
+
+- id: get-list-body
+  rule: R2xx-01
+  file: R2xx-01/vio-get-list-body.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    GET whose body is a raw id list — the bulk-read shape that silently fails on real clients.
+
+- id: get-item-body
+  rule: R2xx-01
+  file: R2xx-01/vio-get-item-body.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    GET on an item path with a body — /books/{bookId}/content reads a range it should take as query parameters.
+
+- id: get-query-object
+  rule: R2xx-01
+  file: R2xx-01/ok-get-query-object.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    the same filter declared @RequestParam — bound from the query string, no body in sight.
+
+- id: get-pathvars-only
+  rule: R2xx-01
+  file: R2xx-01/ok-get-pathvars-only.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    plain GET with a path variable — the minimal legal read.
+
+- id: get-header-and-query
+  rule: R2xx-01
+  file: R2xx-01/ok-get-header-and-query.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    trace header plus query term — @RequestHeader looks body-adjacent but binds from the headers.
+  also_expect:
+    - R3xx-01
+    - R3xx-02
+
+- id: post-implicit-200
+  rule: R2xx-02
+  file: R2xx-02/vio-post-implicit-200.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    POST /books returning the new BookDto with no declared status — the implicit 200 hides the creation.
+  also_expect:
+    - R5xx-03
+
+- id: post-explicit-200
+  rule: R2xx-02
+  file: R2xx-02/vio-post-explicit-200.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the status IS declared — as 200 OK. The verb-verb reading is right, the status is wrong.
+  also_expect:
+    - R5xx-03
+
+- id: post-subresource
+  rule: R2xx-02
+  file: R2xx-02/vio-post-subresource.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    creating a sub-resource POST /books/{bookId}/reviews — creation hides one level down the path.
+  also_expect:
+    - R5xx-03
+
+- id: post-201-responsestatus
+  rule: R2xx-02
+  file: R2xx-02/ok-post-201-responsestatus.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    the same create with @ResponseStatus(CREATED) — 201 declared, both status rules silent.
+
+- id: post-202-async
+  rule: R2xx-02
+  file: R2xx-02/ok-post-202-async.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    asynchronous creation answering 202 Accepted — the deliberate AIP-133 dispute edge the rule accepts.
+
+- id: post-action-search
+  rule: R2xx-02
+  file: R2xx-02/ok-post-action-search.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    POST /books/search is an action, not a create — the action lexicon keeps both status rules silent.
+
+- id: patch-full-dto
+  rule: R2xx-03
+  file: R2xx-03/vio-patch-full-dto.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    PATCH taking the same BookDto it returns — the full replacement belongs to PUT.
+
+- id: patch-full-entity
+  rule: R2xx-03
+  file: R2xx-03/vio-patch-full-entity.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    PATCH round-tripping the ORM entity — a full replacement that also leaks the entity to the wire.
+  also_expect:
+    - R4xx-01
+
+- id: patch-responseentity-full
+  rule: R2xx-03
+  file: R2xx-03/vio-patch-responseentity-full.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the ResponseEntity wrapper hides the full round-trip — unwrap and the payload still equals the response.
+
+- id: patch-full-record
+  rule: R2xx-03
+  file: R2xx-03/vio-patch-full-record.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    PATCH round-tripping a Java record — same type in, same type out, still a full replacement.
+
+- id: patch-partial-dto
+  rule: R2xx-03
+  file: R2xx-03/ok-patch-partial-dto.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    PATCH with a dedicated partial DTO — response differs from payload, the rule stays out.
+
+- id: patch-map-partial
+  rule: R2xx-03
+  file: R2xx-03/ok-patch-map-partial.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    PATCH with Map<String,Object> — a field bag, not the entity; the full-vs-partial heuristic cannot call it full.
+
+- id: patch-void-response
+  rule: R2xx-03
+  file: R2xx-03/ok-patch-void-response.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    PATCH with no declared response — without a response type the heuristic cannot establish "full".
+
+- id: delete-body-list
+  rule: R2xx-04
+  file: R2xx-04/vio-delete-body-list.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    DELETE with @RequestBody List<String> — bulk deletes ride query parameters, not bodies.
+
+- id: delete-body-reason
+  rule: R2xx-04
+  file: R2xx-04/vio-delete-body-reason.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    DELETE with a "reason" body on the item path — the explanation belongs in the audit log, not the request body.
+
+- id: delete-bulk-body
+  rule: R2xx-04
+  file: R2xx-04/vio-delete-bulk-body.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    DELETE /memberships with a typed bulk body — the batch reads as a path (?ids= or /books:batchDelete), not a body.
+
+- id: delete-query-ids
+  rule: R2xx-04
+  file: R2xx-04/ok-delete-query-ids.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    bulk delete via repeated query parameter — the documented legal shape.
+
+- id: delete-item
+  rule: R2xx-04
+  file: R2xx-04/ok-delete-item.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    plain item DELETE with no body — the convention the app already follows.
+
+- id: delete-etag-header
+  rule: R2xx-04
+  file: R2xx-04/ok-delete-etag-header.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    conditional delete with an If-Match header — @RequestHeader sits near the body slot but binds elsewhere.
+
+- id: get-export
+  rule: R2xx-05
+  file: R2xx-05/vio-get-export.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    GET /reports/export — an action served by GET; AIP-136 wants POST <collection>:export.
+
+- id: put-action-word
+  rule: R2xx-05
+  file: R2xx-05/vio-put-action-word.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    PUT /statistics/calculate — the action verb rides a full-replacement verb.
+
+- id: delete-cleanup
+  rule: R2xx-05
+  file: R2xx-05/vio-delete-cleanup.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    DELETE /sessions/cleanup — an action on the delete verb; the HTTP verb already says removal.
+
+- id: post-colon-restore
+  rule: R2xx-05
+  file: R2xx-05/ok-post-colon-restore.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    AIP-136 custom method POST /books/{bookId}:restore — POST already satisfies the convention.
+
+- id: post-search-action
+  rule: R2xx-05
+  file: R2xx-05/ok-post-search-action.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    the same /books/search shape under POST — one verb away from the GET violation the rule flags.
+
+- id: put-partial-shape
+  rule: R2xx-06
+  file: R2xx-06/vio-put-partial-shape.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    PUT taking BookUpdateRequest while answering BookDto — the mismatch reads as a partial update.
+
+- id: put-partial-name
+  rule: R2xx-06
+  file: R2xx-06/vio-put-partial-name.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the method is even named partialUpdate* — the PUT verb still owns full replacements.
+
+- id: put-map-payload
+  rule: R2xx-06
+  file: R2xx-06/vio-put-map-payload.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    PUT with a Map<String,Object> payload against a typed response — the field bag is the partial tell.
+
+- id: put-entity-response
+  rule: R2xx-06
+  file: R2xx-06/vio-put-entity-response.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    PUT whose declared response is the ORM entity while the payload is the update DTO — partial shape plus a wire leak.
+  also_expect:
+    - R4xx-01
+
+- id: put-full-same
+  rule: R2xx-06
+  file: R2xx-06/ok-put-full-same.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    PUT round-tripping the same BookDto — payload equals response, the full replacement it should be.
+
+- id: put-no-content
+  rule: R2xx-06
+  file: R2xx-06/ok-put-no-content.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    full-replacement PUT answering 204 No Content — no response type, the heuristic stays silent.
+
+- id: put-wrapped-same
+  rule: R2xx-06
+  file: R2xx-06/ok-put-wrapped-same.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    the same full round-trip wrapped in ResponseEntity — unwrap and payload equals response again.
+
+- id: list-unpaginated
+  rule: R3xx-01
+  file: R3xx-01/vio-list-unpaginated.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    a plain collection GET with no page input — one request can dump the table.
+  also_expect:
+    - R3xx-02
+
+- id: list-projections
+  rule: R3xx-01
+  file: R3xx-01/vio-list-projections.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the rows are slim projections, yet the collection is still unbounded — slimness is not pagination.
+  also_expect:
+    - R3xx-02
+
+- id: page-without-pageable
+  rule: R3xx-01
+  file: R3xx-01/vio-page-without-pageable.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the response is a Page but the handler takes no Pageable — the envelope decorates an unbounded query.
+
+- id: list-pageable
+  rule: R3xx-01
+  file: R3xx-01/ok-list-pageable.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    Spring Pageable argument — the canonical pagination input.
+
+- id: list-page-size-params
+  rule: R3xx-01
+  file: R3xx-01/ok-list-page-size-params.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    explicit page/size query parameters — the framework-free pagination shape.
+
+- id: list-limit-capped
+  rule: R3xx-01
+  file: R3xx-01/ok-list-limit-capped.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    a limit parameter with @Max — one query word, and both pagination rules stay silent.
+
+- id: list-bare-list
+  rule: R3xx-02
+  file: R3xx-02/vio-list-bare-list.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    a paginated handler that still answers a bare List — no room for total/page metadata.
+
+- id: set-response
+  rule: R3xx-02
+  file: R3xx-02/vio-set-response.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    a Set reads just as bare on the wire as a List — the container type changes nothing.
+
+- id: array-response
+  rule: R3xx-02
+  file: R3xx-02/vio-array-response.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    an array return type — the oldest bare-collection spelling, still no envelope.
+
+- id: page-envelope
+  rule: R3xx-02
+  file: R3xx-02/ok-page-envelope.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    Page<T> carries total/page metadata — the framework envelope the rule accepts.
+
+- id: custom-envelope
+  rule: R3xx-02
+  file: R3xx-02/ok-custom-envelope.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    an app-owned PageResponse record — not on the bare-container list, so the rule stays silent.
+
+- id: size-unbounded
+  rule: R3xx-03
+  file: R3xx-03/vio-size-unbounded.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    a size query parameter with no @Max — one client can ask for the whole table.
+
+- id: limit-unbounded
+  rule: R3xx-03
+  file: R3xx-03/vio-limit-unbounded.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    the limit spelling of the same trap — last-word matching makes limit a page size too.
+
+- id: pagesize-camel
+  rule: R3xx-03
+  file: R3xx-03/vio-pagesize-camel.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    pageSize hides the size word in camelCase — the last-word read still catches it (and the param stops counting as pagination input).
+  also_expect:
+    - R3xx-01
+
+- id: size-capped
+  rule: R3xx-03
+  file: R3xx-03/ok-size-capped.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    the same size parameter with @Max(100) — capped, silent.
+
+- id: page-offset-params
+  rule: R3xx-03
+  file: R3xx-03/ok-page-offset-params.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    page/offset parameters — neither word carries a size, so there is no cap to demand.
+
+- id: page-vs-page-response
+  rule: R3xx-04
+  file: R3xx-04/vio-page-vs-page-response.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    two paginated lists in one file answer Page<T> and a custom PageResponse — two wire shapes for the same concern.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: page-vs-list
+  rule: R3xx-04
+  file: R3xx-04/vio-page-vs-list.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    one endpoint answers Page<T>, its sibling a bare List — the sibling also trips R3xx-02 on its own.
+  also_expect:
+    - R3xx-02
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: params-vs-pageable
+  rule: R3xx-04
+  file: R3xx-04/vio-params-vs-pageable.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    page/size parameters on one list, a Pageable argument on the next — two input dialects in one file.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: envelope-shape-mix
+  rule: R3xx-04
+  file: R3xx-04/vio-envelope-shape-mix.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    a Page answer next to an app-owned history page record — the envelope changes between siblings.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: page-everywhere
+  rule: R3xx-04
+  file: R3xx-04/ok-page-everywhere.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    both list endpoints answer Page<T> with a Pageable — one pagination dialect.
+
+- id: page-response-everywhere
+  rule: R3xx-04
+  file: R3xx-04/ok-page-response-everywhere.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    both endpoints answer the app-owned PageResponse — consistency by convention.
+
+- id: params-everywhere
+  rule: R3xx-04
+  file: R3xx-04/ok-params-everywhere.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    both endpoints take page/size query parameters and answer Page<T> — consistent input and output.
+
+- id: entity-response
+  rule: R4xx-01
+  file: R4xx-01/vio-entity-response.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    the handler answers the ORM entity itself — every column, relation and audit field is on the wire.
+
+- id: entity-generic-page
+  rule: R4xx-01
+  file: R4xx-01/vio-entity-generic-page.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the entity hides one generic deep inside Page<Author> — the unwrap has to look through the wrapper.
+
+- id: entity-payload
+  rule: R4xx-01
+  file: R4xx-01/vio-entity-payload.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    POST taking the entity as @RequestBody — client-controlled columns, mass-assignment by construction.
+
+- id: entity-list-response
+  rule: R4xx-01
+  file: R4xx-01/vio-entity-list-response.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    a bare List<Author> — both the entity leak and the missing envelope at once.
+  also_expect:
+    - R3xx-02
+
+- id: dto-response
+  rule: R4xx-01
+  file: R4xx-01/ok-dto-response.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    the entity exists in the file but the handler answers its DTO — the leak never happens.
+
+- id: dto-shadowed-entity-name
+  rule: R4xx-01
+  file: R4xx-01/ok-dto-shadowed-entity-name.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    a DTO shares the entity's simple name — the first-declaration shadowing policy keeps the rule silent instead of guessing.
+
+- id: entity-query-param-only
+  rule: R4xx-01
+  file: R4xx-01/ok-entity-query-param-only.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    the entity is referenced from a @RequestParam binding — it never reaches payload or response, so nothing leaks.
+
+- id: snake-case-field
+  rule: R4xx-02
+  file: R4xx-02/vio-snake-case-field.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    field cover_image_url — snake_case in a lowerCamel surface.
+
+- id: json-key-snake
+  rule: R4xx-02
+  file: R4xx-02/vio-json-key-snake.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the Java field is clean camelCase — the @JsonProperty key is what ships, and it is snake_case.
+
+- id: pascal-field
+  rule: R4xx-02
+  file: R4xx-02/vio-pascal-field.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    field FirstName — PascalCase leak from a C# habit or a copy-paste.
+
+- id: camel-standard
+  rule: R4xx-02
+  file: R4xx-02/ok-camel-standard.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    all lowerCamel fields — nothing to normalize.
+
+- id: acronym-camel
+  rule: R4xx-02
+  file: R4xx-02/ok-acronym-camel.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    field userURL starts lower and stays alphabetic — the lowerCamel read passes it (the rule's documented under-report edge).
+
+- id: json-camel-key
+  rule: R4xx-02
+  file: R4xx-02/ok-json-camel-key.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    an explicit @JsonProperty that is still lowerCamel — the override changes nothing the rule measures.
+
+- id: instant-as-string
+  rule: R4xx-03
+  file: R4xx-03/vio-instant-as-string.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    publishedAt as String — a timestamp serialized as free text, unparseable for clients.
+
+- id: epoch-as-long
+  rule: R4xx-03
+  file: R4xx-03/vio-epoch-as-long.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    updatedAt as a raw long — an epoch number with no zone or unit contract.
+
+- id: localdatetime-field
+  rule: R4xx-03
+  file: R4xx-03/vio-localdatetime-field.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    expiresAt as LocalDateTime — a wall-clock stamp with no zone, ambiguous across regions.
+
+- id: offsetdatetime
+  rule: R4xx-03
+  file: R4xx-03/ok-offsetdatetime.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    createdAt as OffsetDateTime — the zoned standard the rule wants.
+
+- id: localdate-birth-date
+  rule: R4xx-03
+  file: R4xx-03/ok-localdate-birth-date.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    birthDate as LocalDate — a pure date needs no zone; the date/LocalDate pair stays silent.
+
+- id: dto-suffix-mix
+  rule: R4xx-04
+  file: R4xx-04/vio-dto-suffix-mix.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    one file names payloads *DTO and requests *Request — two suffix conventions in one module.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: record-vs-dto
+  rule: R4xx-04
+  file: R4xx-04/vio-record-vs-dto.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    one handler answers a record, the sibling a *DTO class — the spelling split the rule watches.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: response-vs-dto
+  rule: R4xx-04
+  file: R4xx-04/vio-response-vs-dto.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    LoanResponse next to BookDto — the *Response/*DTO split inside one controller.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: dto-only
+  rule: R4xx-04
+  file: R4xx-04/ok-dto-only.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    every payload type ends in *DTO — one convention, nothing to reconcile.
+
+- id: request-response-pair
+  rule: R4xx-04
+  file: R4xx-04/ok-request-response-pair.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    requests are *Request, responses are *Response — a consistent pairing convention.
+
+- id: record-only
+  rule: R4xx-04
+  file: R4xx-04/ok-record-only.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    every payload type is a plain record — one convention, nothing to reconcile.
+
+- id: map-handler
+  rule: R5xx-01
+  file: R5xx-01/vio-map-handler.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    two handlers share the ErrorResponse envelope while one answers a raw Map — a second contract clients must sniff.
+
+- id: problemdetail-deviant
+  rule: R5xx-01
+  file: R5xx-01/vio-problemdetail-deviant.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the app standard is ErrorResponse; one handler drifts to Spring's ProblemDetail — the envelope split the rule flags.
+
+- id: errorresponse-deviant
+  rule: R5xx-01
+  file: R5xx-01/vio-errorresponse-deviant.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the majority envelope is a local ProblemDetail record; one legacy handler still answers ErrorResponse.
+
+- id: second-envelope-class
+  rule: R5xx-01
+  file: R5xx-01/vio-second-envelope-class.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    ApiError against the dominant ErrorResponse — two envelope classes living in one advice.
+
+- id: unified-problemdetail
+  rule: R5xx-01
+  file: R5xx-01/ok-unified-problemdetail.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    every handler answers the same ProblemDetail record — one envelope, nothing to report.
+
+- id: no-consensus
+  rule: R5xx-01
+  file: R5xx-01/ok-no-consensus.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    two handlers, two different envelopes — no dominant standard, so an unprovable standard stays silent.
+
+- id: business-exception-500
+  rule: R5xx-02
+  file: R5xx-02/vio-business-exception-500.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    an app-owned BookNotFoundException answered with 500 — a business rule failure reported as a server fault.
+
+- id: exception-self-500
+  rule: R5xx-02
+  file: R5xx-02/vio-exception-self-500.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the status hides on the exception class itself, not the handler — the resolution walks to the declaration.
+
+- id: advice-class-500
+  rule: R5xx-02
+  file: R5xx-02/vio-advice-class-500.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    @ResponseStatus(INTERNAL_SERVER_ERROR) on the advice class — every handler inherits the server-fault status.
+
+- id: two-business-500
+  rule: R5xx-02
+  file: R5xx-02/vio-two-business-500.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    two app exceptions, both mapped to 500 — a whole advice reporting business rules as server faults.
+
+- id: notfound-404
+  rule: R5xx-02
+  file: R5xx-02/ok-notfound-404.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    the same app exception mapped to 404 — the business failure with the right class of status.
+
+- id: external-exception-500
+  rule: R5xx-02
+  file: R5xx-02/ok-external-exception-500.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    500 over an undeclared JDK exception — the app does not own it, so the heuristic stays silent.
+
+- id: nonsuffix-500
+  rule: R5xx-02
+  file: R5xx-02/ok-nonsuffix-500.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    the declared type lacks the Exception suffix — the ownership heuristic cannot call it a business exception.
+
+- id: post-200-implicit
+  rule: R5xx-03
+  file: R5xx-03/vio-post-200-implicit.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    a create-shaped POST answering the implicit 200 — the created resource is not 201.
+  also_expect:
+    - R2xx-02
+
+- id: post-200-declared
+  rule: R5xx-03
+  file: R5xx-03/vio-post-200-declared.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    the status is explicit and still wrong — 200 OK on a creating POST.
+  also_expect:
+    - R2xx-02
+
+- id: post-subresource-200
+  rule: R5xx-03
+  file: R5xx-03/vio-post-subresource-200.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    creating a sub-collection item with the default status — the final path segment is a plain resource, so the create shape holds.
+  also_expect:
+    - R2xx-02
+
+- id: post-201-created
+  rule: R5xx-03
+  file: R5xx-03/ok-post-201-created.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    the same create answering 201 Created — the status semantics the rule wants.
+
+- id: post-colon-action
+  rule: R5xx-03
+  file: R5xx-03/ok-post-colon-action.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    POST /books/{bookId}:restore — the colon custom-method shape is not a create route, so no status demand.
+
+- id: two-advices
+  rule: R5xx-04
+  file: R5xx-04/vio-two-advices.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    two @ControllerAdvice classes in one file — two error sources racing for the same exception.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: advice-plus-rest-wrapper
+  rule: R5xx-04
+  file: R5xx-04/vio-advice-plus-rest-wrapper.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    an error advice plus a second @RestControllerAdvice wrapping successes — two envelopes a client must parse.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: two-envelope-classes
+  rule: R5xx-04
+  file: R5xx-04/vio-two-envelope-classes.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    one advice answering two envelope types across handlers — the app-level split the rule names.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: advice-plus-local-handler
+  rule: R5xx-04
+  file: R5xx-04/vio-advice-plus-local-handler.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    a global advice plus a controller-local @ExceptionHandler — the local handler is a second error source.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: single-advice
+  rule: R5xx-04
+  file: R5xx-04/ok-single-advice.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    one advice, one envelope — the convention the app already follows.
+
+- id: advice-plus-local-ok
+  rule: R5xx-04
+  file: R5xx-04/ok-advice-plus-local-ok.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    a local handler scoped to one endpoint next to a global advice — the documented acceptable pattern.
+
+- id: single-advice-many-exceptions
+  rule: R5xx-04
+  file: R5xx-04/ok-single-advice-many-exceptions.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    one advice handling many exception types with one envelope — exactly the consolidation the rule wants.
+
+- id: unversioned-base
+  rule: R6xx-01
+  file: R6xx-01/vio-unversioned-base.java
+  expect: hit
+  tier: baseline
+  config: enable-r6xx-01
+  note: >-
+    base path /api/orders with no version segment — clients pin to an unversioned contract.
+
+- id: unversioned-plain
+  rule: R6xx-01
+  file: R6xx-01/vio-unversioned-plain.java
+  expect: hit
+  tier: baseline
+  config: enable-r6xx-01
+  note: >-
+    the bare /orders base — versioning was never introduced on this controller.
+
+- id: unversioned-nested
+  rule: R6xx-01
+  file: R6xx-01/vio-unversioned-nested.java
+  expect: hit
+  tier: near-miss
+  config: enable-r6xx-01
+  note: >-
+    a nested base path /back-office still carries no /vN — depth is not versioning.
+
+- id: versioned-base
+  rule: R6xx-01
+  file: R6xx-01/ok-versioned-base.java
+  expect: miss
+  tier: baseline
+  config: enable-r6xx-01
+  note: >-
+    /api/v1/orders — the version segment the pattern wants.
+
+- id: empty-base
+  rule: R6xx-01
+  file: R6xx-01/ok-empty-base.java
+  expect: miss
+  tier: near-miss
+  config: enable-r6xx-01
+  note: >-
+    no class-level mapping at all — the base path is empty and the service-level check has nothing to read.
+
+- id: rpc-fetch-member-data
+  rule: R6xx-02
+  file: R6xx-02/vio-rpc-fetch-member-data.proto
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    rpc FetchMemberData — neither a Standard Method nor a VerbNoun the action lexicon knows.
+
+- id: rpc-do-stuff
+  rule: R6xx-02
+  file: R6xx-02/vio-rpc-do-stuff.proto
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    rpc DoStuff — the name carries no verb contract at all.
+
+- id: rpc-verb-no-noun
+  rule: R6xx-02
+  file: R6xx-02/vio-rpc-verb-no-noun.proto
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    rpc Process — the action verb alone is not a custom method; VerbNoun needs the noun.
+
+- id: standard-crud
+  rule: R6xx-02
+  file: R6xx-02/ok-standard-crud.proto
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    Get/List/Create/Update/Delete — the Standard Methods the rule is named after.
+
+- id: verb-noun-custom
+  rule: R6xx-02
+  file: R6xx-02/ok-verb-noun-custom.proto
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    ArchiveBook / RestoreBook — AIP-136 custom methods with known action verbs.
+
+- id: batch-and-search
+  rule: R6xx-02
+  file: R6xx-02/ok-batch-and-search.proto
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    BatchGetMembers and SearchBooks — the batch prefixes and Search count as standard names.
+
+- id: one-v2-endpoint
+  rule: R6xx-03
+  file: R6xx-03/vio-one-v2-endpoint.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    one /api/v2 endpoint in a controller of /api/v1 siblings — the half-finished migration.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: v2-among-v1
+  rule: R6xx-03
+  file: R6xx-03/vio-v2-among-v1.java
+  expect: hit
+  tier: near-miss
+  config: default
+  note: >-
+    two v1 endpoints and a single v2 — the minority version the rule would call out.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: version-suffix-drift
+  rule: R6xx-03
+  file: R6xx-03/vio-version-suffix-drift.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    the service prefix repeats with different versions — /api/v1/books against /api/v1/books/v2.
+  expected_miss: true
+  miss_reason: >-
+    rule not registered in the v0.1 registry at the w3-07 head (22 real rules); case is corpus-ready for when the rule ships
+
+- id: all-v1
+  rule: R6xx-03
+  file: R6xx-03/ok-all-v1.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    every endpoint pins /api/v1 — one version across the prefix, nothing to reconcile.
+
+- id: unversioned-consistent
+  rule: R6xx-03
+  file: R6xx-03/ok-unversioned-consistent.java
+  expect: miss
+  tier: near-miss
+  config: default
+  note: >-
+    no version segments anywhere — the consistent unversioned app must not collide with R6xx-01 here.
+
+- id: nested-generic-wildcard
+  rule: R4xx-01
+  file: _global/vio-nested-generic-wildcard.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    PageResponse<List<? extends Youth>> — nested generics with a bounded wildcard; the entity read must survive the parse.
+  expected_miss: true
+  miss_reason: >-
+    the v0.1 entity index cannot resolve an entity behind a bounded wildcard (? extends Youth), and the wildcard also keeps Youth out of the emitted type closure — declared pre-run from the implementation read
+
+- id: wildcard-request-mapping
+  rule: R1xx-01
+  file: _global/vio-wildcard-request-mapping.java
+  expect: parse-ok
+  tier: baseline
+  config: default
+  note: >-
+    /api/*/books — a wildcard segment between literals; the engine must inventory one endpoint and not crash.
+
+- id: overload-same-path
+  rule: R2xx-03
+  file: _global/vio-overload-same-path.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    PATCH and GET share /books/{id} — the engine must keep the per-method finding apart (exactly one R2xx-03 hit).
+
+- id: meta-annotation-composed
+  rule: R2xx-01
+  file: _global/vio-meta-annotation-composed.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    @MyGet composed from @GetMapping carrying a @RequestBody — a GET-with-body the direct-annotation read never sees.
+  expected_miss: true
+  miss_reason: >-
+    charter A-7 documented limitation: the v0.1 adapter reads direct annotations, so the composed @MyGet is an unknown mapping-like annotation and the method — a GET declaring a @RequestBody — is never inventoried for R2xx-01 to judge
+
+- id: multiple-base-paths
+  rule: R6xx-03
+  file: _global/vio-multiple-base-paths.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    @RequestMapping({"/a/v1", "/b"}) — two base paths on one class; the engine keeps the first and notes the rest.
+  expected_miss: true
+  miss_reason: >-
+    R6xx-03 is not registered in the v0.1 registry; the engine still inventories both base paths (first-kept + diagnostic)
+
+- id: uppercase-path-variable
+  rule: R1xx-04
+  file: _global/vio-uppercase-path-variable.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    /trainings/{YouthId} — the segment casing read must treat the variable as a variable.
+
+- id: commented-out-mapping
+  rule: R1xx-02
+  file: _global/ok-commented-out-mapping.java
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    the whole mapping lives in a // comment — comments are not an API surface, so nothing may fire.
+
+- id: proto-commented-service
+  rule: R6xx-02
+  file: _global/vio-proto-commented-service.proto
+  expect: miss
+  tier: baseline
+  config: default
+  note: >-
+    a proto service entirely inside comments — the declaration reader must not see a service.
+
+- id: nested-class-controller
+  rule: R1xx-01
+  file: _global/vio-nested-class-controller.java
+  expect: hit
+  tier: baseline
+  config: default
+  note: >-
+    the controller is a static nested class — the walk must still inventory it (the singular /book/{id} proves it).
+
+- id: no-api-plain-service
+  rule: null
+  file: _global/ok-no-api-plain-service.java
+  expect: parse-ok
+  tier: baseline
+  config: default
+  note: >-
+    a plain @Service class with no mappings — no API surface, zero findings, exit 0.

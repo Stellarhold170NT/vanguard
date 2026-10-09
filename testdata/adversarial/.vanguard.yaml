@@ -1,0 +1,17 @@
+# Adversarial corpus scan config (w4-01, test-strategy §3.6).
+# The demo family R6xx-9x stays registered in the default binary (w3-07,
+# concern 6) but is out of scope here: this corpus measures the charter's
+# 26 real rules only. The R6xx-01 policy rule stays default-off per charter;
+# the opt-in pass lives in .vanguard-r6xx01.yaml.
+version: 1
+rules:
+  R6xx-91:
+    disabled: true
+  R6xx-92:
+    disabled: true
+  R6xx-93:
+    disabled: true
+  R6xx-94:
+    disabled: true
+  R6xx-99:
+    disabled: true

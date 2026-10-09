@@ -1,0 +1,16 @@
+# Adversarial corpus scan config, R6xx-01 opt-in pass (w4-01).
+# Same as .vanguard.yaml plus the charter's default-off policy rule.
+version: 1
+rules:
+  R6xx-01:
+    disabled: false
+  R6xx-91:
+    disabled: true
+  R6xx-92:
+    disabled: true
+  R6xx-93:
+    disabled: true
+  R6xx-94:
+    disabled: true
+  R6xx-99:
+    disabled: true
