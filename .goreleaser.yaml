@@ -131,3 +131,48 @@ release:
   # (v0.1.0-rc1) are marked pre-release automatically.
   draft: false
   prerelease: auto
+  # Curated release notes (w6-04): charter v0.1 scope summary + install
+  # paths, prepended to the auto-generated commit changelog. Scope claims
+  # are cross-checked against docs/charter.md §1–§2 (and §1.4 exclusions);
+  # wave-2 items are named only as "not in this release".
+  header: |
+    # Vanguard v0.1.0
+
+    First tagged release of **vanguard** — a source-first API design linter
+    for Java/Spring Boot: it scans your source directly (no proto/OpenAPI
+    needed), discovers the HTTP API surface, and flags design drift at
+    review time, before a spec even exists.
+
+    ## What is in v0.1 (charter scope)
+    - `vanguard scan <path>` — language/framework auto-detection, Java
+      Spring Boot (MVC + WebFlux + springdoc), 27 rules across 6 families
+      `R1xx`–`R6xx`, neutral `R<F>xx-NN` ids (charter R1/R2/R3/R8).
+    - Output: pretty (TTY colors, grouped by rule/severity, fix hints),
+      JSON, SARIF 2.1.0; `explain <rule-id>`, `check`, `init`; exit codes
+      `0` clean / `1` ERROR findings / `2` tool error (charter R5).
+    - Configuration: `.vanguard.yaml` + inline `// vanguard:ignore`
+      suppression (charter R6).
+    - Quality evidence: 171-case adversarial corpus, mutation catch-rate
+      100% declared (56/56), real-fire baseline on an 182-endpoint service
+      (recall 100% vs swagger, 244 findings triaged 129 TP / 115 FP),
+      byte-identical deterministic outputs, p95 39.5 s @ 10k files.
+
+    ## Install
+    - **GitHub Releases** (assets below): grab the archive for your
+      platform and verify it against `checksums.txt` (sha256) — step by
+      step in [docs/install.md](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/install.md).
+    - **Docker**: `docker build -t vanguard .` — scratch image, one static
+      binary; compose demo included.
+    - **Go**: `go install github.com/Stellarhold170NT/vanguard/cmd/vanguard@v0.1.0`
+      (Go >= 1.22 + a C toolchain — tree-sitter is cgo).
+
+    Docs: [README](https://github.com/Stellarhold170NT/vanguard#readme)
+    (quickstart) · [install](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/install.md)
+    · [config](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/config.md)
+    · [rule catalog](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/README.md)
+    · [CI integration](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/ci-integration.md)
+    · [CHANGELOG](https://github.com/Stellarhold170NT/vanguard/blob/main/CHANGELOG.md)
+
+    Out of scope in v0.1 (charter §1.4): `--fix` autofix, differential
+    `--new-from-*`, Go/Python adapters (planned wave 2), full
+    type-resolution, LLM in the lint path, web UI.
