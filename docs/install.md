@@ -4,9 +4,10 @@ Vanguard ships as a single static binary. There are three supported install
 paths — pick one, then verify it with `vanguard version` as shown in each
 section. Platform matrix: linux / darwin / windows × amd64 / arm64.
 
-Exit codes you will meet below: `0` = clean scan or no API surface, `1` =
-findings (success for a linter — violations were found), `2` = tool/usage
-error.
+Exit codes you will meet below (engine policy — `internal/engine/run.go`):
+`0` = clean scan, warnings-only, or no API surface; `1` = at least one
+**ERROR**-severity finding; `2` = tool/usage error (bad usage or config).
+WARN/INFO findings do **not** fail the process.
 
 ---
 
@@ -73,17 +74,33 @@ docker build -t vanguard:local .
 docker run --rm vanguard:local version
 
 # Scan a repo: mount it at /src read-only, report goes to stdout.
-# Exit code 1 means findings were found.
+# Exit 0 = clean / warnings-only / no API surface; 1 = at least one
+# ERROR finding; 2 = tool/usage error.
 docker run --rm -v "$PWD:/src:ro" vanguard:local scan /src
 
 # Or use the bundled demo (mounts testdata/stub-repo and scans it):
 docker compose -f docker-compose.yml run --rm scan
 ```
 
-**Verify** — `version` prints the same one-line identity as way 1, and the
-image is minimal: `docker run --rm --entrypoint /bin/sh vanguard:local` must
-fail (there is no shell inside), and `docker history --no-trunc
-vanguard:local` must show no layer carrying source, testdata or credentials.
+**Verify** — `docker run --rm vanguard:local version` prints one line. A
+registry image built at tag time carries the tag identity; an image built
+locally without `--build-arg` shows the dev identity (both are correct):
+
+```
+vanguard 0.1.0 (commit <release-commit-sha>, built <RFC3339-UTC>)   # tag-built image
+vanguard 0.1.0-dev (commit unknown, built unknown)                  # local build, default args
+```
+
+(To stamp a local build like CI does: `docker build --build-arg
+VERSION=v0.1.0 --build-arg COMMIT=$(git rev-parse HEAD) --build-arg
+DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ) -t vanguard:local .`)
+
+The image is minimal by construction — verify it:
+`docker run --rm --entrypoint /bin/sh vanguard:local` must fail (there is
+no shell inside — verified: `exec: "/bin/sh": stat /bin/sh: no such file or
+directory`), and `docker history --no-trunc vanguard:local` must show one
+content layer only (`COPY /out/vanguard /vanguard`) next to two 0B metadata
+entries (LABEL + ENTRYPOINT) — no source, testdata or credentials layers.
 
 ---
 
@@ -132,4 +149,6 @@ vanguard check /path/to/repo         # CI alias, one summary line
 vanguard explain R4xx-02             # rule documentation for a finding
 ```
 
-A scan that prints findings and exits `1` is Vanguard working as intended.
+A scan exits `1` only when an **ERROR**-severity finding exists; WARN/INFO
+findings (as in the example above) still exit `0`, and `2` means the tool
+itself failed (bad usage or config).

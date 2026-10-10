@@ -6,8 +6,10 @@
 #   docker build -t vanguard:local .
 #   docker compose -f docker-compose.yml run --rm scan
 #
-# Exit code note: `scan` exits 1 when it finds violations — that is success
-# for a linter (0 = clean or no API surface, 2 = tool/usage error).
+# Exit code note (engine policy, internal/engine/run.go): `scan` exits 1 only
+# for ERROR-severity findings; 0 = clean / warnings-only / no API surface;
+# 2 = tool/usage error. The demo repo has one WARN finding, so this service
+# exits 0.
 services:
   scan:
     build: .
