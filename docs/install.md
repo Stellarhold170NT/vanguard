@@ -92,7 +92,7 @@ vanguard 0.1.0-dev (commit unknown, built unknown)                  # local buil
 ```
 
 (To stamp a local build like CI does: `docker build --build-arg
-VERSION=v0.1.0 --build-arg COMMIT=$(git rev-parse HEAD) --build-arg
+VERSION=0.1.0 --build-arg COMMIT=$(git rev-parse HEAD) --build-arg
 DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ) -t vanguard:local .`)
 
 The image is minimal by construction — verify it:
