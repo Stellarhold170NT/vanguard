@@ -22,7 +22,9 @@ end to end in w2-06); where a number is quoted it cites its W4 artifact.
 - `vanguard check <path>` is the CI alias of `scan`: same pipeline, same exit
   codes; on a non-TTY stdout it suppresses the pretty report and prints one
   summary line to stderr
-  (`vanguard check: FAILED — 2 ERROR, 3 WARN, 0 INFO, 1 suppressed (exit 1)`).
+  (`vanguard check: findings — 1 ERROR, 1 WARN, 0 INFO, 0 suppressed (exit 1)`
+  — the verdict word is `clean` on exit 0 and `findings` on exit 1; re-verified
+  against the binary in the w6-03 docs battery).
 - `scan --format json|sarif` keeps stdout purely machine-readable; with
   `--output <file>` the report goes to the file and stdout stays empty.
 - WARN and INFO findings **never** change the exit code (charter §6.3 — the
