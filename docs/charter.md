@@ -366,7 +366,7 @@ type Adapter interface {
 | Lệnh | Ý nghĩa |
 |---|---|
 | `vanguard scan [path]` | Quét + in findings (path mặc định `.`). Format mặc định `pretty`. |
-| `vanguard check [path]` | Alias scan mode CI: chỉ exit code; **suppress pretty khi non-TTY** (trừ khi `--format json\|sarif` / `--output` được truyền tường minh). |
+| `vanguard check [path]` | Alias scan mode CI: chỉ exit code; **suppress pretty khi non-TTY** (trừ khi `--format json\\|sarif` / `--output` được truyền tường minh). |
 | `vanguard explain <rule-id>` | In doc + ví dụ đúng/sai của rule từ metadata (nguồn cho w3-07, hiển thị doc URL). |
 | `vanguard init` | Sinh `.vanguard.yaml` mẫu có comment đầy đủ (§6.4.3). |
 | `vanguard version` | Build info (commit, date — ldflags; fallback `dev` khi không có git info — đừng fail build, w2-06). |
@@ -375,10 +375,10 @@ type Adapter interface {
 
 | Flag | Ý nghĩa |
 |---|---|
-| `--format pretty\|json\|sarif` | Format output (default `pretty`). |
+| `--format pretty\\|json\\|sarif` | Format output (default `pretty`). |
 | `--output FILE`, `-o FILE` | Ghi ra file thay vì stdout. |
 | `--config FILE` | Config tường minh — bỏ qua discovery. |
-| `--severity ERROR\|WARN\|INFO` | **Ngưỡng hiển thị** (default INFO = hiện tất cả). KHÔNG đổi exit code (display ≠ fail — w1-02 #2). |
+| `--severity ERROR\\|WARN\\|INFO` | **Ngưỡng hiển thị** (default INFO = hiện tất cả). KHÔNG đổi exit code (display ≠ fail — w1-02 #2). |
 | `--no-color` | Tắt màu (mặc định auto: màu chỉ khi TTY; tôn trọng `NO_COLOR` env). |
 | `--verbose`, `-v` | Evidence detect, file skipped, parse diagnostics, suppression note, config path. |
 | `--rules <id-list>` | Chỉ chạy các rule này (comma-separated: id lẻ hoặc prefix họ `R1xx`). |

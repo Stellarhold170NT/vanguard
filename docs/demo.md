@@ -52,7 +52,7 @@ Note three things:
 - and the exit code is **0** — this is a WARN, and only ERROR findings fail
   (exit 1). CI keeps passing; the finding still shows up in every scan.
 
-![the scan-fix loop: one WARN finding, the fix, a clean rescan](images/demo-scan-fix-loop.png)
+![the scan-fix loop: one WARN finding, the fix, a clean rescan](demo/images/demo-scan-fix-loop.png)
 
 ## 3. Explain — the rule behind the finding
 
@@ -125,13 +125,13 @@ The stub demo is intentionally tiny. The W5 baseline run against a real
 `vanguard scan` on an un-reviewed API surface looks like — 244 findings across
 27 rules, grouped by rule with the worst severity first:
 
-![vanguard scan of the military-youth backend: 753 files, 244 findings](images/demo-terminal-military-youth.png)
+![vanguard scan of the military-youth backend: 753 files, 244 findings](demo/images/demo-terminal-military-youth.png)
 
 The same run as SARIF 2.1.0, ready for GitHub Code Scanning — every alert gets
 a stable fingerprint (rule, file, line, column, message) so GitHub tracks it
 across pushes instead of reopening it:
 
-![SARIF 2.1.0 output of the same scan in an editor view](images/demo-sarif-editor.png)
+![SARIF 2.1.0 output of the same scan in an editor view](demo/images/demo-sarif-editor.png)
 
 ## Replay it
 

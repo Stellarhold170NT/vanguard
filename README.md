@@ -1,48 +1,49 @@
-# vanguard
+<div align="center">
+  <img src="docs/public/images/vanguard-simple.svg" alt="Vanguard logo" width="110" />
 
-> Source-first API design linter — scans source code directly, auto-detects
-> the REST + gRPC API surface, and checks API design against AIP-style
-> (resource-oriented design) rules with precise `file:line:col` findings.
+  <h1>Vanguard</h1>
 
-[![CI](https://github.com/Stellarhold170NT/vanguard/actions/workflows/ci.yml/badge.svg)](https://github.com/Stellarhold170NT/vanguard/actions/workflows/ci.yml)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/github/v/release/Stellarhold170NT/vanguard)](https://github.com/Stellarhold170NT/vanguard/releases)
-[![Go Reference](https://pkg.go.dev/badge/github.com/Stellarhold170NT/vanguard.svg)](https://pkg.go.dev/github.com/Stellarhold170NT/vanguard)
-[![SARIF 2.1.0](https://img.shields.io/badge/SARIF-2.1.0-5C9DFF)](docs/ci-integration.md)
+<p align="center">
+  <a href="https://github.com/Stellarhold170NT/vanguard/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/Stellarhold170NT/vanguard/ci.yml?branch=main&label=CI&style=flat-square&logo=github&logoColor=white" alt="CI Status" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square" alt="License: Apache-2.0" /></a>
+  <a href="https://github.com/Stellarhold170NT/vanguard/releases"><img src="https://img.shields.io/github/v/release/Stellarhold170NT/vanguard?style=flat-square" alt="Release" /></a>
+  <a href="https://pkg.go.dev/github.com/Stellarhold170NT/vanguard"><img src="https://img.shields.io/badge/Go-Reference-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go Reference" /></a>
+  <a href="docs/ci-integration.md"><img src="https://img.shields.io/badge/SARIF-2.1.0-5C9DFF?style=flat-square" alt="SARIF 2.1.0" /></a>
+</p>
 
-**Status: v0.1.0.** The engine, 27 rules, Java/Spring + gRPC adapters,
-Docker image and release pipeline are built, verified and shipped as the
-first tagged release. Track the working contract in
-[docs/charter.md](docs/charter.md).
+  <hr />
+</div>
+
+**Source-first API design linter — scans source code directly, auto-detects the REST + gRPC API surface, and checks API design against AIP-style (resource-oriented design) rules with precise `file:line:col` findings.**
+
+**Status: v0.1.0.** The engine, 27 rules, Java/Spring + gRPC adapters, Docker image and release pipeline are built, verified and shipped as the first tagged release. Track the working contract in [docs/charter.md](docs/charter.md).
+
+[Quickstart](#quickstart) · [Demo](#demo) · [Documentation](#documentation) · [Rule catalog](#the-rule-catalog)
 
 ## Why vanguard
 
-Spec linters (spectral, speccy) only see the OpenAPI document that is
-generated after the service builds and runs — one loop too late, and with
-locations that no longer map to source. Vanguard reads the source directly:
+Spec linters (spectral, speccy) only see the OpenAPI document that is generated after the service builds and runs — one loop too late, and with locations that no longer map to source. Vanguard reads the source directly:
 
 ```bash
 vanguard scan /path/to/project   # no build, no spec, no file list
 ```
 
-- **Source-first** — parses Java/Spring and `.proto` files, auto-detects the
-  API surface (REST + gRPC), no spec file required.
-- **Design-standard rules** — 27 rules across naming, verb semantics,
-  pagination, payload schema, error model, versioning and gRPC conventions,
-  each traceable to an [AIP](https://google.aip.dev/) guideline.
-- **CI-native** — pretty / JSON / SARIF 2.1.0 output, exit code contract
-  `0 / 1 / 2`, deterministic reports, `partialFingerprints` for stable
-  GitHub alerts.
+| Feature | What it enables | Learn more |
+|---------|-----------------|------------|
+| **Source-first** | Parses Java/Spring and `.proto` files, auto-detects the API surface (REST + gRPC), no spec file required. | [Charter](docs/charter.md) |
+| **Design-standard rules** | 27 rules across naming, verb semantics, pagination, payload schema, error model, versioning and gRPC conventions, each traceable to an [AIP](https://google.aip.dev/) guideline. | [Rule catalog](docs/rules/README.md) |
+| **CI-native** | Pretty / JSON / SARIF 2.1.0 output, exit code contract `0 / 1 / 2`, deterministic reports, `partialFingerprints` for stable GitHub alerts. | [CI integration](docs/ci-integration.md) |
 
-Where vanguard sits relative to the ecosystem (charter §1.2): **spec
-governance** stays with spectral, **breaking-change detection** with
-oasdiff/buf, **language linting** with golangci-lint/Checkstyle — vanguard
-owns the layer none of them cover: *the API design standard, checked in
-source, before the spec exists.*
+Where vanguard sits relative to the ecosystem (charter §1.2): **spec governance** stays with spectral, **breaking-change detection** with oasdiff/buf, **language linting** with golangci-lint/Checkstyle — vanguard owns the layer none of them cover: *the API design standard, checked in source, before the spec exists.*
 
 ## Quickstart
 
-Docker path — no Go toolchain needed (the image build pins its own):
+Requirements:
+
+- Docker (recommended — no Go toolchain needed; the image build pins its own)
+- Go ≥ 1.22 **and** a C toolchain (only for building from source — the tree-sitter grammar is cgo; see [docs/install.md](docs/install.md))
+
+### Scan with Docker
 
 ```bash
 git clone https://github.com/Stellarhold170NT/vanguard && cd vanguard
@@ -50,8 +51,7 @@ docker build -t vanguard:local .
 docker run --rm -v "$PWD/testdata/stub-repo:/src:ro" vanguard:local scan /src
 ```
 
-Or build the CLI directly (needs Go ≥ 1.22 **and** a C toolchain — the
-tree-sitter grammar is cgo; see [docs/install.md](docs/install.md)):
+### Or build the CLI directly
 
 ```bash
 go build -o vanguard ./cmd/vanguard
@@ -61,8 +61,7 @@ go build -o vanguard ./cmd/vanguard
 ./vanguard init               # scaffold a commented .vanguard.yaml
 ```
 
-What you will see — real output of `scan testdata/stub-repo`
-(the bundled demo repo carries one deliberate violation):
+What you will see — real output of `scan testdata/stub-repo` (the bundled demo repo carries one deliberate violation):
 
 ```text
  vanguard 0.1.0-dev · testdata/stub-repo · stub · stub-http
@@ -91,8 +90,7 @@ Exit codes (`vanguard check` is the CI alias):
 
 ## Demo
 
-A 60-second tour — repo with a bug, scan, explanation, fix, clean rescan —
-lives in [docs/demo.md](docs/demo.md). Highlights:
+A 60-second tour — repo with a bug, scan, explanation, fix, clean rescan — lives in [docs/demo.md](docs/demo.md). Highlights:
 
 <p align="center">
   <img src="docs/demo/images/demo-terminal-military-youth.png" alt="vanguard scan of the military-youth backend: 753 files, 244 findings, grouped by rule" width="820">
@@ -111,21 +109,17 @@ lives in [docs/demo.md](docs/demo.md). Highlights:
 
 The full set is mapped in the docs roadmap above; the pages:
 
-| Doc | Contents |
-|---|---|
-| [docs/demo.md](docs/demo.md) | end-to-end walkthrough: bug → scan → explain → fix → clean |
-| [docs/install.md](docs/install.md) | three install paths (Releases / Docker / go install), each step verified |
-| [docs/config.md](docs/config.md) | `.vanguard.yaml` schema v1: discovery, rule overrides, suppressions, error contract |
-| [docs/rules/README.md](docs/rules/README.md) | the rule catalog — one page per rule, CI-enforced 1:1 with `--list-rules` |
-| [docs/ci-integration.md](docs/ci-integration.md) | gate integration: exit-code contract, GitHub Actions / GitLab recipes, SARIF upload |
-| [docs/charter.md](docs/charter.md) | product charter: R1–R8 requirements, rule taxonomy, architecture |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | development setup and the process for adding a rule |
+- [docs/demo.md](docs/demo.md) — end-to-end walkthrough: bug → scan → explain → fix → clean
+- [docs/install.md](docs/install.md) — three install paths (Releases / Docker / go install), each step verified
+- [docs/config.md](docs/config.md) — `.vanguard.yaml` schema v1: discovery, rule overrides, suppressions, error contract
+- [docs/rules/README.md](docs/rules/README.md) — the rule catalog — one page per rule, CI-enforced 1:1 with `--list-rules`
+- [docs/ci-integration.md](docs/ci-integration.md) — gate integration: exit-code contract, GitHub Actions / GitLab recipes, SARIF upload
+- [docs/charter.md](docs/charter.md) — product charter: R1–R8 requirements, rule taxonomy, architecture
+- [CONTRIBUTING.md](CONTRIBUTING.md) — development setup and the process for adding a rule
 
 ## The rule catalog
 
-27 registered rules in six families (full index with quick examples:
-[docs/rules/README.md](docs/rules/README.md), machine-readable via
-`vanguard scan --list-rules`):
+27 registered rules in six families (full index with quick examples: [docs/rules/README.md](docs/rules/README.md), machine-readable via `vanguard scan --list-rules`):
 
 | Family | Rules | Checks | Severity mix |
 |---|---|---|---|
@@ -136,10 +130,7 @@ The full set is mapped in the docs roadmap above; the pages:
 | **R5xx** errors | 3 | unified error shape, no 500 for business errors, status semantics | 1 ERROR · 2 WARN |
 | **R6xx** http-grpc & versioning | 7 | versioned paths, gRPC standard methods, + 5 golden-fixture demo rules | 1 ERROR · 1 WARN · 5 demo |
 
-Rules are config-tunable per family or per id (`rules.R1xx-02.severity`), and
-every finding can be suppressed inline (`// vanguard:ignore R4xx-02 <reason>`)
-or path-scoped in config with a reason — see
-[docs/config.md](docs/config.md).
+Rules are config-tunable per family or per id (`rules.R1xx-02.severity`), and every finding can be suppressed inline (`// vanguard:ignore R4xx-02 <reason>`) or path-scoped in config with a reason — see [docs/config.md](docs/config.md).
 
 ## Repository layout
 
@@ -158,6 +149,4 @@ or path-scoped in config with a reason — see
 
 ## License
 
-[Apache-2.0](LICENSE) — the same license as
-[googleapis/api-linter](https://github.com/googleapis/api-linter), the
-spiritual ancestor of the rule model.
+This project is open source under the [Apache-2.0 License](LICENSE) — the same license as [googleapis/api-linter](https://github.com/googleapis/api-linter), the spiritual ancestor of the rule model.

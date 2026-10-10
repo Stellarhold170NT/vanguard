@@ -558,7 +558,7 @@ thêm gì). Bảng này là phần trả lời cho ràng buộc "đừng đề x
 | Metric | Lệnh chính | Fallback / ghi chú |
 |---|---|---|
 | Wall-clock time | `TIMEFORMAT='%R'; time ./vanguard scan <root> --format json -o /tmp/out.json` (bash builtin) | `date +%s%N` trước/sau trong script python3 (`time.monotonic`) |
-| Số file | `find <root> -name '*.java' | wc -l` | `wc -l` tổng LOC: `find … -exec wc -l {} + | tail -1` |
+| Số file | `find <root> -name '*.java' \| wc -l` | `wc -l` tổng LOC: `find … -exec wc -l {} + \| tail -1` |
 | Byte-identical | `sha256sum a.json b.json && cmp a.json b.json` | `diff -q` cho dạng text nhanh |
 | Memory peak | `/usr/bin/time -v ./vanguard …` (nếu image có GNU time) | `cat /sys/fs/cgroup/memory.peak` (cgroup v2) → `docker stats --no-stream` (từ host dind) → nếu cả ba không có: ghi "không đo được" + lý do |
 | Corpus agreement | script `tools/corpus-check.py` (w4-01 viết): đọc manifest + scan json → % khớp | kết quả in stdout + ghi JSON |
