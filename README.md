@@ -6,15 +6,13 @@
 
 [![CI](https://github.com/Stellarhold170NT/vanguard/actions/workflows/ci.yml/badge.svg)](https://github.com/Stellarhold170NT/vanguard/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-<!-- placeholder badges — enabled at the v0.1.0 release (w6-04):
 [![Release](https://img.shields.io/github/v/release/Stellarhold170NT/vanguard)](https://github.com/Stellarhold170NT/vanguard/releases)
 [![Go Reference](https://pkg.go.dev/badge/github.com/Stellarhold170NT/vanguard.svg)](https://pkg.go.dev/github.com/Stellarhold170NT/vanguard)
 [![SARIF 2.1.0](https://img.shields.io/badge/SARIF-2.1.0-5C9DFF)](docs/ci-integration.md)
--->
 
-**Status: v0.1-rc.** The engine, 27 rules, Java/Spring + gRPC adapters,
-Docker image and release pipeline are built and verified; the first tagged
-release is the remaining W6 step. Track the working contract in
+**Status: v0.1.0.** The engine, 27 rules, Java/Spring + gRPC adapters,
+Docker image and release pipeline are built, verified and shipped as the
+first tagged release. Track the working contract in
 [docs/charter.md](docs/charter.md).
 
 ## Why vanguard

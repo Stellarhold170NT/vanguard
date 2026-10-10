@@ -12,10 +12,10 @@ Java/Spring Boot: it scans your source code directly (no proto/OpenAPI
 needed), discovers the HTTP API surface, and flags design drift at review
 time, before a spec even exists.
 
-Scope is exactly the v0.1 charter (docs/charter.md §1–§2); items listed in
-charter §1.4 (autofix `--fix`, differential `--new-from-*`, Go/Python
-adapters, full type-resolution, LLM in the lint path, web UI) are **not**
-in this release.
+Scope is exactly the v0.1 charter (docs/charter.md §1–§2); charter §1.4
+exclusions (autofix `--fix`, differential `--new-from-*`, full
+type-resolution, LLM in the lint path, web UI) and the Go/Python adapters
+(charter R3, planned wave 2) are **not** in this release.
 
 ### Added
 
