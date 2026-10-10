@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-10T09:50:54Z",
+  "generator": {
+    "script": "tools/factory-metrics.py",
+    "args": {
+      "contracts": "taskloop",
+      "runlog": "state/runlog.jsonl"
+    }
+  },
+  "data_sources": {
+    "contracts": {
+      "available": true,
+      "dir": "taskloop",
+      "files_parsed": 41,
+      "parse_errors": []
+    },
+    "runlog": {
+      "available": false,
+      "path": "state/runlog.jsonl",
+      "lines_total": 0,
+      "events_parsed": 0,
+      "lines_unrecognized": 0,
+      "parse_errors": []
+    }
+  },
+  "totals": {
+    "contracts_parsed": 41,
+    "tasks_total": 41,
+    "done": 25,
+    "done_with_concerns": 11,
+    "concerns_rate": 0.3056,
+    "in_progress": 3,
+    "pending": 2,
+    "blocked": 0,
+    "needs_context": 0,
+    "gates_approved": 5,
+    "gates_rejected": 0,
+    "reports_missing_count": 7,
+    "first_touch": "2026-10-08T09:48:34Z",
+    "last_touch": "2026-10-10T09:15:08Z",
+    "span_hours": 47.443,
+    "models": {
+      "sonnet": 41
+    }
+  },
+  "workflows": [
+    {
+      "workflow": "w1",
+      "tasks_total": 6,
+      "status_counts": {
+        "DONE": 6
+      },
+      "done": 6,
+      "done_with_concerns": 0,
+      "blocked": 0,
+      "needs_context": 0,
+      "in_progress": 0,
+      "pending": 0,
+      "first_touch": "2026-10-08T10:00:05Z",
+      "last_touch": "2026-10-08T11:15:02Z",
+      "span_hours": 1.249,
+      "concerns_rate": 0.0,
+      "avg_task_hours": null,
+      "min_task_hours": null,
+      "max_task_hours": null,
+      "rearm_count": null
+    },
+    {
+      "workflow": "w2",
+      "tasks_total": 7,
+      "status_counts": {
+        "DONE_WITH_CONCERNS": 3,
+        "DONE": 4
+      },
+      "done": 4,
+      "done_with_concerns": 3,
+      "blocked": 0,
+      "needs_context": 0,
+      "in_progress": 0,
+      "pending": 0,
+      "first_touch": "2026-10-08T11:37:58Z",
+      "last_touch": "2026-10-09T02:19:21Z",
+      "span_hours": 14.69,
+      "concerns_rate": 0.4286,
+      "avg_task_hours": null,
+      "min_task_hours": null,
+      "max_task_hours": null,
+      "rearm_count": null
+    },
+    {
+      "workflow": "w3",
+      "tasks_total": 7,
+      "status_counts": {
+        "DONE": 2,
+        "DONE_WITH_CONCERNS": 5
+      },
+      "done": 2,
+      "done_with_concerns": 5,
+      "blocked": 0,
+      "needs_context": 0,
+      "in_progress": 0,
+      "pending": 0,
+      "first_touch": "2026-10-08T15:33:17Z",
+      "last_touch": "2026-10-09T07:10:39Z",
+      "span_hours": 15.623,
+      "concerns_rate": 0.7143,
+      "avg_task_hours": null,
+      "min_task_hours": null,
+      "max_task_hours": null,
+      "rearm_count": null
+    },
+    {
+      "workflow": "w4",
+      "tasks_total": 5,
+      "status_counts": {
+        "DONE": 4,
+        "DONE_WITH_CONCERNS": 1
+      },
+      "done": 4,
+      "done_with_concerns": 1,
+      "blocked": 0,
+      "needs_context": 0,
+      "in_progress": 0,
+      "pending": 0,
+      "first_touch": "2026-10-09T08:51:52Z",
+      "last_touch": "2026-10-09T14:46:15Z",
+      "span_hours": 5.907,
+      "concerns_rate": 0.2,
+      "avg_task_hours": null,
+      "min_task_hours": null,
+      "max_task_hours": null,
+      "rearm_count": null
+    },
+    {
+      "workflow": "w5",
+      "tasks_total": 6,
+      "status_counts": {
+        "DONE": 5,
+        "DONE_WITH_CONCERNS": 1
+      },
+      "done": 5,
+      "done_with_concerns": 1,
+      "blocked": 0,
+      "needs_context": 0,
+      "in_progress": 0,
+      "pending": 0,
+      "first_touch": "2026-10-09T15:33:54Z",
+      "last_touch": "2026-10-09T18:55:01Z",
+      "span_hours": 3.352,
+      "concerns_rate": 0.1667,
+      "avg_task_hours": null,
+      "min_task_hours": null,
+      "max_task_hours": null,
+      "rearm_count": null
+    },
+    {
+      "workflow": "w6",
+      "tasks_total": 5,
+      "status_counts": {
+        "DONE": 4,
+        "DONE_WITH_CONCERNS": 1
+      },
+      "done": 4,
+      "done_with_concerns": 1,
+      "blocked": 0,
+      "needs_context": 0,
+      "in_progress": 0,
+      "pending": 0,
+      "first_touch": "2026-10-09T23:19:09Z",
+      "last_touch": "2026-10-10T06:35:01Z",
+      "span_hours": 7.265,
+      "concerns_rate": 0.2,
+      "avg_task_hours": null,
+      "min_task_hours": null,
+      "max_task_hours": null,
+      "rearm_count": null
+    },
+    {
+      "workflow": "w7",
+      "tasks_total": 5,
+      "status_counts": {
+        "IN_PROGRESS": 3,
+        "PENDING": 2
+      },
+      "done": 0,
+      "done_with_concerns": 0,
+      "blocked": 0,
+      "needs_context": 0,
+      "in_progress": 3,
+      "pending": 2,
+      "first_touch": "2026-10-08T09:48:34Z",
+      "last_touch": "2026-10-10T09:15:08Z",
+      "span_hours": 47.443,
+      "concerns_rate": null,
+      "avg_task_hours": null,
+      "min_task_hours": null,
+      "max_task_hours": null,
+      "rearm_count": null
+    }
+  ],
+  "gates": {
+    "events": [
+      {
+        "task": "w1-06",
+        "task_n": "6",
+        "timestamp": "2026-10-08T11:15:02Z",
+        "author": "human-gate",
+        "decision": "APPROVED",
+        "text": "APPROVED: CH1 duyet boi orchestrator (user delegation 2026-10-08). Truoc mat: repo song, charter R1-R8 day du, actionlint 0 loi, evidence day du. ACTION luid cho human (khong chan): nang PAT them workflow scope \u2014 uu tien truoc w2-01.",
+        "source": "contract_comment"
+      },
+      {
+        "task": "w2-07",
+        "task_n": "13",
+        "timestamp": "2026-10-09T02:19:21Z",
+        "author": "human-gate",
+        "decision": "APPROVED",
+        "text": "APPROVED: duy\u1ec7t t\u1eeb CLI",
+        "source": "contract_comment"
+      },
+      {
+        "task": "w4-05",
+        "task_n": "25",
+        "timestamp": "2026-10-09T14:46:15Z",
+        "author": "human-gate",
+        "decision": "APPROVED",
+        "text": "APPROVED: duy\u1ec7t t\u1eeb CLI",
+        "source": "contract_comment"
+      },
+      {
+        "task": "w5-06",
+        "task_n": "31",
+        "timestamp": "2026-10-09T18:55:01Z",
+        "author": "human-gate",
+        "decision": "APPROVED",
+        "text": "APPROVED: duy\u1ec7t t\u1eeb CLI",
+        "source": "contract_comment"
+      },
+      {
+        "task": "w6-05",
+        "task_n": "36",
+        "timestamp": "2026-10-10T06:35:01Z",
+        "author": "human-gate",
+        "decision": "APPROVED",
+        "text": "APPROVED: duy\u1ec7t t\u1eeb CLI",
+        "source": "contract_comment"
+      }
+    ],
+    "runlog": {
+      "tasks_measured": 0,
+      "tasks_rearmed": 0,
+      "rearm_events_total": 0,
+      "done_first_try": 0,
+      "done_total": 0,
+      "done_first_try_rate": null,
+      "duration_hours": {
+        "avg": null,
+        "min": null,
+        "max": null,
+        "count": 0
+      },
+      "arms": [],
+      "orphan_terminal_events": 0,
+      "unmapped_tasks": []
+    }
+  },
+  "reports_check": {
+    "performed": true,
+    "dirs_visible": 41,
+    "dirs_total": 41,
+    "reason": null,
+    "missing": [
+      {
+        "task": "w3-06",
+        "report": "reports/w3-06.md"
+      },
+      {
+        "task": "w4-04",
+        "report": "reports/w4-04.md"
+      },
+      {
+        "task": "w7-01",
+        "report": "reports/w7-01.md"
+      },
+      {
+        "task": "w7-02",
+        "report": "reports/w7-02.md"
+      },
+      {
+        "task": "w7-03",
+        "report": "reports/w7-03.md"
+      },
+      {
+        "task": "w7-04",
+        "report": "reports/w7-04.md"
+      },
+      {
+        "task": "w7-05",
+        "report": "reports/w7-05.md"
+      }
+    ]
+  },
+  "definitions": {
+    "concerns_rate": "DONE_WITH_CONCERNS / (DONE + DONE_WITH_CONCERNS), per workflow and total; null when no task has reached a DONE* terminal status. Source: contract statuses.",
+    "span_hours": "last_touch - first_touch over contract updatedAt timestamps (first_touch of a PENDING contract == its creation; for finished tasks updatedAt == completion). This is a workflow WALL-CLOCK PROXY, not per-task duration. Source: contracts.",
+    "avg_min_max_task_hours": "Per-task duration = terminal transition timestamp - first IN_PROGRESS transition timestamp of the same arm, in hours (mean/min/max per workflow). SOURCE: runlog.jsonl only \u2014 null while the runlog does not exist.",
+    "rearm_count": "Number of arms beyond the first per task (a task re-dispatched after a terminal status adds 1 re-arm). SOURCE: runlog.jsonl only \u2014 null while the runlog is absent; 0 would be a fake zero, so it is never substituted.",
+    "done_first_try_rate": "Tasks whose FIRST arm ended DONE / all tasks that ever reached DONE. SOURCE: runlog.jsonl only.",
+    "gates": "Gate decisions: contract comments whose author contains 'gate' (snapshot \u2014 may miss superseded comments) plus runlog gate_result events when present.",
+    "reports_missing_count": "Contracts whose declared report file does not exist on disk at generation time. The check runs only when the contract 'dir' roots are visible on the host running the script (else 'performed'=false and the count is not meaningful). See 'reports_check' in the JSON."
+  },
+  "runlog_event_schema_proposed": {
+    "file": "state/runlog.jsonl",
+    "writer": "orchestrator (append-only; this script is read-only)",
+    "line_format": "one JSON object per line (JSONL)",
+    "required_fields": {
+      "ts": "ISO-8601 timestamp (Z or offset) \u2014 aliases: timestamp|time|@timestamp",
+      "event": "event name, e.g. task_status \u2014 aliases: type|action|kind",
+      "task": "task id, e.g. w7-03 \u2014 aliases: task_id|taskid|name|id",
+      "from": "status before the transition (task_status events)",
+      "to": "status after the transition (task_status events); terminal: DONE|DONE_WITH_CONCERNS|BLOCKED|NEEDS_CONTEXT"
+    },
+    "optional_events": [
+      "gate_result / gate_decision / gate \u2014 fields: task, to=APPROVED|REJECTED",
+      "unknown event names are counted in lines_unrecognized, never fatal"
+    ],
+    "example_line": "{\"ts\":\"2026-10-10T06:35:11Z\",\"event\":\"task_status\",\"task\":\"w7-03\",\"from\":\"PENDING\",\"to\":\"IN_PROGRESS\"}"
+  }
+}
