@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // commentAt builds a one-line comment record at the given line.

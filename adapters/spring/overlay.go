@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 
 	yaml "gopkg.in/yaml.v3"
 )

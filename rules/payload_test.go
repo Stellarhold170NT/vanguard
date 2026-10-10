@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // The R4xx family tests (w3-05): payload & DTO schema rules over hand-built

@@ -69,7 +69,7 @@ FROM scratch
 
 LABEL org.opencontainers.image.title="vanguard" \
       org.opencontainers.image.description="Static CLI that scans source trees and lints REST/gRPC API design against AIP-style rules" \
-      org.opencontainers.image.source="https://github.com/Stellarhold170NT/vanguard" \
+      org.opencontainers.image.source="https://github.com/vanguard-lint/vanguard" \
       org.opencontainers.image.licenses="Apache-2.0"
 
 COPY --from=builder /out/vanguard /vanguard

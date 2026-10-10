@@ -13,9 +13,9 @@ import (
 	// Link-time support for the release build matrix (w6-01): on darwin+cgo
 	// this registers -L<in-repo dir> so the C linker resolves Go's hard-coded
 	// -lresolv against the bundled libresolv.tbd stub. Runtime no-op.
-	_ "github.com/Stellarhold170NT/vanguard/internal/buildconf"
+	_ "github.com/vanguard-lint/vanguard/internal/buildconf"
 
-	"github.com/Stellarhold170NT/vanguard/internal/cli"
+	"github.com/vanguard-lint/vanguard/internal/cli"
 )
 
 // Build identity reported by `vanguard version`. `version` stays the

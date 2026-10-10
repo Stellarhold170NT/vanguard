@@ -30,7 +30,7 @@ Releases are tag-triggered (`v*`):
    (`.zip` for windows) plus a `checksums.txt` with the sha256 of every
    archive.
 4. A scratch-based Docker image (~9 MB, one static binary, no shell) is
-   published to `ghcr.io/stellarhold170nt/vanguard`.
+   published to `ghcr.io/vanguard-lint/vanguard`.
 5. The GitHub Release carries the changelog section for the tag.
 
 Binaries are tag-stamped — `vanguard version` reports the version, commit,
@@ -41,7 +41,7 @@ and build date baked in at release time.
 ```bash
 # checksum verification (linux/amd64 shown)
 curl -fsSL -o checksums.txt \
-  "https://github.com/Stellarhold170NT/vanguard/releases/download/${VER}/checksums.txt"
+  "https://github.com/vanguard-lint/vanguard/releases/download/${VER}/checksums.txt"
 grep "vanguard_${VER#v}_linux_amd64.tar.gz" checksums.txt | sha256sum -c -
 
 # identity of a release binary
@@ -55,7 +55,7 @@ expected for dev builds; the full verification matrix is in
 
 ## Current Release
 
-- **[v0.1.0](https://github.com/Stellarhold170NT/vanguard/releases/tag/v0.1.0)**
+- **[v0.1.0](https://github.com/vanguard-lint/vanguard/releases/tag/v0.1.0)**
   — first tagged release: scanner engine, 27 rules across R1xx–R6xx, CLI UX
   (pretty/JSON/SARIF), `.vanguard.yaml` config v1, goreleaser multi-platform
   packaging, Docker image. Scope is exactly the v0.1 charter; the Go/Python

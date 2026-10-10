@@ -1,4 +1,4 @@
-module github.com/Stellarhold170NT/vanguard
+module github.com/vanguard-lint/vanguard
 
 go 1.22
 

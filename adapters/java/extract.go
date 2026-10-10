@@ -4,7 +4,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 	sitter "github.com/smacker/go-tree-sitter"
 )
 

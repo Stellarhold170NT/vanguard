@@ -3,8 +3,8 @@ package render
 import (
 	"io"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // jsonSchemaVersion is the "schema" field of the §6.7 wire format. Bump it

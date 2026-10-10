@@ -3,8 +3,8 @@ package rules
 import (
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // The R2xx family (w3-04): unit tests pin every check's contract over

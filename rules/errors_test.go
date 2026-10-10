@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // The R5xx family tests (w3-06): error & status-semantics rules over

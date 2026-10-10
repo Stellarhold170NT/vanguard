@@ -3,7 +3,7 @@ package engine
 import (
 	"strings"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // Severity is the finding severity taxonomy (charter §3.0). Only ERROR

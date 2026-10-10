@@ -54,10 +54,10 @@ Kế thừa UX: vanguard học **mô hình aggregator** của golangci-lint (con
 - **Ý nghĩa**: *vanguard* = đơn vị tiên phong đi trước lực lượng chính. Tool này đứng **trước vòng spec**: khi OpenAPI chưa tồn tại (chỉ sinh sau build/run — w1-02 §3), vanguard đã quét source và chặn sai thiết kế tại PR. Nói cách khác: vanguard là điểm kiểm **đầu tiên** của quy trình, không phải lớp phủ cuối.
 - **Thực dụng**: 1 từ, lowercase, gõ dễ trong CLI (`vanguard scan .`), không có ký tự đặc biệt, đọc được trong cả pipeline CI lẫn tài liệu.
 - **Chính sách naming (ràng buộc từ R8)**:
-  - Brand: **vanguard**. Repo: `github.com/Stellarhold170NT/vanguard`.
+  - Brand: **vanguard**. Repo: `github.com/vanguard-lint/vanguard`.
   - **Cấm** hardcode tên tổ chức trong rule ID, trong code, trong message. Rule ID là `R<F>xx-NN` trung lập (§3.0). Framework/org-specific detection (vd annotation bảo vệ riêng của một tổ chức) chỉ được vào qua **config** (danh sách annotation cấu hình được trong `.vanguard.yaml`), không vào rule ID hay logic cứng.
   - Đồ họa/docs dùng `vanguard` — không dùng biến thể `VTS-*` (đích danh cái tên bị cấm bởi R8).
-  - Go module path: đề xuất `github.com/Stellarhold170NT/vanguard` (quy ước Go cho repo công khai — w2-01 cho phép chọn; chốt ở Phụ lục A-2).
+  - Go module path: đề xuất `github.com/vanguard-lint/vanguard` (quy ước Go cho repo công khai — w2-01 cho phép chọn; chốt ở Phụ lục A-2).
 
 ### 1.4. Nằm ngoài phạm vi v0.1 (nói rõ để không ai chờ nhầm)
 
@@ -81,7 +81,7 @@ R4 | CLI chay tu bat ky dau, khong phu thuoc project build | binary tinh (gorele
 R5 | Dau ra chuyen nghiep: pretty (mau, nhom theo rule/severity, hint sua), JSON, SARIF 2.1.0 | SARIF pass schema; pretty la bo mat san pham; explain per-rule; exit codes 0/1/2
 R6 | Cau hinh duoc: bat/tat rule, include/exclude path, severity, suppression | .vanguard.yaml + suppression inline vanguard:ignore
 R7 | Chat luong den tu thuc chien: adversarial + mutation corpus quy mo lon, chay that tren military-youth | >= 150 fixture case, mutation catch-rate >= 90%, FP/FN audit co so lieu
-R8 | KHONG dat ten vts-api-linter — san pham la cong nghe loi dung chung | Brand vanguard, repo GitHub Stellarhold170NT/vanguard, khong hardcode ten to chuc trong rule ID
+R8 | KHONG dat ten vts-api-linter — san pham la cong nghe loi dung chung | Brand vanguard, repo GitHub vanguard-lint/vanguard, khong hardcode ten to chuc trong rule ID
 ```
 
 **Bản đồ phủ — mỗi R được trả lời ở mục nào của charter:**
@@ -544,14 +544,14 @@ Quy ước: `findings` sort `(file, line, col, ruleId)`; keys sorted; `schema` t
         "driver": {
           "name": "vanguard",
           "version": "0.1.0",
-          "informationUri": "https://github.com/Stellarhold170NT/vanguard",
+          "informationUri": "https://github.com/vanguard-lint/vanguard",
           "rules": [
             {
               "id": "R2xx-01",
               "name": "get-no-body",
               "shortDescription": {"text": "GET endpoints must not declare @RequestBody"},
               "fullDescription": {"text": "GET endpoints must not declare @RequestBody parameters. Move the payload to @RequestParam or switch to POST."},
-              "helpUri": "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R2xx-01-get-no-body.md",
+              "helpUri": "https://github.com/vanguard-lint/vanguard/blob/main/docs/rules/R2xx-01-get-no-body.md",
               "defaultConfiguration": {"level": "error"},
               "properties": {"category": "methods", "aip": "131"}
             }
@@ -647,7 +647,7 @@ Nguyên tắc chống-FP (ràng buộc W3): rule nào heuristic không chắc �
 | # | Quyết định | Khuyến nghị của charter | Hệ quả nếu chọn khác |
 |---|---|---|---|
 | A-1 | Ngôn ngữ message/CLI: **English** | English (SARIF/GitHub ecosystem, repo công khai, contributor quốc tế; docs tiếng Việt có thể thêm sau) | WARN/INFO text dễ viết tiếng Việt hơn nhưng phá nhất quán output machine-friendly |
-| A-2 | Go module path: `github.com/Stellarhold170NT/vanguard` | Theo repo convention (w2-01 cho phép 2 lựa chọn) | `vanguard.io/vanguard` đẹp hơn nhưng cần sở hữu domain — không cần cho OSS |
+| A-2 | Go module path: `github.com/vanguard-lint/vanguard` | Theo repo convention (w2-01 cho phép 2 lựa chọn) | `vanguard.io/vanguard` đẹp hơn nhưng cần sở hữu domain — không cần cho OSS |
 | A-3 | R6xx-01 `versioned-path` **mặc định TẮT** (opt-in) | Đúng như §3.6 — policy rule, flood WARN trên repo không version | Bật mặc định → lần chạy đầu trên military-youth = 24 WARN vô nghĩa → mất niềm tin first-run |
 | A-4 | R1xx-05 `id-field-naming` chỉ **report dùng trộn** (non-prescriptive) trong v0.1 | Đúng — chưa đủ dữ liệu ép `<resource>Id` vs `id` | Ép chuẩn sớm = FP lớn trên DTO legacy |
 | A-5 | Envelope thành công (ApiResponse wrapper) **không** có rule prescriptive trong v0.1; R5xx-04 chỉ kiểm error-side consistency | Đúng — pain 5 là thật nhưng wrapping là lựa chọn kiến trúc của app | Ép 1 envelope = FP ồ ạt; để differential mode + config decide sau |

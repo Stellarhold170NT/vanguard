@@ -5,7 +5,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/engine"
 )
 
 // ANSI escapes used by the pretty renderer (§6.6): the severity pill is the

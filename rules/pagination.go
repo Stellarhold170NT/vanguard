@@ -6,8 +6,8 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // The R3xx pagination family (w3-05, charter §3.3, AIP-158): the shape of

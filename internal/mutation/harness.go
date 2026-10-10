@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Stellarhold170NT/vanguard/internal/golden"
+	"github.com/vanguard-lint/vanguard/internal/golden"
 )
 
 // selectionFormula documents the §4.4 case-selection recipe the JSON carries

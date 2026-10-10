@@ -18,7 +18,7 @@ var validDoc = `{
         "driver": {
           "name": "vanguard",
           "version": "0.1.0",
-          "informationUri": "https://github.com/Stellarhold170NT/vanguard",
+          "informationUri": "https://github.com/vanguard-lint/vanguard",
           "rules": [
             {
               "id": "R1xx-01",

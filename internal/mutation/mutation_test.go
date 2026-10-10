@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Stellarhold170NT/vanguard/internal/golden"
+	"github.com/vanguard-lint/vanguard/internal/golden"
 )
 
 // Gate constants (test-strategy §4.2): total declared catch-rate >= 90%,

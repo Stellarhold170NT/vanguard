@@ -53,21 +53,21 @@ features:
 ::: code-group
 
 ```bash [Binary]
-VER=$(curl -fsSL https://api.github.com/repos/Stellarhold170NT/vanguard/releases/latest \
+VER=$(curl -fsSL https://api.github.com/repos/vanguard-lint/vanguard/releases/latest \
       | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p')
 curl -fsSL -o vanguard.tar.gz \
-  "https://github.com/Stellarhold170NT/vanguard/releases/download/${VER}/vanguard_${VER#v}_linux_amd64.tar.gz"
+  "https://github.com/vanguard-lint/vanguard/releases/download/${VER}/vanguard_${VER#v}_linux_amd64.tar.gz"
 tar -xzf vanguard.tar.gz vanguard && sudo install -m 0755 vanguard /usr/local/bin/vanguard
 vanguard version
 ```
 
 ```bash [Docker]
-docker pull ghcr.io/stellarhold170nt/vanguard:latest
-docker run --rm -v "$PWD:/src:ro" ghcr.io/stellarhold170nt/vanguard:latest scan /src
+docker pull ghcr.io/vanguard-lint/vanguard:latest
+docker run --rm -v "$PWD:/src:ro" ghcr.io/vanguard-lint/vanguard:latest scan /src
 ```
 
 ```bash [go install]
-go install github.com/Stellarhold170NT/vanguard/cmd/vanguard@latest
+go install github.com/vanguard-lint/vanguard/cmd/vanguard@latest
 "$(go env GOPATH)/bin/vanguard" version
 ```
 

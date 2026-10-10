@@ -5,8 +5,8 @@ import (
 	"path"
 	"strings"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/java"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/adapters/java"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // Dedicated Spring mapping annotations whose verb is fixed by their name.

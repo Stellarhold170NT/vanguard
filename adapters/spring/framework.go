@@ -10,7 +10,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/java"
+	"github.com/vanguard-lint/vanguard/adapters/java"
 )
 
 // maxReadBytes bounds ONE build-file/spec read — the walker's published

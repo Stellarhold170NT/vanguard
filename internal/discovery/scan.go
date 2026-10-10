@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // ScanOptions tunes one Scan run. The zero value is a complete, sane scan:

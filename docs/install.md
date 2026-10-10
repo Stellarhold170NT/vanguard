@@ -20,18 +20,18 @@ triggered release workflow — release SOP: `reports/w6-01.md` §5). Asset names
 
 ```bash
 # Resolve the latest release tag (e.g. v0.1.0):
-VER=$(curl -fsSL -m 30 https://api.github.com/repos/Stellarhold170NT/vanguard/releases/latest \
+VER=$(curl -fsSL -m 30 https://api.github.com/repos/vanguard-lint/vanguard/releases/latest \
       | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -1)
 echo "${VER:?no published release yet — use Docker or go install (below)}"
 
 # Download the archive for your platform (this example: linux, amd64 —
 # substitute darwin_arm64 / windows_amd64 / … as needed):
 curl -fsSL -m 120 -o vanguard.tar.gz \
-  "https://github.com/Stellarhold170NT/vanguard/releases/download/${VER}/vanguard_${VER#v}_linux_amd64.tar.gz"
+  "https://github.com/vanguard-lint/vanguard/releases/download/${VER}/vanguard_${VER#v}_linux_amd64.tar.gz"
 
 # Verify the checksum before running anything:
 curl -fsSL -m 60 -o checksums.txt \
-  "https://github.com/Stellarhold170NT/vanguard/releases/download/${VER}/checksums.txt"
+  "https://github.com/vanguard-lint/vanguard/releases/download/${VER}/checksums.txt"
 grep "vanguard_${VER#v}_linux_amd64.tar.gz" checksums.txt | sha256sum -c -
 
 # Unpack and install (pick a prefix on your PATH):
@@ -59,8 +59,8 @@ The image is `scratch`-based: it contains only the statically linked
 from the first tagged release (w6-04, registry name follows the repo owner):
 
 ```bash
-docker pull ghcr.io/stellarhold170nt/vanguard:latest
-docker run --rm ghcr.io/stellarhold170nt/vanguard version
+docker pull ghcr.io/vanguard-lint/vanguard:latest
+docker run --rm ghcr.io/vanguard-lint/vanguard version
 ```
 
 If the registry image is not published yet, build it locally from a checkout
@@ -68,7 +68,7 @@ If the registry image is not published yet, build it locally from a checkout
 needs Docker):
 
 ```bash
-git clone https://github.com/Stellarhold170NT/vanguard && cd vanguard
+git clone https://github.com/vanguard-lint/vanguard && cd vanguard
 docker build -t vanguard:local .
 
 docker run --rm vanguard:local version
@@ -118,9 +118,9 @@ never an option for this module.) Typical installs: Debian/Ubuntu
 commit (the SHA below is verified and keeps working afterwards):
 
 ```bash
-go install github.com/Stellarhold170NT/vanguard/cmd/vanguard@latest
+go install github.com/vanguard-lint/vanguard/cmd/vanguard@latest
 # before the first tagged release, install from a commit instead:
-go install github.com/Stellarhold170NT/vanguard/cmd/vanguard@cb2f269d0fedc5b75dc74a1ea3f1ffa71ad9cfd8
+go install github.com/vanguard-lint/vanguard/cmd/vanguard@cb2f269d0fedc5b75dc74a1ea3f1ffa71ad9cfd8
 
 "$(go env GOPATH)/bin/vanguard" version
 # optional: put the install bin on PATH for this shell

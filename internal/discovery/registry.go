@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/spring"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/adapters/spring"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // AdapterRegistry is the production Registry (satisfies the w2-01 Registry

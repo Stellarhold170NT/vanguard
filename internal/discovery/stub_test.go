@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // validStub is a complete, valid stub document: 3 methods (GET with path

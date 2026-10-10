@@ -23,10 +23,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/Stellarhold170NT/vanguard/internal/discovery"
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/internal/render"
-	"github.com/Stellarhold170NT/vanguard/rules"
+	"github.com/vanguard-lint/vanguard/internal/discovery"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/render"
+	"github.com/vanguard-lint/vanguard/rules"
 )
 
 // BuildInfo is the build identity the binary layer forwards in; release

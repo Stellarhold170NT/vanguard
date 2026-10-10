@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/java"
+	"github.com/vanguard-lint/vanguard/adapters/java"
 )
 
 func TestFrameworkFromPom(t *testing.T) {

@@ -7,7 +7,7 @@
         "driver": {
           "name": "vanguard",
           "version": "0.1.0-dev",
-          "informationUri": "https://github.com/Stellarhold170NT/vanguard",
+          "informationUri": "https://github.com/vanguard-lint/vanguard",
           "rules": [
             {
               "id": "R2xx-01",

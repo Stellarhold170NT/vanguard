@@ -1,6 +1,6 @@
 package java
 
-import "github.com/Stellarhold170NT/vanguard/internal/ir"
+import "github.com/vanguard-lint/vanguard/internal/ir"
 
 // ClassKind classifies a type declaration the adapter extracted.
 type ClassKind string

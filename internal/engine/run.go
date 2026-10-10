@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // Linter is the v0.1 Engine implementation: it applies every registered

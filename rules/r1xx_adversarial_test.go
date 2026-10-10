@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/discovery"
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/discovery"
+	"github.com/vanguard-lint/vanguard/internal/engine"
 )
 
 // The adversarial fixtures under testdata/adversarial/R1xx-0N are the

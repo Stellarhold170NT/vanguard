@@ -22,19 +22,19 @@ drift at review time — before a spec even exists.
 
 ```bash [Binary]
 # Download, verify, and install the latest release binary (linux/amd64 shown)
-VER=$(curl -fsSL https://api.github.com/repos/Stellarhold170NT/vanguard/releases/latest \
+VER=$(curl -fsSL https://api.github.com/repos/vanguard-lint/vanguard/releases/latest \
       | sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p')
 curl -fsSL -o vanguard.tar.gz \
-  "https://github.com/Stellarhold170NT/vanguard/releases/download/${VER}/vanguard_${VER#v}_linux_amd64.tar.gz"
+  "https://github.com/vanguard-lint/vanguard/releases/download/${VER}/vanguard_${VER#v}_linux_amd64.tar.gz"
 tar -xzf vanguard.tar.gz vanguard && sudo install -m 0755 vanguard /usr/local/bin/vanguard
 ```
 
 ```bash [Docker]
-docker pull ghcr.io/stellarhold170nt/vanguard:latest
+docker pull ghcr.io/vanguard-lint/vanguard:latest
 ```
 
 ```bash [Source]
-git clone https://github.com/Stellarhold170NT/vanguard && cd vanguard
+git clone https://github.com/vanguard-lint/vanguard && cd vanguard
 go build -o vanguard ./cmd/vanguard
 ```
 

@@ -3,8 +3,8 @@ package spring
 import (
 	"strings"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/java"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/adapters/java"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // Language is the adapter's id — the registry key discovery uses. The

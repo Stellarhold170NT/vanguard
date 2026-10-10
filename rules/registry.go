@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"sort"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/engine"
 )
 
 // Registry is the production engine.Registry: it joins rule metadata

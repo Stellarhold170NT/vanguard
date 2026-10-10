@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/benchgen"
+	"github.com/vanguard-lint/vanguard/internal/benchgen"
 )
 
 // corpusDir is the golden corpus the §5.4 matrix runs against: the w3-07

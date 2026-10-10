@@ -3,7 +3,7 @@ package discovery
 import (
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/spring"
+	"github.com/vanguard-lint/vanguard/adapters/spring"
 )
 
 // Compile-time pin: the builtin wrapper satisfies the Adapter contract.

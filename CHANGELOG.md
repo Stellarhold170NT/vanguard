@@ -56,4 +56,4 @@ type-resolution, LLM in the lint path, web UI) and the Go/Python adapters
 - Robustness: hostile-input suite (malformed configs, traversal, SARIF
   re-validation 34/34) (w4-05).
 
-[0.1.0]: https://github.com/Stellarhold170NT/vanguard/releases/tag/v0.1.0
+[0.1.0]: https://github.com/vanguard-lint/vanguard/releases/tag/v0.1.0

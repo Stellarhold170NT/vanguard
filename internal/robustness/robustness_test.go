@@ -11,7 +11,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Stellarhold170NT/vanguard/internal/golden"
+	"github.com/vanguard-lint/vanguard/internal/golden"
 )
 
 // Hostile-input test windows. Each is generous for a clean machine but far

@@ -160,18 +160,18 @@ release:
     ## Install
     - **GitHub Releases** (assets below): grab the archive for your
       platform and verify it against `checksums.txt` (sha256) — step by
-      step in [docs/install.md](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/install.md).
+      step in [docs/install.md](https://github.com/vanguard-lint/vanguard/blob/main/docs/install.md).
     - **Docker**: `docker build -t vanguard .` — scratch image, one static
       binary; compose demo included.
-    - **Go**: `go install github.com/Stellarhold170NT/vanguard/cmd/vanguard@v0.1.0`
+    - **Go**: `go install github.com/vanguard-lint/vanguard/cmd/vanguard@v0.1.0`
       (Go >= 1.22 + a C toolchain — tree-sitter is cgo).
 
-    Docs: [README](https://github.com/Stellarhold170NT/vanguard#readme)
-    (quickstart) · [install](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/install.md)
-    · [config](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/config.md)
-    · [rule catalog](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/README.md)
-    · [CI integration](https://github.com/Stellarhold170NT/vanguard/blob/main/docs/ci-integration.md)
-    · [CHANGELOG](https://github.com/Stellarhold170NT/vanguard/blob/main/CHANGELOG.md)
+    Docs: [README](https://github.com/vanguard-lint/vanguard#readme)
+    (quickstart) · [install](https://github.com/vanguard-lint/vanguard/blob/main/docs/install.md)
+    · [config](https://github.com/vanguard-lint/vanguard/blob/main/docs/config.md)
+    · [rule catalog](https://github.com/vanguard-lint/vanguard/blob/main/docs/rules/README.md)
+    · [CI integration](https://github.com/vanguard-lint/vanguard/blob/main/docs/ci-integration.md)
+    · [CHANGELOG](https://github.com/vanguard-lint/vanguard/blob/main/CHANGELOG.md)
 
     Out of scope in v0.1 (charter §1.4): `--fix` autofix, differential
     `--new-from-*`, Go/Python adapters (planned wave 2), full

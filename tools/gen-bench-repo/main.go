@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Stellarhold170NT/vanguard/internal/benchgen"
+	"github.com/vanguard-lint/vanguard/internal/benchgen"
 )
 
 func main() {

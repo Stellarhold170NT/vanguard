@@ -4,9 +4,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
-	"github.com/Stellarhold170NT/vanguard/rules"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/rules"
 )
 
 // simulateTTY overrides the process TTY probe for the duration of a test so

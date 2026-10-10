@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/rules"
+	"github.com/vanguard-lint/vanguard/rules"
 )
 
 // TestListRulesTableSortedWithMetadata pins the w2-06 brief rule: the

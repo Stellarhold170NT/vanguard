@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // ---------------------------------------------------------------------------
@@ -68,7 +68,7 @@ func sampleRules() map[string]RuleInfo {
 			Slug:            "no-verb-path",
 			Summary:         "No CRUD verb in path",
 			Description:     "Resource paths must name the resource, not the operation. Move the verb into the HTTP method or split the endpoint.",
-			HelpURI:         "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R1xx-02-no-verb-path.md",
+			HelpURI:         "https://github.com/vanguard-lint/vanguard/blob/main/docs/rules/R1xx-02-no-verb-path.md",
 			Category:        "resource",
 			AIP:             "131",
 			DefaultSeverity: engine.SeverityError,
@@ -78,7 +78,7 @@ func sampleRules() map[string]RuleInfo {
 			Slug:            "get-no-body",
 			Summary:         "GET endpoints must not declare @RequestBody",
 			Description:     "GET endpoints must not declare @RequestBody parameters. Move the payload to @RequestParam or switch to POST.",
-			HelpURI:         "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R2xx-01-get-no-body.md",
+			HelpURI:         "https://github.com/vanguard-lint/vanguard/blob/main/docs/rules/R2xx-01-get-no-body.md",
 			Category:        "methods",
 			AIP:             "131",
 			DefaultSeverity: engine.SeverityError,
@@ -88,7 +88,7 @@ func sampleRules() map[string]RuleInfo {
 			Slug:            "string-timestamp",
 			Summary:         "Timestamp fields must not use String",
 			Description:     "A timestamp-shaped field is typed String. Use a dedicated temporal type so serialization and validation apply.",
-			HelpURI:         "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R4xx-02-string-timestamp.md",
+			HelpURI:         "https://github.com/vanguard-lint/vanguard/blob/main/docs/rules/R4xx-02-string-timestamp.md",
 			Category:        "dto",
 			AIP:             "121",
 			DefaultSeverity: engine.SeverityInfo,

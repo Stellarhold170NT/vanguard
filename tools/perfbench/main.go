@@ -25,7 +25,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/Stellarhold170NT/vanguard/internal/benchgen"
+	"github.com/vanguard-lint/vanguard/internal/benchgen"
 )
 
 const (

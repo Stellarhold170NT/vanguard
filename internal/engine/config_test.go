@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // boolPtr is a config-override helper (RuleOverride.Disabled is *bool: nil =

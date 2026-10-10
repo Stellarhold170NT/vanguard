@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // stubRepoRoot is the checked-in fixture repo, seen from this package's

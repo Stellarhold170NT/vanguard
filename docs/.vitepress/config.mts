@@ -215,14 +215,14 @@ export default defineConfig({
 
     editLink: {
       pattern:
-        "https://github.com/Stellarhold170NT/vanguard/edit/main/docs/:path",
+        "https://github.com/vanguard-lint/vanguard/edit/main/docs/:path",
       text: "Edit this page on GitHub",
     },
 
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/Stellarhold170NT/vanguard",
+        link: "https://github.com/vanguard-lint/vanguard",
       },
     ],
 

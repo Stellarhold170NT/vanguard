@@ -4,7 +4,7 @@ import (
 	"io"
 	"path/filepath"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/engine"
 )
 
 // sarifRenderer emits SARIF 2.1.0 (charter §6.8). Rules and results stream

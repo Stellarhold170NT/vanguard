@@ -1,6 +1,6 @@
 package discovery
 
-import "github.com/Stellarhold170NT/vanguard/internal/ir"
+import "github.com/vanguard-lint/vanguard/internal/ir"
 
 // Evidence explains a Detect decision. Verbose mode prints it so a wrong
 // adapter choice is debuggable from the CLI alone (charter §5.3).

@@ -136,7 +136,7 @@ across pushes instead of reopening it:
 ## Replay it
 
 ```console
-$ git clone https://github.com/Stellarhold170NT/vanguard && cd vanguard
+$ git clone https://github.com/vanguard-lint/vanguard && cd vanguard
 $ go build -o vanguard ./cmd/vanguard
 $ cp -r testdata/stub-repo /tmp/demo-shop
 $ ./vanguard scan /tmp/demo-shop          # 1 WARN — R4xx-02 field-casing

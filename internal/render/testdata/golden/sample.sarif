@@ -7,7 +7,7 @@
         "driver": {
           "name": "vanguard",
           "version": "0.1.0",
-          "informationUri": "https://github.com/Stellarhold170NT/vanguard",
+          "informationUri": "https://github.com/vanguard-lint/vanguard",
           "rules": [
             {
               "id": "R2xx-01",
@@ -18,7 +18,7 @@
               "fullDescription": {
                 "text": "GET endpoints must not declare @RequestBody parameters. Move the payload to @RequestParam or switch to POST."
               },
-              "helpUri": "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R2xx-01-get-no-body.md",
+              "helpUri": "https://github.com/vanguard-lint/vanguard/blob/main/docs/rules/R2xx-01-get-no-body.md",
               "defaultConfiguration": {
                 "level": "error"
               },
@@ -36,7 +36,7 @@
               "fullDescription": {
                 "text": "Resource paths must name the resource, not the operation. Move the verb into the HTTP method or split the endpoint."
               },
-              "helpUri": "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R1xx-02-no-verb-path.md",
+              "helpUri": "https://github.com/vanguard-lint/vanguard/blob/main/docs/rules/R1xx-02-no-verb-path.md",
               "defaultConfiguration": {
                 "level": "error"
               },
@@ -54,7 +54,7 @@
               "fullDescription": {
                 "text": "A timestamp-shaped field is typed String. Use a dedicated temporal type so serialization and validation apply."
               },
-              "helpUri": "https://github.com/Stellarhold170NT/vanguard/blob/main/docs/rules/R4xx-02-string-timestamp.md",
+              "helpUri": "https://github.com/vanguard-lint/vanguard/blob/main/docs/rules/R4xx-02-string-timestamp.md",
               "defaultConfiguration": {
                 "level": "note"
               },

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/discovery"
+	"github.com/vanguard-lint/vanguard/internal/discovery"
 )
 
 // The §5.5 edge-case matrix (test strategy): "đầu vào hợp pháp ở mức cực

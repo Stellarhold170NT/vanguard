@@ -54,7 +54,7 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.26'
-      - run: go build -o /usr/local/bin/vanguard github.com/Stellarhold170NT/vanguard/cmd/vanguard@<PINNED-COMMIT>
+      - run: go build -o /usr/local/bin/vanguard github.com/vanguard-lint/vanguard/cmd/vanguard@<PINNED-COMMIT>
 
       # The gate. exit 0 passes; exit 1 = ERROR findings (job fails);
       # exit 2 = tool/config error (job fails with a distinct cause).

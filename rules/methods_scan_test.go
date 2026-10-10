@@ -10,9 +10,9 @@ package rules_test
 import (
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/discovery"
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/rules"
+	"github.com/vanguard-lint/vanguard/internal/discovery"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/rules"
 )
 
 const methodsFixtureDir = "../testdata/methods-rules"

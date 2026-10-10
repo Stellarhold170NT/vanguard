@@ -12,7 +12,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/internal/engine"
 )
 
 // DefaultVersion is the tool version used when WithVersion is not given
@@ -25,7 +25,7 @@ const (
 	sarifSchemaURI     = "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json"
 	sarifVersion       = "2.1.0"
 	toolName           = "vanguard"
-	toolInformationURI = "https://github.com/Stellarhold170NT/vanguard"
+	toolInformationURI = "https://github.com/vanguard-lint/vanguard"
 	fingerprintKey     = "vanguardFindingV1"
 )
 

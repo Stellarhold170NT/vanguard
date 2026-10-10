@@ -12,9 +12,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/internal/discovery"
-	"github.com/Stellarhold170NT/vanguard/internal/engine"
-	"github.com/Stellarhold170NT/vanguard/rules"
+	"github.com/vanguard-lint/vanguard/internal/discovery"
+	"github.com/vanguard-lint/vanguard/internal/engine"
+	"github.com/vanguard-lint/vanguard/rules"
 )
 
 const payloadRepo = "../testdata/spring-payload"
@@ -137,7 +137,7 @@ func TestRuleSourceReadsIROnly(t *testing.T) {
 			t.Fatalf("read %s: %v", src, err)
 		}
 		for _, banned := range []string{
-			"github.com/Stellarhold170NT/vanguard/adapters/",
+			"github.com/vanguard-lint/vanguard/adapters/",
 			"github.com/smacker/go-tree-sitter",
 			"os.ReadFile", "ioutil.",
 		} {

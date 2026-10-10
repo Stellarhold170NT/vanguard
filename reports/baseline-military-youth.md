@@ -276,7 +276,7 @@ team tự hiệu chỉnh). Mỗi mục: hiện trạng → đề xuất → quy 
 ## 7. Có thể tái lập thế nào (tóm tắt — chi tiết Phụ lục A)
 
 ```bash
-git clone https://github.com/Stellarhold170NT/vanguard.git && git checkout f2fc550 && make bin
+git clone https://github.com/vanguard-lint/vanguard.git && git checkout f2fc550 && make bin
 ./bin/vanguard scan /path/to/military-youth --format json    # exit 1 = có ≥1 finding ERROR (đúng thiết kế)
 ```
 

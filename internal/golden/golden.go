@@ -258,7 +258,7 @@ func BinaryPath() (string, error) {
 		}
 		ctx, cancel := context.WithTimeout(context.Background(), buildTimeout)
 		defer cancel()
-		cmd := exec.CommandContext(ctx, goExe, "build", "-o", out, "github.com/Stellarhold170NT/vanguard/cmd/vanguard")
+		cmd := exec.CommandContext(ctx, goExe, "build", "-o", out, "github.com/vanguard-lint/vanguard/cmd/vanguard")
 		cmd.Dir = root
 		var outBuf bytes.Buffer
 		cmd.Stdout = &outBuf

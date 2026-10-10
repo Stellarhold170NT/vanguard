@@ -12,9 +12,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/spring"
-	"github.com/Stellarhold170NT/vanguard/internal/discovery"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/adapters/spring"
+	"github.com/vanguard-lint/vanguard/internal/discovery"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 const (

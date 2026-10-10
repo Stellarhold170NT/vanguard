@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"unicode/utf16"
 
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // The declaration-level .proto reader (w3-06, charter §3.6 R6xx). The

@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Stellarhold170NT/vanguard/internal/golden"
+	"github.com/vanguard-lint/vanguard/internal/golden"
 )
 
 // runTimeout bounds ONE binary invocation; a hung scan fails the test

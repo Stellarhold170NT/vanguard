@@ -4,10 +4,10 @@
   <h1>Vanguard</h1>
 
 <p align="center">
-  <a href="https://github.com/Stellarhold170NT/vanguard/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/Stellarhold170NT/vanguard/ci.yml?branch=main&label=CI&style=flat-square&logo=github&logoColor=white" alt="CI Status" /></a>
+  <a href="https://github.com/vanguard-lint/vanguard/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/vanguard-lint/vanguard/ci.yml?branch=main&label=CI&style=flat-square&logo=github&logoColor=white" alt="CI Status" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue?style=flat-square" alt="License: Apache-2.0" /></a>
-  <a href="https://github.com/Stellarhold170NT/vanguard/releases"><img src="https://img.shields.io/github/v/release/Stellarhold170NT/vanguard?style=flat-square" alt="Release" /></a>
-  <a href="https://pkg.go.dev/github.com/Stellarhold170NT/vanguard"><img src="https://img.shields.io/badge/Go-Reference-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go Reference" /></a>
+  <a href="https://github.com/vanguard-lint/vanguard/releases"><img src="https://img.shields.io/github/v/release/vanguard-lint/vanguard?style=flat-square" alt="Release" /></a>
+  <a href="https://pkg.go.dev/github.com/vanguard-lint/vanguard"><img src="https://img.shields.io/badge/Go-Reference-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go Reference" /></a>
   <a href="docs/ci-integration.md"><img src="https://img.shields.io/badge/SARIF-2.1.0-5C9DFF?style=flat-square" alt="SARIF 2.1.0" /></a>
 </p>
 
@@ -46,7 +46,7 @@ Requirements:
 ### Scan with Docker
 
 ```bash
-git clone https://github.com/Stellarhold170NT/vanguard && cd vanguard
+git clone https://github.com/vanguard-lint/vanguard && cd vanguard
 docker build -t vanguard:local .
 docker run --rm -v "$PWD/testdata/stub-repo:/src:ro" vanguard:local scan /src
 ```

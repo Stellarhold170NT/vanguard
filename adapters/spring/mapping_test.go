@@ -5,8 +5,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Stellarhold170NT/vanguard/adapters/java"
-	"github.com/Stellarhold170NT/vanguard/internal/ir"
+	"github.com/vanguard-lint/vanguard/adapters/java"
+	"github.com/vanguard-lint/vanguard/internal/ir"
 )
 
 // ann builds one annotation the way the extraction layer reports it: the
