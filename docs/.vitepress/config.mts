@@ -157,6 +157,16 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: "Factory Program",
+          items: [
+            { text: "Factory Metrics", link: "/factory-metrics" },
+            {
+              text: "Cycle Report Sample",
+              link: "/factory-cycle-report-sample",
+            },
+          ],
+        },
       ],
 
       "/reference/": [
