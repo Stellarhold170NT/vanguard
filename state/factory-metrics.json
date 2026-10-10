@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-10T09:17:33Z",
+  "generated_at": "2026-10-10T09:50:54Z",
   "generator": {
     "script": "tools/factory-metrics.py",
     "args": {
@@ -261,6 +261,7 @@
         "count": 0
       },
       "arms": [],
+      "orphan_terminal_events": 0,
       "unmapped_tasks": []
     }
   },

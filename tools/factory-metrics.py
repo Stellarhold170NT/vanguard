@@ -325,28 +325,58 @@ def load_runlog(runlog_path: Path):
     return events, meta
 
 
-def arm_analysis(events):
+def canonical_task_id(task, n_map):
+    """Normalize a runlog task id to the canonical 'wN-xx' form.
+
+    Accepts 'w7-03', '[w7-03] Factory metrics dashboard' (contract name form),
+    'task-39' and bare contract numbers ('39'). Unknown ids are returned
+    trimmed so they can be REPORTED as unmapped instead of fragmenting arms
+    under different spellings of the same task.
+    """
+    t = str(task)
+    m = WORKFLOW_RE.search(t)
+    if m:
+        return "w%s-%s" % (m.group(1), m.group(2))
+    key = t.strip().lower()
+    if key in n_map:
+        return n_map[key]
+    if key.startswith("task-") and key[5:] in n_map:
+        return n_map[key[5:]]
+    return t.strip()
+
+
+def arm_analysis(events, n_map=None):
     """Group status events into task 'arms' (PENDING→IN_PROGRESS→terminal).
 
+    Task ids are canonicalized first (canonical_task_id) so the same task
+    logged under '[w7-03] …', 'task-39' and '39' forms ONE arm history.
     An arm opens at a transition into IN_PROGRESS and closes at the next
     transition into a terminal status. A task with >1 arms was RE-ARMED
     (re-dispatched after a terminal status). This is the runlog-derived,
     objective definition of re-arm; contracts alone cannot show it.
+    A terminal event arriving with no open arm is counted as an orphan
+    (log started mid-task, or duplicate terminal) — never fabricated
+    into a duration.
     """
+    n_map = n_map or {}
     by_task = {}
+    orphan_terminal_events = 0
     for e in events:
         if e["event"] in ("task_status", "status", "status_change", "task_update"):
-            by_task.setdefault(e["task"], []).append(e)
+            task = canonical_task_id(e["task"], n_map)
+            by_task.setdefault(task, []).append(e)
 
     arms = []
     for task, evs in by_task.items():
         open_start = None
-        open_from = None
         for e in evs:
             to = str(e["to"] or "").upper()
             if to == "IN_PROGRESS" and open_start is None:
-                open_start, open_from = e["timestamp"], e["from"]
-            elif to in RUNLOG_TERMINAL_STATUSES and open_start is not None:
+                open_start = e["timestamp"]
+            elif to in RUNLOG_TERMINAL_STATUSES:
+                if open_start is None:
+                    orphan_terminal_events += 1
+                    continue
                 arms.append(
                     {
                         "task": task,
@@ -357,7 +387,7 @@ def arm_analysis(events):
                         "arm_index": len([a for a in arms if a["task"] == task]) + 1,
                     }
                 )
-                open_start, open_from = None, None
+                open_start = None
         if open_start is not None:  # still open at end of log
             arms.append(
                 {
@@ -392,6 +422,7 @@ def arm_analysis(events):
         "tasks_measured": len(per_task),
         "tasks_rearmed": sum(1 for c in rearm_counts.values() if c > 0),
         "rearm_events_total": sum(rearm_counts.values()),
+        "orphan_terminal_events": orphan_terminal_events,
         "done_first_try": len(first_try_done),
         "done_total": len(done_tasks),
         "done_first_try_rate": (
@@ -680,9 +711,17 @@ def main(argv=None):
         return 2
 
     runlog_events, runlog_meta = load_runlog(runlog_path)
-    runlog_summary = arm_analysis(runlog_events) if runlog_meta["available"] else {
+    # contract-number → canonical task id, so bare numeric ids in the runlog
+    # ('39') and 'task-39' spellings fold into the same arm history as 'w7-03'
+    task_n_map = {
+        str(c["n"]).strip().lower(): c["task_id"]
+        for c in contracts
+        if c["n"] and c["task_id"]
+    }
+    runlog_summary = arm_analysis(runlog_events, task_n_map) if runlog_meta["available"] else {
         "arms": [], "per_task": {}, "rearm_counts": {}, "tasks_measured": 0,
-        "tasks_rearmed": 0, "rearm_events_total": 0, "done_first_try": 0,
+        "tasks_rearmed": 0, "rearm_events_total": 0, "orphan_terminal_events": 0,
+        "done_first_try": 0,
         "done_total": 0, "done_first_try_rate": None,
         "duration_hours": {"avg": None, "min": None, "max": None, "count": 0},
         "runlog_gate_events": [],
@@ -727,6 +766,7 @@ def main(argv=None):
                 "done_first_try_rate": runlog_summary["done_first_try_rate"],
                 "duration_hours": runlog_summary["duration_hours"],
                 "arms": runlog_summary["arms"],
+                "orphan_terminal_events": runlog_summary["orphan_terminal_events"],
                 "unmapped_tasks": runlog_mapping["unmapped_tasks"],
             },
         },

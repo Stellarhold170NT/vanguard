@@ -77,6 +77,13 @@ File `state/runlog.jsonl`, append-only, 1 JSON object mỗi dòng:
   liệt kê trong `gates.runlog.unmapped_tasks`, không bị nuốt âm thầm).
 - Bắt buộc với `task_status`: `from`, `to`. Alias key được chấp nhận: `timestamp|time|@timestamp`,
   `type|action|kind`, `task_id|taskid|name|id`.
+- **Chuẩn hóa task id** (`canonical_task_id`): `[w7-03] Factory metrics dashboard` (dạng name
+  của contract), `task-39` và số contract trần `39` đều gộp về `w7-03` trước khi phân tích arm —
+  cùng một task ghi dưới các dạng khác nhau KHÔNG bị tách thành nhiều arm. Id không map được
+  (không khớp `wN-xx`, không trùng `n` contract nào) vẫn tạo arm và được đếm trong các tổng
+  toàn nhà máy, nhưng bị liệt kê trong `gates.runlog.unmapped_tasks` và không gán cho workflow nào.
+- Event terminal mà không có arm đang mở (log bắt đầu giữa chừng, hoặc terminal trùng) được
+  đếm trong `gates.runlog.orphan_terminal_events` — không bịa duration từ dữ liệu thiếu.
 - Dòng không hiểu được được ĐẾM (`lines_unrecognized`) chứ không làm chết script.
 
 ## 5. Hợp đồng máy đọc cho w7-04 (schema v1)
