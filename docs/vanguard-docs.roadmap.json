@@ -1,0 +1,2057 @@
+{
+  "title": "vanguard Docs Roadmap",
+  "slug": "vanguard-docs",
+  "description": "Onboarding map for the vanguard API design linter — install, configure, rules, CI",
+  "nodes": [
+    {
+      "id": "title_main",
+      "type": "title",
+      "position": {
+        "x": 165,
+        "y": -135
+      },
+      "data": {
+        "label": "vanguard Docs Roadmap",
+        "style": {
+          "fontSize": 30,
+          "fontWeight": 700,
+          "textAlign": "center"
+        }
+      },
+      "measured": {
+        "width": 420,
+        "height": 49
+      },
+      "style": {
+        "width": 420,
+        "height": 49
+      }
+    },
+    {
+      "id": "legend_top",
+      "type": "legend",
+      "position": {
+        "x": 595,
+        "y": -150
+      },
+      "data": {
+        "label": "",
+        "legends": [
+          {
+            "id": "l1",
+            "color": "#874efe",
+            "label": "Must Learn / Core"
+          },
+          {
+            "id": "l2",
+            "color": "#4f7a28",
+            "label": "Recommended Alternative"
+          },
+          {
+            "id": "l3",
+            "color": "#929292",
+            "label": "Any Order / Optional"
+          }
+        ]
+      },
+      "measured": {
+        "width": 270,
+        "height": 130
+      },
+      "style": {
+        "width": 270,
+        "height": 130
+      }
+    },
+    {
+      "id": "sec_lbl_zb6u_1",
+      "type": "label",
+      "position": {
+        "x": 285,
+        "y": 80
+      },
+      "data": {
+        "label": "Start Here",
+        "style": {
+          "fontSize": 16,
+          "fontWeight": 700,
+          "color": "#111827",
+          "textAlign": "center"
+        }
+      },
+      "measured": {
+        "width": 180,
+        "height": 38
+      },
+      "style": {
+        "width": 180,
+        "height": 38
+      }
+    },
+    {
+      "id": "t_07nf_2",
+      "type": "topic",
+      "position": {
+        "x": 250,
+        "y": 232
+      },
+      "data": {
+        "label": "What is vanguard?",
+        "style": {
+          "colorType": "b",
+          "fontSize": 15,
+          "fontWeight": 700
+        }
+      },
+      "measured": {
+        "width": 250,
+        "height": 49
+      },
+      "style": {
+        "width": 250,
+        "height": 49
+      }
+    },
+    {
+      "id": "it_07ni_5",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 214
+      },
+      "data": {
+        "label": "README — positioning &…",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "README.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_07ni_6",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 262
+      },
+      "data": {
+        "label": "Charter — R1–R8 contract",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/charter.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_07ni_7",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 310
+      },
+      "data": {
+        "label": "Why source-first?",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "README.md#why-vanguard"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_left_07ni_4",
+      "type": "section",
+      "position": {
+        "x": -115,
+        "y": 170
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 198
+      },
+      "style": {
+        "width": 300,
+        "height": 198
+      }
+    },
+    {
+      "id": "it_07ni_10",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 233
+      },
+      "data": {
+        "label": "Demo — bug → scan → fix → clean",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/demo.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_07ni_11",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 281
+      },
+      "data": {
+        "label": "Rule catalog with examples",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/rules/README.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_right_07ni_9",
+      "type": "section",
+      "position": {
+        "x": 565,
+        "y": 189
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 150
+      },
+      "style": {
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "id": "sec_lbl_09yi_13",
+      "type": "label",
+      "position": {
+        "x": 285,
+        "y": 432
+      },
+      "data": {
+        "label": "Get the Binary",
+        "style": {
+          "fontSize": 16,
+          "fontWeight": 700,
+          "color": "#111827",
+          "textAlign": "center"
+        }
+      },
+      "measured": {
+        "width": 180,
+        "height": 38
+      },
+      "style": {
+        "width": 180,
+        "height": 38
+      }
+    },
+    {
+      "id": "lbl_choice_0b8e_15",
+      "type": "label",
+      "position": {
+        "x": 240,
+        "y": 530
+      },
+      "data": {
+        "label": "CHOOSE INSTALL PATH",
+        "style": {
+          "fontSize": 13,
+          "fontWeight": 700,
+          "color": "#2B78E4",
+          "letterSpacing": "0.08em"
+        }
+      },
+      "measured": {
+        "width": 270,
+        "height": 26
+      },
+      "style": {
+        "width": 270,
+        "height": 26
+      }
+    },
+    {
+      "id": "opt_a_0b8e_17",
+      "type": "topic",
+      "position": {
+        "x": 70,
+        "y": 568
+      },
+      "data": {
+        "label": "Docker",
+        "style": {
+          "colorType": "e",
+          "fontSize": 15
+        },
+        "href": "docs/install.md"
+      },
+      "measured": {
+        "width": 210,
+        "height": 49
+      },
+      "style": {
+        "width": 210,
+        "height": 49
+      }
+    },
+    {
+      "id": "opt_b_0b8e_18",
+      "type": "topic",
+      "position": {
+        "x": 460,
+        "y": 568
+      },
+      "data": {
+        "label": "Build from source",
+        "style": {
+          "colorType": "e",
+          "fontSize": 15
+        },
+        "href": "docs/install.md"
+      },
+      "measured": {
+        "width": 210,
+        "height": 49
+      },
+      "style": {
+        "width": 210,
+        "height": 49
+      }
+    },
+    {
+      "id": "sub_a_0b8e_21",
+      "type": "subtopic",
+      "position": {
+        "x": 70,
+        "y": 624
+      },
+      "data": {
+        "label": "scratch image, no…",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/install.md#2-docker"
+      },
+      "measured": {
+        "width": 210,
+        "height": 42
+      },
+      "style": {
+        "width": 210,
+        "height": 42
+      }
+    },
+    {
+      "id": "sub_b_0b8e_22",
+      "type": "subtopic",
+      "position": {
+        "x": 460,
+        "y": 624
+      },
+      "data": {
+        "label": "Go 1.22+ and a C…",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/install.md#3-go-install"
+      },
+      "measured": {
+        "width": 210,
+        "height": 42
+      },
+      "style": {
+        "width": 210,
+        "height": 42
+      }
+    },
+    {
+      "id": "t_merge_0c58_25",
+      "type": "topic",
+      "position": {
+        "x": 250,
+        "y": 708
+      },
+      "data": {
+        "label": "vanguard ready —…",
+        "style": {
+          "colorType": "b",
+          "fontSize": 16,
+          "fontWeight": 700
+        }
+      },
+      "measured": {
+        "width": 250,
+        "height": 49
+      },
+      "style": {
+        "width": 250,
+        "height": 49
+      }
+    },
+    {
+      "id": "sec_lbl_0fzy_28",
+      "type": "label",
+      "position": {
+        "x": 285,
+        "y": 833
+      },
+      "data": {
+        "label": "Everyday Use",
+        "style": {
+          "fontSize": 16,
+          "fontWeight": 700,
+          "color": "#111827",
+          "textAlign": "center"
+        }
+      },
+      "measured": {
+        "width": 180,
+        "height": 38
+      },
+      "style": {
+        "width": 180,
+        "height": 38
+      }
+    },
+    {
+      "id": "t_1xbn_30",
+      "type": "topic",
+      "position": {
+        "x": 250,
+        "y": 985
+      },
+      "data": {
+        "label": "First scan",
+        "style": {
+          "colorType": "b",
+          "fontSize": 15,
+          "fontWeight": 700
+        }
+      },
+      "measured": {
+        "width": 250,
+        "height": 49
+      },
+      "style": {
+        "width": 250,
+        "height": 49
+      }
+    },
+    {
+      "id": "it_1xbn_33",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 967
+      },
+      "data": {
+        "label": "scan — full report",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/install.md#after-installing-first-scan"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_1xbn_34",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 1015
+      },
+      "data": {
+        "label": "check — CI alias",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/ci-integration.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_1xbn_35",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 1063
+      },
+      "data": {
+        "label": "explain <rule-id>",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/install.md#after-installing-first-scan"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_left_1xbn_32",
+      "type": "section",
+      "position": {
+        "x": -115,
+        "y": 923
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 198
+      },
+      "style": {
+        "width": 300,
+        "height": 198
+      }
+    },
+    {
+      "id": "it_1xbn_38",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 967
+      },
+      "data": {
+        "label": "pretty (TTY: colored pills)",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/charter.md#6-cli-ux-spec"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_1xbo_39",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 1015
+      },
+      "data": {
+        "label": "JSON — §6.7 summary",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/charter.md#6-cli-ux-spec"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_1xbo_40",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 1063
+      },
+      "data": {
+        "label": "SARIF 2.1.0 for the code scanner",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/ci-integration.md#2-github-actions-target-repository"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_right_1xbn_37",
+      "type": "section",
+      "position": {
+        "x": 565,
+        "y": 923
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 198
+      },
+      "style": {
+        "width": 300,
+        "height": 198
+      }
+    },
+    {
+      "id": "t_20ul_42",
+      "type": "topic",
+      "position": {
+        "x": 250,
+        "y": 1204
+      },
+      "data": {
+        "label": "Tune it",
+        "style": {
+          "colorType": "b",
+          "fontSize": 15,
+          "fontWeight": 700
+        }
+      },
+      "measured": {
+        "width": 250,
+        "height": 49
+      },
+      "style": {
+        "width": 250,
+        "height": 49
+      }
+    },
+    {
+      "id": "it_20ul_45",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 1205
+      },
+      "data": {
+        "label": "Config reference…",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/config.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_20ul_46",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 1253
+      },
+      "data": {
+        "label": "vanguard init scaffold",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/config.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_left_20ul_44",
+      "type": "section",
+      "position": {
+        "x": -115,
+        "y": 1161
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 150
+      },
+      "style": {
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "id": "it_20ul_49",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 1205
+      },
+      "data": {
+        "label": "Inline: // vanguard:ignore",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/config.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_20ul_50",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 1253
+      },
+      "data": {
+        "label": "Path-scoped, with reason",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/config.md"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_right_20ul_48",
+      "type": "section",
+      "position": {
+        "x": 565,
+        "y": 1161
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 150
+      },
+      "style": {
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "id": "t_21xu_52",
+      "type": "topic",
+      "position": {
+        "x": 250,
+        "y": 1401
+      },
+      "data": {
+        "label": "Rule catalog — 27 rules,…",
+        "style": {
+          "colorType": "b",
+          "fontSize": 15,
+          "fontWeight": 700
+        }
+      },
+      "measured": {
+        "width": 250,
+        "height": 49
+      },
+      "style": {
+        "width": 250,
+        "height": 49
+      }
+    },
+    {
+      "id": "s_k_21xu_54",
+      "type": "subtopic",
+      "position": {
+        "x": -115,
+        "y": 1351
+      },
+      "data": {
+        "label": "R1xx resources & naming",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/rules/README.md#r1xx--resources--naming"
+      },
+      "measured": {
+        "width": 300,
+        "height": 42
+      },
+      "style": {
+        "width": 300,
+        "height": 42
+      }
+    },
+    {
+      "id": "s_k_21xu_56",
+      "type": "subtopic",
+      "position": {
+        "x": -115,
+        "y": 1404
+      },
+      "data": {
+        "label": "R3xx pagination",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/rules/README.md#r3xx--pagination"
+      },
+      "measured": {
+        "width": 300,
+        "height": 42
+      },
+      "style": {
+        "width": 300,
+        "height": 42
+      }
+    },
+    {
+      "id": "s_k_21xv_58",
+      "type": "subtopic",
+      "position": {
+        "x": -115,
+        "y": 1457
+      },
+      "data": {
+        "label": "R5xx errors",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/rules/README.md#r5xx--errors"
+      },
+      "measured": {
+        "width": 300,
+        "height": 42
+      },
+      "style": {
+        "width": 300,
+        "height": 42
+      }
+    },
+    {
+      "id": "s_k_21xv_60",
+      "type": "subtopic",
+      "position": {
+        "x": 565,
+        "y": 1351
+      },
+      "data": {
+        "label": "R2xx methods & verbs",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/rules/README.md#r2xx--methods--verbs"
+      },
+      "measured": {
+        "width": 300,
+        "height": 42
+      },
+      "style": {
+        "width": 300,
+        "height": 42
+      }
+    },
+    {
+      "id": "s_k_21xv_62",
+      "type": "subtopic",
+      "position": {
+        "x": 565,
+        "y": 1404
+      },
+      "data": {
+        "label": "R4xx payload",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/rules/README.md#r4xx--payload"
+      },
+      "measured": {
+        "width": 300,
+        "height": 42
+      },
+      "style": {
+        "width": 300,
+        "height": 42
+      }
+    },
+    {
+      "id": "s_k_21xv_64",
+      "type": "subtopic",
+      "position": {
+        "x": 565,
+        "y": 1457
+      },
+      "data": {
+        "label": "R6xx http-grpc &…",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/rules/README.md#r6xx--http-grpc--versioning"
+      },
+      "measured": {
+        "width": 300,
+        "height": 42
+      },
+      "style": {
+        "width": 300,
+        "height": 42
+      }
+    },
+    {
+      "id": "sec_lbl_2442_66",
+      "type": "label",
+      "position": {
+        "x": 285,
+        "y": 1566
+      },
+      "data": {
+        "label": "Gate Your CI",
+        "style": {
+          "fontSize": 16,
+          "fontWeight": 700,
+          "color": "#111827",
+          "textAlign": "center"
+        }
+      },
+      "measured": {
+        "width": 180,
+        "height": 38
+      },
+      "style": {
+        "width": 180,
+        "height": 38
+      }
+    },
+    {
+      "id": "t_2616_68",
+      "type": "topic",
+      "position": {
+        "x": 250,
+        "y": 1767
+      },
+      "data": {
+        "label": "CI integration",
+        "style": {
+          "colorType": "b",
+          "fontSize": 15,
+          "fontWeight": 700
+        }
+      },
+      "measured": {
+        "width": 250,
+        "height": 49
+      },
+      "style": {
+        "width": 250,
+        "height": 49
+      }
+    },
+    {
+      "id": "it_2616_71",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 1768
+      },
+      "data": {
+        "label": "Exit codes 0 / 1 / 2",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/ci-integration.md#1-exit-code-contract--the-thing-a-gate-keys-on"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_2616_72",
+      "type": "subtopic",
+      "position": {
+        "x": -99,
+        "y": 1816
+      },
+      "data": {
+        "label": "check gates, scan reports",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/ci-integration.md#1-exit-code-contract--the-thing-a-gate-keys-on"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_left_2616_70",
+      "type": "section",
+      "position": {
+        "x": -115,
+        "y": 1724
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 150
+      },
+      "style": {
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "id": "it_2616_75",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 1700
+      },
+      "data": {
+        "label": "GitHub Actions recipe",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/ci-integration.md#2-github-actions-target-repository"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_2616_76",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 1748
+      },
+      "data": {
+        "label": "GitLab CI + shell runners",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/ci-integration.md#3-internal-ci-gitlab-ci--shell-runners"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_right_2616_74",
+      "type": "section",
+      "position": {
+        "x": 565,
+        "y": 1656
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 150
+      },
+      "style": {
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "id": "it_2616_79",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 1858
+      },
+      "data": {
+        "label": "Upload vanguard.sarif",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/ci-integration.md#2-github-actions-target-repository"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "it_2616_80",
+      "type": "subtopic",
+      "position": {
+        "x": 581,
+        "y": 1906
+      },
+      "data": {
+        "label": "partialFingerprints = stable…",
+        "style": {
+          "colorType": "c",
+          "fontSize": 13
+        },
+        "href": "docs/ci-integration.md#2-github-actions-target-repository"
+      },
+      "measured": {
+        "width": 268,
+        "height": 42
+      },
+      "style": {
+        "width": 268,
+        "height": 42
+      }
+    },
+    {
+      "id": "c_right_2616_78",
+      "type": "section",
+      "position": {
+        "x": 565,
+        "y": 1814
+      },
+      "data": {
+        "label": "",
+        "style": {
+          "borderStyle": "solid",
+          "borderColor": "#000000",
+          "backgroundColor": "#ffffff",
+          "borderRadius": 5
+        }
+      },
+      "measured": {
+        "width": 300,
+        "height": 150
+      },
+      "style": {
+        "width": 300,
+        "height": 150
+      }
+    },
+    {
+      "id": "chk_2wiw_82",
+      "type": "checklist",
+      "position": {
+        "x": 205,
+        "y": 2024
+      },
+      "data": {
+        "label": "Gate checklist",
+        "style": {
+          "labelAlign": "center",
+          "colorType": "b"
+        },
+        "checklists": [
+          {
+            "id": "cl_2wiw_83",
+            "label": "Pick an install path and run vanguard…"
+          },
+          {
+            "id": "cl_2wiw_84",
+            "label": "Scan your repo with vanguard check ."
+          },
+          {
+            "id": "cl_2wiw_85",
+            "label": "Read one ERROR finding + vanguard…"
+          },
+          {
+            "id": "cl_2wiw_86",
+            "label": "Tune severities in .vanguard.yaml…"
+          },
+          {
+            "id": "cl_2wiw_87",
+            "label": "Wire the gate into CI + upload…"
+          }
+        ]
+      },
+      "measured": {
+        "width": 340,
+        "height": 224
+      },
+      "style": {
+        "width": 340,
+        "height": 224
+      }
+    },
+    {
+      "id": "p_foot_2xsx_89",
+      "type": "paragraph",
+      "position": {
+        "x": 155,
+        "y": 2320
+      },
+      "data": {
+        "label": "Visit the following relevant tracks to continue learning",
+        "style": {
+          "fontSize": 14,
+          "textAlign": "center",
+          "borderColor": "transparent"
+        }
+      },
+      "measured": {
+        "width": 440,
+        "height": 36
+      },
+      "style": {
+        "width": 440,
+        "height": 36
+      }
+    },
+    {
+      "id": "lgr_2xsx_91",
+      "type": "linksgroup",
+      "position": {
+        "x": 195,
+        "y": 2366
+      },
+      "data": {
+        "label": "Relevant Roadmaps",
+        "links": [
+          {
+            "id": "lk_2xsx_92",
+            "label": "GitHub repo",
+            "url": "https://github.com/Stellarhold170NT/vanguard"
+          },
+          {
+            "id": "lk_2xsx_93",
+            "label": "Charter",
+            "url": "docs/charter.md"
+          }
+        ]
+      },
+      "measured": {
+        "width": 360,
+        "height": 140
+      },
+      "style": {
+        "width": 360,
+        "height": 140
+      }
+    },
+    {
+      "id": "btn_2xsx_95",
+      "type": "button",
+      "position": {
+        "x": 135,
+        "y": 2536
+      },
+      "data": {
+        "label": "Read the Demo",
+        "href": "docs/demo.md",
+        "color": "#fff",
+        "backgroundColor": "#4136D6",
+        "borderColor": "#4136D6",
+        "style": {
+          "fontSize": 14,
+          "fontWeight": 700
+        }
+      },
+      "measured": {
+        "width": 230,
+        "height": 49
+      },
+      "style": {
+        "width": 230,
+        "height": 49
+      }
+    },
+    {
+      "id": "btn_2xsx_97",
+      "type": "button",
+      "position": {
+        "x": 385,
+        "y": 2536
+      },
+      "data": {
+        "label": "Install Guide",
+        "href": "docs/install.md",
+        "color": "#fff",
+        "backgroundColor": "#0F5EA6",
+        "borderColor": "#0F5EA6",
+        "style": {
+          "fontSize": 14,
+          "fontWeight": 700
+        }
+      },
+      "measured": {
+        "width": 230,
+        "height": 49
+      },
+      "style": {
+        "width": 230,
+        "height": 49
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e_07nh_3",
+      "source": "sec_lbl_zb6u_1",
+      "target": "t_07nf_2",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_07ni_8",
+      "source": "t_07nf_2",
+      "target": "c_left_07ni_4",
+      "sourceHandle": "y2",
+      "targetHandle": "z1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_07ni_12",
+      "source": "t_07nf_2",
+      "target": "c_right_07ni_9",
+      "sourceHandle": "z2",
+      "targetHandle": "y1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_09yi_14",
+      "source": "t_07nf_2",
+      "target": "sec_lbl_09yi_13",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_0b8e_16",
+      "source": "sec_lbl_09yi_13",
+      "target": "lbl_choice_0b8e_15",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_0b8e_19",
+      "source": "lbl_choice_0b8e_15",
+      "target": "opt_a_0b8e_17",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "smoothstep",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_0b8e_20",
+      "source": "lbl_choice_0b8e_15",
+      "target": "opt_b_0b8e_18",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "smoothstep",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_0b8e_23",
+      "source": "opt_a_0b8e_17",
+      "target": "sub_a_0b8e_21",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_0b8e_24",
+      "source": "opt_b_0b8e_18",
+      "target": "sub_b_0b8e_22",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_0c58_26",
+      "source": "sub_a_0b8e_21",
+      "target": "t_merge_0c58_25",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "smoothstep",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_0c58_27",
+      "source": "sub_b_0b8e_22",
+      "target": "t_merge_0c58_25",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "smoothstep",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_0fzy_29",
+      "source": "t_merge_0c58_25",
+      "target": "sec_lbl_0fzy_28",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_1xbn_31",
+      "source": "sec_lbl_0fzy_28",
+      "target": "t_1xbn_30",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_1xbn_36",
+      "source": "t_1xbn_30",
+      "target": "c_left_1xbn_32",
+      "sourceHandle": "y2",
+      "targetHandle": "z1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_1xbo_41",
+      "source": "t_1xbn_30",
+      "target": "c_right_1xbn_37",
+      "sourceHandle": "z2",
+      "targetHandle": "y1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_20ul_43",
+      "source": "t_1xbn_30",
+      "target": "t_20ul_42",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_20ul_47",
+      "source": "t_20ul_42",
+      "target": "c_left_20ul_44",
+      "sourceHandle": "y2",
+      "targetHandle": "z1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_20ul_51",
+      "source": "t_20ul_42",
+      "target": "c_right_20ul_48",
+      "sourceHandle": "z2",
+      "targetHandle": "y1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_21xu_53",
+      "source": "t_20ul_42",
+      "target": "t_21xu_52",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_21xu_55",
+      "source": "t_21xu_52",
+      "target": "s_k_21xu_54",
+      "sourceHandle": "y2",
+      "targetHandle": "z1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_21xu_57",
+      "source": "t_21xu_52",
+      "target": "s_k_21xu_56",
+      "sourceHandle": "y2",
+      "targetHandle": "z1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_21xv_59",
+      "source": "t_21xu_52",
+      "target": "s_k_21xv_58",
+      "sourceHandle": "y2",
+      "targetHandle": "z1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_21xv_61",
+      "source": "t_21xu_52",
+      "target": "s_k_21xv_60",
+      "sourceHandle": "z2",
+      "targetHandle": "y1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_21xv_63",
+      "source": "t_21xu_52",
+      "target": "s_k_21xv_62",
+      "sourceHandle": "z2",
+      "targetHandle": "y1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_21xv_65",
+      "source": "t_21xu_52",
+      "target": "s_k_21xv_64",
+      "sourceHandle": "z2",
+      "targetHandle": "y1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_2442_67",
+      "source": "t_21xu_52",
+      "target": "sec_lbl_2442_66",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_2616_69",
+      "source": "sec_lbl_2442_66",
+      "target": "t_2616_68",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_2616_73",
+      "source": "t_2616_68",
+      "target": "c_left_2616_70",
+      "sourceHandle": "y2",
+      "targetHandle": "z1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_2616_77",
+      "source": "t_2616_68",
+      "target": "c_right_2616_74",
+      "sourceHandle": "z2",
+      "targetHandle": "y1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_2617_81",
+      "source": "t_2616_68",
+      "target": "c_right_2616_78",
+      "sourceHandle": "z2",
+      "targetHandle": "y1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "dashed"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0.8 8"
+      }
+    },
+    {
+      "id": "e_2wiw_88",
+      "source": "t_2616_68",
+      "target": "chk_2wiw_82",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_2xsx_90",
+      "source": "chk_2wiw_82",
+      "target": "p_foot_2xsx_89",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_2xsx_94",
+      "source": "p_foot_2xsx_89",
+      "target": "lgr_2xsx_91",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_2xsx_96",
+      "source": "lgr_2xsx_91",
+      "target": "btn_2xsx_95",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    },
+    {
+      "id": "e_2xsx_98",
+      "source": "lgr_2xsx_91",
+      "target": "btn_2xsx_97",
+      "sourceHandle": "x2",
+      "targetHandle": "w1",
+      "type": "default",
+      "data": {
+        "edgeStyle": "solid"
+      },
+      "style": {
+        "stroke": "#2b78e4",
+        "strokeWidth": 3.5,
+        "strokeLinecap": "round",
+        "strokeDasharray": "0"
+      }
+    }
+  ],
+  "height": 2606
+}
