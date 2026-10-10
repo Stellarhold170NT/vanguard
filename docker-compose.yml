@@ -1,0 +1,22 @@
+# docker-compose.yml — Vanguard demo (w6-02): mount a sample repo, scan it.
+#
+# Builds the image from this Dockerfile, mounts the in-tree sample repo at
+# /src read-only, and prints the scan report to stdout:
+#
+#   docker build -t vanguard:local .
+#   docker compose -f docker-compose.yml run --rm scan
+#
+# Exit code note (engine policy, internal/engine/run.go): `scan` exits 1 only
+# for ERROR-severity findings; 0 = clean / warnings-only / no API surface;
+# 2 = tool/usage error. The demo repo has one WARN finding, so this service
+# exits 0.
+services:
+  scan:
+    build: .
+    image: vanguard:local
+    # Scratch image + read-only rootfs + read-only mount: the scan only ever
+    # reads /src and writes the report to stdout.
+    read_only: true
+    volumes:
+      - ./testdata/stub-repo:/src:ro
+    command: ["scan", "/src"]

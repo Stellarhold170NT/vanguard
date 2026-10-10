@@ -1,0 +1,44 @@
+# .dockerignore — keep the build context to the Go module sources (w6-02).
+#
+# Everything listed below never leaves the host: it cannot reach the daemon,
+# the layer cache, or an image layer. That is the structural guarantee behind
+# "no test fixtures, no VCS history, no tokens in the image" (w6-02
+# acceptance) — the Dockerfile COPYs only cmd/ internal/ rules/ adapters/,
+# and this file makes sure the context itself carries nothing else.
+#
+# Kept in the context: go.mod, go.sum, cmd/, internal/, rules/, adapters/,
+# Dockerfile, docker-compose.yml, .dockerignore.
+
+# Version-control and CI metadata (never ship history or workflow files).
+.git
+.gitattributes
+.gitignore
+.github
+
+# Local factory scaffolding (worktrees, reference clones — gitignored too).
+.worktrees
+.reference
+reference
+
+# Test fixtures and corpora: large, and never needed at runtime. Scanning a
+# repo is the user's job at runtime (`-v "$PWD:/src:ro"`), not the image's.
+testdata
+
+# Documentation, reports and tooling — not part of the binary.
+docs
+reports
+tools
+Makefile
+README.md
+CONTRIBUTING.md
+LICENSE
+*.md
+
+# Release/build artifacts and local state.
+dist
+bin
+.goreleaser.yaml
+.vanguard.example.yaml
+.editorconfig
+node_modules
+*.log
